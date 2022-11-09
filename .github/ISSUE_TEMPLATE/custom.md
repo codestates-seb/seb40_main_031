@@ -8,9 +8,12 @@ assignees: ''
 ---
 
 ### Description
-
+ex) 로그인 기능
 
 ### Todo
-1. [ ] todo
-2. [ ] todo
-3. [ ] todo
+1. [ ] Job1
+2. [ ] Job2
+3. [ ] Job3
+
+### 마감 기한
+YY.MM.DD
