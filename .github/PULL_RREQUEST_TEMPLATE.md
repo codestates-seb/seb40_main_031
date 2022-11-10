@@ -1,10 +1,7 @@
-## PR Checklist
+## 요약(Summary)
 
-### 어떤 기능을 구현했는지 설명해 주세요
 
-1. 메서드명
-- 설명
-</br>
+## 변경 내용(Describe your changes)
 
-2. 메서드명
-- 설명
+
+## 이슈 번호 또는 기타 사항(Issue number and etc)
