@@ -33,7 +33,7 @@ const Bookbox = styled.div`
 `;
 
 const Img = styled.img`
-  width: 150px;
+  width: 85%;
   margin: 5px;
 `;
 
