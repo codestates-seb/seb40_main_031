@@ -1,13 +1,11 @@
 package com.seb40_main_031.books.dto;
 
 
-import com.seb40_main_031.review.Review;
 import com.seb40_main_031.review.ReviewResponseDto;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-import javax.persistence.Column;
 import java.util.List;
 
 @NoArgsConstructor

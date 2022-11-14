@@ -1,9 +1,7 @@
 package com.seb40_main_031.books.controller;
 
-import com.seb40_main_031.books.dto.BookResponseDto;
 import com.seb40_main_031.books.entity.Book;
 import com.seb40_main_031.books.mapper.BookMapper;
-import com.seb40_main_031.books.repository.BookRepository;
 import com.seb40_main_031.books.service.BookService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
