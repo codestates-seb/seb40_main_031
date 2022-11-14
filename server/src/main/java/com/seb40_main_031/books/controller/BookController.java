@@ -38,8 +38,7 @@ public class BookController {
     public ResponseEntity getBestSeller(@PathVariable("category-id") long categoryId){
         List<Book> books = bookService.findAllBestSeller(categoryId);
 
-
-        return new ResponseEntity<>(books, HttpStatus.OK);
+        return new ResponseEntity<>(bookMapper.booksToBookResponseDto(books), HttpStatus.OK);
     }
 
     // 신간 조회
@@ -47,7 +46,7 @@ public class BookController {
     public ResponseEntity getNewBook(@PathVariable("category-id") long categoryId){
         List<Book> books = bookService.findAllNewBook(categoryId);
 
-        return new ResponseEntity<>(books,HttpStatus.OK);
+        return new ResponseEntity<>(bookMapper.booksToBookResponseDto(books),HttpStatus.OK);
     }
 
     // 카테고리 조회
