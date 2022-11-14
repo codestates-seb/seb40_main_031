@@ -1,5 +1,10 @@
-package com.seb40_main_031.books;
+package com.seb40_main_031.books.controller;
 
+import com.seb40_main_031.books.dto.BookResponseDto;
+import com.seb40_main_031.books.entity.Book;
+import com.seb40_main_031.books.mapper.BookMapper;
+import com.seb40_main_031.books.repository.BookRepository;
+import com.seb40_main_031.books.service.BookService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -13,20 +18,28 @@ import java.util.List;
 @RequestMapping("/books")
 public class BookController {
 
-    private final BookRepository bookRepository;
     private final BookService bookService;
+    private final BookMapper bookMapper;
 
-    public BookController(BookRepository bookRepository, BookService bookService) {
-        this.bookRepository = bookRepository;
+    public BookController(BookService bookService, BookMapper bookMapper) {
         this.bookService = bookService;
+        this.bookMapper = bookMapper;
     }
-    // 책 상세페이지 조회
 
+    // 책 상세페이지 조회
+    @GetMapping("/{book-id}")
+    public ResponseEntity getBook(@PathVariable("book-id") long bookId){
+        Book book = bookService.findBook(bookId);
+
+        return new ResponseEntity<>(bookMapper.bookToBookResponseDto(book)
+                ,HttpStatus.OK);
+    }
 
     // bestSeller 조회
     @GetMapping("/bestSeller/{category-id}")
     public ResponseEntity getBestSeller(@PathVariable("category-id") long categoryId){
         List<Book> books = bookService.findAllBestSeller(categoryId);
+
 
         return new ResponseEntity<>(books, HttpStatus.OK);
     }
@@ -38,7 +51,6 @@ public class BookController {
 
         return new ResponseEntity<>(books,HttpStatus.OK);
     }
-
 
     // 카테고리 조회
 

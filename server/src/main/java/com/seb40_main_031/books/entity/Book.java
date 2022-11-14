@@ -1,10 +1,13 @@
-package com.seb40_main_031.books;
+package com.seb40_main_031.books.entity;
 
+import com.seb40_main_031.review.Review;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import javax.persistence.*;
+import java.util.ArrayList;
+import java.util.List;
 
 @NoArgsConstructor
 @Getter
@@ -15,10 +18,10 @@ public class Book {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "book_id")
-    private Long id;
+    private long bookId;
 
     @Column(name = "member_id")
-    private Long memberId;
+    private long memberId;
 
     private String title;
 
@@ -27,7 +30,7 @@ public class Book {
 
     private String pubDate;
 
-    private Long price;
+    private long price;
 
     private String coverSmallUrl;
 
@@ -48,11 +51,14 @@ public class Book {
     @Column(name = "book_link")
     private String link;
 
-    private Long reviewCount;
+    private long reviewCount;
 
     private Long nationalRank;
 
     private Long foreignRank;
+
+    @OneToMany(mappedBy = "book")
+    private List<Review> reviews = new ArrayList<>();
 
 
 }

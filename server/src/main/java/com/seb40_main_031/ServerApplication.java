@@ -1,8 +1,8 @@
 package com.seb40_main_031;
 
 
-import com.seb40_main_031.books.Book;
-import com.seb40_main_031.books.BookRepository;
+import com.seb40_main_031.books.entity.Book;
+import com.seb40_main_031.books.repository.BookRepository;
 
 import com.seb40_main_031.books.Key;
 import org.json.simple.JSONArray;
