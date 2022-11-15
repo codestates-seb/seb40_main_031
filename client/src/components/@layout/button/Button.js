@@ -1,7 +1,7 @@
 import React from 'react';
 import * as S from './Button.style';
 
-const Button  = ({width, text, height}) => {
+const Button  = ({text, width, height}) => {
     return(
         <>
             <S.ButtonTemplate width = {width} height = {height}>
