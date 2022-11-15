@@ -1,21 +1,24 @@
-import React, { useState } from 'react';
+import React from 'react';
 import Button from '../@layout/button/Button';
 import * as S from './LoginComponent.style';
 
 const LoginComponent = () => {
   return (
-    <div>
-      <S.WrapperDiv>
-        <S.AdvertiseDiv>
-          함께 쓰는 리뷰,
-          <br /> 이야기가 되어 모이다
-        </S.AdvertiseDiv>
-        <Button text='Log In' width='80px' height='25px'></Button>
-        <S.LoginInput placeholder='닉네임'></S.LoginInput>
-        <S.LoginInput placeholder='이메일'></S.LoginInput>
-        <S.LoginInput placeholder='비밀번호'></S.LoginInput>
-
-        <svg
+    <S.WrapperDiv>
+      <S.AdvertiseDiv>
+        함께 쓰는 리뷰,
+        <br /> 이야기가 되어 모이다
+      </S.AdvertiseDiv>
+      <S.LoginInput placeholder='이메일'></S.LoginInput>
+      <S.LoginInput placeholder='비밀번호' type='password'></S.LoginInput>
+      <Button text='로그인' width='150px' height='35px'></Button>
+      <S.LinkToSignUpDiv>
+        계정이 없으신가요?
+        <S.LinkA href='#'>회원가입</S.LinkA>
+      </S.LinkToSignUpDiv>
+      <S.LineHr />
+      <S.OAuthListDiv>
+        <S.OAuthSvg
           aria-hidden='true'
           className='native svg-icon iconGoogle'
           width='18'
@@ -38,9 +41,9 @@ const LoginComponent = () => {
             d='M8.98 4.18c1.17 0 2.23.4 3.06 1.2l2.3-2.3A8 8 0 0 0 1.83 5.4L4.5 7.49a4.77 4.77 0 0 1 4.48-3.3Z'
             fill='#EA4335'
           ></path>
-        </svg>
-      </S.WrapperDiv>
-    </div>
+        </S.OAuthSvg>
+      </S.OAuthListDiv>
+    </S.WrapperDiv>
   );
 };
 
