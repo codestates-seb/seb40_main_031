@@ -6,7 +6,7 @@ import {FaSistrix}  from "react-icons/fa";
 const SearchBar = () =>{
     return(
     <S.Wrap>
-        <FaSistrix className="logo" style={{fontSize:"2em",position:"absolute",top:30,right:470}}/>
+        <FaSistrix className="logo" style={{fontSize:"2em",position:"absolute",top:30,right:770}}/>
       <S.Input />
     </S.Wrap>
     )
