@@ -9,13 +9,13 @@ const ButtonTemplate = styled.button`
     font-weight: bold;
     border-radius: 5px;
     border: none;
-    box-shadow: inset 0 1px 0 0 hsl(0deg 0% 100% / 70%);
+    box-shadow: inset 1px 1px 0px 0px hsl(0deg 0% 100% / 70%);
     &:hover {
         background-color: ${Theme.PRIMARY.GREEN_DARK};
     }
     &:active {
         background-color:  ${Theme.PRIMARY.GREEN};
-        border-color: hsl(205, 36%, 53%);
+        border-color: ${Theme.PRIMARY_GREEN_DARK};
         box-shadow: none;
     }
 `;
