@@ -28,6 +28,7 @@ const UserIcon = styled(FaRegUserCircle)`
 
 const UserName = styled.div`
     font-size: 25px;
+    padding-left: 10px;
 `;
 
 const Content = styled.div`
@@ -74,6 +75,7 @@ const LeftIcon = styled(FaRegThumbsUp)`
 
 const LeftText = styled.span`
     font-size:20px;
+    padding-left: 10px;
 `;
 
 const RightIconBox = styled.div`

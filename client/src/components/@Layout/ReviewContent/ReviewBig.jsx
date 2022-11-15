@@ -14,7 +14,7 @@ const ReviewBig = () => {
                     <FaRegUserCircle />
                 </S.UserIcon>
                 <S.UserName>
-                    &nbsp;유저 이름
+                    유저 이름
                 </S.UserName>
             </S.UserInfo>
             <S.Content>
@@ -38,7 +38,7 @@ const ReviewBig = () => {
                         <FaRegThumbsUp />
                     </S.LeftIcon>
                     <S.LeftText>
-                        &nbsp;5
+                        5
                     </S.LeftText>
                 </S.LeftIconBox>
                 

@@ -49,7 +49,12 @@ const GoodIcon = styled(FaRegThumbsUp)`
     font-size: 24px;
     color: #88C399;
     cursor:pointer;
+    
+`;
+const LeftText = styled.span`
+    font-size:20px;
+    padding-left: 10px;
 `;
 
-export {Template, Content, BottomContent, GoodIcon};
+export {Template, Content, BottomContent, GoodIcon, LeftText};
 

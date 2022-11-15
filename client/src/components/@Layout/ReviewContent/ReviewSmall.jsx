@@ -24,7 +24,10 @@ const ReviewSmall = () => {
                 <S.BottomContent>
                     <S.GoodIcon>
                         <FaRegThumbsUp />
-                    </S.GoodIcon>&nbsp;5
+                    </S.GoodIcon>
+                    <S.LeftText>
+                        5
+                    </S.LeftText>
                 </S.BottomContent>
             </S.Template>
         </>
