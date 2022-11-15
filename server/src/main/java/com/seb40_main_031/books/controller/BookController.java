@@ -1,14 +1,12 @@
 package com.seb40_main_031.books.controller;
 
+import com.seb40_main_031.books.dto.BookDto;
 import com.seb40_main_031.books.entity.Book;
 import com.seb40_main_031.books.mapper.BookMapper;
 import com.seb40_main_031.books.service.BookService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -36,7 +34,7 @@ public class BookController {
     // bestSeller 조회
     @GetMapping("/bestSeller/{category-id}")
     public ResponseEntity getBestSeller(@PathVariable("category-id") long categoryId){
-        List<Book> books = bookService.findAllBestSeller(categoryId);
+        List<BookDto> books = bookService.findAllBestSeller(categoryId);
 
         return new ResponseEntity<>(bookMapper.booksToBookResponseDto(books), HttpStatus.OK);
     }
@@ -44,7 +42,7 @@ public class BookController {
     // 신간 조회
     @GetMapping("/newBook/{category-id}")
     public ResponseEntity getNewBook(@PathVariable("category-id") long categoryId){
-        List<Book> books = bookService.findAllNewBook(categoryId);
+        List<BookDto> books = bookService.findAllNewBook(categoryId);
 
         return new ResponseEntity<>(bookMapper.booksToBookResponseDto(books),HttpStatus.OK);
     }
@@ -53,5 +51,11 @@ public class BookController {
 
 
     // 책 검색
-
+//    @GetMapping("/books/search")
+//    public ResponseEntity searchBook(@RequestParam String keyword){
+//        List<BookDto> bookDtos = bookService.findBooksFromTitle(keyword);
+//
+//        return new ResponseEntity<>(bookMapper.booksToBookResponseDto(bookDtos),
+//                HttpStatus.OK);
+//    }
 }

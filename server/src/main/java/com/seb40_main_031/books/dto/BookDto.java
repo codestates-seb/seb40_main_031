@@ -1,31 +1,25 @@
-package com.seb40_main_031.books.entity;
+package com.seb40_main_031.books.dto;
 
-import com.seb40_main_031.review.entity.Review;
+import com.seb40_main_031.review.Review;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-import javax.persistence.*;
+import javax.persistence.Column;
+import javax.persistence.OneToMany;
 import java.util.ArrayList;
 import java.util.List;
 
 @NoArgsConstructor
 @Getter
 @Setter
-@Entity
-public class Book {
-
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "book_id")
+public class BookDto {
     private long bookId;
 
-    @Column(name = "member_id")
     private long memberId;
 
     private String title;
 
-    @Column(length = 1000)
     private String description;
 
     private String pubDate;
@@ -48,7 +42,6 @@ public class Book {
 
     private String isbn;
 
-    @Column(name = "book_link")
     private String link;
 
     private long reviewCount;
@@ -57,8 +50,6 @@ public class Book {
 
     private Long foreignRank;
 
-    @OneToMany(mappedBy = "book")
     private List<Review> reviews = new ArrayList<>();
-
 
 }

@@ -19,4 +19,7 @@ public interface BookRepository extends JpaRepository<Book, Long> {
 
     // SELECT * FROM BOOK where category_name like 'categoryName' order by pub_date DESC
     List<Book> findAllByCategoryNameStartingWithOrderByPubDateDesc(String categoryName);
+
+    List<Book> findByTitleContaining(String keyword);
+
 }

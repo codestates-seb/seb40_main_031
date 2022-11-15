@@ -1,5 +1,4 @@
-package com.seb40_main_031.review;
-
+package com.seb40_main_031.review.entity;
 
 import com.seb40_main_031.books.entity.Book;
 import lombok.Getter;
