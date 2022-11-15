@@ -1,6 +1,13 @@
 import styled from "styled-components";
 
 const Wrap = styled.div`
+   background-color: ${(props) => props.backgoudColor ||'#B9F6CA'};
+   .logo{
+    font-size: 3em;
+   }
+`
+
+const LayoutContainer = styled.div`
    display: flex;
    align-items: center;
    justify-content: space-between;
@@ -10,11 +17,9 @@ const Wrap = styled.div`
    display: flex;
    align-items: center;
    font-size: 21px;
-   background-color: ${(props) => props.backgoudColor ||'#B9F6CA'};
-
-   .logo{
-    color: red;
-    font-size: 3em;
+   @media screen {
+    max-width  : 1320px;
+    margin: auto;
    }
 `
 
@@ -22,4 +27,4 @@ const Container = styled.div`
 display: flex;
 `
 
-export {Wrap, Container}
+export {Wrap, Container, LayoutContainer}
