@@ -10,6 +10,6 @@ const COLOR = {
     BLUE: '#0095FF',
   },
 };
-const theme = { ...COLOR };
+const Theme = { ...COLOR };
 
-export default theme;
+export default Theme;
