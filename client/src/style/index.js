@@ -1,4 +1,4 @@
 import GlobalStyles from './GlobalStyles.jsx';
-import theme from './Theme.js';
+import theme from './theme.js';
 
 export { GlobalStyles, theme };

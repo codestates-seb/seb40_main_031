@@ -1,6 +1,6 @@
 import React, { Suspense } from 'react';
 import { Outlet } from 'react-router-dom';
-import { Nav, Footer } from '../../components/@Layout';
+import { Nav, Footer } from "../../components/@Layout/index";
 
 const Layout = () => {
   return (
