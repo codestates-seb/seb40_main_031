@@ -1,8 +1,14 @@
 import React from "react";
+import * as S from "./Footer.style"
+
 
 const Footer = ()=>{
     return(
-        <>푸터에요</>
+        <S.Wrap>
+            <S.LayoutContainer>
+            푸터입니다
+            </S.LayoutContainer>
+            </S.Wrap>
     )
 }
 
