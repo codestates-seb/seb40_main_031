@@ -1,7 +1,8 @@
 package com.seb40_main_031.books.dto;
 
 
-import com.seb40_main_031.review.ReviewResponseDto;
+
+import com.seb40_main_031.review.dto.ReviewResponseDto;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;

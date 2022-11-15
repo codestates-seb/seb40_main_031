@@ -4,7 +4,8 @@ import lombok.Getter;
 
 public enum ExceptionCode {
 
-    Book_NOT_FOUND(404, "Book not found");
+    BOOK_NOT_FOUND(404, "Book not found"),
+    REVIEW_NOT_FOUND(404, "Review not found");
 
 
     @Getter

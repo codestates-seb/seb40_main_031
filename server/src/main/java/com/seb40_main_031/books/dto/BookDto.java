@@ -1,12 +1,10 @@
 package com.seb40_main_031.books.dto;
 
-import com.seb40_main_031.review.Review;
+import com.seb40_main_031.review.entity.Review;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-import javax.persistence.Column;
-import javax.persistence.OneToMany;
 import java.util.ArrayList;
 import java.util.List;
 

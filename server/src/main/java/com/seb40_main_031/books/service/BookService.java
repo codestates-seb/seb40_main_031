@@ -32,7 +32,7 @@ public class BookService {
         Optional<Book> optionalBook =
                 bookRepository.findByBookId(bookId);
         Book findBook = optionalBook.orElseThrow(()->
-                new BusinessLogicException(ExceptionCode.Book_NOT_FOUND));
+                new BusinessLogicException(ExceptionCode.BOOK_NOT_FOUND));
 
         return findBook;
     }
