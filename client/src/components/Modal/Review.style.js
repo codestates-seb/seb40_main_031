@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import { theme } from '../../style/index';
+import { Theme } from '../../style/index';
 
 const containerDiv = styled.div`
   display: flex;
@@ -8,7 +8,7 @@ const containerDiv = styled.div`
   max-width: 250px;
   min-height: 250px;
   height: 60vh;
-  border: 1px solid ${theme.PRIMARY.BLACK};
+  border: 1px solid ${Theme.PRIMARY.BLACK};
   border-radius: 10px;
 
   padding: 1%;
@@ -27,7 +27,7 @@ const headerDiv = styled.div`
 const titleSpan = styled.span`
   font-weight: bold;
   font-size: 15px;
-  color: ${theme.PRIMARY.GREEN_DARK};
+  color: ${Theme.PRIMARY.GREEN_DARK};
 `;
 
 const closeIconSpan = styled.span`

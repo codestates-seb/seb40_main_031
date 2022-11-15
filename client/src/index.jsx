@@ -3,7 +3,7 @@ import { createRoot } from 'react-dom/client';
 import { BrowserRouter as Router } from 'react-router-dom';
 
 import { RecoilRoot } from 'recoil';
-import { GlobalStyles, theme } from './style/index';
+import { GlobalStyles, Theme } from './style/index';
 
 import 'bootstrap/dist/css/bootstrap.min.css';
 
@@ -14,7 +14,7 @@ const root = createRoot(container);
 
 root.render(
   <>
-    <GlobalStyles theme={theme} />
+    <GlobalStyles theme={Theme} />
     <RecoilRoot>
       <Router>
         <App />

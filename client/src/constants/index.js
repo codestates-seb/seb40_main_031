@@ -1,7 +1,4 @@
-import ROUTES from "./routes"
-
-
-
+import ROUTES from './Routes';
 
 // Routes
-export {ROUTES}
+export { ROUTES };
