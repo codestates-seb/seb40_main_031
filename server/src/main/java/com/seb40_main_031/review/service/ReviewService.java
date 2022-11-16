@@ -2,11 +2,11 @@ package com.seb40_main_031.review.service;
 
 import com.seb40_main_031.books.BusinessLogicException;
 import com.seb40_main_031.books.ExceptionCode;
-import com.seb40_main_031.books.entity.Book;
-import com.seb40_main_031.books.service.BookService;
-import com.seb40_main_031.review.dto.ReviewDto;
 import com.seb40_main_031.review.entity.Review;
 import com.seb40_main_031.review.repository.ReviewRepository;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
 import java.util.Optional;
@@ -34,16 +34,24 @@ public class ReviewService {
         return reviewRepository.save(findReview);
     }
 
-
     // 리뷰 단일 찾기
+    public Review findReview(long reviewId) {
+        Review findReview = findVerifiedReview(reviewId);
+        return findReview;
+    }
 
     // 리뷰 리스트 찾기
+    public Page<Review> findReviews(int page, int size) {
+        return reviewRepository.findAll(
+                PageRequest.of(page,size, Sort.by("reviewId").descending()));
+    }
 
     // 리뷰 삭제
     public void deleteReview(long reviewId, long memberId){
         Review review = findVerifiedReview(reviewId);
         if(review.getMemberId() == memberId) reviewRepository.delete(review);
     }
+
 
     // 리뷰 여부 검증
     private Review findVerifiedReview(long reviewId){
@@ -54,6 +62,5 @@ public class ReviewService {
 
         return findReview;
     }
-
 
 }

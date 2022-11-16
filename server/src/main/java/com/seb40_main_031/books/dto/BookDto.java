@@ -1,5 +1,6 @@
 package com.seb40_main_031.books.dto;
 
+import com.seb40_main_031.review.dto.ReviewResponseDto;
 import com.seb40_main_031.review.entity.Review;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -42,12 +43,11 @@ public class BookDto {
 
     private String link;
 
-    private long reviewCount;
-
     private Long nationalRank;
 
     private Long foreignRank;
 
-    private List<Review> reviews = new ArrayList<>();
+    private List<ReviewResponseDto> reviews = new ArrayList<>();
 
+    private long reviewCount;
 }

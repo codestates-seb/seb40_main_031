@@ -1,6 +1,5 @@
 package com.seb40_main_031.review.dto;
 
-import com.seb40_main_031.books.entity.Book;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -17,4 +16,5 @@ public class ReviewResponseDto {
     private String content;
     private LocalDateTime createdAt;
     private LocalDateTime modifiedAt;
+
 }

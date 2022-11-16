@@ -1,13 +1,14 @@
 package com.seb40_main_031.review.entity;
 
 import com.seb40_main_031.books.entity.Book;
+import com.seb40_main_031.review.Like;
 import lombok.Getter;
 import lombok.Setter;
-import org.springframework.data.annotation.CreatedDate;
-import org.springframework.data.annotation.LastModifiedDate;
 
 import javax.persistence.*;
 import java.time.LocalDateTime;
+import java.util.ArrayList;
+import java.util.List;
 
 @Getter
 @Setter
@@ -30,8 +31,11 @@ public class Review {
     @Column(length = 500)
     private String content;
 
-
     private LocalDateTime createdAt = LocalDateTime.now();
 
     private LocalDateTime modifiedAt = LocalDateTime.now();
+
+//    @OneToMany(mappedBy = "review")
+//    private long likes; // 이 review에 들어가는 like 합계수
+//    private List<Like> likes = new ArrayList<>();
 }

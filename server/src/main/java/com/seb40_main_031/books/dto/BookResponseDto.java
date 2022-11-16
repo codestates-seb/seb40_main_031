@@ -41,12 +41,11 @@ public class BookResponseDto {
 
     private String link;
 
-    private Long reviewCount;
-
     private Long nationalRank;
 
     private Long foreignRank;
 
-    private List<ReviewResponseDto> reviews;
+    private Long reviewCount;
+//    private List<ReviewResponseDto> reviews;
 }
 

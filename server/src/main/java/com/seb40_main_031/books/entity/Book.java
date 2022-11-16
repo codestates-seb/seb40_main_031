@@ -51,8 +51,6 @@ public class Book {
     @Column(name = "book_link")
     private String link;
 
-    private long reviewCount;
-
     private Long nationalRank;
 
     private Long foreignRank;
@@ -60,5 +58,5 @@ public class Book {
     @OneToMany(mappedBy = "book")
     private List<Review> reviews = new ArrayList<>();
 
-
+    private long reviewCount;
 }
