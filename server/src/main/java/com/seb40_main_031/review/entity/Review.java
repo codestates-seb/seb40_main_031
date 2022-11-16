@@ -1,7 +1,7 @@
 package com.seb40_main_031.review.entity;
 
 import com.seb40_main_031.books.entity.Book;
-import com.seb40_main_031.review.Like;
+import com.seb40_main_031.review.Likes;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -35,7 +35,7 @@ public class Review {
 
     private LocalDateTime modifiedAt = LocalDateTime.now();
 
-//    @OneToMany(mappedBy = "review")
+    @OneToMany(mappedBy = "review")
 //    private long likes; // 이 review에 들어가는 like 합계수
-//    private List<Like> likes = new ArrayList<>();
+    private List<Likes> likes = new ArrayList<>();
 }
