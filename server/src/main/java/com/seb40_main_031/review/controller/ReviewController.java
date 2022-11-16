@@ -34,11 +34,9 @@ public class ReviewController {
                                      @RequestBody ReviewDto reviewDto){
 
         Book book = bookService.findBook(bookId);
-        // 책을 찾아서 있으면 reviewDto에 bookId 담았다.
         reviewDto.setBook(book);
 
         Review review = reviewMapper.reviewDtoToReview(reviewDto);
-//        review.setBook(book);
         reviewService.createReview(review);
 
         ReviewResponseDto response =
@@ -48,6 +46,23 @@ public class ReviewController {
     }
 
     // review 수정
+    @PatchMapping("/{book-id}")
+    public ResponseEntity modifyReview(@PathVariable("book-id") long bookId,
+                                       @RequestBody ReviewDto reviewDto){
+        Book book = bookService.findBook(bookId);
+        reviewDto.setBook(book);
+
+        Review review = reviewMapper.reviewDtoToReview(reviewDto);
+        reviewService.modifiedReview(review);
+
+        ReviewResponseDto response =
+                reviewMapper.reviewToReviewResponseDto(review);
+
+        return new ResponseEntity<>(response, HttpStatus.OK);
+
+
+    }
+
 
     // review 삭제 book-id..
     @DeleteMapping("/{book-id}")

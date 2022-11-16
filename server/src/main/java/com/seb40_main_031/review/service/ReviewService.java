@@ -27,7 +27,12 @@ public class ReviewService {
 
 
     // 리뷰 수정
+    public Review modifiedReview(Review review) {
+        Review findReview = findVerifiedReview(review.getReviewId());
+        findReview.setContent(review.getContent());
 
+        return reviewRepository.save(findReview);
+    }
 
 
     // 리뷰 단일 찾기
@@ -49,4 +54,6 @@ public class ReviewService {
 
         return findReview;
     }
+
+
 }
