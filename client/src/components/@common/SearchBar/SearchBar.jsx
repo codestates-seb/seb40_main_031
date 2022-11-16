@@ -6,7 +6,9 @@ const SearchBar = () => {
   return (
     <S.Wrap>
       <S.SearchContainer>
-        <S.Input type='text' action='submit' name='searchbar' />
+        <S.Form type='submit'>
+          <S.Input type='search' name='searchbar' labal='input' />
+        </S.Form>
         <FaSistrix
           style={{
             position: 'absolute',

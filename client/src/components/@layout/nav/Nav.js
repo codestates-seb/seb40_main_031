@@ -4,6 +4,7 @@ import { FaBars, FaReadme } from 'react-icons/fa';
 import SearchBar from '../../@common/SearchBar/SearchBar';
 import SingUpButton from '../../SingUpButton/SingUpButton';
 import Modal from './modal/Modal';
+import CustomLink from '../../@common/CustomLink';
 
 import * as S from './Nav.style';
 
@@ -24,8 +25,11 @@ const Nav = () => {
 
           <S.Container>
             <SearchBar />
+
             <SingUpButton title={'회원가입'} />
-            <SingUpButton title={'로그인'} />
+            <CustomLink path='/login'>
+              <SingUpButton title={'로그인'} />
+            </CustomLink>
           </S.Container>
         </S.LayoutContainer>
       </S.Wrap>

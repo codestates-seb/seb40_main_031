@@ -20,4 +20,6 @@ const Input = styled.input`
 const SearchContainer = styled.div`
   position: relative;
 `;
-export { Wrap, Input, SearchContainer };
+
+const Form = styled.form``;
+export { Wrap, Input, SearchContainer, Form };
