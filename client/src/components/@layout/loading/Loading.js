@@ -1,12 +1,12 @@
 import React from 'react';
-import RingLoader from "react-spinners/RingLoader";
+import BeatLoader from "react-spinners/BeatLoader";
 import * as S from './Loading.style';
 import { Theme } from '../../../style';
-const Loading = () => {
+const Loading = ({width, height}) => {
     return(
         <>
-            <S.Container>
-                <RingLoader color = {Theme.PRIMARY.GREEN_DARK} size = {100} />
+            <S.Container width = {width} height = {height}>
+                <BeatLoader color = {Theme.PRIMARY.GREEN_DARK}  />
             </S.Container>
         </>
     )
