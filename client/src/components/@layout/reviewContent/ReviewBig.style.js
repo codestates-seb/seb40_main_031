@@ -1,16 +1,17 @@
 import styled from "styled-components";
-import {theme} from '../../../style/index';
+import {Theme} from '../../../style/index';
 import {FaRegThumbsUp} from 'react-icons/fa'
 import {FaRegUserCircle} from 'react-icons/fa';
 import {HiOutlinePencil} from 'react-icons/hi';
 import {MdClose} from 'react-icons/md';
 
 const Template = styled.div`
-    width: 510px;
+    width: 600px;
     height: 250px;
-    border: 1px solid ${theme.PRIMARY.GREEN_DARK};
+    border: 1px solid ${Theme.PRIMARY.GREEN_DARK};
     border-radius: 8px;
     padding:10px;
+    margin-bottom: 40px;
     
 `;
 
@@ -45,7 +46,7 @@ const Content = styled.div`
     }
     &::-webkit-scrollbar-thumb{
         border-radius: 10px;
-        background-color: ${theme.PRIMARY.GREEN_DARK};
+        background-color: ${Theme.PRIMARY.GREEN_DARK};
     }
     &::-webkit-scrollbar-track{
         background-color: gray;
