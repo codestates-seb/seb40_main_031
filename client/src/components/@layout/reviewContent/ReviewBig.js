@@ -7,7 +7,7 @@ import {MdClose} from 'react-icons/md';
 import InfiniteScroll from 'react-infinite-scroll-component';
 import {useState} from 'react';
 import DummyReviewDetails from '../../../dummyData/DummyReviewDetail';
-
+import Loading from '../loading/Loading';
 
 // 전역변수 로 number 를 0으로 지정해주었다. 0으로 지정해준 이유는 맨 첫번째 usestate에서 실행된 (0,3)을 먼저
 // 실행했기 때문에(처음에 랜더링이 되어서) 밑에 있는 number += 3이 먼저 실행이 되어서 number가 3으로 바뀌게 
@@ -34,10 +34,14 @@ const ReviewBig = () => {
     return(
         <div>
             <InfiniteScroll
+                style = {{display: 'flex',
+                    justifyContent: 'center',
+                    alignItems: 'center',
+                    flexDirection: 'column'}}
                 dataLength={reviewDetails.length}
                 next={fetchData}
                 hasMore={hasMore}
-                loader={<h1 style = {{textAlign: 'center'}} >loading...</h1>}
+                loader={<Loading width ="30px" height = "30px"/>}
                 endMessage={<h1 style = {{textAlign: 'center'}}>You are all set!</h1>}
             >   
             {reviewDetails.map((reviewDetail) => {

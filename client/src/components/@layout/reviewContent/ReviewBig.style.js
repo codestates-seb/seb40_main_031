@@ -15,6 +15,7 @@ const Template = styled.div`
     
 `;
 
+
 const UserInfo = styled.div`
     width: 490px;
     height:35px;  
