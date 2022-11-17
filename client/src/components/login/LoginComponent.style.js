@@ -36,7 +36,8 @@ const LoginInput = styled.input`
   height: 30px;
   margin-top: 20px;
   padding-left: 5px;
-  background-color: ${Theme.PRIMARY.GREEN_LIGHT};
+  border-radius: 5px;
+  background-color: ${Theme.PRIMARY.WHITE};
   border: 1px solid ${Theme.PRIMARY.GREEN_DARK};
 
   &::placeholder {
