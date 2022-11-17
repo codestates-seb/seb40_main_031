@@ -3,12 +3,12 @@ import * as S from './Book.style';
 import Dummybooks from './Dummybooks';
 import { useState } from 'react';
 
-const Book = () => {
+const Book = ({ title }) => {
   const [books] = useState(Dummybooks);
 
   return (
     <S.Container>
-      <S.Title>베스트셀러</S.Title>
+      <S.Title>{title}</S.Title>
       <S.Bookbox>
         {books.map((book) => {
           return (
