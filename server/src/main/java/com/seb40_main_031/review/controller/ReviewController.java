@@ -3,10 +3,15 @@ package com.seb40_main_031.review.controller;
 import com.seb40_main_031.books.entity.Book;
 import com.seb40_main_031.books.service.BookService;
 import com.seb40_main_031.response.MultiResponseDto;
+import com.seb40_main_031.review.Likes;
+import com.seb40_main_031.review.dto.LikesDto;
+import com.seb40_main_031.review.dto.LikesResponseDto;
 import com.seb40_main_031.review.dto.ReviewDto;
 import com.seb40_main_031.review.dto.ReviewResponseDto;
 import com.seb40_main_031.review.entity.Review;
+import com.seb40_main_031.review.mapper.LikesMapper;
 import com.seb40_main_031.review.mapper.ReviewMapper;
+import com.seb40_main_031.review.service.LikesService;
 import com.seb40_main_031.review.service.ReviewService;
 import org.springframework.data.domain.Page;
 import org.springframework.http.HttpStatus;
@@ -24,11 +29,16 @@ public class ReviewController {
     private final ReviewMapper reviewMapper;
     private final BookService bookService;
 
+    private final LikesMapper likesMapper;
+    private final LikesService likesService;
     public ReviewController(ReviewService reviewService, ReviewMapper reviewMapper,
-                            BookService bookService) {
+                            BookService bookService,LikesMapper likesMapper,
+                            LikesService likesService) {
         this.reviewService = reviewService;
         this.reviewMapper = reviewMapper;
         this.bookService = bookService;
+        this.likesMapper = likesMapper;
+        this.likesService = likesService;
     }
 
     // review 생성 /{book-id}
@@ -101,4 +111,15 @@ public class ReviewController {
     }
 
     // 좋아요
+    @PatchMapping("/likes")
+    public ResponseEntity patchLikes(@RequestBody LikesDto likesDto){
+
+        Likes likes = likesMapper.likesDtoToLikes(likesDto);
+        if(likes.getLikesCount() == 0) likesService.deleteLikes(likes);
+        if(likes.getLikesCount() == 1) likesService.createLikes(likes);
+
+        LikesResponseDto response = likesMapper.likesToLikesResponseDto(likes);
+
+        return new ResponseEntity<>(response, HttpStatus.OK);
+    }
 }

@@ -39,9 +39,11 @@ public class ServerApplication {
 		String result = "";
 
 		// categoryCode 도 api 로 받아오는 방법
+		// categoryCode 를 배열에 담아두고 for문 돌면서 api 호출하기..?
 		int categoryCode = 100;
 
 		try {
+
 			String apiUrl = "http://book.interpark.com/api/bestSeller.api?key=" +
 					apikey + "&categoryId=" + categoryCode+"&output=json";
 			URL url = new URL(apiUrl);

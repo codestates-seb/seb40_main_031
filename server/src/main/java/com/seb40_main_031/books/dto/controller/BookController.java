@@ -1,4 +1,4 @@
-package com.seb40_main_031.books.controller;
+package com.seb40_main_031.books.dto.controller;
 
 import com.seb40_main_031.books.dto.BookDto;
 import com.seb40_main_031.books.entity.Book;
