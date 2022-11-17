@@ -29,8 +29,9 @@ const SignUpInput = styled.input`
   width: 200px;
   height: 30px;
   margin-top: 20px;
-  background-color: ${Theme.PRIMARY.GREEN_LIGHT};
   padding-left: 5px;
+  border-radius: 5px;
+  background-color: ${Theme.PRIMARY.WHITE};
   &::placeholder {
     color: ${Theme.PRIMARY.GREEN_DARK};
   }
