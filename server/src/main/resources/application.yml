@@ -1,0 +1,18 @@
+spring:
+  h2:
+    console:
+      enabled: true
+      path: /h2
+  datasource:
+    url: jdbc:h2:mem:test
+  jpa:
+    hibernate:
+      ddl-auto: create  # (1) 스키마 자동 생성
+    show-sql: true      # (2) SQL 쿼리 출력
+#  mvc:
+#    pathmatch:
+#      matching-strategy: ant_path_matcher
+
+interpark:
+  key: 2D836AD29AFD4823FCC2D0981AFCEAD0F70F68FDC3EC4C73549A0E28E8D5624E
+

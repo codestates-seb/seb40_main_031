@@ -4,9 +4,11 @@ import com.seb40_main_031.books.dto.BookDto;
 import com.seb40_main_031.books.entity.Book;
 import com.seb40_main_031.books.mapper.BookMapper;
 import com.seb40_main_031.books.service.BookService;
+import com.seb40_main_031.books.service.CallBookApi;
 import org.json.simple.parser.ParseException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.web.bind.annotation.*;
 
 import java.io.IOException;
@@ -18,10 +20,12 @@ public class BookController {
 
     private final BookService bookService;
     private final BookMapper bookMapper;
+    private final CallBookApi callBookApi;
 
-    public BookController(BookService bookService, BookMapper bookMapper) {
+    public BookController(BookService bookService, BookMapper bookMapper, CallBookApi callBookApi) {
         this.bookService = bookService;
         this.bookMapper = bookMapper;
+        this.callBookApi = callBookApi;
     }
 
     // 책 상세페이지 조회
@@ -61,4 +65,13 @@ public class BookController {
 //                HttpStatus.OK);
 //    }
 
+
+
+    // cron = 초 분 시 일 월 년
+//    @Scheduled(cron = "0 30 4 1 * *") // 매주 월요일 4시 30분에 업데이트
+    @Scheduled(cron = "0 34 * * * *")
+    public void updateBooks(){
+        callBookApi.saveBestSeller();
+        callBookApi.saveNewBook();
+    }
 }
