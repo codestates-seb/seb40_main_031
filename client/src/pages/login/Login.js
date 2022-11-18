@@ -1,9 +1,8 @@
-import React from "react";
+import React from 'react';
+import LoginComponent from '../../components/login/LoginComponent';
 
-const Login = () =>{
-    return(
-        <>로그으으이이이이이이이이ㅣ이잉이인페이지</>
-    )
-}
+const Login = () => {
+  return <LoginComponent />;
+};
 
-export default Login
+export default Login;

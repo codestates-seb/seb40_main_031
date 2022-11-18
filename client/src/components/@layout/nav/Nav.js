@@ -1,3 +1,4 @@
+
 import React, { useState } from 'react';
 import { FaBars, FaReadme } from 'react-icons/fa';
 
@@ -6,9 +7,11 @@ import SingUpButton from '../../SingUpButton/SingUpButton';
 import Modal from './modal/Modal';
 import CustomLink from '../../@common/CustomLink';
 
+
 import * as S from './Nav.style';
 
 const Nav = () => {
+
   const [showModal, setShowModal] = useState(false);
 
   return (
@@ -35,6 +38,7 @@ const Nav = () => {
       </S.Wrap>
       {showModal === true ? <Modal list={'공지사항'} /> : null}
     </>
+
   );
 };
 
