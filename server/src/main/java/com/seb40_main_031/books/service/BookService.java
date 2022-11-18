@@ -2,8 +2,8 @@ package com.seb40_main_031.books.service;
 
 import com.seb40_main_031.books.BusinessLogicException;
 import com.seb40_main_031.books.ExceptionCode;
+import com.seb40_main_031.books.Key;
 import com.seb40_main_031.books.dto.BookDto;
-import com.seb40_main_031.books.dto.BookResponseDto;
 import com.seb40_main_031.books.mapper.BookMapper;
 import com.seb40_main_031.books.repository.BookRepository;
 import com.seb40_main_031.books.entity.Book;
@@ -18,9 +18,12 @@ public class BookService {
     private final BookRepository bookRepository;
     private final BookMapper bookMapper;
 
-    public BookService(BookRepository bookRepository, BookMapper bookMapper) {
+    private final Key key;
+    public BookService(BookRepository bookRepository, BookMapper bookMapper,
+                       Key key) {
         this.bookRepository = bookRepository;
         this.bookMapper = bookMapper;
+        this.key = key;
     }
 
     // 책 상세페이지 조회
@@ -74,4 +77,5 @@ public class BookService {
         }
         return bookDtos;
     }
+
 }
