@@ -1,18 +1,20 @@
-import styled from "styled-components";
-import { Theme } from "../../../style";
 
+import styled from 'styled-components';
+import { Theme } from '../../../style';
 
 const Wrap = styled.div`
-width: 100vw;
-height: 200px;
-background-color: ${Theme.PRIMARY.GREEN_DARK};
-`
+  width: 100vw;
+  height: 200px;
+  background-color: ${Theme.PRIMARY.GREEN_DARK};
+  position: fixed;
+  bottom: 0;
+`;
 
 const LayoutContainer = styled.div`
- @media screen {
-  max-width  : 1320px;
-  margin: auto;
- }
-`
+  @media screen {
+    max-width: 1320px;
+    margin: auto;
+  }
+`;
 
-export {Wrap, LayoutContainer}
+export { Wrap, LayoutContainer };
