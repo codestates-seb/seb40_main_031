@@ -1,5 +1,6 @@
 import styled from 'styled-components';
 import { Theme } from '../../../../style';
+
 const Wrap = styled.div`
   width: 67%;
   height: 400px;
