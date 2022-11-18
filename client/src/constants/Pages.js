@@ -11,4 +11,17 @@ const FAQ_TAB_BUTTON = Object.freeze([
   '기타',
 ]);
 
-export { NAV_LIST, FAQ_TAB_BUTTON };
+const FAQ_LIST = Object.freeze([
+  '책은어떻게 구매하나요?1',
+  '책은어떻게 구매하나요?2',
+  '책은어떻게 구매하나요?3',
+  '책은어떻게 구매하나요?4',
+  '책은어떻게 구매하나요?5',
+  '책은어떻게 구매하나요?6',
+  '책은어떻게 구매하나요?7',
+  '책은어떻게 구매하나요?8',
+  '책은어떻게 구매하나요?9',
+  '책은어떻게 구매하나요?10',
+]);
+
+export { NAV_LIST, FAQ_TAB_BUTTON, FAQ_LIST };
