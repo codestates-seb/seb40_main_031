@@ -1,12 +1,11 @@
-import React from "react";
-import * as S from "./BookDetail.style";
-import Button from "../../components/@layout/button/Button";
-import DummyBookDetail from "../../dummyData/DummyBookDetail";
-import { HiOutlineChat } from "react-icons/hi";
-import { useState } from "react";
-import ReviewSmall from "../../components/@layout/reviewContent/ReviewSmall";
-import { AiOutlineShareAlt } from "react-icons/ai";
-import { withTheme } from "styled-components";
+import React from 'react';
+import * as S from './BookDetail.style';
+import Button from '../../components/@layout/button/Button';
+import DummyBookDetail from '../../dummyData/DummyBookDetail';
+import { HiOutlineChat } from 'react-icons/hi';
+import { useState } from 'react';
+import ReviewSmall from '../../components/@layout/reviewContent/ReviewSmall';
+import { AiOutlineShareAlt } from 'react-icons/ai';
 
 const BookDetail = () => {
   const [bookDetails, setBookDetails] = useState(DummyBookDetail);

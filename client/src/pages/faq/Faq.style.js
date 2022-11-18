@@ -1,6 +1,7 @@
 // import { FaHatWizard } from 'react-icons/fa';
 import styled from 'styled-components';
 import { Theme } from '../../style';
+
 const Wrap = styled.div`
   width: 67%;
   height: 150vh;

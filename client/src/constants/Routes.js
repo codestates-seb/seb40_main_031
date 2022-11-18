@@ -10,7 +10,7 @@ const ROUTES = Object.freeze({
     name: 'Login',
   },
   FAQ: {
-    path: '/Faq',
+    path: '/faq',
     name: 'faq',
   },
 });

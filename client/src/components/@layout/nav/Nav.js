@@ -1,17 +1,14 @@
-
 import React, { useState } from 'react';
 import { FaBars, FaReadme } from 'react-icons/fa';
 
-import SearchBar from '../../@common/SearchBar/SearchBar';
-import SingUpButton from '../../SingUpButton/SingUpButton';
+import SearchBar from '../../@common/searchBar/SearchBar';
+import SingUpButton from '../../signUpButton/SignUpButton';
 import Modal from './modal/Modal';
-import CustomLink from '../../@common/CustomLink';
-
+import CustomLink from '../../@common/customLink/CustomLink';
 
 import * as S from './Nav.style';
 
 const Nav = () => {
-
   const [showModal, setShowModal] = useState(false);
 
   return (
@@ -38,7 +35,6 @@ const Nav = () => {
       </S.Wrap>
       {showModal === true ? <Modal list={'공지사항'} /> : null}
     </>
-
   );
 };
 
