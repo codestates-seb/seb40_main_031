@@ -1,23 +1,20 @@
 import React from 'react';
-import * as S from './ReviewDetail.style';
+import { Template } from './ReviewDetail.style';
 import ReviewBig from '../../components/@layout/reviewContent/ReviewBig';
 
-
 const ReviewDetail = () => {
-   
-
-    return(
-        <>
-        <S.Template>
-                < ReviewBig />
-        </S.Template>
-        </>
-    )
-}
+  return (
+    <>
+      <Template>
+        <ReviewBig />
+      </Template>
+    </>
+  );
+};
 export default ReviewDetail;
 
-
-{/* <InfiniteScroll
+{
+  /* <InfiniteScroll
   dataLength={items.length} // 반복되는 컴포넌트의 개수
   next = {fetchData} // 스크롤이 바닥에 닿으면 데이터를 더 불러오는 함수
   hasMore={true}  // 추가 데이터 유무
@@ -29,4 +26,5 @@ export default ReviewDetail;
   }
 >
   {items}
-</InfiniteScroll> */}
+</InfiniteScroll> */
+}

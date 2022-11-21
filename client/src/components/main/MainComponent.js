@@ -1,5 +1,15 @@
 import React, { useEffect, useState } from 'react';
-import * as S from './MainComponent.style';
+import {
+  WrapperDiv,
+  SuggestDiv,
+  SuggestTextDiv,
+  SuggestBookListDiv,
+  BookCarouselDiv,
+  TitleTextDiv,
+  TextDiv,
+  ListContentsDiv,
+  ListDiv,
+} from './MainComponent.style';
 import Book from '../@layout/book/Book';
 import axios from 'axios';
 
@@ -83,36 +93,36 @@ const MainComponent = () => {
   };
 
   return (
-    <S.WrapperDiv>
-      <S.SuggestDiv>
-        <S.SuggestTextDiv>
-          <S.TextDiv>
+    <WrapperDiv>
+      <SuggestDiv>
+        <SuggestTextDiv>
+          <TextDiv>
             {message}
             <br />
             이렇게 날씨 좋은 날, 이런 책은 어떠세요?
-          </S.TextDiv>
-        </S.SuggestTextDiv>
-        <S.SuggestBookListDiv>
-          <S.BookCarouselDiv />
-        </S.SuggestBookListDiv>
-      </S.SuggestDiv>
-      <S.ListContentsDiv>
-        <S.TitleTextDiv>국내도서</S.TitleTextDiv>
-        <S.ListDiv>
+          </TextDiv>
+        </SuggestTextDiv>
+        <SuggestBookListDiv>
+          <BookCarouselDiv />
+        </SuggestBookListDiv>
+      </SuggestDiv>
+      <ListContentsDiv>
+        <TitleTextDiv>국내도서</TitleTextDiv>
+        <ListDiv>
           <Book title='지금 인기 최고'></Book>
-        </S.ListDiv>
-        <S.ListDiv>
+        </ListDiv>
+        <ListDiv>
           <Book title='방금 만나러 왔어요'></Book>
-        </S.ListDiv>
-        <S.TitleTextDiv>해외도서</S.TitleTextDiv>
-        <S.ListDiv>
+        </ListDiv>
+        <TitleTextDiv>해외도서</TitleTextDiv>
+        <ListDiv>
           <Book title='지금 인기 최고'></Book>
-        </S.ListDiv>
-        <S.ListDiv>
+        </ListDiv>
+        <ListDiv>
           <Book title='방금 만나러 왔어요'></Book>
-        </S.ListDiv>
-      </S.ListContentsDiv>
-    </S.WrapperDiv>
+        </ListDiv>
+      </ListContentsDiv>
+    </WrapperDiv>
   );
 };
 

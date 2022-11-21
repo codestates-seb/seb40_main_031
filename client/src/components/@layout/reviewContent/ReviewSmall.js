@@ -1,8 +1,15 @@
-import React from "react";
-import * as S from "./ReviewSmall.style";
-import DummyReviewSmallDetails from "../../../dummyData/DummyReviewSmallDetail";
-import { FaRegThumbsUp } from "react-icons/fa";
-import { useState } from "react";
+import React from 'react';
+import {
+  Template,
+  Content,
+  BottomContent,
+  GoodIcon,
+  LeftText,
+  Display,
+} from './ReviewSmall.style';
+import DummyReviewSmallDetails from '../../../dummyData/DummyReviewSmallDetail';
+import { FaRegThumbsUp } from 'react-icons/fa';
+import { useState } from 'react';
 
 const ReviewSmall = () => {
   const [reviewSmalls, setReviewSmall] = useState(
@@ -10,21 +17,21 @@ const ReviewSmall = () => {
   );
   return (
     <div>
-      <S.Display>
+      <Display>
         {reviewSmalls.map((reviewSmall) => {
           return (
-            <S.Template key={reviewSmall.id}>
-              <S.Content>{reviewSmall.content}</S.Content>
-              <S.BottomContent>
-                <S.GoodIcon>
+            <Template key={reviewSmall.id}>
+              <Content>{reviewSmall.content}</Content>
+              <BottomContent>
+                <GoodIcon>
                   <FaRegThumbsUp />
-                </S.GoodIcon>
-                <S.LeftText>{reviewSmall.vote}</S.LeftText>
-              </S.BottomContent>
-            </S.Template>
+                </GoodIcon>
+                <LeftText>{reviewSmall.vote}</LeftText>
+              </BottomContent>
+            </Template>
           );
         })}
-      </S.Display>
+      </Display>
     </div>
   );
 };

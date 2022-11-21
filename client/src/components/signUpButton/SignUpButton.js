@@ -1,11 +1,11 @@
 import React from 'react';
-import * as S from './SignUpButton.style';
+import { Wrap, Button } from './SignUpButton.style';
 
 const SingUpButton = ({ title }) => {
   return (
-    <S.Wrap>
-      <S.Button>{title}</S.Button>
-    </S.Wrap>
+    <Wrap>
+      <Button>{title}</Button>
+    </Wrap>
   );
 };
 

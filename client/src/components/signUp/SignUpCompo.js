@@ -1,23 +1,31 @@
 import React from 'react';
 import Button from '../@layout/button/Button';
-import * as S from '../signUp/SignUpCompo.style';
+import {
+  Container,
+  SignUpInput,
+  LogoDiv,
+  SignDiv,
+  LinkA,
+  LineHr,
+  GoogleSvg,
+} from './SignUpCompo.style';
 
 const SignUpCompo = () => {
   return (
-    <S.Container>
-      <S.LogoDiv>
+    <Container>
+      <LogoDiv>
         함께 쓰는 리뷰,
         <br /> 이야기가 되어 모이다
-      </S.LogoDiv>
-      <S.SignUpInput placeholder='닉네임'></S.SignUpInput>
-      <S.SignUpInput placeholder='이메일'></S.SignUpInput>
-      <S.SignUpInput placeholder='비밀번호' type='password'></S.SignUpInput>
+      </LogoDiv>
+      <SignUpInput placeholder='닉네임'></SignUpInput>
+      <SignUpInput placeholder='이메일'></SignUpInput>
+      <SignUpInput placeholder='비밀번호' type='password'></SignUpInput>
       <Button text='회원가입' width='150px' height='35px'></Button>
-      <S.SignDiv>
+      <SignDiv>
         이미 가입하셨나요? <S.LinkA href='#'>로그인</S.LinkA>
-      </S.SignDiv>
-      <S.LineHr />
-      <S.GoogleSvg
+      </SignDiv>
+      <LineHr />
+      <GoogleSvg
         aria-hidden='true'
         className='native svg-icon iconGoogle'
         width='30'
@@ -40,8 +48,8 @@ const SignUpCompo = () => {
           d='M8.98 4.18c1.17 0 2.23.4 3.06 1.2l2.3-2.3A8 8 0 0 0 1.83 5.4L4.5 7.49a4.77 4.77 0 0 1 4.48-3.3Z'
           fill='#EA4335'
         ></path>
-      </S.GoogleSvg>
-    </S.Container>
+      </GoogleSvg>
+    </Container>
   );
 };
 

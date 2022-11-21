@@ -1,14 +1,14 @@
 import React from 'react';
 import { FaSistrix } from 'react-icons/fa';
-import * as S from './SearchBar.style';
+import { Wrap, Input, SearchContainer, Form } from './SearchBar.style';
 
 const SearchBar = () => {
   return (
-    <S.Wrap>
-      <S.SearchContainer>
-        <S.Form type='submit'>
-          <S.Input type='search' name='searchbar' labal='input' />
-        </S.Form>
+    <Wrap>
+      <SearchContainer>
+        <Form type='submit'>
+          <Input type='search' name='searchbar' labal='input' />
+        </Form>
         <FaSistrix
           style={{
             position: 'absolute',
@@ -17,8 +17,8 @@ const SearchBar = () => {
             fontSize: '1.9em',
           }}
         />
-      </S.SearchContainer>
-    </S.Wrap>
+      </SearchContainer>
+    </Wrap>
   );
 };
 

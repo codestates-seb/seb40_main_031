@@ -1,18 +1,18 @@
 import React from 'react';
-import * as S from './Modal.stlye';
+import { Wrap, ModalList } from './Modal.stlye';
 import { NAV_LIST } from '../../../../constants/Pages';
 
 const Modal = ({ list, ...rest }) => {
   return (
-    <S.Wrap>
+    <Wrap>
       {NAV_LIST.map((li) => {
         return li === 'nav' ? (
-          <S.ModalList key={li}>{li}</S.ModalList>
+          <ModalList key={li}>{li}</ModalList>
         ) : (
-          <S.ModalList key={li}>{li}</S.ModalList>
+          <ModalList key={li}>{li}</ModalList>
         );
       })}
-    </S.Wrap>
+    </Wrap>
   );
 };
 
