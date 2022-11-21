@@ -1,6 +1,6 @@
 import React from 'react';
-import { Template } from 'pages/pagesLayout/Layout.style';
-import ReviewBig from 'components';
+import { Template } from 'pages/reviewDetail/ReviewDetail.style';
+import { ReviewBig } from 'components';
 
 const ReviewDetail = () => {
   return (

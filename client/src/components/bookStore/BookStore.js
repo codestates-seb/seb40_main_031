@@ -4,8 +4,6 @@ import {
   BookBuy,
   BookBuyCategory,
   BookBuyImg,
-  BookBuyImgSecond,
-  BookBuyImgThird,
   BookStoreName,
 } from 'components/bookStore/BookStore.style';
 
@@ -15,15 +13,15 @@ const BookStore = () => {
       <BookBuy>
         구매 가능한 곳
         <BookBuyCategory>
-          <BookBuyImg></BookBuyImg>
+          <BookBuyImg src='https://an2-glx.amz.wtchn.net/images/ex_aladin_logo_square.png' />
           <BookStoreName>알라딘</BookStoreName>
         </BookBuyCategory>
         <BookBuyCategory>
-          <BookBuyImgSecond></BookBuyImgSecond>
+          <BookBuyImg src='https://an2-glx.amz.wtchn.net/images/ex_yes24_logo_square.png' />
           <BookStoreName>Yes24</BookStoreName>
         </BookBuyCategory>
         <BookBuyCategory>
-          <BookBuyImgThird></BookBuyImgThird>
+          <BookBuyImg src='https://an2-glx.amz.wtchn.net/images/ex_kyobo_logo_square.png' />
           <BookStoreName>교보문고</BookStoreName>
         </BookBuyCategory>
       </BookBuy>

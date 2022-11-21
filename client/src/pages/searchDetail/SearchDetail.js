@@ -1,5 +1,5 @@
 import React from 'react';
-import SearchDetailComponent from 'components';
+import { SearchDetailComponent } from 'components';
 
 const SearchDetail = () => {
   return <SearchDetailComponent />;
