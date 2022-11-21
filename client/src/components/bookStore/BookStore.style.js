@@ -20,7 +20,7 @@ const BookBuyCategory = styled.div`
   display: flex;
 `;
 
-const BookBuyImg = styled.div`
+const BookBuyImg = styled.img`
   width: 80px;
   height: 80px;
   border-radius: 50%;
@@ -29,18 +29,6 @@ const BookBuyImg = styled.div`
   position: relative;
   z-index: 1;
   margin-top: 10px;
-  background: url(https://an2-glx.amz.wtchn.net/images/ex_aladin_logo_square.png)
-    center center / cover no-repeat;
-`;
-
-const BookBuyImgSecond = styled(BookBuyImg)`
-  background: url(https://an2-glx.amz.wtchn.net/images/ex_yes24_logo_square.png)
-    center center / cover no-repeat;
-`;
-
-const BookBuyImgThird = styled(BookBuyImg)`
-  background: url(https://an2-glx.amz.wtchn.net/images/ex_kyobo_logo_square.png)
-    center center / cover no-repeat;
 `;
 
 const BookStoreName = styled.div`
@@ -51,12 +39,4 @@ const BookStoreName = styled.div`
   cursor: pointer;
 `;
 
-export {
-  BookStoreDiv,
-  BookBuy,
-  BookBuyCategory,
-  BookBuyImg,
-  BookBuyImgSecond,
-  BookBuyImgThird,
-  BookStoreName,
-};
+export { BookStoreDiv, BookBuy, BookBuyCategory, BookBuyImg, BookStoreName };
