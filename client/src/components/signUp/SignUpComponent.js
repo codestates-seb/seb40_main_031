@@ -1,5 +1,5 @@
 import React from 'react';
-import Button from '../@layout/button/Button';
+import { Button } from 'components/@layout';
 import {
   Container,
   SignUpInput,
@@ -8,9 +8,9 @@ import {
   LinkA,
   LineHr,
   GoogleSvg,
-} from './SignUpCompo.style';
+} from 'components/signUp/SignUpComponent.style';
 
-const SignUpCompo = () => {
+const SignUpComponent = () => {
   return (
     <Container>
       <LogoDiv>
@@ -22,7 +22,7 @@ const SignUpCompo = () => {
       <SignUpInput placeholder='비밀번호' type='password'></SignUpInput>
       <Button text='회원가입' width='150px' height='35px'></Button>
       <SignDiv>
-        이미 가입하셨나요? <S.LinkA href='#'>로그인</S.LinkA>
+        이미 가입하셨나요? <LinkA href='#'>로그인</LinkA>
       </SignDiv>
       <LineHr />
       <GoogleSvg
@@ -53,4 +53,4 @@ const SignUpCompo = () => {
   );
 };
 
-export default SignUpCompo;
+export default SignUpComponent;

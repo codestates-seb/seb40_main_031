@@ -1,9 +1,9 @@
 import React from 'react';
-import Button from '../../components/@layout/button/Button';
-import DummyBookDetail from '../../dummyData/DummyBookDetail';
+import Button from 'components';
+import DummyBookDetails from 'pages/bookDetail/DummyBookDetails';
 import { HiOutlineChat } from 'react-icons/hi';
 import { useState } from 'react';
-import ReviewSmall from '../../components/@layout/reviewContent/ReviewSmall';
+import ReviewSmall from 'components';
 import { AiOutlineShareAlt } from 'react-icons/ai';
 import {
   Template,
@@ -32,10 +32,10 @@ import {
   ReviewComponentTemplate,
   BookTitleAuthorTemplate,
   BookShare,
-} from './BookDetail.style';
+} from 'pages/bookDetail/BookDetail.style';
 
 const BookDetail = () => {
-  const [bookDetails, setBookDetails] = useState(DummyBookDetail);
+  const [bookDetails, setBookDetails] = useState(DummyBookDetails);
 
   return (
     <div>

@@ -1,8 +1,12 @@
 import React, { useState } from 'react';
-import DomesticCategory from './DomesticCategory';
-import ForeignCategory from './ForeignCategory';
-import { ContainerDiv, TabDiv, TabSpan } from './Tab.style';
-import { ResultDiv } from './SearchDetailCompo.style';
+import DomesticCategory from 'components/searchDetail/DomesticCategory';
+import ForeignCategory from 'components/searchDetail/ForeignCategory';
+import {
+  ContainerDiv,
+  TabDiv,
+  TabSpan,
+} from 'components/searchDetail/Tab.style';
+import { ResultDiv } from 'components/searchDetail/SearchDetailComponent.style';
 
 const Tab = () => {
   const [currentTab, setCurrentTab] = useState(0);
@@ -17,28 +21,26 @@ const Tab = () => {
   };
 
   return (
-    <>
-      <ContainerDiv>
-        <TabDiv>
-          {menuArr.map((el, idx) => {
-            return (
-              <TabSpan
-                className={currentTab === idx ? 'focused' : ''}
-                key={idx}
-                onClick={(e) => {
-                  selectMenuHandler(idx);
-                }}
-              >
-                {el.name}
-              </TabSpan>
-            );
-          })}
-        </TabDiv>
+    <ContainerDiv>
+      <TabDiv>
+        {menuArr.map((el, idx) => {
+          return (
+            <TabSpan
+              className={currentTab === idx ? 'focused' : ''}
+              key={idx}
+              onClick={(e) => {
+                selectMenuHandler(idx);
+              }}
+            >
+              {el.name}
+            </TabSpan>
+          );
+        })}
+      </TabDiv>
 
-        <h1>{menuArr[currentTab].content}</h1>
-        <ResultDiv>`니가 찾는 책이 이 책이느냐` 검색한 결과입니다</ResultDiv>
-      </ContainerDiv>
-    </>
+      <h1>{menuArr[currentTab].content}</h1>
+      <ResultDiv>`니가 찾는 책이 이 책이느냐` 검색한 결과입니다</ResultDiv>
+    </ContainerDiv>
   );
 };
 

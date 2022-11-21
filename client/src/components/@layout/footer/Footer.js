@@ -1,5 +1,5 @@
 import React from 'react';
-import { Wrap, LayoutContainer } from './Footer.style';
+import { Wrap, LayoutContainer } from 'components/@layout/footer/Footer.style';
 
 const Footer = () => {
   return (

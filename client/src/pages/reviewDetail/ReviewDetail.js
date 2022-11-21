@@ -1,14 +1,12 @@
 import React from 'react';
-import { Template } from './ReviewDetail.style';
-import ReviewBig from '../../components/@layout/reviewContent/ReviewBig';
+import { Template } from 'pages/pagesLayout/Layout.style';
+import ReviewBig from 'components';
 
 const ReviewDetail = () => {
   return (
-    <>
-      <Template>
-        <ReviewBig />
-      </Template>
-    </>
+    <Template>
+      <ReviewBig />
+    </Template>
   );
 };
 export default ReviewDetail;

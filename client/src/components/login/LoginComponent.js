@@ -1,5 +1,5 @@
 import React from 'react';
-import Button from '../@layout/button/Button';
+import { Button } from 'components/@layout';
 import {
   WrapperDiv,
   AdvertiseDiv,
@@ -9,7 +9,7 @@ import {
   OAuthListDiv,
   OAuthSvg,
   LineHr,
-} from './LoginComponent.style';
+} from 'components/login/LoginComponent.style';
 
 const LoginComponent = () => {
   return (

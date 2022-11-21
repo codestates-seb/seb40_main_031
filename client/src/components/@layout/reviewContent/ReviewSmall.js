@@ -6,15 +6,13 @@ import {
   GoodIcon,
   LeftText,
   Display,
-} from './ReviewSmall.style';
-import DummyReviewSmallDetails from '../../../dummyData/DummyReviewSmallDetail';
+} from 'components/@layout/reviewContent/ReviewSmall.style';
+import DummyReviews from 'components/@layout/reviewContent/DummyReviews';
 import { FaRegThumbsUp } from 'react-icons/fa';
 import { useState } from 'react';
 
 const ReviewSmall = () => {
-  const [reviewSmalls, setReviewSmall] = useState(
-    DummyReviewSmallDetails.slice(0, 2),
-  );
+  const [reviewSmalls, setReviewSmall] = useState(DummyReviews.slice(0, 2));
   return (
     <div>
       <Display>

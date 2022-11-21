@@ -12,15 +12,17 @@ import {
   RightIconBox,
   LeftIconBox,
   LeftText,
-} from './ReviewBig.style';
-import { FaRegUserCircle } from 'react-icons/fa';
-import { FaRegThumbsUp } from 'react-icons/fa';
+} from 'components/@layout/reviewContent/ReviewBig.style';
+import { FaRegUserCircle, FaRegThumbsUp } from 'react-icons/fa';
 import { HiOutlinePencil } from 'react-icons/hi';
 import { MdClose } from 'react-icons/md';
+
 import InfiniteScroll from 'react-infinite-scroll-component';
+
 import { useState } from 'react';
-import DummyReviewBigDetails from '../../../dummyData/DummyReviewBigDetail';
-import Loading from '../loading/Loading';
+
+import DummyReviews from 'components/@layout/reviewContent/DummyReviews';
+import Loading from 'components/@layout/loading/Loading';
 
 // 전역변수 로 number 를 0으로 지정해주었다. 0으로 지정해준 이유는 맨 첫번째 usestate에서 실행된 (0,3)을 먼저
 // 실행했기 때문에(처음에 랜더링이 되어서) 밑에 있는 number += 3이 먼저 실행이 되어서 number가 3으로 바뀌게
@@ -28,9 +30,7 @@ import Loading from '../loading/Loading';
 let number = 0;
 
 const ReviewBig = () => {
-  const [reviewBigs, setreviewBigs] = useState(
-    DummyReviewBigDetails.slice(0, 3),
-  );
+  const [reviewBigs, setreviewBigs] = useState(DummyReviews.slice(0, 3));
   const [hasMore, setHasMore] = useState(true);
   // const [reviewBigs, setreviewBigs] = useState(Array.from({length:10}));
 
@@ -38,7 +38,7 @@ const ReviewBig = () => {
     if (reviewBigs.length < 30) {
       setTimeout(() => {
         setreviewBigs(
-          reviewBigs.concat(DummyReviewBigDetails.slice(number, number + 3)),
+          reviewBigs.concat(DummyReviews.slice(number, number + 3)),
         );
       }, 2000);
     } else {

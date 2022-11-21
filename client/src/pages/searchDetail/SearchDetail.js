@@ -1,8 +1,8 @@
 import React from 'react';
-import SearchDetailCompo from '../../components/searchDetail/SearchDetailCompo';
+import SearchDetailComponent from 'components';
 
 const SearchDetail = () => {
-  return <SearchDetailCompo />;
+  return <SearchDetailComponent />;
 };
 
 export default SearchDetail;

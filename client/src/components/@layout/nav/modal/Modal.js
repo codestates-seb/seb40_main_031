@@ -1,6 +1,6 @@
 import React from 'react';
-import { Wrap, ModalList } from './Modal.stlye';
-import { NAV_LIST } from '../../../../constants/Pages';
+import { Wrap, ModalList } from 'components/@layout/nav/modal/Modal.stlye';
+import { NAV_LIST } from 'constants';
 
 const Modal = ({ list, ...rest }) => {
   return (

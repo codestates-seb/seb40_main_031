@@ -1,5 +1,10 @@
 import React from 'react';
-import { Container, Bookbox, Img, Title } from './Book.style';
+import {
+  Container,
+  Bookbox,
+  Img,
+  Title,
+} from 'components/@layout/book/Book.style';
 import Dummybooks from './Dummybooks';
 import { useState } from 'react';
 

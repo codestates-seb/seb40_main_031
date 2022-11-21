@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import { Theme } from '../../style';
+import { Theme } from 'style';
 import { darken } from 'polished';
 
 const ContainerDiv = styled.div`

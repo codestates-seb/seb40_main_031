@@ -1,6 +1,6 @@
 import styled from 'styled-components';
-import { Theme } from '../../style/index';
-import Carousel from './MainCarousel';
+import { Theme } from 'style';
+import Carousel from 'components/main/MainCarousel';
 import { darken } from 'polished';
 
 const WrapperDiv = styled.div`

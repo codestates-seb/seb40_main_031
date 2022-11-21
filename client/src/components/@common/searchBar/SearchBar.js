@@ -1,6 +1,11 @@
 import React from 'react';
 import { FaSistrix } from 'react-icons/fa';
-import { Wrap, Input, SearchContainer, Form } from './SearchBar.style';
+import {
+  Wrap,
+  Input,
+  SearchContainer,
+  Form,
+} from 'components/@common/searchBar/SearchBar.style';
 
 const SearchBar = () => {
   return (

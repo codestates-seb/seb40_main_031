@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import { Theme } from '../../style';
+import { Theme } from 'style';
 import { darken } from 'polished';
 
 const Container = styled.div`
@@ -60,7 +60,7 @@ const LineHr = styled.hr`
   height: 5px;
 
   &::after {
-    background: #fff;
+    background: ${Theme.PRIMARY.WHITE};
     content: 'OR';
     padding: 0 4px;
     position: relative;
@@ -76,7 +76,7 @@ const GoogleSvg = styled.svg`
   height: 3rem;
   margin-top: 10px;
   &:hover {
-    background-color: ${darken(0.1, 'white')};
+    background-color: ${darken(0.1, Theme.PRIMARY.WHITE)};
   }
 `;
 export { Container, SignUpInput, LogoDiv, SignDiv, LinkA, LineHr, GoogleSvg };
