@@ -1,9 +1,8 @@
 import React from 'react';
-import Button from 'components';
+import { Button, ReviewSmall } from 'components';
 import DummyBookDetails from 'pages/bookDetail/DummyBookDetails';
 import { HiOutlineChat } from 'react-icons/hi';
 import { useState } from 'react';
-import ReviewSmall from 'components';
 import { AiOutlineShareAlt } from 'react-icons/ai';
 import {
   Template,

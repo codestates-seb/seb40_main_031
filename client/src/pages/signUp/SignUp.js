@@ -1,5 +1,5 @@
 import React from 'react';
-import SignUpComponent from 'components';
+import { SignUpComponent } from 'components';
 import { Container } from 'pages/signUp/SignUp.style';
 
 const SignUp = () => {
