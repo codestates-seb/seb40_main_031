@@ -1,14 +1,28 @@
 import styled from 'styled-components';
 import { Theme } from 'style';
 
-const Wrap = styled.div``;
+const SearchWrapperDiv = styled.div`
+  display: flex;
+`;
+
+const SearchContainer = styled.div`
+  display: flex;
+  position: relative;
+`;
 
 const Input = styled.input`
   border: 1px solid rgba(0, 0, 0, 0.4);
   border-radius: 20px;
-  padding: 10px 10px 10px 45px;
-  width: 15vw;
-  position: relative;
+  padding: 10px 10px 10px 30px;
+  width: 100%;
+  min-width: 40px;
+  height: 2.5rem;
+
+  &::placeholder {
+    color: silver;
+    font-size: 0.9rem;
+  }
+
   &:hover {
     border: 1px solid ${Theme.PRIMARY.GREEN_DARK};
   }
@@ -17,9 +31,5 @@ const Input = styled.input`
   }
 `;
 
-const SearchContainer = styled.div`
-  position: relative;
-`;
-
 const Form = styled.form``;
-export { Wrap, Input, SearchContainer, Form };
+export { SearchWrapperDiv, Input, SearchContainer, Form };

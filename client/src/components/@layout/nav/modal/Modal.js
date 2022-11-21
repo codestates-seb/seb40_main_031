@@ -1,15 +1,17 @@
 import React from 'react';
-import { Wrap, ModalList } from 'components/@layout/nav/modal/Modal.stlye';
+import { Wrap, ModalListA } from 'components/@layout/nav/modal/Modal.style';
 import { NAV_LIST } from 'constants';
 
-const Modal = ({ list, ...rest }) => {
+const Modal = () => {
   return (
     <Wrap>
-      {NAV_LIST.map((li) => {
-        return li === 'nav' ? (
-          <ModalList key={li}>{li}</ModalList>
-        ) : (
-          <ModalList key={li}>{li}</ModalList>
+      {NAV_LIST.map((list, idx) => {
+        return (
+          <span key={idx}>
+            <ModalListA key={idx} href={list.href}>
+              {list.name}
+            </ModalListA>
+          </span>
         );
       })}
     </Wrap>

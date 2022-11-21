@@ -1,5 +1,26 @@
 // 수정사항이 있으면 배열,객체 안에 요소를 수정하면 됩니다.
-const NAV_LIST = Object.freeze(['공지사항', 'FAQ', '문의하기']);
+const NAV_LIST = Object.freeze([
+  {
+    name: '공지사항',
+    href: '/notice',
+  },
+  {
+    name: 'FAQ',
+    href: '/faq',
+  },
+  {
+    name: '문의하기',
+    href: '/qna',
+  },
+  {
+    name: '로그인',
+    href: '/login',
+  },
+  {
+    name: '회원가입',
+    href: 'signup',
+  },
+]);
 
 const FAQ_TAB_BUTTON = Object.freeze([
   '전체',
