@@ -1,15 +1,12 @@
-import React from "react";
-import * as S from "./Footer.style"
+import React from 'react';
+import { Wrap, LayoutContainer } from './Footer.style';
 
-
-const Footer = ()=>{
-    return(
-        <S.Wrap>
-            <S.LayoutContainer>
-            푸터입니다
-            </S.LayoutContainer>
-            </S.Wrap>
-    )
-}
+const Footer = () => {
+  return (
+    <Wrap>
+      <LayoutContainer>푸터입니다</LayoutContainer>
+    </Wrap>
+  );
+};
 
 export default Footer;

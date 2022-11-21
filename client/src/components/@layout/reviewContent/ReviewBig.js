@@ -1,5 +1,18 @@
 import React from 'react';
-import * as S from './ReviewBig.style';
+import {
+  Template,
+  UserInfo,
+  UserIcon,
+  UserName,
+  Content,
+  BottomContent,
+  LeftIcon,
+  RightIconUpdate,
+  RightIconDelete,
+  RightIconBox,
+  LeftIconBox,
+  LeftText,
+} from './ReviewBig.style';
 import { FaRegUserCircle } from 'react-icons/fa';
 import { FaRegThumbsUp } from 'react-icons/fa';
 import { HiOutlinePencil } from 'react-icons/hi';
@@ -51,32 +64,32 @@ const ReviewBig = () => {
       >
         {reviewBigs.map((reviewBig) => {
           return (
-            <S.Template key={reviewBig.id}>
-              <S.UserInfo>
-                <S.UserIcon>
+            <Template key={reviewBig.id}>
+              <UserInfo>
+                <UserIcon>
                   <FaRegUserCircle />
-                </S.UserIcon>
-                <S.UserName>{reviewBig.userName}</S.UserName>
-              </S.UserInfo>
-              <S.Content>{reviewBig.content}</S.Content>
-              <S.BottomContent>
-                <S.LeftIconBox>
-                  <S.LeftIcon>
+                </UserIcon>
+                <UserName>{reviewBig.userName}</UserName>
+              </UserInfo>
+              <Content>{reviewBig.content}</Content>
+              <BottomContent>
+                <LeftIconBox>
+                  <LeftIcon>
                     <FaRegThumbsUp />
-                  </S.LeftIcon>
-                  <S.LeftText>{reviewBig.vote}</S.LeftText>
-                </S.LeftIconBox>
+                  </LeftIcon>
+                  <LeftText>{reviewBig.vote}</LeftText>
+                </LeftIconBox>
 
-                <S.RightIconBox>
-                  <S.RightIconUpdate>
+                <RightIconBox>
+                  <RightIconUpdate>
                     <HiOutlinePencil />
-                  </S.RightIconUpdate>
-                  <S.RightIconDelete>
+                  </RightIconUpdate>
+                  <RightIconDelete>
                     <MdClose />
-                  </S.RightIconDelete>
-                </S.RightIconBox>
-              </S.BottomContent>
-            </S.Template>
+                  </RightIconDelete>
+                </RightIconBox>
+              </BottomContent>
+            </Template>
           );
         })}
       </InfiniteScroll>

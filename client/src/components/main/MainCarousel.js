@@ -1,5 +1,13 @@
 import React, { useState, useEffect, useRef } from 'react';
-import * as S from './MainCarousel.style';
+import {
+  ContainerDiv,
+  SlideDiv,
+  BtnDiv,
+  WindowDiv,
+  FlexBoxDiv,
+  PositionDiv,
+  ImageDiv,
+} from './MainCarousel.style';
 
 const Carousel = () => {
   const images = useRef([
@@ -33,39 +41,39 @@ const Carousel = () => {
   }, [current]);
 
   return (
-    <S.ContainerDiv>
-      <S.SlideDiv>
-        <S.BtnDiv
+    <ContainerDiv>
+      <SlideDiv>
+        <BtnDiv
           onClick={() => {
             moveSlide(-1);
           }}
         >
           &lt;
-        </S.BtnDiv>
-        <S.WindowDiv>
-          <S.FlexBoxDiv style={style}>
+        </BtnDiv>
+        <WindowDiv>
+          <FlexBoxDiv style={style}>
             {images.current.map((img, i) => (
-              <S.ImageDiv
+              <ImageDiv
                 key={i}
                 style={{ backgroundImage: `url(${img.src})` }}
-              ></S.ImageDiv>
+              ></ImageDiv>
             ))}
-          </S.FlexBoxDiv>
-        </S.WindowDiv>
-        <S.BtnDiv
+          </FlexBoxDiv>
+        </WindowDiv>
+        <BtnDiv
           onClick={() => {
             moveSlide(1);
           }}
         >
           &gt;
-        </S.BtnDiv>
-      </S.SlideDiv>
-      <S.PositionDiv>
+        </BtnDiv>
+      </SlideDiv>
+      <PositionDiv>
         {images.current.map((x, i) => (
           <div key={i} className={i === current ? 'dot current' : 'dot'}></div>
         ))}
-      </S.PositionDiv>
-    </S.ContainerDiv>
+      </PositionDiv>
+    </ContainerDiv>
   );
 };
 

@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import DomesticCategory from './DomesticCategory';
 import ForeignCategory from './ForeignCategory';
-import * as S from './Tab.style';
+import { ContainerDiv, TabDiv, TabSpan } from './Tab.style';
 import { ResultDiv } from './SearchDetailCompo.style';
 
 const Tab = () => {
@@ -18,11 +18,11 @@ const Tab = () => {
 
   return (
     <>
-      <S.ContainerDiv>
-        <S.TabDiv>
+      <ContainerDiv>
+        <TabDiv>
           {menuArr.map((el, idx) => {
             return (
-              <S.TabSpan
+              <TabSpan
                 className={currentTab === idx ? 'focused' : ''}
                 key={idx}
                 onClick={(e) => {
@@ -30,14 +30,14 @@ const Tab = () => {
                 }}
               >
                 {el.name}
-              </S.TabSpan>
+              </TabSpan>
             );
           })}
-        </S.TabDiv>
+        </TabDiv>
 
         <h1>{menuArr[currentTab].content}</h1>
         <ResultDiv>`니가 찾는 책이 이 책이느냐` 검색한 결과입니다</ResultDiv>
-      </S.ContainerDiv>
+      </ContainerDiv>
     </>
   );
 };
