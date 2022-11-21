@@ -1,5 +1,9 @@
 import React from 'react';
-import { ContainerDiv, FlexDiv, LinkA } from './Category.style';
+import {
+  ContainerDiv,
+  FlexDiv,
+  LinkA,
+} from 'components/searchDetail/Category.style';
 
 const DomesticCategory = () => {
   return (

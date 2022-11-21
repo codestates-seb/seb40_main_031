@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
-import { FAQ_TAB_BUTTON } from '../../constants/Pages';
-import { FAQ_LIST } from '../../constants/Pages';
+import { FAQ_TAB_BUTTON } from 'constants';
+import { FAQ_LIST } from 'constants';
 import {
   Wrap,
   Title,
@@ -15,7 +15,7 @@ import {
   FaqListTitle,
   FaqListTitlteContents,
   FaqListContents,
-} from './Faq.style';
+} from 'pages/faq/Faq.style';
 
 const Faq = () => {
   return (

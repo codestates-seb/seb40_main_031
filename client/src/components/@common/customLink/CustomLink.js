@@ -1,5 +1,5 @@
 import React from 'react';
-import StyledLink from './CustomLink.style';
+import StyledLink from 'components/@common/customLink/CustomLink.style';
 
 const CustomLink = ({ className, path, children, ...rest }) => {
   return (

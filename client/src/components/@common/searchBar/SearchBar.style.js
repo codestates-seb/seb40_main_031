@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import { Theme } from '../../../style';
+import { Theme } from 'style';
 
 const Wrap = styled.div``;
 

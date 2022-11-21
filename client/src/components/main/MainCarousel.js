@@ -7,7 +7,7 @@ import {
   FlexBoxDiv,
   PositionDiv,
   ImageDiv,
-} from './MainCarousel.style';
+} from 'components/main/MainCarousel.style';
 
 const Carousel = () => {
   const images = useRef([

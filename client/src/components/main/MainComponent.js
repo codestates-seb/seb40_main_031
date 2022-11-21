@@ -9,11 +9,11 @@ import {
   TextDiv,
   ListContentsDiv,
   ListDiv,
-} from './MainComponent.style';
+} from 'components/main/MainComponent.style';
 import Book from '../@layout/book/Book';
-import axios from 'axios';
+// import axios from 'axios';
 
-// import dfs_xy_conv from './NxNyFunction'; 위치정보 관련
+// import dfs_xy_conv from 'components/main/NxNyFunction'; 위치정보 관련
 
 const MainComponent = () => {
   const WEATHER_URL = process.env.REACT_APP_WEATHER_API_URL;

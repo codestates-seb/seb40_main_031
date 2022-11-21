@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import { Theme } from '../../../style/index';
+import { Theme } from 'style';
 import { FaRegThumbsUp } from 'react-icons/fa';
 
 const Display = styled.div`
@@ -49,7 +49,7 @@ const GoodIcon = styled(FaRegThumbsUp)`
   display: flex;
   align-items: center;
   font-size: 24px;
-  color: #88c399;
+  color: ${Theme.PRIMARY.GREEN_DARK};
   cursor: pointer;
 `;
 const LeftText = styled.span`

@@ -1,5 +1,5 @@
 import React from 'react';
-import { ButtonTemplate } from './Button.style';
+import { ButtonTemplate } from 'components/@layout/button/Button.style';
 
 const Button = ({ text, width, height }) => {
   return (

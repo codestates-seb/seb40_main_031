@@ -1,7 +1,7 @@
 import React from 'react';
 import BeatLoader from 'react-spinners/BeatLoader';
-import { Container } from './Loading.style';
-import { Theme } from '../../../style';
+import { Container } from 'components/@layout/loading/Loading.style';
+import { Theme } from 'style';
 const Loading = ({ width, height }) => {
   return (
     <>

@@ -1,9 +1,8 @@
 import styled from 'styled-components';
 
-const Template = styled.div`
-  margin: 100px 400px 100px 400px;
+const MainDiv = styled.div`
   display: flex;
   justify-content: center;
 `;
 
-export { Template };
+export { MainDiv };

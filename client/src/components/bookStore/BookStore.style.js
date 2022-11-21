@@ -1,6 +1,6 @@
-import styled from "styled-components";
+import styled from 'styled-components';
 
-const BookStore = styled.div`
+const BookStoreDiv = styled.div`
   width: 300px;
   height: 440px;
   border: 1px solid darkgray;
@@ -52,7 +52,7 @@ const BookStoreName = styled.div`
 `;
 
 export {
-  BookStore,
+  BookStoreDiv,
   BookBuy,
   BookBuyCategory,
   BookBuyImg,

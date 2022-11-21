@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import { Theme } from '../../style/index';
+import { Theme } from 'style';
 import { darken } from 'polished';
 
 const WrapperDiv = styled.div`
@@ -67,7 +67,7 @@ const LineHr = styled.hr`
   height: 5px;
 
   &::after {
-    background: #fff;
+    background: ${Theme.PRIMARY.WHITE};
     content: 'OR';
     padding: 0 4px;
     position: relative;

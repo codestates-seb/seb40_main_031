@@ -1,8 +1,8 @@
-import styled from "styled-components";
-import { HiOutlineChat } from "react-icons/hi";
-import { AiOutlineShareAlt } from "react-icons/ai";
-import { Theme } from "../../style";
-import { darken } from "polished";
+import styled from 'styled-components';
+import { HiOutlineChat } from 'react-icons/hi';
+import { AiOutlineShareAlt } from 'react-icons/ai';
+import { Theme } from 'style';
+import { darken } from 'polished';
 
 const Template = styled.div`
   width: 80%;
