@@ -14,6 +14,6 @@ public interface BookMapper {
 
     BookResponseDto bookToBookResponseDto(Book book);
     List<BookDto> booksToBookDto(List<Book> book);
-    List<BookResponseDto> booksToBookResponseDto(List<BookDto> bookDtos);
+    List<BookResponseDto> booksToBookResponseDto(List<Book> book);
 
 }

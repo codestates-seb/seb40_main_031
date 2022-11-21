@@ -70,8 +70,8 @@ public class CallBookApi {
                 // 새로 들어올 책과 비교를 위함
 //                List<Book> findBooks = bookRepository.findAll();
                 List<Book> findBooks = null;
-                if(categoryCode[j] == 100 ){ findBooks = bookRepository.findByNationalRank();}
-                if(categoryCode[j] == 200 ){ findBooks = bookRepository.findByForeignRank();}
+                if(categoryCode[j] == 100 ){ findBooks = bookRepository.findAllByNationalRank();}
+                if(categoryCode[j] == 200 ){ findBooks = bookRepository.findAllByForeignRank();}
 
                 // 반복문으로 bookInfo 돌면서 item 에 하나씩 담는다.
                 for (int i = 0; i < totalResult; i++) {
