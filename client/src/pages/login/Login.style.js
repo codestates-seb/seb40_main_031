@@ -1,12 +1,13 @@
 import styled from 'styled-components';
 
-const Container = styled.div`
+const WrapperDiv = styled.div`
   display: flex;
-  align-items: center;
   justify-content: center;
+  align-items: center;
 
+  margin-top: -50px;
   width: 100%;
   height: 100vh;
 `;
 
-export { Container };
+export { WrapperDiv };

@@ -1,5 +1,6 @@
 import styled from 'styled-components';
 import { Theme } from 'style';
+import { darken } from 'polished';
 
 const ContainerDiv = styled.div`
   display: flex;
@@ -31,9 +32,9 @@ const FlexDiv = styled.div`
 
 const LinkA = styled.a`
   text-decoration: none;
-  :visited {
-    color: ${Theme.PRIMARY.GREEN_DARK};
-  }
+
+  color: ${darken(0.1, Theme.PRIMARY.GREEN_DARK)};
+
   margin-bottom: 10px;
   padding-right: 3rem;
 `;
