@@ -2,13 +2,14 @@ import React, { useState } from 'react';
 import { Button } from 'components/@layout';
 import {
   WrapperDiv,
-  AdvertiseDiv,
+  LogoImg,
   LoginInput,
   LinkToSignUpDiv,
   LinkA,
   OAuthListDiv,
   OAuthSvg,
   LineHr,
+  CommentDiv,
 } from 'components/login/LoginComponent.style';
 import axios from 'axios';
 import { LOGIN_URL } from 'api';
@@ -17,7 +18,23 @@ const LoginComponent = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
 
+  const [isEmail, setIsEmail] = useState(false);
+
+  const check = (data, type) => {
+    if (type === 'email') {
+      const emailRegex =
+        /^[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?$/;
+
+      return emailRegex.test(data);
+    }
+  };
+
   const handleEmail = (event) => {
+    if (check(event.target.value, 'email')) {
+      setIsEmail(true);
+    } else {
+      setIsEmail(false);
+    }
     setEmail(event.target.value);
   };
 
@@ -48,15 +65,14 @@ const LoginComponent = () => {
 
   return (
     <WrapperDiv>
-      <AdvertiseDiv>
-        함께 쓰는 리뷰,
-        <br /> 이야기가 되어 모이다
-      </AdvertiseDiv>
+      <LogoImg src='/img/imgLogo.svg' />
       <LoginInput
         placeholder='이메일'
         value={email}
         onChange={handleEmail}
+        style={isEmail ? {} : { border: '1px solid red' }}
       ></LoginInput>
+      {isEmail ? null : <CommentDiv>올바른 이메일을 입력해주세요.</CommentDiv>}
       <LoginInput
         placeholder='비밀번호'
         type='password'

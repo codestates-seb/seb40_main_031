@@ -9,7 +9,7 @@ const WrapperDiv = styled.div`
 
   padding: 10px;
   width: 300px;
-  height: 500px;
+  height: auto;
 
   border-radius: 5%;
   background-color: ${Theme.PRIMARY.GREEN_LIGHT};
@@ -19,14 +19,11 @@ const WrapperDiv = styled.div`
   }
 `;
 
-const AdvertiseDiv = styled.div`
+const LogoImg = styled.img`
   display: flex;
   justify-content: center;
   align-items: center;
-  text-align: center;
-
-  font-weight: bold;
-  font-size: 20px;
+  width: 190px;
   margin-top: 30px;
   margin-bottom: 30px;
 `;
@@ -42,6 +39,9 @@ const LoginInput = styled.input`
 
   &::placeholder {
     color: ${Theme.PRIMARY.GREEN_DARK};
+  }
+  :focus {
+    outline: none;
   }
 `;
 
@@ -85,9 +85,9 @@ const OAuthSvg = styled.svg`
   color: ${Theme.PRIMARY.BLACK};
   font-weight: bold;
   margin-top: 10px;
+  margin-bottom: 2rem;
   background-color: ${(props) =>
     props.backgroundColor ? props.backgroundColor : Theme.PRIMARY.WHITE};
-
   border-radius: 50%;
   padding: 0.5rem;
   width: 3rem;
@@ -101,13 +101,21 @@ const OAuthSvg = styled.svg`
   }
 `;
 
+const CommentDiv = styled.div`
+  color: red;
+  text-align: start;
+  width: 200px;
+  font-size: 0.9rem;
+`;
+
 export {
   WrapperDiv,
-  AdvertiseDiv,
+  LogoImg,
   LoginInput,
   LinkToSignUpDiv,
   LinkA,
   OAuthListDiv,
   OAuthSvg,
   LineHr,
+  CommentDiv,
 };
