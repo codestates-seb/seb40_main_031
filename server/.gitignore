@@ -8,6 +8,7 @@ build/
 ### STS ###
 ../.DS_Store
 .DS_Store
+**/.DS_Store
 .apt_generated
 .classpath
 .factorypath

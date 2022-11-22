@@ -8,7 +8,10 @@ import org.springframework.http.MediaType;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
-public class AuthErrorResponder {
+/**
+ * ErrorResponder 클래스는 ErrorResponse를 출력 스트림으로 생성하는 역할을 합니다
+ */
+public class ErrorResponder {
     public static void sendErrorResponse(HttpServletResponse response, HttpStatus status, String sendMessage) throws IOException{
         Gson gson = new Gson();
         ErrorResponse errorResponse = ErrorResponse.of(status);

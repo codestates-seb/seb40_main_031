@@ -35,7 +35,7 @@ public class MemberDto {
         private String about;
         private String img;
         private int point;
-        private Member.Roles roles;
+//        private Member.Roles roles;
 
     }
 
@@ -48,7 +48,7 @@ public class MemberDto {
         private String about;
         private int point;
         private String img;
-        private Member.Roles roles;
+//        private Member.Roles roles;
 //        private List<BookDto.Response> bookList;
 //        private List<ReviewDto.Response> reviewList;
 
