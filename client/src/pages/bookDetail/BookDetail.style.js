@@ -5,15 +5,18 @@ import { Theme } from 'style';
 import { darken } from 'polished';
 
 const Template = styled.div`
-  width: 80%;
+  @media screen and (max-width: 950px) {
+    height: 200vh;
+  }
+  width: 100%;
   max-width: 1200px;
 `;
 
 const BookContent = styled.div`
-  @media screen and (max-width: 850px) {
+  @media screen and (max-width: 950px) {
     display: flex;
     flex-direction: column;
-    margin-top: 100px;
+    margin-top: 10px;
   }
 
   display: flex;
@@ -22,8 +25,6 @@ const BookContent = styled.div`
 `;
 
 const ImageDateTemplate = styled.div`
-  @media screen and (max-width: 1210px) {
-  }
   width: 300px;
   height: 430px;
 `;
@@ -59,8 +60,8 @@ const BookContentLeft = styled.div`
 `;
 
 const BookContentCenter = styled.div`
-  @media screen and (max-width: 850px) {
-    margin-top: 30px;
+  @media screen and (max-width: 623px) {
+    width: 90vw;
   }
   display: flex;
   justify-content: center;
@@ -70,6 +71,9 @@ const BookContentCenter = styled.div`
 `;
 
 const BookIntroudce = styled.div`
+  @media screen and (max-width: 920px) {
+    width: 65vw;
+  }
   width: 600px;
   height: 430px;
 `;
@@ -112,6 +116,9 @@ const BookShare = styled(AiOutlineShareAlt)`
   color: ${Theme.PRIMARY.GREEN_DARK};
 `;
 const BookExplain = styled.div`
+  @media screen and (max-width: 920px) {
+    width: 65vw;
+  }
   height: 275px;
   border: 1px solid darkgray;
   font-size: 25px;
@@ -155,7 +162,7 @@ const ReviewContentTemplate = styled.div`
 `;
 
 const Review = styled.div`
-  @media screen and (max-width: 850px) {
+  @media screen and (max-width: 950px) {
     display: flex;
     justify-content: center;
   }
@@ -169,7 +176,7 @@ const Review = styled.div`
 `;
 
 const ReviewClick = styled.div`
-  @media screen and (max-width: 850px) {
+  @media screen and (max-width: 950px) {
     display: flex;
     flex-direction: column;
     margin-bottom: 30px;

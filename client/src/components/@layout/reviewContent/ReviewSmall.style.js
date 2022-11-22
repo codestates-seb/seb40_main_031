@@ -4,14 +4,25 @@ import { FaRegThumbsUp } from 'react-icons/fa';
 
 const Display = styled.div`
   display: flex;
+
+  @media screen and (max-width: 950px) {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
 `;
 const Template = styled.div`
+  @media screen and (max-width: 920px) {
+    width: 55vw;
+  }
   min-height: 320px;
+  min-width: 450px;
   width: 500px;
   border: 1px solid ${Theme.PRIMARY.GREEN_DARK};
   border-radius: 8px;
   padding: 10px;
   margin: 0px 20px 0px 20px;
+  margin-bottom: 30px;
 `;
 
 const Content = styled.div`

@@ -5,6 +5,11 @@ import { HiOutlinePencil } from 'react-icons/hi';
 import { MdClose } from 'react-icons/md';
 
 const Template = styled.div`
+  @media screen and (max-width: 700px) {
+    width: 90vw;
+    overflow-x: hidden;
+    overflow-y: hidden;
+  }
   width: 600px;
   height: 250px;
   border: 1px solid ${Theme.PRIMARY.GREEN_DARK};
