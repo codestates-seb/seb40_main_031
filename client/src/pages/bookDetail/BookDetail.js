@@ -1,8 +1,8 @@
 import React from 'react';
 import { Button, ReviewSmall } from 'components';
-import DummyBookDetails from 'pages/bookDetail/DummyBookDetails';
 import { HiOutlineChat } from 'react-icons/hi';
-import { useState } from 'react';
+import { useRecoilValue } from 'recoil';
+import BookDetailState from 'atom/BookDetailState';
 import { AiOutlineShareAlt } from 'react-icons/ai';
 import {
   Template,
@@ -34,64 +34,55 @@ import {
 } from 'pages/bookDetail/BookDetail.style';
 
 const BookDetail = () => {
-  const [bookDetails, setBookDetails] = useState(DummyBookDetails);
-
+  const bookDetails = useRecoilValue(BookDetailState);
   return (
     <div>
-      {bookDetails.map((bookDetail) => {
-        return (
-          <Template key={bookDetail.id}>
-            <BookContent>
-              <BookContentLeft>
-                <ImageDateTemplate>
-                  <Image src={bookDetail.imageURL} />
-                  <Date>{bookDetail.publishedDate}</Date>
-                </ImageDateTemplate>
-              </BookContentLeft>
-              <BookContentCenter>
-                <BookIntroudce>
-                  <BookCategory>{bookDetail.category}</BookCategory>
-                  <BookTitleAuthor>
-                    <BookTitleAuthorTemplate>
-                      <BookTitle>{bookDetail.title}</BookTitle>
-                      <BookAuthor>{bookDetail.author}</BookAuthor>
-                    </BookTitleAuthorTemplate>
-                    <BookShare>
-                      <AiOutlineShareAlt />
-                    </BookShare>
-                  </BookTitleAuthor>
-                  <BookPrice>{bookDetail.price}</BookPrice>
-                  <BookExplain>{bookDetail.content}</BookExplain>
-                  <BookButton>
-                    <Button
-                      text='같이 이야기하기'
-                      width='350px'
-                      height='50px'
-                    />
-                  </BookButton>
-                </BookIntroudce>
-              </BookContentCenter>
-            </BookContent>
-            <ReviewContent>
-              <ReviewContentTemplate>
-                <Review>리뷰 달기</Review>
-                <ReviewClick>
-                  <ReviewiIconTemplate>
-                    <ReviewIcon>
-                      <HiOutlineChat />
-                    </ReviewIcon>
-                    <ReviewCount>리뷰 2 +</ReviewCount>
-                  </ReviewiIconTemplate>
-                  <ReviewMore>더보기</ReviewMore>
-                </ReviewClick>
-                <ReviewComponentTemplate>
-                  <ReviewSmall />
-                </ReviewComponentTemplate>
-              </ReviewContentTemplate>
-            </ReviewContent>
-          </Template>
-        );
-      })}
+      <Template key={bookDetails.id}>
+        <BookContent>
+          <BookContentLeft>
+            <ImageDateTemplate>
+              <Image src={bookDetails.imageURL} />
+              <Date>{bookDetails.publishedDate}</Date>
+            </ImageDateTemplate>
+          </BookContentLeft>
+          <BookContentCenter>
+            <BookIntroudce>
+              <BookCategory>{bookDetails.category}</BookCategory>
+              <BookTitleAuthor>
+                <BookTitleAuthorTemplate>
+                  <BookTitle>{bookDetails.title}</BookTitle>
+                  <BookAuthor>{bookDetails.author}</BookAuthor>
+                </BookTitleAuthorTemplate>
+                <BookShare>
+                  <AiOutlineShareAlt />
+                </BookShare>
+              </BookTitleAuthor>
+              <BookPrice>{bookDetails.price}</BookPrice>
+              <BookExplain>{bookDetails.content}</BookExplain>
+              <BookButton>
+                <Button text='같이 이야기하기' width='350px' height='50px' />
+              </BookButton>
+            </BookIntroudce>
+          </BookContentCenter>
+        </BookContent>
+        <ReviewContent>
+          <ReviewContentTemplate>
+            <Review>리뷰 달기</Review>
+            <ReviewClick>
+              <ReviewiIconTemplate>
+                <ReviewIcon>
+                  <HiOutlineChat />
+                </ReviewIcon>
+                <ReviewCount>리뷰 2 +</ReviewCount>
+              </ReviewiIconTemplate>
+              <ReviewMore>더보기</ReviewMore>
+            </ReviewClick>
+            <ReviewComponentTemplate>
+              <ReviewSmall />
+            </ReviewComponentTemplate>
+          </ReviewContentTemplate>
+        </ReviewContent>
+      </Template>
     </div>
   );
 };
