@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Button } from 'components/@layout';
 import {
   WrapperDiv,
@@ -10,17 +10,61 @@ import {
   OAuthSvg,
   LineHr,
 } from 'components/login/LoginComponent.style';
+import axios from 'axios';
+import { LOGIN_URL } from 'api';
 
 const LoginComponent = () => {
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+
+  const handleEmail = (event) => {
+    setEmail(event.target.value);
+  };
+
+  const handlePassword = (event) => {
+    setPassword(event.target.value);
+  };
+
+  const submitHandle = async () => {
+    console.log(`${email}, ${password}`);
+    await axios
+      .post(LOGIN_URL, {
+        email: email,
+        password: password,
+      })
+      .then((res) => {
+        let accessToken = res.headers.get('Authorization');
+        let refreshToken = res.headers.get('Refresh');
+
+        sessionStorage.setItem('Authorization', accessToken);
+        sessionStorage.setItem('Refresh', refreshToken);
+        console.log(res);
+      })
+      .catch((err) => {
+        console.log(`${err.response.status} 에러`);
+        console.log(err);
+      });
+  };
+
   return (
     <WrapperDiv>
       <AdvertiseDiv>
         함께 쓰는 리뷰,
         <br /> 이야기가 되어 모이다
       </AdvertiseDiv>
-      <LoginInput placeholder='이메일'></LoginInput>
-      <LoginInput placeholder='비밀번호' type='password'></LoginInput>
+      <LoginInput
+        placeholder='이메일'
+        value={email}
+        onChange={handleEmail}
+      ></LoginInput>
+      <LoginInput
+        placeholder='비밀번호'
+        type='password'
+        value={password}
+        onChange={handlePassword}
+      ></LoginInput>
       <Button text='로그인' width='150px' height='35px'></Button>
+      <button onClick={submitHandle}>로그인</button>
       <LinkToSignUpDiv>
         계정이 없으신가요?
         <LinkA href='#'>회원가입</LinkA>
