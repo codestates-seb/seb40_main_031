@@ -1,5 +1,8 @@
-const DummyBookDetails = [
-  {
+import { atom } from 'recoil';
+
+const BookDetailState = atom({
+  key: 'BookDetailState',
+  default: {
     id: 1,
     imageURL:
       'https://an2-img.amz.wtchn.net/image/v2/MMllkh1yb-IkFOl-hYUDsw.jpg?jwt=ZXlKaGJHY2lPaUpJVXpJMU5pSjkuZXlKdmNIUnpJanBiSW1SZk1qZ3dlRFF3TUhFNE1DSmRMQ0p3SWpvaUwzWXhMM2g0WVdjMVlUUnZlbmh6ZVdONGJXaHRlWEIxSW4wLlN5cXBIOGtIckRfWXM2NVdwVHpkNUo5cGtoZWhKYThxYmdfT0hBVUhNa1E',
@@ -11,5 +14,5 @@ const DummyBookDetails = [
     content:
       ' 원피스 너무 재밌따!!! 원피스 너무 재밌따!!! 원피스 너무 재밌따!!! 원피스 너무 재밌따!!!원피스 너무 재밌따!!! 원피스 너무 재밌따!!! 원피스 너무 재밌따!!! 원피스 너무 재밌따!!! 원피스 너무 재밌따!!! 원피스 너무 재밌따!!! 원피스 너무 재밌따!!! ',
   },
-];
-export default DummyBookDetails;
+});
+export default BookDetailState;
