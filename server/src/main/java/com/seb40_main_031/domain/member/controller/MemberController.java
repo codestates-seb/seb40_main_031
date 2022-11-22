@@ -7,6 +7,7 @@ import com.seb40_main_031.domain.member.service.MemberService;
 import com.seb40_main_031.global.common.dto.SingleResponseDto;
 import com.seb40_main_031.global.error.exception.BusinessLogicException;
 import com.seb40_main_031.global.error.exception.ExceptionCode;
+import com.seb40_main_031.global.security.argumentresolver.LoginAccountId;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -27,6 +28,7 @@ import java.util.stream.Collectors;
 @RequestMapping("/members")
 @Validated
 @RequiredArgsConstructor
+@CrossOrigin
 public class MemberController {
     private final MemberService memberService;
     private final MemberMapper mapper;
@@ -50,23 +52,11 @@ public class MemberController {
     }
 
     /**
-     * 2. 로그 아웃
-     */
-    @GetMapping("/logout")
-    public ResponseEntity logout(HttpServletRequest request) {
-        HttpSession session = request.getSession();
-
-        session.invalidate();
-
-        return new ResponseEntity(HttpStatus.OK);
-    }
-
-    /**
      * 3. 회원 정보 수정
      */
-    @PatchMapping("/edit/{member-id}")
-    public ResponseEntity updateMember(@PathVariable("member-id") @Positive Long memberId,
-                                       @RequestBody @Valid MemberDto.Patch requestBody){
+    @PatchMapping("/edit")
+    public ResponseEntity updateMember(@Valid @RequestBody MemberDto.Patch requestBody,
+                                       @LoginAccountId Long memberId){
 
         requestBody.setMemberId(memberId);
         Member member = memberService.updateMember(mapper.memberPatchToMember(requestBody));
@@ -106,9 +96,8 @@ public class MemberController {
     /**
      * 5. 회원 탈퇴
      */
-    @DeleteMapping("/{member-id}")
-    public ResponseEntity deleteMember(@PathVariable("member-id") @Positive Long memberId){
-
+    @DeleteMapping
+    public ResponseEntity deleteMember(@LoginAccountId Long memberId){
         /**
          * todo : 회원 탈퇴 (memberStatus 변경) , 로그인 과정에서 status가 현재 사용중인지 확인해야하는 로직이 필요할수도?
          *   그러면 로그인을 컨트롤러로 받아서 해야하는건가?
@@ -118,5 +107,15 @@ public class MemberController {
         return new ResponseEntity(HttpStatus.NO_CONTENT);
     }
 
+    /**
+     * 2. 로그 아웃
+     */
+    @GetMapping("/logout")
+    public ResponseEntity logout(HttpServletRequest request) {
+        HttpSession session = request.getSession();
 
+        session.invalidate();
+
+        return new ResponseEntity(HttpStatus.OK);
+    }
 }

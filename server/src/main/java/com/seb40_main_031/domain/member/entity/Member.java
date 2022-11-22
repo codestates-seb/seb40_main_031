@@ -36,12 +36,12 @@ public class Member extends Auditable {
     @Column(name = "POINT")
     private int point;
 
-//    @ElementCollection
-//    @Setter
-//    private List<String> roles = new ArrayList<>();
+    // 애너테이션을 이용해 사용자 등록 시, 사용자의 권한을 등록하기 위한 권한 테이블을 생성
+    @ElementCollection(fetch = FetchType.EAGER)
+    private List<String> roles = new ArrayList<>();
 
-    @Enumerated(EnumType.STRING)
-    private Roles roles = Roles.GUEST;
+//    @Enumerated(EnumType.STRING)
+//    private Role role = Role.GUEST;
 
 //    @Builder
 //    public Member(String email, String password, String nickname) {
@@ -54,19 +54,19 @@ public class Member extends Auditable {
 //        this.nickname = nickname;
 //    }
 
-    public enum Roles {
-        ADMIN("관리자"),
-        USER("사용자"),
-        GUEST("손님"),
-        DORMANT("휴면상태");
-
-        @Getter
-        private String roles;
-
-        Roles(String roles) {
-            this.roles = roles;
-        }
-    }
+//    public enum Role {
+//        ADMIN("관리자"),
+//        USER("사용자"),
+//        GUEST("손님"),
+//        DORMANT("휴면상태");
+//
+//        @Getter
+//        private String role;
+//
+//        Role(String role) {
+//            this.role = role;
+//        }
+//    }
 
     // todo : chat, review, List<book> 추가
 }

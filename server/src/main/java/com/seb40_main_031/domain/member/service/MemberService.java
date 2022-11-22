@@ -4,7 +4,9 @@ import com.seb40_main_031.domain.member.entity.Member;
 import com.seb40_main_031.domain.member.repository.MemberRepository;
 import com.seb40_main_031.global.error.exception.BusinessLogicException;
 import com.seb40_main_031.global.error.exception.ExceptionCode;
+import com.seb40_main_031.global.security.utils.CustomAuthorityUtils;
 import lombok.RequiredArgsConstructor;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -16,19 +18,21 @@ import java.util.Optional;
 @RequiredArgsConstructor
 public class MemberService {
     private final MemberRepository memberRepository;
-
-//    private final PasswordEncoder passwordEncoder;
-//    private final MemberAuthorityUtils authorityUtils;
+    private final PasswordEncoder passwordEncoder;
+    private final CustomAuthorityUtils authorityUtils;
 
     public Member createMember(Member member){
         verifyExistsEmail(member.getEmail());
 
-//        String encryptedPassword = passwordEncoder.encode(member.getPassword());
-//        member.setPassword(encryptedPassword);
-//
-//        List<String> roles = authorityUtils.createRoles(member.getEmail());
-//        member.setRoles(roles);
-        member.setRoles(Member.Roles.USER);
+        // Password 암호화
+        String encryptedPassword = passwordEncoder.encode(member.getPassword());
+        member.setPassword(encryptedPassword);
+
+        // DB에 User Role 저장
+        List<String> roles = authorityUtils.createRoles(member.getEmail());
+        member.setRoles(roles);
+
+//        member.setRole(Member.Role.USER);
 
         return memberRepository.save(member);
     }
@@ -64,8 +68,9 @@ public class MemberService {
          * 상태를 휴면(DORMANT)로만 바꿔 놓음
          */
         Member findMember = findMember(memberId);
-        findMember.setRoles(Member.Roles.DORMANT);
-        memberRepository.save(findMember);
+//        findMember.setRole(Member.Role.DORMANT);
+        memberRepository.delete(findMember);
+//        memberRepository.save(findMember);
     }
 
 
@@ -74,8 +79,8 @@ public class MemberService {
 
         // 회원 가입할 때 이메일이 존재할 때 상태가 휴면(DORMANT)라면 예외 던져줌
         if (optionalMember.isPresent()) {
-            if (optionalMember.get().getRoles() == Member.Roles.DORMANT)
-                throw new BusinessLogicException(ExceptionCode.MEMBER_DORMANT);
+//            if (optionalMember.get().getRole() == Member.Role.DORMANT)
+//                throw new BusinessLogicException(ExceptionCode.MEMBER_DORMANT);
 
             throw new BusinessLogicException(ExceptionCode.MEMBER_EXISTS);
         }
