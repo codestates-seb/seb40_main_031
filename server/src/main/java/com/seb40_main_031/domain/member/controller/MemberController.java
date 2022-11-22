@@ -98,7 +98,6 @@ public class MemberController {
      */
     @DeleteMapping
     public ResponseEntity deleteMember(@LoginAccountId Long memberId){
-
         /**
          * todo : 회원 탈퇴 (memberStatus 변경) , 로그인 과정에서 status가 현재 사용중인지 확인해야하는 로직이 필요할수도?
          *   그러면 로그인을 컨트롤러로 받아서 해야하는건가?
@@ -119,5 +118,4 @@ public class MemberController {
 
         return new ResponseEntity(HttpStatus.OK);
     }
-
 }

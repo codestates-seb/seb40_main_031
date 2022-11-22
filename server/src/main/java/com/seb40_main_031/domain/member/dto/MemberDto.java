@@ -51,8 +51,6 @@ public class MemberDto {
 //        private Member.Roles roles;
 //        private List<BookDto.Response> bookList;
 //        private List<ReviewDto.Response> reviewList;
-
-
 //        private Member.Roles roles;
     }
 
