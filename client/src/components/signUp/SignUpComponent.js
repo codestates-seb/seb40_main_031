@@ -3,11 +3,12 @@ import { Button } from 'components/@layout';
 import {
   Container,
   SignUpInput,
-  LogoDiv,
+  LogoImg,
   SignDiv,
   LinkA,
   LineHr,
   GoogleSvg,
+  CommentDiv,
 } from 'components/signUp/SignUpComponent.style';
 import axios from 'api/axios';
 import { SIGNUP_URL } from 'api';
@@ -17,16 +18,55 @@ const SignUpComponent = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
 
+  //유효성 검사
+  const [isNickname, setIsNickname] = useState(false);
+  const [isEmail, setIsEmail] = useState(false);
+  const [isPassword, setIsPassword] = useState(false);
+
+  const check = (data, type) => {
+    if (type === 'nickname') {
+      if (data.length >= 2) {
+        return true;
+      } else return false;
+    }
+    if (type === 'email') {
+      const emailRegex =
+        /^[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?$/;
+
+      return emailRegex.test(data);
+    }
+    if (type === 'password') {
+      const passwordRegex = /(?=.*[0-9])(?=.*[a-z])(?=.*\W)(?=\S+$).{8,16}/; // 무조건 하나이상은 들어가야된다 // 공백허용안한다
+      return passwordRegex.test(data);
+    }
+  };
+
   const handleNickname = (event) => {
+    if (check(event.target.value, 'nickname')) {
+      setIsNickname(true);
+    } else {
+      setIsNickname(false);
+    }
     setNickname(event.target.value);
   };
 
   const handleEmail = (event) => {
+    if (check(event.target.value, 'email')) {
+      setIsEmail(true);
+    } else {
+      setIsEmail(false);
+    }
     setEmail(event.target.value);
   };
 
   const handlePassword = (event) => {
+    if (check(event.target.value, 'password')) {
+      setIsPassword(true);
+    } else {
+      setIsPassword(false);
+    }
     setPassword(event.target.value);
+    console.log(password);
   };
 
   const submitHandle = async () => {
@@ -56,27 +96,35 @@ const SignUpComponent = () => {
 
   return (
     <Container>
-      <LogoDiv>
-        함께 쓰는 리뷰,
-        <br /> 이야기가 되어 모이다
-      </LogoDiv>
-
+      <LogoImg src='/img/imgLogo.svg' />
       <SignUpInput
         placeholder='닉네임'
         value={nickname}
         onChange={handleNickname}
+        style={isNickname ? {} : { border: '1px solid red' }}
       ></SignUpInput>
+      {isNickname ? null : (
+        <CommentDiv>닉네임은 두글자 이상이어야 합니다.</CommentDiv>
+      )}
       <SignUpInput
         placeholder='이메일'
         value={email}
         onChange={handleEmail}
+        style={isEmail ? {} : { border: '1px solid red' }}
       ></SignUpInput>
+      {isEmail ? null : <CommentDiv>올바른 이메일을 입력해주세요.</CommentDiv>}
       <SignUpInput
         placeholder='비밀번호'
         value={password}
         type='password'
         onChange={handlePassword}
+        style={isPassword ? {} : { border: '1px solid red' }}
       ></SignUpInput>
+      {isPassword ? null : (
+        <CommentDiv>
+          비밀번호는 숫자, 소문자, 특수문자를 포함하여 8글자 이상이어야 합니다.
+        </CommentDiv>
+      )}
       <Button text='회원가입' width='150px' height='35px'></Button>
       <button onClick={submitHandle}>회원가입</button>
       <SignDiv>
