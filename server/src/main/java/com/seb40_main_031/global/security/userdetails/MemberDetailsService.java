@@ -47,7 +47,7 @@ public class MemberDetailsService implements UserDetailsService {
          *
          * 데이터베이스에서 조회한 User 클래스의 객체를 리턴하면 Spring Security가 이 정보를 이용해 인증 절차를 수행합니다.
          *
-         * ⭐ 즉, 데이터베이스에서 User의 인증 정보만 Spring Security에게 넘겨주고, 인증 처리는 Spring Security가 대신해 줍니다.
+         * 즉, 데이터베이스에서 User의 인증 정보만 Spring Security에게 넘겨주고, 인증 처리는 Spring Security가 대신해 줍니다.
          */
         return new MemberDetails(findMember);
     }
