@@ -23,29 +23,37 @@ public class Book {
     @Column(name = "member_id")
     private long memberId;
 
+    @Column(name = "title", nullable = false)
     private String title;
 
     @Column(length = 1000)
     private String description;
 
+    @Column(nullable = false)
     private String pubDate;
 
+    @Column(nullable = false)
     private long price;
 
     private String coverSmallUrl;
 
     private String coverLargeUrl;
 
+    @Column(nullable = false)
     private String categoryId;
 
+    @Column(nullable = false)
     private String categoryName;
 
+    @Column(nullable = false)
     private String bookPublisher;
 
+    @Column(nullable = false)
     private String author;
 
     private String translator;
 
+    @Column(nullable = false)
     private String isbn;
 
     @Column(name = "book_link")

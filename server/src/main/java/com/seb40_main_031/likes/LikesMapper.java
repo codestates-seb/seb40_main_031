@@ -1,8 +1,7 @@
-package com.seb40_main_031.review.mapper;
+package com.seb40_main_031.likes;
 
-import com.seb40_main_031.review.Likes;
-import com.seb40_main_031.review.dto.LikesDto;
-import com.seb40_main_031.review.dto.LikesResponseDto;
+
+import com.seb40_main_031.likes.entity.Likes;
 import org.mapstruct.Mapper;
 
 @Mapper(componentModel = "spring")

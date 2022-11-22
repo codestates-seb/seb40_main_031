@@ -23,15 +23,10 @@ public interface BookRepository extends JpaRepository<Book, Long> {
     // SELECT * FROM BOOK where category_name like 'categoryName' order by pub_date DESC
     List<Book> findAllByCategoryNameStartingWithOrderByPubDateDesc(String categoryName);
 
-    // SELECT * FROM BOOK where title = '%keyword%'
+    // title 로 찾기 // SELECT * FROM BOOK where title = '%keyword%'
     Page<Book> findByTitleContaining(String keyword, Pageable pageable);
+    // author 로 찾기
     Page<Book> findByAuthorContaining(String keyword, Pageable pageable);
-
-//    @Query("SELECT b FROM Book b WHERE b.title like '%:keyword%'")
-//    List<Book> findAllByTitleContaining(@Param("keyword") String keyword, Pageable pageable);
-//
-//    @Query("SELECT b FROM Book b WHERE b.author like '%:keyword%'")
-//    Page<Book> findAllByAuthorContaining(@Param("keyword") String keyword, Pageable pageable);
 
     Book findByTitle(String keyword);
 

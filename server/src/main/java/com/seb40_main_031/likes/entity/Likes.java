@@ -1,4 +1,4 @@
-package com.seb40_main_031.review;
+package com.seb40_main_031.likes.entity;
 
 import com.seb40_main_031.review.entity.Review;
 import lombok.Getter;

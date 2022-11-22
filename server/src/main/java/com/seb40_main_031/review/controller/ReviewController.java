@@ -2,16 +2,17 @@ package com.seb40_main_031.review.controller;
 
 import com.seb40_main_031.books.entity.Book;
 import com.seb40_main_031.books.service.BookService;
+import com.seb40_main_031.likes.*;
+import com.seb40_main_031.likes.entity.Likes;
+import com.seb40_main_031.likes.service.LikesService;
 import com.seb40_main_031.response.MultiResponseDto;
-import com.seb40_main_031.review.Likes;
-import com.seb40_main_031.review.dto.LikesDto;
-import com.seb40_main_031.review.dto.LikesResponseDto;
+
 import com.seb40_main_031.review.dto.ReviewDto;
 import com.seb40_main_031.review.dto.ReviewResponseDto;
 import com.seb40_main_031.review.entity.Review;
-import com.seb40_main_031.review.mapper.LikesMapper;
+
 import com.seb40_main_031.review.mapper.ReviewMapper;
-import com.seb40_main_031.review.service.LikesService;
+
 import com.seb40_main_031.review.service.ReviewService;
 import org.springframework.data.domain.Page;
 import org.springframework.http.HttpStatus;
