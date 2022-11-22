@@ -1,11 +1,11 @@
-const { SIGNUP_URL, LOGIN_URL } = require('api');
 const { createProxyMiddleware } = require('http-proxy-middleware');
+// const { SIGNUP_URL, LOGIN_URL } = require('api');
 
 module.exports = function (app) {
   app.use(
-    [SIGNUP_URL, LOGIN_URL],
+    ['/members'], // 여기가 문제!
     createProxyMiddleware({
-      target: 'https://cd79-222-110-187-162.jp.ngrok.io',
+      target: 'http://localhost:8080',
       changeOrigin: true,
     }),
   );
