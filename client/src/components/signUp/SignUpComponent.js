@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Button } from 'components/@layout';
 import {
   Container,
@@ -9,18 +9,76 @@ import {
   LineHr,
   GoogleSvg,
 } from 'components/signUp/SignUpComponent.style';
+import axios from 'api/axios';
+import { SIGNUP_URL } from 'api';
 
 const SignUpComponent = () => {
+  const [nickname, setNickname] = useState('');
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+
+  const handleNickname = (event) => {
+    setNickname(event.target.value);
+  };
+
+  const handleEmail = (event) => {
+    setEmail(event.target.value);
+  };
+
+  const handlePassword = (event) => {
+    setPassword(event.target.value);
+  };
+
+  const submitHandle = async () => {
+    console.log(`${nickname}, ${email}, ${password}`);
+    await axios
+      .post(SIGNUP_URL, {
+        nickname: nickname,
+        email: email,
+        password: password,
+      })
+      .then((res) => {
+        if (res.status === 201) {
+          console.log('회원가입 성공');
+          console.log(res);
+        }
+      })
+      .catch((err) => {
+        if (err.response.status === 401) {
+          console.log('401 에러');
+          console.log(err);
+        } else {
+          console.log(`${err.response.status} 에러`);
+          console.log(err);
+        }
+      });
+  };
+
   return (
     <Container>
       <LogoDiv>
         함께 쓰는 리뷰,
         <br /> 이야기가 되어 모이다
       </LogoDiv>
-      <SignUpInput placeholder='닉네임'></SignUpInput>
-      <SignUpInput placeholder='이메일'></SignUpInput>
-      <SignUpInput placeholder='비밀번호' type='password'></SignUpInput>
+
+      <SignUpInput
+        placeholder='닉네임'
+        value={nickname}
+        onChange={handleNickname}
+      ></SignUpInput>
+      <SignUpInput
+        placeholder='이메일'
+        value={email}
+        onChange={handleEmail}
+      ></SignUpInput>
+      <SignUpInput
+        placeholder='비밀번호'
+        value={password}
+        type='password'
+        onChange={handlePassword}
+      ></SignUpInput>
       <Button text='회원가입' width='150px' height='35px'></Button>
+      <button onClick={submitHandle}>회원가입</button>
       <SignDiv>
         이미 가입하셨나요? <LinkA href='#'>로그인</LinkA>
       </SignDiv>
