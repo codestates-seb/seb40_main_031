@@ -1,7 +1,7 @@
 package com.seb40_main_031.review.service;
 
-import com.seb40_main_031.books.BusinessLogicException;
-import com.seb40_main_031.books.ExceptionCode;
+import com.seb40_main_031.global.error.exception.BusinessLogicException;
+import com.seb40_main_031.global.error.exception.ExceptionCode;
 import com.seb40_main_031.review.entity.Review;
 import com.seb40_main_031.review.repository.ReviewRepository;
 import org.springframework.data.domain.Page;

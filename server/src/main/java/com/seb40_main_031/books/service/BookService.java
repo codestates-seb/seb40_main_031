@@ -1,19 +1,17 @@
 package com.seb40_main_031.books.service;
 
-import com.seb40_main_031.books.BusinessLogicException;
-import com.seb40_main_031.books.ExceptionCode;
 import com.seb40_main_031.books.Key;
 import com.seb40_main_031.books.mapper.BookMapper;
 import com.seb40_main_031.books.repository.BookRepository;
 import com.seb40_main_031.books.entity.Book;
+import com.seb40_main_031.global.error.exception.BusinessLogicException;
+import com.seb40_main_031.global.error.exception.ExceptionCode;
 import org.springframework.data.domain.*;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
-import java.util.Iterator;
 import java.util.List;
 import java.util.Optional;
-import java.util.function.Function;
 
 @Service
 public class BookService {

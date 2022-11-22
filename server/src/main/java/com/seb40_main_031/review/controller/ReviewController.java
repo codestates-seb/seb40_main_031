@@ -2,10 +2,10 @@ package com.seb40_main_031.review.controller;
 
 import com.seb40_main_031.books.entity.Book;
 import com.seb40_main_031.books.service.BookService;
+import com.seb40_main_031.global.common.dto.MultiResponseDto;
 import com.seb40_main_031.likes.*;
 import com.seb40_main_031.likes.entity.Likes;
 import com.seb40_main_031.likes.service.LikesService;
-import com.seb40_main_031.response.MultiResponseDto;
 
 import com.seb40_main_031.review.dto.ReviewDto;
 import com.seb40_main_031.review.dto.ReviewResponseDto;

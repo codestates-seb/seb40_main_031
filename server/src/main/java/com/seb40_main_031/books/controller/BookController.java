@@ -1,20 +1,17 @@
 package com.seb40_main_031.books.controller;
 
-import com.seb40_main_031.books.dto.BookDto;
 import com.seb40_main_031.books.entity.Book;
 import com.seb40_main_031.books.mapper.BookMapper;
 import com.seb40_main_031.books.service.BookService;
 import com.seb40_main_031.books.service.CallBookApi;
-import com.seb40_main_031.response.MultiResponseDto;
-import com.seb40_main_031.review.entity.Review;
+
+import com.seb40_main_031.global.common.dto.MultiResponseDto;
 import org.springframework.data.domain.Page;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.web.bind.annotation.*;
 
-import javax.validation.constraints.Positive;
-import java.util.ArrayList;
 import java.util.List;
 
 @RestController
