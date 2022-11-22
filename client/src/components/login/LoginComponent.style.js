@@ -103,6 +103,7 @@ const OAuthSvg = styled.svg`
 
 const CommentDiv = styled.div`
   color: red;
+  opacity: 0.7;
   text-align: start;
   width: 200px;
   font-size: 0.9rem;
