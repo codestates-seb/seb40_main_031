@@ -66,16 +66,22 @@ public class BookService {
 
 
     // 타이틀로만 찾기..
+
     public Page<Book> searchBooks(String type, String keyword, int page, int size) {
         Pageable pageable = PageRequest.of(page, size, Sort.by("bookId").descending());
 
-        Page<Book> books = bookRepository.findAllByTitleContaining(keyword, pageable);
+        Page<Book> pageBooks = null;
+        if (type.equals("title")) {
+            pageBooks = bookRepository.findByTitleContaining(keyword, pageable);
+        }
+        else if(type.equals("author")){
+            pageBooks = bookRepository.findByAuthorContaining(keyword, pageable);
+        }
+        else if(type.equals("") || keyword.equals("")){
+            pageBooks = bookRepository.findAll(pageable);
+        }
 
-//        Page<Book> books = bookRepository.findAllByAuthorContaining(keyword, pageable);
-        return books;
-
+        return pageBooks;
     }
-
-
 
 }

@@ -2,7 +2,6 @@ package com.seb40_main_031.books.repository;
 
 import com.seb40_main_031.books.entity.Book;
 import org.springframework.data.domain.Page;
-import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
@@ -25,11 +24,14 @@ public interface BookRepository extends JpaRepository<Book, Long> {
     List<Book> findAllByCategoryNameStartingWithOrderByPubDateDesc(String categoryName);
 
     // SELECT * FROM BOOK where title = '%keyword%'
-    List<Book> findByTitleContaining(String keyword);
+    Page<Book> findByTitleContaining(String keyword, Pageable pageable);
+    Page<Book> findByAuthorContaining(String keyword, Pageable pageable);
 
-//    @Query(value = "SELECT * FROM Book WHERE title like '%keyword%'", nativeQuery = true )
-    Page<Book> findAllByTitleContaining(String keyword, Pageable pageable);
-    Page<Book> findAllByAuthorContaining(String keyword, Pageable pageable);
+//    @Query("SELECT b FROM Book b WHERE b.title like '%:keyword%'")
+//    List<Book> findAllByTitleContaining(@Param("keyword") String keyword, Pageable pageable);
+//
+//    @Query("SELECT b FROM Book b WHERE b.author like '%:keyword%'")
+//    Page<Book> findAllByAuthorContaining(@Param("keyword") String keyword, Pageable pageable);
 
     Book findByTitle(String keyword);
 

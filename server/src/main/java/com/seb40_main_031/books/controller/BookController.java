@@ -67,6 +67,7 @@ public class BookController {
                                  @RequestParam("keyword") String keyword,
                                      @RequestParam("page") int page,
                                      @RequestParam("size") int size){
+
         Page<Book> pageBook = bookService.searchBooks(type, keyword, page-1, size);
         List<Book> book = pageBook.getContent();
 
