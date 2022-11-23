@@ -8,7 +8,7 @@ const Container = styled.div`
   flex-direction: column;
   background-color: ${Theme.PRIMARY.GREEN_LIGHT};
   width: 300px;
-  height: 550px;
+  height: auto;
   padding: 10px;
   border-radius: 5%;
   > Button {
@@ -16,12 +16,13 @@ const Container = styled.div`
   }
 `;
 
-const LogoDiv = styled.div`
-  font-weight: bold;
-  font-size: 20px;
-  text-align: center;
-  margin-bottom: 30px;
+const LogoImg = styled.img`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 190px;
   margin-top: 30px;
+  margin-bottom: 30px;
 `;
 
 const SignUpInput = styled.input`
@@ -34,6 +35,9 @@ const SignUpInput = styled.input`
   background-color: ${Theme.PRIMARY.WHITE};
   &::placeholder {
     color: ${Theme.PRIMARY.GREEN_DARK};
+  }
+  :focus {
+    outline: none;
   }
 `;
 
@@ -75,8 +79,26 @@ const GoogleSvg = styled.svg`
   width: 3rem;
   height: 3rem;
   margin-top: 10px;
+  margin-bottom: 2rem;
   &:hover {
     background-color: ${darken(0.1, Theme.PRIMARY.WHITE)};
   }
 `;
-export { Container, SignUpInput, LogoDiv, SignDiv, LinkA, LineHr, GoogleSvg };
+
+const CommentDiv = styled.div`
+  color: red;
+  opacity: 0.7;
+  text-align: start;
+  width: 200px;
+  font-size: 0.9rem;
+`;
+export {
+  Container,
+  SignUpInput,
+  LogoImg,
+  SignDiv,
+  LinkA,
+  LineHr,
+  GoogleSvg,
+  CommentDiv,
+};

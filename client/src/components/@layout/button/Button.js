@@ -3,11 +3,9 @@ import { ButtonTemplate } from 'components/@layout/button/Button.style';
 
 const Button = ({ text, width, height }) => {
   return (
-    <>
-      <ButtonTemplate width={width} height={height}>
-        {text}
-      </ButtonTemplate>
-    </>
+    <ButtonTemplate width={width} height={height}>
+      {text}
+    </ButtonTemplate>
   );
 };
 export default Button;
