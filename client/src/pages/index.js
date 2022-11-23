@@ -5,6 +5,7 @@ import Layout from './pagesLayout/Layout';
 
 import Main from './main/Main';
 import Login from './login/Login';
+import Notice from './notice/Notice';
 
 // Layout 하위로 페이지 라우팅
 const PAGES = [
@@ -20,6 +21,11 @@ const PAGES = [
         name: ROUTES.LOGIN.name,
         path: ROUTES.LOGIN.path,
         element: <Login />,
+      },
+      {
+        name: ROUTES.NOTICE.name,
+        path: ROUTES.NOTICE.path,
+        element: <Notice />,
       },
     ],
   },
