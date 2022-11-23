@@ -8,7 +8,11 @@ const Modal = () => {
       {NAV_LIST.map((list, idx) => {
         return (
           <span key={idx}>
-            <ModalListA key={idx} href={list.href}>
+            <ModalListA
+              key={idx}
+              href={list.href}
+              target={list.name === '문의하기' ? '_blank' : '_self'}
+            >
               {list.name}
             </ModalListA>
           </span>
