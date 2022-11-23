@@ -2,6 +2,7 @@ package com.seb40_main_031.review.entity;
 
 import com.seb40_main_031.books.entity.Book;
 
+import com.seb40_main_031.domain.member.entity.Member;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -17,15 +18,18 @@ public class Review {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "review_id")
+    @Column(name = "REVIEW_ID")
     private long reviewId;
 
-    @Column(name = "member_id")
+//    @ManyToOne
+//    @JoinColumn(name = "MEMBER_ID")
+//    private Member member;
+
     private long memberId;
 
     // book 이 여러개의 리뷰를 가진다.
     @ManyToOne
-    @JoinColumn(name = "book_id")
+    @JoinColumn(name = "BOOK_ID")
     private Book book;
 
     @Column(length = 500)
@@ -35,7 +39,4 @@ public class Review {
 
     private LocalDateTime modifiedAt = LocalDateTime.now();
 
-//    @OneToMany(mappedBy = "review")
-//    private long likes; // 이 review에 들어가는 like 합계수
-//    private List<Likes> likes = new ArrayList<>();
 }

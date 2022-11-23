@@ -2,11 +2,12 @@ package com.seb40_main_031.domain.member.entity;
 
 import com.seb40_main_031.global.common.auditing.Auditable;
 import lombok.*;
-import org.springframework.util.Assert;
 
 import javax.persistence.*;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 @Entity
 @Getter
@@ -39,6 +40,19 @@ public class Member extends Auditable {
     // 애너테이션을 이용해 사용자 등록 시, 사용자의 권한을 등록하기 위한 권한 테이블을 생성
     @ElementCollection(fetch = FetchType.EAGER)
     private List<String> roles = new ArrayList<>();
+
+    // 추가
+    @ElementCollection
+    @CollectionTable(
+            name = "MEMBER_LIKES_MAP",
+            joinColumns = @JoinColumn(name = "MEMBER_ID")
+    )
+    @MapKeyColumn(name = "LIKES_ID") // key
+    @Column(name = "LIKES_STATUS") // value push, unPush
+    private Map<Long, String> likes = new HashMap();
+
+//    @OneToMany(mappedBy = "Member", targetEntity = Review.class)
+//    private List<Review> reviews = new ArrayList<>();
 
 //    @Enumerated(EnumType.STRING)
 //    private Role role = Role.GUEST;
