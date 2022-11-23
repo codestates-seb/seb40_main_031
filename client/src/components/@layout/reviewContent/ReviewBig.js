@@ -35,7 +35,8 @@ const ReviewBig = () => {
   // const [reviewBigs, setreviewBigs] = useState(Array.from({length:10}));
 
   const fetchData = () => {
-    if (reviewBigs.length < 30) {
+    if (reviewBigs.length < 5) {
+      // 데이터 받아오는 개수에 따라 수정 필요(else문 실행 여부때문에)
       setTimeout(() => {
         setreviewBigs(
           reviewBigs.concat(DummyReviews.slice(number, number + 3)),
@@ -60,7 +61,6 @@ const ReviewBig = () => {
         next={fetchData}
         hasMore={hasMore}
         loader={<Loading width='30px' height='30px' />}
-        endMessage={<h1 style={{ textAlign: 'center' }}>You are all set!</h1>}
       >
         {reviewBigs.map((reviewBig) => {
           return (
