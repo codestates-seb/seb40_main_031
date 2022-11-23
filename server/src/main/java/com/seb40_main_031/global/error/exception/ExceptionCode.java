@@ -16,8 +16,9 @@ public enum ExceptionCode {
     BOOK_EXISTS(409, "Book Exists"),
 
     REVIEW_NOT_FOUND(404, "Review Not Found"),
+    LIKES_NOT_FOUND(404, "Likes Not Found"),
 
-    LIKES_NOT_FOUND(404,"Like not Found"),
+//    LIKES_NOT_FOUND(404,"Like not Found"),
 
     NOT_IMPLEMENTATION(501, "Not Implementation");
 

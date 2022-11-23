@@ -67,4 +67,5 @@ public class Book {
     private List<Review> reviews = new ArrayList<>();
 
     private long reviewCount;
+
 }

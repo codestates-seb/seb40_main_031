@@ -93,13 +93,15 @@ public class ReviewController {
 //    }
 
     @GetMapping("/{book-id}")
-    public ResponseEntity getReviews(@Positive @RequestParam int page,
-                                     @Positive @RequestParam int size){
-        Page<Review> pageReviews = reviewService.findReviews(page-1, size);
+    public ResponseEntity getReviews(@PathVariable("book-id")long bookId,
+                                     @Positive @RequestParam int page
+                                     ){
+        Book book = bookService.findBook(bookId);
+        Page<Review> pageReviews = reviewService.findReviews(book.getBookId(),page-1, 5);
         List<Review> reviews = pageReviews.getContent();
 
         return new ResponseEntity(
                 new MultiResponseDto<>(reviewMapper.reviewsToReviewResponseDtos(reviews),pageReviews),
-                        HttpStatus.OK);
+                HttpStatus.OK);
     }
 }
