@@ -1,25 +1,40 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { FaBars, FaReadme } from 'react-icons/fa';
 
-import SearchBar from '../../@common/searchBar/SearchBar';
-import SingUpButton from '../../signUpButton/SignUpButton';
+import SearchBar from 'components/@common/searchBar/SearchBar';
+import SignUpButton from 'components/@layout/nav/signUpButton/SignUpButton';
+import Modal from 'components/@layout/nav/modal/Modal';
+import CustomLink from 'components/@common/customLink/CustomLink';
 
-import * as S from './Nav.style';
+import {
+  NavWrapperDiv,
+  LeftDiv,
+  LayoutContainer,
+  MainLogoImg,
+} from 'components/@layout/nav/Nav.style';
 
 const Nav = () => {
-  return (
-    <S.Wrap>
-      <S.LayoutContainer>
-        <FaBars className='logo' />
-        <FaReadme className='logo' style={{ marginLeft: '240px' }} />
+  const [showModal, setShowModal] = useState(false);
 
-        <S.Container>
-          <SearchBar />
-          <SingUpButton title={'회원가입'} />
-          <SingUpButton title={'로그인'} />
-        </S.Container>
-      </S.LayoutContainer>
-    </S.Wrap>
+  return (
+    <NavWrapperDiv>
+      <LayoutContainer>
+        <LeftDiv>
+          <FaBars
+            className='logo'
+            onClick={() => {
+              setShowModal(!showModal);
+            }}
+            style={{ cursor: 'pointer' }}
+          />
+          <CustomLink to='/'>
+            <MainLogoImg src='./img/imgLogo2.svg' />
+          </CustomLink>
+        </LeftDiv>
+        <SearchBar />
+      </LayoutContainer>
+      {showModal === true ? <Modal list={'공지사항'} /> : null}
+    </NavWrapperDiv>
   );
 };
 

@@ -1,12 +1,12 @@
 import React from 'react';
-import SignUpCompo from '../../components/signUp/SignUpCompo';
-import * as S from './SignUp.style';
+import { SignUpComponent } from 'components';
+import { Container } from 'pages/signUp/SignUp.style';
 
 const SignUp = () => {
   return (
-    <S.Container>
-      <SignUpCompo></SignUpCompo>
-    </S.Container>
+    <Container>
+      <SignUpComponent></SignUpComponent>
+    </Container>
   );
 };
 

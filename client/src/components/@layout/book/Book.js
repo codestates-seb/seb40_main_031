@@ -1,25 +1,30 @@
 import React from 'react';
-import * as S from './Book.style';
+import {
+  Container,
+  Bookbox,
+  Img,
+  Title,
+} from 'components/@layout/book/Book.style';
 import Dummybooks from './Dummybooks';
 import { useState } from 'react';
 
-const Book = () => {
+const Book = ({ title }) => {
   const [books] = useState(Dummybooks);
 
   return (
-    <S.Container>
-      <S.Title>베스트셀러</S.Title>
-      <S.Bookbox>
+    <Container>
+      <Title>{title}</Title>
+      <Bookbox>
         {books.map((book) => {
           return (
             <span key={book.id}>
-              <S.Img src={book.imgURL} title={book.name}></S.Img>
+              <Img src={book.imgURL} title={book.name}></Img>
               <div>{book.name}</div>
             </span>
           );
         })}
-      </S.Bookbox>
-    </S.Container>
+      </Bookbox>
+    </Container>
   );
 };
 

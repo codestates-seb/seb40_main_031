@@ -1,11 +1,8 @@
-import React from "react";
+import React from 'react';
+import { MainComponent } from 'components';
 
-const Main = () =>{
-    return(
-        <>
-        메인페이지입니다
-        </>
-    )
-}
+const Main = () => {
+  return <MainComponent />;
+};
 
-export default Main
+export default Main;

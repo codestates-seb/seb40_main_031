@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import { Theme } from '../../style/index';
+import { Theme } from 'style';
 import { darken } from 'polished';
 
 const WrapperDiv = styled.div`
@@ -9,7 +9,7 @@ const WrapperDiv = styled.div`
 
   padding: 10px;
   width: 300px;
-  height: 500px;
+  height: auto;
 
   border-radius: 5%;
   background-color: ${Theme.PRIMARY.GREEN_LIGHT};
@@ -19,14 +19,11 @@ const WrapperDiv = styled.div`
   }
 `;
 
-const AdvertiseDiv = styled.div`
+const LogoImg = styled.img`
   display: flex;
   justify-content: center;
   align-items: center;
-  text-align: center;
-
-  font-weight: bold;
-  font-size: 20px;
+  width: 190px;
   margin-top: 30px;
   margin-bottom: 30px;
 `;
@@ -36,11 +33,15 @@ const LoginInput = styled.input`
   height: 30px;
   margin-top: 20px;
   padding-left: 5px;
-  background-color: ${Theme.PRIMARY.GREEN_LIGHT};
+  border-radius: 5px;
+  background-color: ${Theme.PRIMARY.WHITE};
   border: 1px solid ${Theme.PRIMARY.GREEN_DARK};
 
   &::placeholder {
     color: ${Theme.PRIMARY.GREEN_DARK};
+  }
+  :focus {
+    outline: none;
   }
 `;
 
@@ -66,7 +67,7 @@ const LineHr = styled.hr`
   height: 5px;
 
   &::after {
-    background: #fff;
+    background: ${Theme.PRIMARY.WHITE};
     content: 'OR';
     padding: 0 4px;
     position: relative;
@@ -84,9 +85,9 @@ const OAuthSvg = styled.svg`
   color: ${Theme.PRIMARY.BLACK};
   font-weight: bold;
   margin-top: 10px;
+  margin-bottom: 2rem;
   background-color: ${(props) =>
     props.backgroundColor ? props.backgroundColor : Theme.PRIMARY.WHITE};
-
   border-radius: 50%;
   padding: 0.5rem;
   width: 3rem;
@@ -100,13 +101,22 @@ const OAuthSvg = styled.svg`
   }
 `;
 
+const CommentDiv = styled.div`
+  color: red;
+  opacity: 0.7;
+  text-align: start;
+  width: 200px;
+  font-size: 0.9rem;
+`;
+
 export {
   WrapperDiv,
-  AdvertiseDiv,
+  LogoImg,
   LoginInput,
   LinkToSignUpDiv,
   LinkA,
   OAuthListDiv,
   OAuthSvg,
   LineHr,
+  CommentDiv,
 };

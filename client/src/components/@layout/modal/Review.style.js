@@ -1,7 +1,7 @@
 import styled from 'styled-components';
-import { Theme } from '../../style/index';
+import { Theme } from 'style';
 
-const containerDiv = styled.div`
+const ContainerDiv = styled.div`
   display: flex;
   flex-direction: column;
   width: 70vw;
@@ -14,7 +14,7 @@ const containerDiv = styled.div`
   padding: 1%;
   margin-left: 10px;
 `;
-const headerDiv = styled.div`
+const HeaderDiv = styled.div`
   display: flex;
   justify-content: space-between;
   height: 10%;
@@ -24,19 +24,19 @@ const headerDiv = styled.div`
   padding-right: 0.5rem;
 `;
 
-const titleSpan = styled.span`
+const TitleSpan = styled.span`
   font-weight: bold;
   font-size: 15px;
   color: ${Theme.PRIMARY.GREEN_DARK};
 `;
 
-const closeIconSpan = styled.span`
+const CloseIconSpan = styled.span`
   align-items: center;
   justify-content: center;
   cursor: pointer;
 `;
 
-const reviewTextarea = styled.textarea`
+const ReviewTextarea = styled.textarea`
   width: 100%;
   height: 80%;
   padding: 0.5rem 1rem;
@@ -49,7 +49,7 @@ const reviewTextarea = styled.textarea`
   }
 `;
 
-const footerDiv = styled.div`
+const FooterDiv = styled.div`
   display: flex;
   align-items: center;
   justify-content: flex-end;
@@ -61,10 +61,10 @@ const footerDiv = styled.div`
 `;
 
 export {
-  containerDiv,
-  headerDiv,
-  titleSpan,
-  closeIconSpan,
-  reviewTextarea,
-  footerDiv,
+  ContainerDiv,
+  HeaderDiv,
+  TitleSpan,
+  CloseIconSpan,
+  ReviewTextarea,
+  FooterDiv,
 };

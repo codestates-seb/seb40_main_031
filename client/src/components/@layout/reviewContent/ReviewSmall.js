@@ -1,36 +1,36 @@
 import React from 'react';
-import * as S from './ReviewSmall.style'
-
-import {FaRegThumbsUp} from 'react-icons/fa'
+import {
+  Template,
+  Content,
+  BottomContent,
+  GoodIcon,
+  LeftText,
+  Display,
+} from 'components/@layout/reviewContent/ReviewSmall.style';
+import DummyReviews from 'components/@layout/reviewContent/DummyReviews';
+import { FaRegThumbsUp } from 'react-icons/fa';
+import { useState } from 'react';
 
 const ReviewSmall = () => {
-    return(
-        <>
-            <S.Template>
-                <S.Content>
-                    이 책은 내 앞의 대상에 대해 익숙하게 명명하고 
-                    분류함으로써 이해의 그물로 포획혀라는 인간의 높은 자리로부터 벗어나 세계를, 
-                    세계의 쉽사리 범주화 될 수 없는 모든 존재들을 물끄러미 그 자체로 바라보게 한다.
-                    이 책은 내 앞의 대상에 대해 익숙하게 명명하고 
-                    분류함으로써 이해의 그물로 포획혀라는 인간의 높은 자리로부터 벗어나 세계를, 
-                    세계의 쉽사리 범주화 될 수 없는 모든 존재들을 물끄러미 그 자체로 바라보게 한다.
-                    이 책은 내 앞의 대상에 대해 익숙하게 명명하고 
-                    분류함으로써 이해의 그물로 포획혀라는 인간의 높은 자리로부터 벗어나 세계를, 
-                    세계의 쉽사리 범주화 될 수 없는 모든 존재들을 물끄러미 그 자체로 바라보게 한다.
-                    이 책은 내 앞의 대상에 대해 익숙하게 명명하고 
-                    분류함으로써 이해의 그물로 포획혀라는 인간의 높은 자리로부터 벗어나 세계를, 
-                    세계의 쉽사리 범주화 될 수 없는 모든 존재들을 물끄러미 그 자체로 바라보게 한다.
-                </S.Content>
-                <S.BottomContent>
-                    <S.GoodIcon>
-                        <FaRegThumbsUp />
-                    </S.GoodIcon>
-                    <S.LeftText>
-                        5
-                    </S.LeftText>
-                </S.BottomContent>
-            </S.Template>
-        </>
-    )
-}
+  const [reviewSmalls, setReviewSmall] = useState(DummyReviews.slice(0, 2));
+  return (
+    <div>
+      <Display>
+        {reviewSmalls.map((reviewSmall) => {
+          return (
+            <Template key={reviewSmall.id}>
+              <Content>{reviewSmall.content}</Content>
+              <BottomContent>
+                <GoodIcon>
+                  <FaRegThumbsUp />
+                </GoodIcon>
+                <LeftText>{reviewSmall.vote}</LeftText>
+              </BottomContent>
+            </Template>
+          );
+        })}
+      </Display>
+    </div>
+  );
+};
 export default ReviewSmall;

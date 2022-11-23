@@ -3,7 +3,7 @@ import { createRoot } from 'react-dom/client';
 import { BrowserRouter as Router } from 'react-router-dom';
 
 import { RecoilRoot } from 'recoil';
-import { GlobalStyles, Theme } from './style/index';
+import { GlobalStyles, Theme } from 'style';
 
 import 'bootstrap/dist/css/bootstrap.min.css';
 
