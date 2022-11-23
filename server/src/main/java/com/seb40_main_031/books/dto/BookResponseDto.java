@@ -48,5 +48,6 @@ public class BookResponseDto {
     private Long reviewCount;
 
     private List<ReviewResponseDto> reviews;
+
 }
 

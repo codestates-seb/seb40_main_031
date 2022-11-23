@@ -106,11 +106,13 @@ public class ReviewController {
                                      ){
         Book book = bookService.findBook(bookId);
         Page<Review> pageReviews = reviewService.findReviews(book.getBookId(),page-1, 5);
+
         List<Review> reviews = pageReviews.getContent();
 
         return new ResponseEntity(
                 new MultiResponseDto<>(reviewMapper.reviewsToReviewResponseDtos(reviews),pageReviews),
                 HttpStatus.OK);
+
     }
 
     // 좋아요

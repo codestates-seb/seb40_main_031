@@ -11,6 +11,7 @@ import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+
 import java.util.Optional;
 
 @Service
@@ -46,6 +47,7 @@ public class ReviewService {
     public Page<Review> findReviews(long bookId, int page, int size) {
         Pageable pageReview = PageRequest.of(page,size, Sort.by("reviewId").descending());
         return reviewRepository.findAllByBookBookId(bookId, pageReview);
+
     }
 
     // 리뷰 삭제

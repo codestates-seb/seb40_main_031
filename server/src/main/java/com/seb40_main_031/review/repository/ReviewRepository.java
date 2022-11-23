@@ -15,4 +15,5 @@ import java.util.List;
 public interface ReviewRepository extends JpaRepository<Review, Long> {
 //      SELECT * FROM REVIEW where book_id = 1
     Page<Review> findAllByBookBookId(long bookId, Pageable pageable);
+
 }
