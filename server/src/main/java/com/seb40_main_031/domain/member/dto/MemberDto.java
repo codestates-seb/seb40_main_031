@@ -1,13 +1,19 @@
 package com.seb40_main_031.domain.member.dto;
 
 import com.seb40_main_031.domain.member.entity.Member;
+import com.seb40_main_031.domain.review.dto.ReviewResponseDto;
+import com.seb40_main_031.domain.review.dto.ReviewToMemberResponse;
+import com.seb40_main_031.domain.review.entity.Review;
+import com.seb40_main_031.global.common.dto.PageInfo;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.Setter;
+import org.springframework.data.domain.Page;
 
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
+import java.util.List;
 
 public class MemberDto {
     @Getter
@@ -48,10 +54,26 @@ public class MemberDto {
         private String about;
         private int point;
         private String img;
+//        @Setter
+//        private List<Review> reviewList;
 //        private Member.Roles roles;
 //        private List<BookDto.Response> bookList;
 //        private List<ReviewDto.Response> reviewList;
 //        private Member.Roles roles;
+    }
+
+    @AllArgsConstructor
+    @Getter
+    @Setter
+    public static class MyPageResponse {
+        private Long memberId;
+        private String email;
+        private String nickname;
+        private String about;
+        private String img;
+//        @Setter
+//        private List<ReviewToMemberResponse> reviewList;
+        private List<ReviewResponseDto> reviews;
     }
 
 }

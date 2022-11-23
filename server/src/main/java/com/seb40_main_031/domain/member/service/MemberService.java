@@ -1,17 +1,25 @@
 package com.seb40_main_031.domain.member.service;
 
+import com.seb40_main_031.domain.books.entity.Book;
+import com.seb40_main_031.domain.books.mapper.BookMapper;
+import com.seb40_main_031.domain.books.repository.BookRepository;
 import com.seb40_main_031.domain.member.entity.Member;
 import com.seb40_main_031.domain.member.repository.MemberRepository;
+import com.seb40_main_031.domain.review.entity.Review;
+import com.seb40_main_031.domain.review.repository.ReviewRepository;
 import com.seb40_main_031.global.error.exception.BusinessLogicException;
 import com.seb40_main_031.global.error.exception.ExceptionCode;
 import com.seb40_main_031.global.security.utils.CustomAuthorityUtils;
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Sort;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import java.util.List;
-import java.util.Optional;
+import java.util.*;
+import java.util.stream.Collectors;
 
 @Service
 @Transactional
@@ -20,6 +28,9 @@ public class MemberService {
     private final MemberRepository memberRepository;
     private final PasswordEncoder passwordEncoder;
     private final CustomAuthorityUtils authorityUtils;
+    private final ReviewRepository reviewRepository;
+    private final BookRepository bookRepository;
+
 
     public Member createMember(Member member){
         verifyExistsEmail(member.getEmail());
@@ -31,8 +42,6 @@ public class MemberService {
         // DB에 User Role 저장
         List<String> roles = authorityUtils.createRoles(member.getEmail());
         member.setRoles(roles);
-
-//        member.setRole(Member.Role.USER);
 
         return memberRepository.save(member);
     }
@@ -58,8 +67,9 @@ public class MemberService {
         return findVerifiedMember(memberId);
     }
 
-    public List<Member> findMembers() {
-        return memberRepository.findAll();
+    public Page<Member> findMembers(int page, int size) {
+        return memberRepository.findAll(PageRequest.of(page, size,
+                Sort.by("memberId").descending()));
     }
 
     public void deleteMember(Long memberId) {
@@ -77,11 +87,7 @@ public class MemberService {
     public void verifyExistsEmail(String email){
         Optional<Member> optionalMember = memberRepository.findByEmail(email);
 
-        // 회원 가입할 때 이메일이 존재할 때 상태가 휴면(DORMANT)라면 예외 던져줌
         if (optionalMember.isPresent()) {
-//            if (optionalMember.get().getRole() == Member.Role.DORMANT)
-//                throw new BusinessLogicException(ExceptionCode.MEMBER_DORMANT);
-
             throw new BusinessLogicException(ExceptionCode.MEMBER_EXISTS);
         }
     }
@@ -99,12 +105,45 @@ public class MemberService {
      * 회원 정보 조회 화면에 읽었던 책과 썼던 리뷰내용 전달해 주기 위해
      * 추후 추가될 부분
      */
+    public Page<Review> InitInfoReviews(Long memberId, int page, int size) {
+        Page<Review> reviewList = reviewRepository.findAllByMemberId(memberId, PageRequest.of(page, size, Sort.by("reviewId")));
+
+        return reviewList;
+    }
+//    public Page<Book> InitInfoBooks(Long memberId, int page, int size) {
+//        Page<Book> bookList = bookRepository.findAllByMemberId(memberId, PageRequest.of(page, size, Sort.by("bookId")));
+
+//        List<Long> bookIdList = new ArrayList<>();
+//        Iterator<Long> it = bookIdSet.iterator();
+//        while (it.hasNext()) {
+//            bookIdList.add(it.next());
+//        }
+//
+//        List<Book> bookList = new ArrayList<>();
+//        for (int i = 0; i < bookIdList.size(); i++) {
+//            Long bookId = bookIdList.get(i);
+//            bookRepository.find
+//        }
+//
+//
+//        List<Optional<Book>> bookList = bookIdList.stream()
+//                .map(bookId -> bookRepository.findById(bookId))
+//                .collect(Collectors.toList());
+
+//        return bookList;
+//    }
 //    public List<Book> findBooks(Long memberId) {
 //        return bookRepository.findByMemberMemberId(memberId).orElseThrow(() -> new BusinessLogicException(ExceptionCode.MEMBER_NOT_FOUND));
 //    }
 //
-//    public List<Review> findReviews(Long memberId) {
-//        Optional<List<Review>> optionalReviewList = reviewRepository.findByMemberMemberId(memberId);
+//    public List<Review> findReviews(Long memberId, int page, int size) {
+////        return memberRepository.findAll(PageRequest.of(page, size,
+////                Sort.by("memberId").descending()));
+//        Page<Review> reviewPage = reviewRepository.findAll(PageRequest.of(page, size, Sort.by("reviewId")));
+//
+//
+//
+//        Optional<List<Review>> optionalReviewList = reviewRepository.findById(memberId);
 //        List<Review> findReviewList =
 //                optionalReviewList.orElseThrow(() ->
 //                        new BusinessLogicException(ExceptionCode.MEMBER_NOT_FOUND));
