@@ -101,9 +101,10 @@ public class ReviewController {
 //    }
 
     @GetMapping("/{book-id}")
-    public ResponseEntity getReviews(@Positive @RequestParam int page,
+    public ResponseEntity getReviews(@PathVariable("book-id")long bookId,
+                                     @Positive @RequestParam int page,
                                      @Positive @RequestParam int size){
-        Page<Review> pageReviews = reviewService.findReviews(page-1, size);
+        Page<Review> pageReviews = reviewService.findReviews(bookId,page-1, size);
         List<Review> reviews = pageReviews.getContent();
 
         return new ResponseEntity(

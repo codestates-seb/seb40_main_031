@@ -1,5 +1,7 @@
 package com.seb40_main_031.likes.service;
 
+import com.seb40_main_031.global.error.exception.BusinessLogicException;
+import com.seb40_main_031.global.error.exception.ExceptionCode;
 import com.seb40_main_031.likes.repository.LikesRepository;
 import com.seb40_main_031.likes.entity.Likes;
 import org.springframework.stereotype.Service;

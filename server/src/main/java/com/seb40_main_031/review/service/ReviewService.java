@@ -41,7 +41,7 @@ public class ReviewService {
     }
 
     // 리뷰 리스트 찾기
-    public Page<Review> findReviews(int page, int size) {
+    public Page<Review> findReviews(long bookId, int page, int size) {
         return reviewRepository.findAll(
                 PageRequest.of(page,size, Sort.by("reviewId").descending()));
     }
