@@ -6,9 +6,11 @@ import com.seb40_main_031.review.entity.Review;
 import com.seb40_main_031.review.repository.ReviewRepository;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
 import java.util.Optional;
 
 @Service
@@ -42,8 +44,8 @@ public class ReviewService {
 
     // 리뷰 리스트 찾기
     public Page<Review> findReviews(long bookId, int page, int size) {
-        return reviewRepository.findAll(
-                PageRequest.of(page,size, Sort.by("reviewId").descending()));
+        Pageable pageReview = PageRequest.of(page,size, Sort.by("reviewId").descending());
+        return reviewRepository.findAllByBookBookId(bookId, pageReview);
     }
 
     // 리뷰 삭제
