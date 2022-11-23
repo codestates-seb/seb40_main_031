@@ -46,6 +46,8 @@ public class BookResponseDto {
     private Long foreignRank;
 
     private Long reviewCount;
-//    private List<ReviewResponseDto> reviews;
+
+    private List<ReviewResponseDto> reviews;
+
 }
 
