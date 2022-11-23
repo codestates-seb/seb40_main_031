@@ -12,6 +12,13 @@ const NavWrapperDiv = styled.div`
   position: fixed;
 
   background-color: ${(props) => props.backgoudColor || Theme.PRIMARY.GREEN};
+
+  background: linear-gradient(
+    to bottom,
+    ${Theme.PRIMARY.GREEN} 55px,
+    ${Theme.PRIMARY.GREEN} 55px,
+    ${Theme.PRIMARY.WHITE}
+  );
 `;
 
 const LeftDiv = styled.div`
