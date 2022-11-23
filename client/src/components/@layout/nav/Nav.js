@@ -1,8 +1,7 @@
 import React, { useState } from 'react';
-import { FaBars, FaReadme } from 'react-icons/fa';
+import { FaBars } from 'react-icons/fa';
 
 import SearchBar from 'components/@common/searchBar/SearchBar';
-import SignUpButton from 'components/@layout/nav/signUpButton/SignUpButton';
 import Modal from 'components/@layout/nav/modal/Modal';
 import CustomLink from 'components/@common/customLink/CustomLink';
 

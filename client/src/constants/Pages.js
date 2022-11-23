@@ -10,7 +10,7 @@ const NAV_LIST = Object.freeze([
   },
   {
     name: '문의하기',
-    href: '/qna',
+    href: 'http://pf.kakao.com/_xexaxePxj/chat',
   },
   {
     name: '로그인',

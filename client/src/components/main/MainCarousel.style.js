@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import { Theme } from 'style';
+import { Theme } from 'style'; // Theme 색상이 저장되어 있는 storage
 
 const ContainerDiv = styled.div`
   display: flex;
@@ -22,8 +22,10 @@ const BtnDiv = styled.div`
 `;
 
 const WindowDiv = styled.div`
-  width: 350px;
-  height: 250px;
+  width: 220px;
+  height: 300px;
+  margin-left: 50px;
+  margin-right: 50px;
 
   overflow: hidden;
 `;
@@ -53,9 +55,9 @@ const PositionDiv = styled.div`
   }
 `;
 
-const ImageDiv = styled.div`
-  width: 350px;
-  height: 250px;
+const ImageImg = styled.img`
+  width: 220px;
+  height: 300px;
   background-position: 50% 50%;
   background-size: contain;
   background-repeat: no-repeat;
@@ -69,5 +71,5 @@ export {
   WindowDiv,
   FlexBoxDiv,
   PositionDiv,
-  ImageDiv,
+  ImageImg,
 };

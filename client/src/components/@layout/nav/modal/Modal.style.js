@@ -9,13 +9,14 @@ const Wrap = styled.div`
   grid-template-columns: 150px;
 
   width: 100%;
+  max-width: 1200px;
   height: 200px;
   background: linear-gradient(
     to bottom,
     ${Theme.PRIMARY.GREEN},
     ${Theme.PRIMARY.WHITE}
   );
-  padding: 3rem 10% 3rem 10%;
+  padding: 2rem 3rem 0 8rem;
 `;
 
 const ModalListA = styled.a`
