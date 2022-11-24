@@ -1,16 +1,16 @@
 package com.seb40_main_031.domain.review.service;
 
-import com.seb40_main_031.domain.review.entity.Review;
-import com.seb40_main_031.domain.review.repository.ReviewRepository;
+import com.seb40_main_031.domain.member.entity.Member;
+import com.seb40_main_031.domain.member.service.MemberService;
 import com.seb40_main_031.global.error.exception.BusinessLogicException;
 import com.seb40_main_031.global.error.exception.ExceptionCode;
+import com.seb40_main_031.domain.review.entity.Review;
+import com.seb40_main_031.domain.review.repository.ReviewRepository;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
-
-import java.util.List;
 
 import java.util.Optional;
 
@@ -18,13 +18,19 @@ import java.util.Optional;
 public class ReviewService {
 
     private final ReviewRepository reviewRepository;
+    private final MemberService memberService;
 
-    public ReviewService(ReviewRepository reviewRepository) {
+    public ReviewService(ReviewRepository reviewRepository,MemberService memberService) {
         this.reviewRepository = reviewRepository;
+        this.memberService = memberService;
     }
 
     // 리뷰 생성
     public Review createReview(Review review){
+//        Member member = memberService.findMember(memberId);
+//        review.setMember(member);
+//        member.updateMemberPoint(review);
+
         return reviewRepository.save(review);
     }
 
@@ -47,13 +53,14 @@ public class ReviewService {
     public Page<Review> findReviews(long bookId, int page, int size) {
         Pageable pageReview = PageRequest.of(page,size, Sort.by("reviewId").descending());
         return reviewRepository.findAllByBookBookId(bookId, pageReview);
-
     }
 
     // 리뷰 삭제
     public void deleteReview(long reviewId, long memberId){
         Review review = findVerifiedReview(reviewId);
-        if(review.getMemberId() == memberId) reviewRepository.delete(review);
+        Member member = memberService.findMember(memberId);
+        member.discountReviewPoint(review);
+        reviewRepository.delete(review);
     }
 
 

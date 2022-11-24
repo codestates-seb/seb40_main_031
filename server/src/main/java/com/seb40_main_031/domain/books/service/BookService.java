@@ -28,7 +28,9 @@ public class BookService {
 
     // 책 상세페이지 조회
     public Book findBook(long bookId) {
-        return findVerifiedBook(bookId);
+        Book book = findVerifiedBook(bookId);
+        book.updateReviewCount();
+        return book;
     }
 
     private Book findVerifiedBook(long bookId){

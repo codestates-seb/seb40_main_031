@@ -2,6 +2,7 @@ package com.seb40_main_031.domain.review.dto;
 
 
 import com.seb40_main_031.domain.books.entity.Book;
+import com.seb40_main_031.domain.member.entity.Member;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -10,7 +11,7 @@ import lombok.Setter;
 public class ReviewDto {
 
     private long reviewId;
-    private long memberId;
+    private Member member;
     private Book book;
     private String content;
 

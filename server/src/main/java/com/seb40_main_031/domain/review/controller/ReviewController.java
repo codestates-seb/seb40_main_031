@@ -2,17 +2,17 @@ package com.seb40_main_031.domain.review.controller;
 
 import com.seb40_main_031.domain.books.entity.Book;
 import com.seb40_main_031.domain.books.service.BookService;
-import com.seb40_main_031.domain.likes.LikesDto;
-import com.seb40_main_031.domain.likes.LikesMapper;
-import com.seb40_main_031.domain.likes.LikesResponseDto;
+import com.seb40_main_031.domain.member.entity.Member;
+import com.seb40_main_031.domain.member.service.MemberService;
 import com.seb40_main_031.domain.review.dto.ReviewDto;
 import com.seb40_main_031.domain.review.dto.ReviewResponseDto;
-import com.seb40_main_031.domain.review.entity.Review;
-import com.seb40_main_031.domain.review.mapper.ReviewMapper;
 import com.seb40_main_031.domain.review.service.ReviewService;
 import com.seb40_main_031.global.common.dto.MultiResponseDto;
-import com.seb40_main_031.domain.likes.entity.Likes;
-import com.seb40_main_031.domain.likes.service.LikesService;
+
+import com.seb40_main_031.global.security.argumentresolver.LoginAccountId;
+import com.seb40_main_031.domain.review.entity.Review;
+
+import com.seb40_main_031.domain.review.mapper.ReviewMapper;
 
 import org.springframework.data.domain.Page;
 import org.springframework.http.HttpStatus;
@@ -29,29 +29,31 @@ public class ReviewController {
     private final ReviewService reviewService;
     private final ReviewMapper reviewMapper;
     private final BookService bookService;
+    private final MemberService memberService;
 
-    private final LikesMapper likesMapper;
-    private final LikesService likesService;
+
     public ReviewController(ReviewService reviewService, ReviewMapper reviewMapper,
-                            BookService bookService,LikesMapper likesMapper,
-                            LikesService likesService) {
+                            BookService bookService, MemberService memberService) {
         this.reviewService = reviewService;
         this.reviewMapper = reviewMapper;
         this.bookService = bookService;
-        this.likesMapper = likesMapper;
-        this.likesService = likesService;
+        this.memberService = memberService;
     }
 
     // review 생성 /{book-id}
-    @PostMapping("/{book-id}")
-    public ResponseEntity postReview(@PathVariable("book-id") long bookId,
+    @PostMapping("/{bookId}")
+    public ResponseEntity postReview(@PathVariable Long bookId,
+                                     @LoginAccountId Long memberId,
                                      @RequestBody ReviewDto reviewDto){
-
-        Book book = bookService.findBook(bookId);
-        reviewDto.setBook(book);
+        Member member = memberService.findMember(memberId);
+        reviewDto.setBook(bookService.findBook(bookId));
+        reviewDto.setMember(member);
 
         Review review = reviewMapper.reviewDtoToReview(reviewDto);
+        review.setMember(member);
+        member.updateMemberPoint(review);
         reviewService.createReview(review);
+
 
         ReviewResponseDto response =
                 reviewMapper.reviewToReviewResponseDto(review);
@@ -60,8 +62,8 @@ public class ReviewController {
     }
 
     // review 수정
-    @PatchMapping("/{book-id}")
-    public ResponseEntity modifyReview(@PathVariable("book-id") long bookId,
+    @PatchMapping("/{bookId}")
+    public ResponseEntity modifyReview(@PathVariable Long bookId,
                                        @RequestBody ReviewDto reviewDto){
         Book book = bookService.findBook(bookId);
         reviewDto.setBook(book);
@@ -75,11 +77,10 @@ public class ReviewController {
         return new ResponseEntity<>(response, HttpStatus.OK);
     }
 
-    // review 삭제 book-id..
-    @DeleteMapping("/{book-id}")
-    public void deleteReview(@PathVariable("book-id") long bookId,
-                             @RequestBody long memberId,
-                             @RequestBody long reviewId) {
+    // review 삭제 ..
+    @DeleteMapping("/{reviewId}")
+    public void deleteReview(@PathVariable Long reviewId,
+                             @LoginAccountId Long memberId) {
         reviewService.deleteReview(reviewId, memberId);
     }
 
@@ -100,31 +101,15 @@ public class ReviewController {
 //        return new ResponseEntity<>(response, HttpStatus.OK);
 //    }
 
-    @GetMapping("/{book-id}")
-    public ResponseEntity getReviews(@PathVariable("book-id")long bookId,
-                                     @Positive @RequestParam int page
-                                     ){
+    @GetMapping("/{bookId}")
+    public ResponseEntity getReviews(@PathVariable Long bookId,
+                                     @Positive @RequestParam int page){
         Book book = bookService.findBook(bookId);
         Page<Review> pageReviews = reviewService.findReviews(book.getBookId(),page-1, 5);
-
         List<Review> reviews = pageReviews.getContent();
 
         return new ResponseEntity(
                 new MultiResponseDto<>(reviewMapper.reviewsToReviewResponseDtos(reviews),pageReviews),
                 HttpStatus.OK);
-
-    }
-
-    // 좋아요
-    @PatchMapping("/likes")
-    public ResponseEntity patchLikes(@RequestBody LikesDto likesDto){
-
-        Likes likes = likesMapper.likesDtoToLikes(likesDto);
-        if(likes.getLikesCount() == 0) likesService.deleteLikes(likes);
-        if(likes.getLikesCount() == 1) likesService.createLikes(likes);
-
-        LikesResponseDto response = likesMapper.likesToLikesResponseDto(likes);
-
-        return new ResponseEntity<>(response, HttpStatus.OK);
     }
 }
