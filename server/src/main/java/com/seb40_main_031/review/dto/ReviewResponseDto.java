@@ -1,9 +1,11 @@
 package com.seb40_main_031.review.dto;
 
+import com.seb40_main_031.likes.LikesResponseDto;
 import lombok.Getter;
 import lombok.Setter;
 
 import java.time.LocalDateTime;
+import java.util.List;
 
 @Getter
 @Setter
@@ -17,4 +19,5 @@ public class ReviewResponseDto {
     private LocalDateTime createdAt;
     private LocalDateTime modifiedAt;
     private long likeCount;
+
 }

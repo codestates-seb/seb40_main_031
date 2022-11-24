@@ -1,9 +1,8 @@
 package com.seb40_main_031.review.entity;
 
 import com.seb40_main_031.books.entity.Book;
-
-import com.seb40_main_031.domain.member.entity.Member;
 import com.seb40_main_031.likes.entity.Likes;
+
 import lombok.Getter;
 import lombok.Setter;
 
@@ -21,17 +20,17 @@ public class Review {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "REVIEW_ID")
+
+    @Column(name = "review_id")
     private long reviewId;
 
+    @Column(name = "member_id")
     private long memberId;
-//    @ManyToOne
-//    @JoinColumn(name = "MEMBER_ID")
-//    private Member member;
 
     // book 이 여러개의 리뷰를 가진다.
     @ManyToOne
-    @JoinColumn(name = "BOOK_ID")
+    @JoinColumn(name = "book_id")
+
     private Book book;
 
     @Column(length = 500)

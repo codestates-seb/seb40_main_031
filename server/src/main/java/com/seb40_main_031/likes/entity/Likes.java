@@ -38,5 +38,4 @@ public class Likes {
         this.review = review;
         review.mappingReviewLike(this);
     }
-
 }
