@@ -1,13 +1,12 @@
 package com.seb40_main_031.domain.member.entity;
 
 import com.seb40_main_031.global.common.auditing.Auditable;
+import com.seb40_main_031.likes.entity.Likes;
 import lombok.*;
 
 import javax.persistence.*;
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 @Entity
 @Getter
@@ -42,14 +41,19 @@ public class Member extends Auditable {
     private List<String> roles = new ArrayList<>();
 
     // 추가
-    @ElementCollection
-    @CollectionTable(
-            name = "MEMBER_LIKES_MAP",
-            joinColumns = @JoinColumn(name = "MEMBER_ID")
-    )
-    @MapKeyColumn(name = "LIKES_ID") // key
-    @Column(name = "LIKES_STATUS") // value push, unPush
-    private Map<Long, String> likes = new HashMap();
+//    @ElementCollection
+//    @CollectionTable(
+//            name = "MEMBER_LIKES_MAP",
+//            joinColumns = @JoinColumn(name = "MEMBER_ID")
+//    )
+//    @MapKeyColumn(name = "LIKES_ID") // key
+//    @Column(name = "LIKES_STATUS") // value push, unPush
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "member", cascade = CascadeType.REMOVE)
+    private List<Likes> likes = new ArrayList<>();
+
+    public void mappingMemberLike(Likes likes) {
+        this.likes.add(likes);
+    }
 
 //    @OneToMany(mappedBy = "Member", targetEntity = Review.class)
 //    private List<Review> reviews = new ArrayList<>();

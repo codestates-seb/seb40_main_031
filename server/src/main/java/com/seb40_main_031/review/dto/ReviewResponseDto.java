@@ -16,4 +16,5 @@ public class ReviewResponseDto {
     private String content;
     private LocalDateTime createdAt;
     private LocalDateTime modifiedAt;
+    private long likeCount;
 }

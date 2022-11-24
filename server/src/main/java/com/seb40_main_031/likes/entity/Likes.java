@@ -1,21 +1,48 @@
 package com.seb40_main_031.likes.entity;
 
-import lombok.Getter;
-import lombok.Setter;
+import com.seb40_main_031.domain.member.entity.Member;
+import com.seb40_main_031.review.entity.Review;
+import lombok.*;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
+
+import java.util.Optional;
+
+import static javax.persistence.FetchType.LAZY;
 
 @Getter
 @Setter
 @Entity
+@Builder
+@AllArgsConstructor
+@NoArgsConstructor
+@Table(name = "LIKES")
 public class Likes {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long likeId;
-    private Long reviewId;
-    private Long memberId;
-    private long likeCount;
+
+    @ManyToOne(fetch = LAZY)
+    @JoinColumn(name = "ReviewId", foreignKey = @ForeignKey(name = "FkReviewLikeReview"))
+    private Review review;
+
+    @ManyToOne(fetch = LAZY)
+    @JoinColumn(name = "MemberId", foreignKey = @ForeignKey(name = "FkMemberLikeMember"))
+    private Member member;
+
+    private long likeStatus; // 0 not push or 1 push
+//    private Enum status;
+
+    public static boolean isVotedPost(Optional<Likes> optionalLike) {
+        return optionalLike.isPresent();
+    }
+    public void mappingMember(Member member){
+        this.member = member;
+        member.mappingMemberLike(this);
+    }
+    public void mappingReview(Review review){
+        this.review = review;
+        review.mappingReviewLike(this);
+    }
+
 }
