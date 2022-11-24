@@ -1,27 +1,31 @@
 package com.seb40_main_031.domain.member.controller;
 
+import com.seb40_main_031.domain.books.dto.BookResponseDto;
+import com.seb40_main_031.domain.books.entity.Book;
+import com.seb40_main_031.domain.books.mapper.BookMapper;
 import com.seb40_main_031.domain.member.dto.MemberDto;
 import com.seb40_main_031.domain.member.entity.Member;
 import com.seb40_main_031.domain.member.mapper.MemberMapper;
 import com.seb40_main_031.domain.member.service.MemberService;
+import com.seb40_main_031.domain.review.dto.ReviewToMemberResponse;
+import com.seb40_main_031.domain.review.entity.Review;
+import com.seb40_main_031.domain.review.mapper.ReviewMapper;
+import com.seb40_main_031.domain.member.dto.MemberInfoResponseDto;
+import com.seb40_main_031.global.common.dto.MultiResponseDto;
 import com.seb40_main_031.global.common.dto.SingleResponseDto;
-import com.seb40_main_031.global.error.exception.BusinessLogicException;
-import com.seb40_main_031.global.error.exception.ExceptionCode;
 import com.seb40_main_031.global.security.argumentresolver.LoginAccountId;
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.domain.Page;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
 import javax.validation.constraints.Positive;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 import java.util.stream.Collectors;
 
 @RestController
@@ -32,18 +36,14 @@ import java.util.stream.Collectors;
 public class MemberController {
     private final MemberService memberService;
     private final MemberMapper mapper;
-
+    private final ReviewMapper reviewMapper;
+    private final BookMapper bookMapper;
     /**
      * 1. 회원가입
      */
     @PostMapping("/signup")
     public ResponseEntity createMember(@Valid @RequestBody MemberDto.Post requestBody){
 
-//        Member member = Member.builder()
-//                .email(request.getEmail())
-//                .nickname(request.getNickname())
-//                .password(request.getPassword())
-//                .build();
         Member member = mapper.memberPostToMember(requestBody);
         Member createdMember = memberService.createMember(member);
         MemberDto.Response response = mapper.memberToMemberResponse(createdMember);
@@ -68,29 +68,53 @@ public class MemberController {
     /**
      * 4. 회원 정보 조회
      */
-    @GetMapping("/{member-id}")
+    @GetMapping("/users/{member-id}")
     public ResponseEntity getMember(@PathVariable("member-id") @Positive Long memberId){
 
         // todo : 회원 정보 조회 ( 마이 페이지 )
         Member member = memberService.findMember(memberId);
+
+        Page<Review> reviewPage = memberService.InitInfoReviews(memberId, 0, 5);
+        List<ReviewToMemberResponse> reviews = reviewPage.getContent()
+                .stream().map(review -> reviewMapper.reviewToReviewMemberResponse(review))
+                .collect(Collectors.toList());
+
+//        MemberDto.MyPageResponse infoResponse = mapper.memberToMemberInfoResponse(member);
+
+//        Page<Book> bookPage = memberService.InitInfoBooks(memberId, 0, 5);
+
+//        Set<Long> bookIdSet = new HashSet<>();
+//        for (int i = 0; i < reviews.size(); i++) {
+//            bookIdSet.add(reviews.get(i).getBookId());
+//        }
+//        List<Optional<Book>> optionalBooks = memberService.InitInfoBooks(bookIdSet, 0, 5);
+//        List<BookResponseDto> books = optionalBooks.stream()
+//                .map(book -> bookMapper.bookToBookResponseDto(book.orElseThrow(() ->
+//                        new BusinessLogicException(ExceptionCode.BOOK_NOT_FOUND))))
+//                .collect(Collectors.toList());
+
+//        Answer findAnswer =
+//                optionalAnswer.orElseThrow(() ->
+//                        new BusinessLogicException(ExceptionCode.ANSWER_NOT_FOUND));
+
+
         MemberDto.Response response = mapper.memberToMemberResponse(member);
 
-        return new ResponseEntity<>(new SingleResponseDto<>(response), HttpStatus.OK);
+        return new ResponseEntity<>(new MemberInfoResponseDto(response, reviews, reviewPage), HttpStatus.OK);
     }
 
-    @GetMapping
-    public ResponseEntity getMembers(){
+     /**
+     * 전체 회원 조회
+     */
+    @GetMapping("/users")
+    public ResponseEntity getMembers(@RequestParam(required = false, defaultValue = "1") int page,
+                                     @RequestParam(required = false, defaultValue = "10") int size){
 
-        /**
-         * 전체 회원 조회
-         */
-        List<Member> members = memberService.findMembers();
-        List<MemberDto.Response> response =
-                members.stream()
-                        .map(member -> mapper.memberToMemberResponse(member))
-                        .collect(Collectors.toList());
+        Page<Member> pageMembers = memberService.findMembers(page - 1, size);
+        List<Member> members = pageMembers.getContent();
+        List<MemberDto.Response> response = mapper.membersToMemberResponse(members);
 
-        return new ResponseEntity<>(new SingleResponseDto<>(response), HttpStatus.OK);
+        return new ResponseEntity<>(new MultiResponseDto<>((response), pageMembers), HttpStatus.OK);
     }
 
     /**

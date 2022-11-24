@@ -28,7 +28,7 @@ spring:
         format_sql: true # SQL pretty print
 jwt:
   # todo : 배포 시 숨기기
-  secretKey :  #${JWT_SECRET_KEY}
+  secretKey : #${JWT_SECRET_KEY}
   access-token-expiration-minutes: 30
   refresh-token-expiration-minutes: 420
 mail:

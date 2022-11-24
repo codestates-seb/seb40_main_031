@@ -96,8 +96,9 @@ public class SecurityConfiguration {
                         .antMatchers(HttpMethod.POST, "/members/signup").permitAll()    // 회원가입
                         .antMatchers(HttpMethod.POST, "/login").permitAll()
                         .antMatchers(HttpMethod.PATCH, "/members/**").hasRole("USER")   // 회원정보 수정
-                        .antMatchers(HttpMethod.GET, "/members/**").hasAnyRole("USER", "ADMIN") // 회원정보 조회
+//                        .antMatchers(HttpMethod.GET, "/members/**").hasAnyRole("USER", "ADMIN") // 회원정보 조회
                         .antMatchers(HttpMethod.DELETE, "/members/**").hasRole("USER")  // 회원 탈퇴
+                        .antMatchers("/chat/**").hasRole("USER")  // chat으로 시작하는 리소스 접근 권한
                         .anyRequest().permitAll()
                 );
         return http.build();
@@ -112,9 +113,14 @@ public class SecurityConfiguration {
     @Bean
     CorsConfigurationSource corsConfigurationSource(){
         CorsConfiguration configuration = new CorsConfiguration();
-//        configuration.setAllowCredentials(true);
-        configuration.setAllowedOrigins(Arrays.asList("*"));
-        configuration.setAllowedMethods(Arrays.asList("GET","POST", "PATCH", "DELETE"));
+        configuration.setAllowCredentials(true);
+        configuration.addAllowedOriginPattern("*");
+        configuration.addAllowedHeader("*");
+        configuration.addAllowedMethod("*");
+        configuration.addExposedHeader("Authorization");
+        configuration.addExposedHeader("Refresh");
+//        configuration.setAllowedOrigins(Arrays.asList("*"));
+//        configuration.setAllowedMethods(Arrays.asList("GET","POST", "PATCH", "DELETE"));
 
 //        configuration.addAllowedOriginPattern("*");
 //        configuration.addAllowedHeader("*");
@@ -156,7 +162,7 @@ public class SecurityConfiguration {
             // JwtAuthenticationFilter를 생성하면서 JwtAuthenticationFilter에서 사용되는 AuthenticationManager와 JwtTokenizer를 DI 해줍니다.
             JwtAuthenticationFilter jwtAuthenticationFilter = new JwtAuthenticationFilter(authenticationManager, jwtTokenizer);
             // setFilterProcessesUrl() 메서드를 통해 디폴트 request URL인 “/login”을 “/members/login”으로 변경합니다. // filter를 통한 로그인.
-//            jwtAuthenticationFilter.setFilterProcessesUrl("/login");
+            jwtAuthenticationFilter.setFilterProcessesUrl("/members/login");
             // 인증 성공 or 실패 시 사용될 구현 클래스 등록 // success handler, failure handler
             jwtAuthenticationFilter.setAuthenticationSuccessHandler(new MemberAuthenticationSuccessHandler());
             jwtAuthenticationFilter.setAuthenticationFailureHandler(new MemberAuthenticationFailureHandler());

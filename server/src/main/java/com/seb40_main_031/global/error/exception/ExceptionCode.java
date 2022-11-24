@@ -17,7 +17,7 @@ public enum ExceptionCode {
 
     REVIEW_NOT_FOUND(404, "Review Not Found"),
     LIKES_NOT_FOUND(404, "Likes Not Found"),
-    
+
     NOT_IMPLEMENTATION(501, "Not Implementation");
 
     @Getter
