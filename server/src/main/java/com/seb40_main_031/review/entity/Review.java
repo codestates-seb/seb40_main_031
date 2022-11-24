@@ -1,12 +1,14 @@
 package com.seb40_main_031.review.entity;
 
 import com.seb40_main_031.books.entity.Book;
+import com.seb40_main_031.domain.member.entity.Member;
 import com.seb40_main_031.likes.entity.Likes;
 
 import lombok.Getter;
 import lombok.Setter;
 
 import javax.persistence.*;
+import javax.validation.constraints.Positive;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
@@ -24,13 +26,12 @@ public class Review {
     @Column(name = "review_id")
     private long reviewId;
 
-    @Column(name = "member_id")
-    private long memberId;
+    @ManyToOne(fetch = LAZY)
+    @JoinColumn(name = "member_id")
+    private Member member;
 
-    // book 이 여러개의 리뷰를 가진다.
-    @ManyToOne
+    @ManyToOne(fetch = LAZY)
     @JoinColumn(name = "book_id")
-
     private Book book;
 
     @Column(length = 500)
@@ -39,6 +40,9 @@ public class Review {
     private LocalDateTime createdAt = LocalDateTime.now();
 
     private LocalDateTime modifiedAt = LocalDateTime.now();
+
+    @Transient // DB column 에 추가하지않는다.
+    private int point = 10;
 
     @OneToMany(fetch = LAZY, mappedBy = "review", cascade = CascadeType.REMOVE)
     private List<Likes> likes = new ArrayList<>();
@@ -50,7 +54,6 @@ public class Review {
     public void updateLikeCount() {
         this.likeCount = this.likes.size();
     }
-
     public void discountLike(Likes likes) {
         this.likes.remove(likes);
         this.likeCount = this.likes.size();

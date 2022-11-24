@@ -2,6 +2,7 @@ package com.seb40_main_031.domain.member.entity;
 
 import com.seb40_main_031.global.common.auditing.Auditable;
 import com.seb40_main_031.likes.entity.Likes;
+import com.seb40_main_031.review.entity.Review;
 import lombok.*;
 
 import javax.persistence.*;
@@ -47,8 +48,16 @@ public class Member extends Auditable {
         this.likes.add(likes);
     }
 
-//    @OneToMany(mappedBy = "Member", targetEntity = Review.class)
-//    private List<Review> reviews = new ArrayList<>();
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "member", cascade = CascadeType.REMOVE)
+    private List<Review> reviews = new ArrayList<>();
+
+    public void updateMemberPoint(Review review){
+        this.point += review.getPoint();
+    }
+
+    public void discountReviewPoint(Review review) {
+        this.point -= review.getPoint();
+    }
 
 //    @Enumerated(EnumType.STRING)
 //    private Role role = Role.GUEST;

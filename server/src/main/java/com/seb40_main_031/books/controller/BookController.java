@@ -42,15 +42,15 @@ public class BookController {
     public ResponseEntity getBestSeller(@PathVariable("category-id") long categoryId){
         List<Book> books = bookService.findAllBestSeller(categoryId);
 
-        return new ResponseEntity<>(bookMapper.booksToBookResponseDto(books), HttpStatus.OK);
+        return new ResponseEntity<>(bookMapper.booksToBookListResponseDto(books), HttpStatus.OK);
     }
 
     // 신간 조회
-    @GetMapping("/newBook/{category-id}")
-    public ResponseEntity getNewBook(@PathVariable("category-id") long categoryId){
+    @GetMapping("/new-book/{categoryId}")
+    public ResponseEntity getNewBook(@PathVariable long categoryId){
         List<Book> books = bookService.findAllNewBook(categoryId);
 
-        return new ResponseEntity<>(bookMapper.booksToBookResponseDto(books),HttpStatus.OK);
+        return new ResponseEntity<>(bookMapper.booksToBookListResponseDto(books),HttpStatus.OK);
     }
 
     // 카테고리 조회 ? 책 검색과 동일..?
@@ -75,7 +75,7 @@ public class BookController {
 
 
     // cron = 초 분 시 일 월 년
-    @Scheduled(cron = "0 30 4 1 * *") // 매주 월요일 4시 30분에 업데이트
+    @Scheduled(cron = "0 30 4 1 * *") // 매월 1일 4시 30분에 업데이트
     public void updateBooks(){
         callBookApi.saveBestSeller();
         callBookApi.saveNewBook();

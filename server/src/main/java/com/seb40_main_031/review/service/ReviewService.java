@@ -1,5 +1,7 @@
 package com.seb40_main_031.review.service;
 
+import com.seb40_main_031.domain.member.entity.Member;
+import com.seb40_main_031.domain.member.service.MemberService;
 import com.seb40_main_031.global.error.exception.BusinessLogicException;
 import com.seb40_main_031.global.error.exception.ExceptionCode;
 import com.seb40_main_031.review.entity.Review;
@@ -16,13 +18,19 @@ import java.util.Optional;
 public class ReviewService {
 
     private final ReviewRepository reviewRepository;
+    private final MemberService memberService;
 
-    public ReviewService(ReviewRepository reviewRepository) {
+    public ReviewService(ReviewRepository reviewRepository,MemberService memberService) {
         this.reviewRepository = reviewRepository;
+        this.memberService = memberService;
     }
 
     // 리뷰 생성
     public Review createReview(Review review){
+//        Member member = memberService.findMember(memberId);
+//        review.setMember(member);
+//        member.updateMemberPoint(review);
+
         return reviewRepository.save(review);
     }
 
@@ -50,7 +58,9 @@ public class ReviewService {
     // 리뷰 삭제
     public void deleteReview(long reviewId, long memberId){
         Review review = findVerifiedReview(reviewId);
-        if(review.getMemberId() == memberId) reviewRepository.delete(review);
+        Member member = memberService.findMember(memberId);
+        member.discountReviewPoint(review);
+        reviewRepository.delete(review);
     }
 
 

@@ -28,8 +28,6 @@ public class Likes {
     @JoinColumn(name = "MemberId", foreignKey = @ForeignKey(name = "FkMemberLikeMember"))
     private Member member;
 
-    private long likeStatus; // 0 not push or 1 push
-
     public void mappingMember(Member member){
         this.member = member;
         member.mappingMemberLike(this);

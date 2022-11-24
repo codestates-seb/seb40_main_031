@@ -81,9 +81,10 @@ public class CallBookApi {
                     // 가져 올 책의 제목과 repository의 책 제목이 중복 되는지 확인한다.
                     Book bookTitles = bookRepository.findByTitle((String) item.get("title"));
                     // 중복 된다면 저장하지 않는다.
-                    if(bookTitles != null && bookTitles.getTitle().equals(item.get("title"))) return;
+//                    if(bookTitles != null && bookTitles.getTitle().equals(item.get("title"))) return;
                     // 중복 이 아니라면 저장한다.
-                    else {
+//                    else
+                    {
                         Book book = new Book();
                         book.setTitle((String) item.get("title"));
                         book.setDescription((String) item.get("description"));
@@ -182,6 +183,5 @@ public class CallBookApi {
                 e.printStackTrace();
             }
         }
-
     }
 }
