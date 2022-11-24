@@ -1,13 +1,10 @@
-package com.seb40_main_031.books.dto;
+package com.seb40_main_031.domain.books.dto;
 
 
 
-import com.seb40_main_031.review.dto.ReviewResponseDto;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
-
-import java.util.List;
 
 @NoArgsConstructor
 @Getter

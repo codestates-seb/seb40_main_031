@@ -1,8 +1,8 @@
 package com.seb40_main_031.domain.member.entity;
 
 import com.seb40_main_031.global.common.auditing.Auditable;
-import com.seb40_main_031.likes.entity.Likes;
-import com.seb40_main_031.review.entity.Review;
+import com.seb40_main_031.domain.likes.entity.Likes;
+import com.seb40_main_031.domain.review.entity.Review;
 import lombok.*;
 
 import javax.persistence.*;

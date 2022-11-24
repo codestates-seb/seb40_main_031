@@ -1,9 +1,9 @@
-package com.seb40_main_031.likes.controller;
+package com.seb40_main_031.domain.likes.controller;
 
-import com.seb40_main_031.likes.dto.LikesDto;
-import com.seb40_main_031.likes.dto.LikesResponseDto;
-import com.seb40_main_031.likes.service.LikesService;
-import com.seb40_main_031.review.service.ReviewService;
+import com.seb40_main_031.domain.likes.dto.LikesDto;
+import com.seb40_main_031.domain.likes.dto.LikesResponseDto;
+import com.seb40_main_031.domain.review.service.ReviewService;
+import com.seb40_main_031.domain.likes.service.LikesService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;

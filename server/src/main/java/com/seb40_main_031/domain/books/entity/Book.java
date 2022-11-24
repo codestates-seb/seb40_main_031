@@ -67,4 +67,9 @@ public class Book {
     private List<Review> reviews = new ArrayList<>();
 
     private long reviewCount;
+
+    public void updateReviewCount(){
+        this.reviewCount = this.reviews.size();
+    }
+
 }

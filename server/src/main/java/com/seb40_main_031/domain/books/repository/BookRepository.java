@@ -1,7 +1,6 @@
 package com.seb40_main_031.domain.books.repository;
 
 import com.seb40_main_031.domain.books.entity.Book;
-import com.seb40_main_031.domain.review.entity.Review;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
