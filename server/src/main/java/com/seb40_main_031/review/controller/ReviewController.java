@@ -3,9 +3,6 @@ package com.seb40_main_031.review.controller;
 import com.seb40_main_031.books.entity.Book;
 import com.seb40_main_031.books.service.BookService;
 import com.seb40_main_031.global.common.dto.MultiResponseDto;
-import com.seb40_main_031.likes.*;
-import com.seb40_main_031.likes.entity.Likes;
-import com.seb40_main_031.likes.service.LikesService;
 
 import com.seb40_main_031.review.dto.ReviewDto;
 import com.seb40_main_031.review.dto.ReviewResponseDto;
@@ -30,16 +27,11 @@ public class ReviewController {
     private final ReviewMapper reviewMapper;
     private final BookService bookService;
 
-    private final LikesMapper likesMapper;
-    private final LikesService likesService;
     public ReviewController(ReviewService reviewService, ReviewMapper reviewMapper,
-                            BookService bookService,LikesMapper likesMapper,
-                            LikesService likesService) {
+                            BookService bookService) {
         this.reviewService = reviewService;
         this.reviewMapper = reviewMapper;
         this.bookService = bookService;
-        this.likesMapper = likesMapper;
-        this.likesService = likesService;
     }
 
     // review 생성 /{book-id}
@@ -111,18 +103,5 @@ public class ReviewController {
         return new ResponseEntity(
                 new MultiResponseDto<>(reviewMapper.reviewsToReviewResponseDtos(reviews),pageReviews),
                 HttpStatus.OK);
-    }
-
-    // 좋아요
-    @PatchMapping("/likes")
-    public ResponseEntity patchLikes(@RequestBody LikesDto likesDto){
-
-        Likes likes = likesMapper.likesDtoToLikes(likesDto);
-        if(likes.getLikesCount() == 0) likesService.deleteLikes(likes);
-        if(likes.getLikesCount() == 1) likesService.createLikes(likes);
-
-        LikesResponseDto response = likesMapper.likesToLikesResponseDto(likes);
-
-        return new ResponseEntity<>(response, HttpStatus.OK);
     }
 }

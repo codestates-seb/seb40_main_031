@@ -1,6 +1,7 @@
 package com.seb40_main_031.review.entity;
 
 import com.seb40_main_031.books.entity.Book;
+import com.seb40_main_031.likes.entity.Likes;
 
 import lombok.Getter;
 import lombok.Setter;
@@ -10,6 +11,8 @@ import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
+import static javax.persistence.FetchType.LAZY;
+
 @Getter
 @Setter
 @Entity
@@ -17,6 +20,7 @@ public class Review {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+
     @Column(name = "review_id")
     private long reviewId;
 
@@ -26,6 +30,7 @@ public class Review {
     // book 이 여러개의 리뷰를 가진다.
     @ManyToOne
     @JoinColumn(name = "book_id")
+
     private Book book;
 
     @Column(length = 500)
@@ -35,7 +40,20 @@ public class Review {
 
     private LocalDateTime modifiedAt = LocalDateTime.now();
 
-//    @OneToMany(mappedBy = "review")
-//    private long likes; // 이 review에 들어가는 like 합계수
-//    private List<Likes> likes = new ArrayList<>();
+    @OneToMany(fetch = LAZY, mappedBy = "review", cascade = CascadeType.REMOVE)
+    private List<Likes> likes = new ArrayList<>();
+
+    private long likeCount;
+    public void mappingReviewLike(Likes likes) {
+        this.likes.add(likes);
+    }
+    public void updateLikeCount() {
+        this.likeCount = this.likes.size();
+    }
+
+    public void discountLike(Likes likes) {
+        this.likes.remove(likes);
+        this.likeCount = this.likes.size();
+
+    }
 }
