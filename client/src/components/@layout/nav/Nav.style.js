@@ -12,13 +12,6 @@ const NavWrapperDiv = styled.div`
   position: fixed;
 
   background-color: ${(props) => props.backgoudColor || Theme.PRIMARY.GREEN};
-
-  background: linear-gradient(
-    to bottom,
-    ${Theme.PRIMARY.GREEN} 55px,
-    ${Theme.PRIMARY.GREEN} 55px,
-    ${Theme.PRIMARY.WHITE}
-  );
 `;
 
 const LeftDiv = styled.div`
@@ -50,4 +43,47 @@ const LayoutContainer = styled.div`
   }
 `;
 
-export { NavWrapperDiv, LeftDiv, LayoutContainer, MainLogoImg };
+const ModalDiv = styled.div`
+  width: 100%;
+  max-width: 1200px;
+  padding: 0 3rem 0 8rem;
+  overflow: hidden;
+
+  .active {
+    height: 200px;
+    padding-top: 2rem;
+    transition: all 0.5s;
+  }
+  .hidden {
+    height: 0px;
+    transition: all 0.5s;
+  }
+
+  border-bottom: 2px solid ${darken(0.3, Theme.PRIMARY.GREEN_DARK)};
+`;
+
+const ModalWrapperDiv = styled.div`
+  display: grid;
+  grid-auto-flow: column;
+  grid-template-rows: 50px 50px 50px;
+  grid-template-columns: 150px;
+
+  width: 100%;
+`;
+
+const ModalListA = styled.a`
+  font-size: 1.5rem;
+  padding-bottom: 1rem;
+  text-decoration: none;
+  color: ${darken(0.3, Theme.PRIMARY.GREEN_DARK)};
+`;
+
+export {
+  NavWrapperDiv,
+  LeftDiv,
+  LayoutContainer,
+  MainLogoImg,
+  ModalDiv,
+  ModalWrapperDiv,
+  ModalListA,
+};
