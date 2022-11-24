@@ -24,11 +24,10 @@ public class Review {
     @Column(name = "REVIEW_ID")
     private long reviewId;
 
+    private long memberId;
 //    @ManyToOne
 //    @JoinColumn(name = "MEMBER_ID")
 //    private Member member;
-
-    private long memberId;
 
     // book 이 여러개의 리뷰를 가진다.
     @ManyToOne
@@ -55,7 +54,7 @@ public class Review {
 
     public void discountLike(Likes likes) {
         this.likes.remove(likes);
-        this.likeCount--;
+        this.likeCount = this.likes.size();
 
     }
 }

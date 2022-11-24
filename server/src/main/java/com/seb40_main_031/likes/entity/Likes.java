@@ -6,8 +6,6 @@ import lombok.*;
 
 import javax.persistence.*;
 
-import java.util.Optional;
-
 import static javax.persistence.FetchType.LAZY;
 
 @Getter
@@ -31,11 +29,7 @@ public class Likes {
     private Member member;
 
     private long likeStatus; // 0 not push or 1 push
-//    private Enum status;
 
-    public static boolean isVotedPost(Optional<Likes> optionalLike) {
-        return optionalLike.isPresent();
-    }
     public void mappingMember(Member member){
         this.member = member;
         member.mappingMemberLike(this);

@@ -68,4 +68,8 @@ public class Book {
 
     private long reviewCount;
 
+    public void updateReviewCount(){
+        this.reviewCount = this.reviews.size();
+    }
+
 }

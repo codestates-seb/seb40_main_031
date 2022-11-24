@@ -32,7 +32,6 @@ public class BookController {
     @GetMapping("/{book-id}")
     public ResponseEntity getBook(@PathVariable("book-id") long bookId){
         Book book = bookService.findBook(bookId);
-        book.setReviewCount(book.getReviews().size());
 
         return new ResponseEntity<>(bookMapper.bookToBookResponseDto(book)
                 ,HttpStatus.OK);
