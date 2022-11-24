@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
 import { FaBars } from 'react-icons/fa';
+import { NAV_LIST } from 'constants';
 
 import SearchBar from 'components/@common/searchBar/SearchBar';
-import Modal from 'components/@layout/nav/modal/Modal';
 import CustomLink from 'components/@common/customLink/CustomLink';
 
 import {
@@ -10,6 +10,9 @@ import {
   LeftDiv,
   LayoutContainer,
   MainLogoImg,
+  ModalDiv,
+  ModalWrapperDiv,
+  ModalListA,
 } from 'components/@layout/nav/Nav.style';
 
 const Nav = () => {
@@ -32,7 +35,23 @@ const Nav = () => {
         </LeftDiv>
         <SearchBar />
       </LayoutContainer>
-      {showModal === true ? <Modal list={'공지사항'} /> : null}
+      <ModalDiv>
+        <ModalWrapperDiv className={showModal ? 'active' : 'hidden'}>
+          {NAV_LIST.map((list, idx) => {
+            return (
+              <span key={idx}>
+                <ModalListA
+                  key={idx}
+                  href={list.href}
+                  target={list.name === '문의하기' ? '_blank' : '_self'}
+                >
+                  {list.name}
+                </ModalListA>
+              </span>
+            );
+          })}
+        </ModalWrapperDiv>
+      </ModalDiv>
     </NavWrapperDiv>
   );
 };
