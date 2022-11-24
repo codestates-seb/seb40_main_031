@@ -40,14 +40,6 @@ public class Member extends Auditable {
     @ElementCollection(fetch = FetchType.EAGER)
     private List<String> roles = new ArrayList<>();
 
-    // 추가
-//    @ElementCollection
-//    @CollectionTable(
-//            name = "MEMBER_LIKES_MAP",
-//            joinColumns = @JoinColumn(name = "MEMBER_ID")
-//    )
-//    @MapKeyColumn(name = "LIKES_ID") // key
-//    @Column(name = "LIKES_STATUS") // value push, unPush
     @OneToMany(fetch = FetchType.LAZY, mappedBy = "member", cascade = CascadeType.REMOVE)
     private List<Likes> likes = new ArrayList<>();
 
