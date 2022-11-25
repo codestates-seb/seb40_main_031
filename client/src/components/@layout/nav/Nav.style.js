@@ -11,9 +11,7 @@ const NavWrapperDiv = styled.div`
   width: 100%;
   position: fixed;
 
-  /* background-color: ${(props) =>
-    props.backgoudColor || Theme.PRIMARY.GREEN}; */
-  background-color: teal;
+  background-color: ${Theme.PRIMARY.GREEN};
   border-bottom: 2px solid ${darken(0.3, Theme.PRIMARY.GREEN_DARK)};
 `;
 
