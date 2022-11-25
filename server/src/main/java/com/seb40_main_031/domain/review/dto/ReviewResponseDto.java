@@ -9,7 +9,6 @@ import java.time.LocalDateTime;
 @Setter
 public class ReviewResponseDto {
 
-    // reviewId로 변경
     private long reviewId;
     private long memberId;
     private long bookId;

@@ -7,7 +7,7 @@ import com.seb40_main_031.domain.member.dto.MemberDto;
 import com.seb40_main_031.domain.member.entity.Member;
 import com.seb40_main_031.domain.member.mapper.MemberMapper;
 import com.seb40_main_031.domain.member.service.MemberService;
-import com.seb40_main_031.domain.review.dto.ReviewToMemberResponse;
+//import com.seb40_main_031.domain.review.dto.ReviewToMemberResponse;
 import com.seb40_main_031.domain.review.entity.Review;
 import com.seb40_main_031.domain.review.mapper.ReviewMapper;
 import com.seb40_main_031.domain.member.dto.MemberInfoResponseDto;
@@ -68,16 +68,17 @@ public class MemberController {
     /**
      * 4. 회원 정보 조회
      */
-    @GetMapping("/users/{member-id}")
-    public ResponseEntity getMember(@PathVariable("member-id") @Positive Long memberId){
+
+//    @GetMapping("/users/{member-id}")
+//    public ResponseEntity getMember(@PathVariable("member-id") @Positive Long memberId){
 
         // todo : 회원 정보 조회 ( 마이 페이지 )
-        Member member = memberService.findMember(memberId);
-
-        Page<Review> reviewPage = memberService.InitInfoReviews(memberId, 0, 5);
-        List<ReviewToMemberResponse> reviews = reviewPage.getContent()
-                .stream().map(review -> reviewMapper.reviewToReviewMemberResponse(review))
-                .collect(Collectors.toList());
+//        Member member = memberService.findMember(memberId);
+//
+//        Page<Review> reviewPage = memberService.InitInfoReviews(memberId, 0, 5);
+//        List<ReviewToMemberResponse> reviews = reviewPage.getContent()
+//                .stream().map(review -> reviewMapper.reviewToReviewMemberResponse(review))
+//                .collect(Collectors.toList());
 
 //        MemberDto.MyPageResponse infoResponse = mapper.memberToMemberInfoResponse(member);
 
@@ -98,10 +99,10 @@ public class MemberController {
 //                        new BusinessLogicException(ExceptionCode.ANSWER_NOT_FOUND));
 
 
-        MemberDto.Response response = mapper.memberToMemberResponse(member);
-
-        return new ResponseEntity<>(new MemberInfoResponseDto(response, reviews, reviewPage), HttpStatus.OK);
-    }
+//        MemberDto.Response response = mapper.memberToMemberResponse(member);
+//
+//        return new ResponseEntity<>(new MemberInfoResponseDto(response, reviews, reviewPage), HttpStatus.OK);
+//    }
 
      /**
      * 전체 회원 조회

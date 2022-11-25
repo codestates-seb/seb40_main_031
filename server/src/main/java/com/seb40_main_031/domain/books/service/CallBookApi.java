@@ -24,21 +24,18 @@ public class CallBookApi {
         this.key = key;
     }
 
-    // 객체 초기화 , 객체가 생성된 후 별도의 초기화 작업을 위해 실행하는 메서드에 선언하는 어노테이션
-    // 실행시 한번만 실행하고 종료된다.
+
+    /**
+     * 1. 베스트셀러 API 호출
+     *
+     * @PostConstruct 실행시 한번만 실행하고 종료, 초기화 작업을 위해 선언
+     */
     @PostConstruct
     public void saveBestSeller(){
 
-        // bestSeller 호출 저장
-        // api key 값
         String apikey = key.getKey();
 
-        // 파싱한 JSON 결과 값을 저장할 변수를 설정
-        String result = "";
-
-        // categoryCode 도 api 로 받아오는 방법
-        // categoryCode 를 배열에 담아두고 for문 돌면서 api 호출하기..?
-//		int categoryCode = 100;
+        String result = "";     // 파싱한 JSON 결과 값을 저장할 변수
 
         int[] categoryCode = {100, 200};
 
@@ -66,9 +63,6 @@ public class CallBookApi {
                 // Array 로 item 의 정보를 담는다.
                 JSONArray bookInfo = (JSONArray) jsonObject.get("item");
 
-                // List<Book>에 repository에 있는 모든 책 정보를 찾아서 담는다.
-                // 새로 들어올 책과 비교를 위함
-//                List<Book> findBooks = bookRepository.findAll();
                 List<Book> findBooks = null;
                 if(categoryCode[j] == 100 ){ findBooks = bookRepository.findAllByNationalRank();}
                 if(categoryCode[j] == 200 ){ findBooks = bookRepository.findAllByForeignRank();}
@@ -76,15 +70,13 @@ public class CallBookApi {
                 // 반복문으로 bookInfo 돌면서 item 에 하나씩 담는다.
                 for (int i = 0; i < totalResult; i++) {
                     JSONObject item = (JSONObject) bookInfo.get(i);
-                    // item 에서 가져온 책 정보를 넣을 book
 
                     // 가져 올 책의 제목과 repository의 책 제목이 중복 되는지 확인한다.
                     Book bookTitles = bookRepository.findByTitle((String) item.get("title"));
-                    // 중복 된다면 저장하지 않는다.
-//                    if(bookTitles != null && bookTitles.getTitle().equals(item.get("title"))) return;
+                    // todo: 중복 된다면 저장하지 않는 로직 재 설정 필요
+                    if(bookTitles != null && bookTitles.getTitle().equals(item.get("title"))) return;
                     // 중복 이 아니라면 저장한다.
-//                    else
-                    {
+                    else {
                         Book book = new Book();
                         book.setTitle((String) item.get("title"));
                         book.setDescription((String) item.get("description"));
@@ -129,6 +121,9 @@ public class CallBookApi {
         }
     }
 
+    /**
+     * 2. 신간 서적 API 호출
+     */
     @PostConstruct
     public void saveNewBook(){
 
@@ -158,7 +153,7 @@ public class CallBookApi {
 
                     Book bookTitles = bookRepository.findByTitle((String) item.get("title"));
 
-                    if (bookTitles != null && bookTitles.getTitle().equals(item.get("title"))) return;
+                    if (bookTitles.getTitle().equals(item.get("title"))) return;
                     else {
                         Book book = new Book();
                         book.setTitle((String) item.get("title"));

@@ -1,4 +1,4 @@
-package com.seb40_main_031.domain.likes.entity;
+package com.seb40_main_031.domain.reviewLike.entity;
 
 import com.seb40_main_031.domain.member.entity.Member;
 import com.seb40_main_031.domain.review.entity.Review;
@@ -15,7 +15,7 @@ import static javax.persistence.FetchType.LAZY;
 @AllArgsConstructor
 @NoArgsConstructor
 @Table(name = "LIKES")
-public class Likes {
+public class ReviewLike {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long likeId;
