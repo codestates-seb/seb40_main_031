@@ -10,6 +10,7 @@ import BookDetail from 'pages/bookDetail/BookDetail';
 import ReviewDetail from 'pages/reviewDetail/ReviewDetail';
 import SearchDetail from 'pages/searchDetail/SearchDetail';
 import SignUp from 'pages/signUp/SignUp';
+import UserPage from './userPage/UserPage';
 
 // Layout 하위로 페이지 라우팅
 const PAGES = [
@@ -50,6 +51,11 @@ const PAGES = [
         name: ROUTES.SIGNUP.name,
         path: ROUTES.SIGNUP.path,
         element: <SignUp />,
+      },
+      {
+        name: ROUTES.USERPAGE.name,
+        path: ROUTES.USERPAGE.path,
+        element: <UserPage />,
       },
     ],
   },
