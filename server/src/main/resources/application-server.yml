@@ -12,28 +12,32 @@ spring:
     host: localhost
     port: 6379
     time-to-live: 10000
+  h2:
+    console:
+      enabled: true
+      path: /h2
   datasource:
-    driver-class-name: com.mysql.cj.jdbc.Driver
-    url: jdbc:mysql://localhost:3306/maintest?serverTimezone=Asia/Seoul&characterEncoding=UTF-8
-    username: #${RDS_ID}
-    #password: #${RDS_PASSWORD}
+    url: jdbc:h2:mem:test
   jpa:
-    database: mysql   # ?? ?? ??
-    # database-platform: org.hibernate.dialect.MySQL5InnoDBDialect # ?? ?? ??
     hibernate:
-      ddl-auto: create
-    show-sql: true      # SQL ?? ??
+      ddl-auto: create  # (1) 스키마 자동 생성
+    show-sql: true      # (2) SQL 쿼리 출력
     properties:
       hibernate:
-        format_sql: true # SQL pretty print
-jwt:
-  # todo : 배포 시 숨기기
-  secretKey : #${JWT_SECRET_KEY}
-  access-token-expiration-minutes: 30
-  refresh-token-expiration-minutes: 420
+        format_sql: true  # (3) SQL pretty print
+#  sql:
+#    init:
+#      data-locations: classpath*:db/h2/data.sql
 mail:
   address:
     admin: admin@gmail.com
+jwt:
+  # todo : 배포 시 숨기기
+  secretKey : ${JWT_SECRET_KEY}
+  access-token-expiration-minutes: 30
+  refresh-token-expiration-minutes: 420
+interpark:
+  key: 2D836AD29AFD4823FCC2D0981AFCEAD0F70F68FDC3EC4C73549A0E28E8D5624E
 logging:
   level:
     org:
@@ -44,7 +48,3 @@ server:
   servlet:
     encoding:
       force-response: true
-
-
-interpark:
-  key:

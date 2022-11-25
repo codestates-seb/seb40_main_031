@@ -98,7 +98,7 @@ public class SecurityConfiguration {
                         .antMatchers(HttpMethod.PATCH, "/members/**").hasRole("USER")   // 회원정보 수정
 //                        .antMatchers(HttpMethod.GET, "/members/**").hasAnyRole("USER", "ADMIN") // 회원정보 조회
                         .antMatchers(HttpMethod.DELETE, "/members/**").hasRole("USER")  // 회원 탈퇴
-                        .antMatchers("/chat/**").hasRole("USER")  // chat으로 시작하는 리소스 접근 권한
+//                        .antMatchers("/chat/**").hasRole("USER")  // chat으로 시작하는 리소스 접근 권한
                         .anyRequest().permitAll()
                 );
         return http.build();
@@ -119,8 +119,9 @@ public class SecurityConfiguration {
         configuration.addAllowedMethod("*");
         configuration.addExposedHeader("Authorization");
         configuration.addExposedHeader("Refresh");
-//        configuration.setAllowedOrigins(Arrays.asList("*"));
-//        configuration.setAllowedMethods(Arrays.asList("GET","POST", "PATCH", "DELETE"));
+        configuration.addExposedHeader("Access-Control-Allow-Origin");
+        configuration.setAllowedOrigins(Arrays.asList("*"));
+        configuration.setAllowedMethods(Arrays.asList("GET","POST", "PATCH", "DELETE"));
 
 //        configuration.addAllowedOriginPattern("*");
 //        configuration.addAllowedHeader("*");
@@ -136,6 +137,7 @@ public class SecurityConfiguration {
         UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
         // 모든 URL에 앞에서 구성한 CORS 정책(CorsConfiguration)을 적용
         source.registerCorsConfiguration("/**", configuration);
+        source.registerCorsConfiguration("/members/**", configuration);
         return source;
     }
 

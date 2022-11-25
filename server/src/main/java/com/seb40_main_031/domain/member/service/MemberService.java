@@ -1,7 +1,6 @@
 package com.seb40_main_031.domain.member.service;
 
 import com.seb40_main_031.domain.books.entity.Book;
-import com.seb40_main_031.domain.books.mapper.BookMapper;
 import com.seb40_main_031.domain.books.repository.BookRepository;
 import com.seb40_main_031.domain.member.entity.Member;
 import com.seb40_main_031.domain.member.repository.MemberRepository;
@@ -105,9 +104,20 @@ public class MemberService {
      * 회원 정보 조회 화면에 읽었던 책과 썼던 리뷰내용 전달해 주기 위해
      * 추후 추가될 부분
      */
+    public List<Review> getReviews(Long memberId) {
+        return reviewRepository.findAllByMemberMemberIdOrderByReviewIdDesc(memberId);
+    }
+
+    public List<Long> findAllBookId(Long memberId) {
+        return reviewRepository.findAllReviewedBookIdByMemberId(memberId);
+    }
+    public Optional<Book> getBook(Long bookId) {
+        return bookRepository.findByBookId(bookId);
+    }
+
 //    public Page<Review> InitInfoReviews(Long memberId, int page, int size) {
 //        Page<Review> reviewList = reviewRepository.findAllByMemberId(memberId, PageRequest.of(page, size, Sort.by("reviewId")));
-
+//
 //        return reviewList;
 //    }
 //    public Page<Book> InitInfoBooks(Long memberId, int page, int size) {

@@ -36,8 +36,9 @@ public class Review {
     @Column(length = 500)
     private String content;
 
+    @Column(name = "created_at")
     private LocalDateTime createdAt = LocalDateTime.now();
-
+    @Column(name = "modified_at")
     private LocalDateTime modifiedAt = LocalDateTime.now();
 
     @Transient      // DB column 에 추가하지않는다.

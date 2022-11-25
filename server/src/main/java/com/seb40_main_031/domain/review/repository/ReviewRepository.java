@@ -6,9 +6,12 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Query;
+import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 
-import java.util.Optional;
+import java.util.List;
+
 
 
 @Repository
@@ -16,6 +19,8 @@ public interface ReviewRepository extends JpaRepository<Review, Long> {
 //      SELECT * FROM REVIEW where book_id = 1
     Page<Review> findAllByBookBookId(long bookId, Pageable pageable);
 
-//    Optional<Review> findByReviewAndMember(Review review, Member member);
-//    Page<Review> findAllByMemberId(Long memberId, PageRequest reviewId);
+    List<Review> findAllByMemberMemberIdOrderByReviewIdDesc(Long memberId);
+    @Query(value = "SELECT book_id FROM REVIEW where member_id GROUP BY book_id ORDER BY MAX(created_at) DESC", nativeQuery = true)
+    List<Long> findAllReviewedBookIdByMemberId(@Param("member_id") Long memberId);
+
 }
