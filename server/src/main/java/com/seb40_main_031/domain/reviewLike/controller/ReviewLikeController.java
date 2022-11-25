@@ -4,6 +4,7 @@ import com.seb40_main_031.domain.review.service.ReviewService;
 import com.seb40_main_031.domain.reviewLike.dto.ReviewLikeDto;
 import com.seb40_main_031.domain.reviewLike.dto.ReviewLikeResponseDto;
 import com.seb40_main_031.domain.reviewLike.service.ReviewLikeService;
+import com.seb40_main_031.global.security.argumentresolver.LoginAccountId;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
@@ -21,9 +22,10 @@ public class ReviewLikeController {
     }
 
     @PatchMapping("/reviews/likes")
-    public ResponseEntity patchLikes(@RequestBody ReviewLikeDto likeDto){
+    public ResponseEntity patchLikes(@LoginAccountId Long memberId,
+                                     @RequestBody ReviewLikeDto likeDto){
 
-        reviewLikeService.updateLikes(likeDto);
+        reviewLikeService.updateLikes(likeDto, memberId);
 
         ReviewLikeResponseDto response = new ReviewLikeResponseDto();
         response.setLikeSum(reviewService.findReview(likeDto.getReviewId()).getLikeCount());

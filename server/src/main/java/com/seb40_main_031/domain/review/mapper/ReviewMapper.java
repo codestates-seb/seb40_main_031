@@ -11,6 +11,8 @@ import java.util.List;
 @Mapper(componentModel = "spring")
 public interface ReviewMapper {
 
+
+    @Mapping(source = "reviewDto.member", target = "member")
     Review reviewDtoToReview(ReviewDto reviewDto);
 
     @Mapping(source = "review.book.bookId", target = "bookId")

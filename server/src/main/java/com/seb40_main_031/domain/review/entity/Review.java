@@ -22,15 +22,15 @@ public class Review {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
 
-    @Column(name = "review_id")
+    @Column(name = "REVIEW_ID")
     private long reviewId;
 
-    @ManyToOne(fetch = LAZY)
-    @JoinColumn(name = "member_id")
+    @ManyToOne
+    @JoinColumn(name = "MEMBER_ID")
     private Member member;
 
-    @ManyToOne(fetch = LAZY)
-    @JoinColumn(name = "book_id")
+    @ManyToOne
+    @JoinColumn(name = "BOOK_ID")
     private Book book;
 
     @Column(length = 500)

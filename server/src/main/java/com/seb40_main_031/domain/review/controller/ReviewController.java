@@ -9,6 +9,7 @@ import com.seb40_main_031.domain.review.dto.ReviewResponseDto;
 import com.seb40_main_031.domain.review.service.ReviewService;
 import com.seb40_main_031.global.common.dto.MultiResponseDto;
 
+import com.seb40_main_031.global.error.exception.BusinessLogicException;
 import com.seb40_main_031.global.security.argumentresolver.LoginAccountId;
 import com.seb40_main_031.domain.review.entity.Review;
 
@@ -53,10 +54,8 @@ public class ReviewController {
         reviewDto.setMember(member);
 
         Review review = reviewMapper.reviewDtoToReview(reviewDto);
-        review.setMember(member);
         member.updateMemberPoint(review);
         reviewService.createReview(review);
-
 
         ReviewResponseDto response =
                 reviewMapper.reviewToReviewResponseDto(review);
@@ -70,17 +69,16 @@ public class ReviewController {
     @PatchMapping("/{bookId}")
     public ResponseEntity modifyReview(@PathVariable Long bookId,
                                        @LoginAccountId Long memberId,
-                                       @RequestBody ReviewDto reviewDto){
+                                       @RequestBody ReviewDto reviewDto){ // content
 
-        Member member = memberService.findMember(memberId);
         reviewDto.setBook(bookService.findBook(bookId));
-        reviewDto.setMember(member);
+        reviewDto.setMember(memberService.findMember(memberId));
 
         Review review = reviewMapper.reviewDtoToReview(reviewDto);
-        reviewService.modifiedReview(review);
+        Review modifiedReview = reviewService.modifiedReview(review, memberId);
 
         ReviewResponseDto response =
-                reviewMapper.reviewToReviewResponseDto(review);
+                reviewMapper.reviewToReviewResponseDto(modifiedReview);
 
         return new ResponseEntity<>(response, HttpStatus.OK);
     }

@@ -105,11 +105,11 @@ public class MemberService {
      * 회원 정보 조회 화면에 읽었던 책과 썼던 리뷰내용 전달해 주기 위해
      * 추후 추가될 부분
      */
-    public Page<Review> InitInfoReviews(Long memberId, int page, int size) {
-        Page<Review> reviewList = reviewRepository.findAllByMemberId(memberId, PageRequest.of(page, size, Sort.by("reviewId")));
+//    public Page<Review> InitInfoReviews(Long memberId, int page, int size) {
+//        Page<Review> reviewList = reviewRepository.findAllByMemberId(memberId, PageRequest.of(page, size, Sort.by("reviewId")));
 
-        return reviewList;
-    }
+//        return reviewList;
+//    }
 //    public Page<Book> InitInfoBooks(Long memberId, int page, int size) {
 //        Page<Book> bookList = bookRepository.findAllByMemberId(memberId, PageRequest.of(page, size, Sort.by("bookId")));
 

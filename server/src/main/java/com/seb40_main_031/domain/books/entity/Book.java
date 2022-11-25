@@ -17,55 +17,61 @@ public class Book {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "book_id")
+    @Column(name = "BOOK_ID")
     private long bookId;
 
     @Column(name = "member_id")
     private long memberId;
 
-    @Column(name = "title", nullable = false)
+    @Column(name = "TITLE",nullable = false)
     private String title;
 
-    @Column(length = 1000)
+    @Column(name = "DESCRIPTION",length = 1000)
     private String description;
 
-    @Column(nullable = false)
+    @Column(name = "PUB_DATE",nullable = false)
     private String pubDate;
 
-    @Column(nullable = false)
+    @Column(name = "PRICE",nullable = false)
     private long price;
 
+    @Column(name = "COVER_SMALL_URL")
     private String coverSmallUrl;
 
+    @Column(name = "COVER_LARGE_URL")
     private String coverLargeUrl;
 
-    @Column(nullable = false)
+    @Column(name = "CATEGORY_ID",nullable = false)
     private String categoryId;
 
-    @Column(nullable = false)
+    @Column(name = "CATEGORY_NAME",nullable = false)
     private String categoryName;
 
-    @Column(nullable = false)
+    @Column(name = "BOOK_PUBLISHER",nullable = false)
     private String bookPublisher;
 
-    @Column(nullable = false)
+    @Column(name = "AUTHOR",nullable = false)
     private String author;
 
+    @Column(name = "TRANSLATOR")
     private String translator;
 
-    @Column(nullable = false)
+    @Column(name = "ISBN",nullable = false)
     private String isbn;
 
-    @Column(name = "book_link")
+    @Column(name = "BOOK_LINK")
     private String link;
 
+    @Column(name = "NATIONAL_RANK")
     private Long nationalRank;
 
+    @Column(name = "FOREIGN_RANK")
     private Long foreignRank;
 
     @OneToMany(mappedBy = "book")
     private List<Review> reviews = new ArrayList<>();
 
+    @Column(name = "REVIEW_COUNT")
     private long reviewCount;
 
     public void updateReviewCount(){

@@ -2,7 +2,7 @@ package com.seb40_main_031.domain.member.mapper;
 
 import com.seb40_main_031.domain.member.dto.MemberDto;
 import com.seb40_main_031.domain.member.entity.Member;
-import com.seb40_main_031.domain.review.dto.ReviewToMemberResponse;
+//import com.seb40_main_031.domain.review.dto.ReviewToMemberResponse;
 import com.seb40_main_031.domain.review.mapper.ReviewMapper;
 import org.mapstruct.Mapper;
 

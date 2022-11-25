@@ -36,17 +36,32 @@ public class ReviewService {
 
 
     // 리뷰 수정
-    public Review modifiedReview(Review review) {
-        Review findReview = findVerifiedReview(review.getReviewId());
-        findReview.setContent(review.getContent());
+    public Review modifiedReview(Review review, Long memberId) {
+        Review findReview = findReview(review.getReviewId());
+
+        try {
+            if(findReview.getMember().getMemberId().equals(memberId)){
+                findReview.setContent(review.getContent());
+            } else {
+                Exception e = new Exception();
+                throw e;
+            }
+        } catch (Exception e) {
+            throw new BusinessLogicException(ExceptionCode.REVIEW_MEMBER_NOT_MATCHED);
+        }
+
+//        if(findReview.getMember().getMemberId().equals(memberId)) {
+//            findReview.setContent(review.getContent());
+//        } else {
+//            throw new BusinessLogicException(ExceptionCode.REVIEW_MEMBER_NOT_MATCHED);
+//        }
 
         return reviewRepository.save(findReview);
     }
 
     // 리뷰 단일 찾기
     public Review findReview(long reviewId) {
-        Review findReview = findVerifiedReview(reviewId);
-        return findReview;
+        return findVerifiedReview(reviewId);
     }
 
     // 리뷰 리스트 찾기
@@ -68,10 +83,9 @@ public class ReviewService {
     private Review findVerifiedReview(long reviewId){
         Optional<Review> optionalReview =
                 reviewRepository.findById(reviewId);
-        Review findReview = optionalReview.orElseThrow(()->
-                new BusinessLogicException(ExceptionCode.REVIEW_NOT_FOUND));
 
-        return findReview;
+        return optionalReview.orElseThrow(()->
+                new BusinessLogicException(ExceptionCode.REVIEW_NOT_FOUND));
     }
 
 }

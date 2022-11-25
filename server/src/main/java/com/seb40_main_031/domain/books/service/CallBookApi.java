@@ -151,6 +151,7 @@ public class CallBookApi {
                 for (int i = 0; i < totalResult; i++) {
                     JSONObject item = (JSONObject) bookInfo.get(i);
 
+                    // todo: null 일 때 처리하는 법 찾기
                     Book bookTitles = bookRepository.findByTitle((String) item.get("title"));
 
                     if (bookTitles.getTitle().equals(item.get("title"))) return;
