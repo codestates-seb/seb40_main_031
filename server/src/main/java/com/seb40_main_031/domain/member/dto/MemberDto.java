@@ -1,5 +1,6 @@
 package com.seb40_main_031.domain.member.dto;
 
+import com.seb40_main_031.domain.books.dto.BookToMemberResponse;
 import com.seb40_main_031.domain.member.entity.Member;
 import com.seb40_main_031.domain.review.dto.ReviewResponseDto;
 import com.seb40_main_031.domain.review.dto.ReviewToMemberResponse;
@@ -13,6 +14,8 @@ import org.springframework.data.domain.Page;
 
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.List;
 
 public class MemberDto {
@@ -54,6 +57,8 @@ public class MemberDto {
         private String about;
         private int point;
         private String img;
+        private LocalDateTime createdAt;
+        private LocalDateTime modifiedAt;
 //        @Setter
 //        private List<Review> reviewList;
 //        private Member.Roles roles;
@@ -73,7 +78,13 @@ public class MemberDto {
         private String img;
 //        @Setter
 //        private List<ReviewToMemberResponse> reviewList;
-        private List<ReviewResponseDto> reviews;
+//        private List<ReviewResponseDto> reviews;
+        private int bookCount;
+        private List<BookToMemberResponse> bookList;
+        private int reviewCount;
+        private List<ReviewToMemberResponse> reviewList;
+        private LocalDateTime createdAt;
+        private LocalDateTime modifiedAt;
     }
 
 }
