@@ -12,6 +12,7 @@ const NavWrapperDiv = styled.div`
   position: fixed;
 
   background-color: ${(props) => props.backgoudColor || Theme.PRIMARY.GREEN};
+  border-bottom: 2px solid ${darken(0.3, Theme.PRIMARY.GREEN_DARK)};
 `;
 
 const LeftDiv = styled.div`
@@ -58,8 +59,6 @@ const ModalDiv = styled.div`
     height: 0px;
     transition: all 0.5s;
   }
-
-  border-bottom: 2px solid ${darken(0.3, Theme.PRIMARY.GREEN_DARK)};
 `;
 
 const ModalWrapperDiv = styled.div`
