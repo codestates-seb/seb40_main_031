@@ -2,6 +2,7 @@ package com.seb40_main_031.domain.review.mapper;
 
 import com.seb40_main_031.domain.review.dto.ReviewDto;
 import com.seb40_main_031.domain.review.dto.ReviewResponseDto;
+import com.seb40_main_031.domain.review.dto.ReviewToMemberResponse;
 import com.seb40_main_031.domain.review.entity.Review;
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
@@ -18,4 +19,7 @@ public interface ReviewMapper {
     ReviewResponseDto reviewToReviewResponseDto(Review review);
 
     List<ReviewResponseDto> reviewsToReviewResponseDtos(List<Review> reviews);
+
+    @Mapping(source = "review.book.bookId", target = "bookId")
+    ReviewToMemberResponse reviewToReviewMemberResponse(Review review);
 }
