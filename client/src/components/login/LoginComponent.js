@@ -11,7 +11,7 @@ import {
   LineHr,
   CommentDiv,
 } from 'components/login/LoginComponent.style';
-import axios from 'axios';
+import axios from 'api/axios';
 import { LOGIN_URL } from 'api';
 
 const LoginComponent = () => {
@@ -42,9 +42,9 @@ const LoginComponent = () => {
     setPassword(event.target.value);
   };
 
-  const submitHandle = async () => {
+  const submitHandle = () => {
     console.log(`${email}, ${password}`);
-    await axios
+    axios
       .post(LOGIN_URL, {
         email: email,
         password: password,

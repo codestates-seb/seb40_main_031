@@ -69,9 +69,9 @@ const SignUpComponent = () => {
     console.log(password);
   };
 
-  const submitHandle = async () => {
+  const submitHandle = () => {
     console.log(`${nickname}, ${email}, ${password}`);
-    await axios
+    axios
       .post(SIGNUP_URL, {
         nickname: nickname,
         email: email,
