@@ -58,7 +58,7 @@ const BookCarouselDiv = styled(Carousel)`
 `;
 
 const TitleTextDiv = styled.div`
-  padding-left: 0.8rem;
+  padding-left: 4.5rem;
   font-size: 2.5rem;
   font-weight: 900;
   color: ${darken(0.3, Theme.PRIMARY.GREEN_DARK)};
