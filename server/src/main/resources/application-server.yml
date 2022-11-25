@@ -37,7 +37,7 @@ jwt:
   access-token-expiration-minutes: 30
   refresh-token-expiration-minutes: 420
 interpark:
-  key: 
+  key: ${INTERPARK_API_KEY}
 logging:
   level:
     org:
