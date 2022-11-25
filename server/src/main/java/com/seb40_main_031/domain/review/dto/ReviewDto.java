@@ -10,7 +10,8 @@ import lombok.Setter;
 @Setter
 public class ReviewDto {
 
-    private long reviewId;
+    private Long reviewId;
+//    private Long memberId;
     private Member member;
     private Book book;
     private String content;

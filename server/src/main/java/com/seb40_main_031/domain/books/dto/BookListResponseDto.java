@@ -12,19 +12,12 @@ import lombok.Setter;
 public class BookListResponseDto {
 
     private long bookId;
-
     private String title;
-
     private String author;
-
     private long price;
-
     private Long nationalRank;
-
     private Long foreignRank;
-
     private String coverSmallUrl;
-
     private String coverLargeUrl;
 
 }

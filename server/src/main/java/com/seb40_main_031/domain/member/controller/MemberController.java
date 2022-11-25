@@ -7,6 +7,7 @@ import com.seb40_main_031.domain.member.dto.MemberDto;
 import com.seb40_main_031.domain.member.entity.Member;
 import com.seb40_main_031.domain.member.mapper.MemberMapper;
 import com.seb40_main_031.domain.member.service.MemberService;
+//import com.seb40_main_031.domain.review.dto.ReviewToMemberResponse;
 import com.seb40_main_031.domain.review.dto.ReviewToMemberResponse;
 import com.seb40_main_031.domain.review.entity.Review;
 import com.seb40_main_031.domain.review.mapper.ReviewMapper;
@@ -70,6 +71,7 @@ public class MemberController {
     /**
      * 4. 회원 정보 조회
      */
+
     @GetMapping("/users/{member-id}")
     public ResponseEntity getMember(@PathVariable("member-id") @Positive Long memberId){
 
@@ -119,9 +121,6 @@ public class MemberController {
 //                .map(book -> bookMapper.bookToBookResponseDto(book.orElseThrow(() ->
 //                        new BusinessLogicException(ExceptionCode.BOOK_NOT_FOUND))))
 //                .collect(Collectors.toList());
-
-
-
         return new ResponseEntity(new SingleResponseDto<>(response), HttpStatus.OK);
 //        return new ResponseEntity(new ReviewResponse(response, reviewList), HttpStatus.OK);
 //        return new ResponseEntity<>(new MemberInfoResponseDto(response, reviewList, reviewPage), HttpStatus.OK);

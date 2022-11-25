@@ -1,8 +1,8 @@
 package com.seb40_main_031.domain.member.entity;
 
-import com.seb40_main_031.domain.review.dto.ReviewResponseDto;
+
+import com.seb40_main_031.domain.reviewLike.entity.ReviewLike;
 import com.seb40_main_031.global.common.auditing.Auditable;
-import com.seb40_main_031.domain.likes.entity.Likes;
 import com.seb40_main_031.domain.review.entity.Review;
 import lombok.*;
 import org.springframework.util.Assert;
@@ -44,10 +44,10 @@ public class Member extends Auditable {
     private List<String> roles = new ArrayList<>();
 
     @OneToMany(fetch = FetchType.LAZY, mappedBy = "member", cascade = CascadeType.REMOVE)
-    private List<Likes> likes = new ArrayList<>();
+    private List<ReviewLike> likes = new ArrayList<>();
 
-    public void mappingMemberLike(Likes likes) {
-        this.likes.add(likes);
+    public void mappingMemberLike(ReviewLike like) {
+        this.likes.add(like);
     }
 
     @OneToMany(fetch = FetchType.LAZY, mappedBy = "member", cascade = CascadeType.REMOVE)

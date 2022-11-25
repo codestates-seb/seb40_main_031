@@ -2,7 +2,7 @@ package com.seb40_main_031.domain.review.entity;
 
 import com.seb40_main_031.domain.books.entity.Book;
 import com.seb40_main_031.domain.member.entity.Member;
-import com.seb40_main_031.domain.likes.entity.Likes;
+import com.seb40_main_031.domain.reviewLike.entity.ReviewLike;
 
 import lombok.Getter;
 import lombok.Setter;
@@ -22,15 +22,15 @@ public class Review {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
 
-    @Column(name = "review_id")
+    @Column(name = "REVIEW_ID")
     private long reviewId;
 
-    @ManyToOne(fetch = LAZY)
-    @JoinColumn(name = "member_id")
+    @ManyToOne
+    @JoinColumn(name = "MEMBER_ID")
     private Member member;
 
-    @ManyToOne(fetch = LAZY)
-    @JoinColumn(name = "book_id")
+    @ManyToOne
+    @JoinColumn(name = "BOOK_ID")
     private Book book;
 
     @Column(length = 500)
@@ -41,21 +41,21 @@ public class Review {
     @Column(name = "modified_at")
     private LocalDateTime modifiedAt = LocalDateTime.now();
 
-    @Transient // DB column 에 추가하지않는다.
+    @Transient      // DB column 에 추가하지않는다.
     private int point = 10;
 
     @OneToMany(fetch = LAZY, mappedBy = "review", cascade = CascadeType.REMOVE)
-    private List<Likes> likes = new ArrayList<>();
+    private List<ReviewLike> likes = new ArrayList<>();
 
     private long likeCount;
-    public void mappingReviewLike(Likes likes) {
-        this.likes.add(likes);
+    public void mappingReviewLike(ReviewLike like) {
+        this.likes.add(like);
     }
     public void updateLikeCount() {
         this.likeCount = this.likes.size();
     }
-    public void discountLike(Likes likes) {
-        this.likes.remove(likes);
+    public void discountLike(ReviewLike like) {
+        this.likes.remove(like);
         this.likeCount = this.likes.size();
 
     }

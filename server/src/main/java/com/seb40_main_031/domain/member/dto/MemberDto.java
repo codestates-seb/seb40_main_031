@@ -3,7 +3,7 @@ package com.seb40_main_031.domain.member.dto;
 import com.seb40_main_031.domain.books.dto.BookToMemberResponse;
 import com.seb40_main_031.domain.member.entity.Member;
 import com.seb40_main_031.domain.review.dto.ReviewResponseDto;
-import com.seb40_main_031.domain.review.dto.ReviewToMemberResponse;
+//import com.seb40_main_031.domain.review.dto.ReviewToMemberResponse;
 import com.seb40_main_031.domain.review.entity.Review;
 import com.seb40_main_031.global.common.dto.PageInfo;
 import lombok.AllArgsConstructor;

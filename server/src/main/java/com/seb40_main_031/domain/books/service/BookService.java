@@ -1,7 +1,5 @@
 package com.seb40_main_031.domain.books.service;
 
-import com.seb40_main_031.domain.books.Key;
-import com.seb40_main_031.domain.books.mapper.BookMapper;
 import com.seb40_main_031.domain.books.repository.BookRepository;
 import com.seb40_main_031.domain.books.entity.Book;
 import com.seb40_main_031.global.error.exception.BusinessLogicException;
@@ -16,17 +14,11 @@ import java.util.Optional;
 @Service
 public class BookService {
     private final BookRepository bookRepository;
-    private final BookMapper bookMapper;
 
-    private final Key key;
-    public BookService(BookRepository bookRepository, BookMapper bookMapper,
-                       Key key) {
+    public BookService(BookRepository bookRepository) {
         this.bookRepository = bookRepository;
-        this.bookMapper = bookMapper;
-        this.key = key;
     }
 
-    // 책 상세페이지 조회
     public Book findBook(long bookId) {
         Book book = findVerifiedBook(bookId);
         book.updateReviewCount();
@@ -36,24 +28,20 @@ public class BookService {
     private Book findVerifiedBook(long bookId){
         Optional<Book> optionalBook =
                 bookRepository.findByBookId(bookId);
-        Book findBook = optionalBook.orElseThrow(()->
-                new BusinessLogicException(ExceptionCode.BOOK_NOT_FOUND));
 
-        return findBook;
+        return optionalBook.orElseThrow(()->
+                new BusinessLogicException(ExceptionCode.BOOK_NOT_FOUND));
     }
 
 
-    // 베스트 셀러 찾기
     public List<Book> findAllBestSeller(long categoryId){
         List<Book> findBooks = new ArrayList<>();
         if(categoryId == 100) findBooks = bookRepository.findAllByNationalRank();
         if(categoryId == 200) findBooks = bookRepository.findAllByForeignRank();
 
-//        List<Book> books = bookMapper.booksToBookDto(findBooks);
         return findBooks;
     }
 
-    // 신간 찾기
     public List<Book> findAllNewBook(long categoryId) {
         // 새로운 book list 생성
         List<Book> findBooks = new ArrayList<>();
@@ -64,8 +52,6 @@ public class BookService {
         return findBooks;
     }
 
-
-    // 타이틀로만 찾기..
 
     public Page<Book> searchBooks(String type, String keyword, int page, int size) {
         Pageable pageable = PageRequest.of(page, size, Sort.by("bookId").descending());

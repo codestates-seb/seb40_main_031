@@ -28,40 +28,45 @@ public class BookController {
         this.callBookApi = callBookApi;
     }
 
-    // 책 상세페이지 조회
-    @GetMapping("/{book-id}")
-    public ResponseEntity getBook(@PathVariable("book-id") long bookId){
+    /**
+     * 1. 책 상세 페이지 조회
+     */
+    @GetMapping("/{bookId}")
+    public ResponseEntity getBook(@PathVariable Long bookId){
         Book book = bookService.findBook(bookId);
 
         return new ResponseEntity<>(bookMapper.bookToBookResponseDto(book)
                 ,HttpStatus.OK);
     }
 
-    // bestSeller 조회
-    @GetMapping("/bestSeller/{category-id}")
-    public ResponseEntity getBestSeller(@PathVariable("category-id") long categoryId){
+    /**
+     * 2. 베스트셀러 전체 조회
+     */
+    @GetMapping("/bestSeller/{categoryId}")
+    public ResponseEntity getBestSeller(@PathVariable Long categoryId){
         List<Book> books = bookService.findAllBestSeller(categoryId);
 
-        return new ResponseEntity<>(bookMapper.booksToBookListResponseDto(books), HttpStatus.OK);
+        return new ResponseEntity<>(bookMapper.booksToBookListResponseDto(books)
+                ,HttpStatus.OK);
     }
 
-    // 신간 조회
+    /**
+     * 3. 신간 전체 조회
+     */
     @GetMapping("/new-book/{categoryId}")
-    public ResponseEntity getNewBook(@PathVariable long categoryId){
+    public ResponseEntity getNewBook(@PathVariable Long categoryId){
         List<Book> books = bookService.findAllNewBook(categoryId);
 
-        return new ResponseEntity<>(bookMapper.booksToBookListResponseDto(books),HttpStatus.OK);
+        return new ResponseEntity<>(bookMapper.booksToBookListResponseDto(books)
+                ,HttpStatus.OK);
     }
 
-    // 카테고리 조회 ? 책 검색과 동일..?
-
-
-
-    // 책 검색 1. 책 제목, 2. 작가
-
+    /**
+     * 4. title , author 타입 검색
+     */
     @GetMapping("/search")
     public ResponseEntity searchBook(@RequestParam("type") String type,
-                                 @RequestParam("keyword") String keyword,
+                                     @RequestParam("keyword") String keyword,
                                      @RequestParam("page") int page,
                                      @RequestParam("size") int size){
 
@@ -69,13 +74,18 @@ public class BookController {
         List<Book> book = pageBook.getContent();
 
         return new ResponseEntity<>(
-                new MultiResponseDto<>(bookMapper.booksToBookResponseDto(book), pageBook),HttpStatus.OK);
+                new MultiResponseDto<>(bookMapper.booksToBookResponseDto(book), pageBook)
+                ,HttpStatus.OK);
     }
 
 
 
-    // cron = 초 분 시 일 월 년
-    @Scheduled(cron = "0 30 4 1 * *") // 매월 1일 4시 30분에 업데이트
+    /**
+     * 5. 신간, 베스트셀러 API 스케쥴러
+     *
+     * cron = 초 분 시 일 월 년
+     */
+    @Scheduled(cron = "0 30 4 1 * *")       // 매월 1일 4시 30분에 업데이트
     public void updateBooks(){
         callBookApi.saveBestSeller();
         callBookApi.saveNewBook();
