@@ -13,7 +13,7 @@ const NavWrapperDiv = styled.div`
 
   /* background-color: ${(props) =>
     props.backgoudColor || Theme.PRIMARY.GREEN}; */
-  background-color: orange;
+  background-color: teal;
   border-bottom: 2px solid ${darken(0.3, Theme.PRIMARY.GREEN_DARK)};
 `;
 
