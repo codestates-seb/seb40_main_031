@@ -1,18 +1,29 @@
 import styled from 'styled-components';
 import { Theme } from 'style';
 
+const ModalBackground = styled.div`
+  position: fixed;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  background: rgba(0, 0, 0, 0.8);
+`;
 const ContainerDiv = styled.div`
   display: flex;
   flex-direction: column;
-  width: 70vw;
-  max-width: 250px;
-  min-height: 250px;
-  height: 60vh;
+  width: 700px;
+  height: 700px;
   border: 1px solid ${Theme.PRIMARY.BLACK};
   border-radius: 10px;
-
   padding: 1%;
   margin-left: 10px;
+  z-index: 999;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: #fff;
 `;
 const HeaderDiv = styled.div`
   display: flex;
@@ -26,7 +37,7 @@ const HeaderDiv = styled.div`
 
 const TitleSpan = styled.span`
   font-weight: bold;
-  font-size: 15px;
+  font-size: 40px;
   color: ${Theme.PRIMARY.GREEN_DARK};
 `;
 
@@ -42,8 +53,20 @@ const ReviewTextarea = styled.textarea`
   padding: 0.5rem 1rem;
   border: none;
   resize: none;
-  font-size: 10px;
+  font-size: 30px;
 
+  &::-webkit-scrollbar {
+    width: 6px;
+    border-radius: 10px;
+  }
+  &::-webkit-scrollbar-thumb {
+    border-radius: 10px;
+    background-color: ${Theme.PRIMARY.GREEN_DARK};
+  }
+  &::-webkit-scrollbar-track {
+    background-color: gray;
+    border-radius: 10px;
+  }
   :focus {
     outline: none;
   }
@@ -55,12 +78,13 @@ const FooterDiv = styled.div`
   justify-content: flex-end;
   height: 10%;
   min-height: 15px;
-
+  font-size: 30px;
   padding-left: 0.5rem;
   padding-right: 0.5rem;
 `;
 
 export {
+  ModalBackground,
   ContainerDiv,
   HeaderDiv,
   TitleSpan,

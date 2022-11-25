@@ -156,12 +156,12 @@ const BookPrice = styled.div`
 `;
 
 const ReviewContentTemplate = styled.div`
-  width: 1000px;
-  height: 450px;
+  /* width: 1000px;
+  height: 450px; */
   border-radius: 4px;
 `;
 
-const Review = styled.div`
+const Reviews = styled.div`
   @media screen and (max-width: 950px) {
     display: flex;
     justify-content: center;
@@ -173,6 +173,7 @@ const Review = styled.div`
   margin-bottom: 30px;
   font-weight: bold;
   color: ${darken(0.3, Theme.PRIMARY.GREEN_DARK)};
+  cursor: pointer;
 `;
 
 const ReviewClick = styled.div`
@@ -243,7 +244,7 @@ export {
   BookButton,
   BookPrice,
   ReviewContentTemplate,
-  Review,
+  Reviews,
   ReviewClick,
   ReviewiIconTemplate,
   ReviewCount,
