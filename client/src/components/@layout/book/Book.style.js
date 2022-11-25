@@ -12,20 +12,21 @@ const Title = styled.div`
   display: flex;
   font-weight: bold;
   font-size: 25px;
+  margin-left: 3.5rem;
 `;
 
 const Bookbox = styled.div`
-  padding: 20px;
+  /* padding: 20px; */
   display: grid;
-  grid-template-columns: repeat(5, minmax(0, auto));
-  max-width: 900px;
-  @media screen and (max-width: 810px) {
-    max-width: 100%;
-    grid-template-columns: repeat(4, minmax(0, auto));
-  }
-  @media screen and (max-width: 660px) {
+  grid-template-columns: repeat(4, minmax(0, auto));
+  max-width: 1000px;
+  @media screen and (max-width: 1000px) {
     max-width: 100%;
     grid-template-columns: repeat(3, minmax(0, auto));
+  }
+  @media screen and (max-width: 800px) {
+    max-width: 100%;
+    grid-template-columns: repeat(2, minmax(0, auto));
   }
   span {
     margin-bottom: 30px;
