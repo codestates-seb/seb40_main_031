@@ -1,6 +1,7 @@
 import styled from 'styled-components';
 import { Theme } from 'style';
 import { darken } from 'polished';
+import { Button } from 'components';
 
 const WrapperDiv = styled.div`
   display: flex;
@@ -109,6 +110,20 @@ const CommentDiv = styled.div`
   font-size: 0.9rem;
 `;
 
+const LoginButton = styled(Button)`
+  &.unvaild {
+    background-color: #ccc;
+    color: #eee;
+    pointer-events: none;
+
+    &:active {
+      background-color: #ccc;
+      color: #eee;
+      box-shadow: inset 1px 1px 0px 0px hsl(0deg 0% 100% / 70%);
+    }
+  }
+`;
+
 export {
   WrapperDiv,
   LogoImg,
@@ -119,4 +134,5 @@ export {
   OAuthSvg,
   LineHr,
   CommentDiv,
+  LoginButton,
 };

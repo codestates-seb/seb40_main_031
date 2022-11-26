@@ -1,6 +1,7 @@
 import styled from 'styled-components';
 import { Theme } from 'style';
 import { darken } from 'polished';
+import { Button } from 'components';
 
 const Container = styled.div`
   display: flex;
@@ -92,6 +93,21 @@ const CommentDiv = styled.div`
   width: 200px;
   font-size: 0.9rem;
 `;
+
+const SignupButton = styled(Button)`
+  &.unvaild {
+    background-color: #ccc;
+    color: #eee;
+    pointer-events: none;
+
+    &:active {
+      background-color: #ccc;
+      color: #eee;
+      box-shadow: inset 1px 1px 0px 0px hsl(0deg 0% 100% / 70%);
+    }
+  }
+`;
+
 export {
   Container,
   SignUpInput,
@@ -101,4 +117,5 @@ export {
   LineHr,
   GoogleSvg,
   CommentDiv,
+  SignupButton,
 };

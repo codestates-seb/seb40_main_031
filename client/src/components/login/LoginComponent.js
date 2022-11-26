@@ -10,6 +10,7 @@ import {
   OAuthSvg,
   LineHr,
   CommentDiv,
+  LoginButton,
 } from 'components/login/LoginComponent.style';
 import axios from 'axios';
 import { LOGIN_URL } from 'api';
@@ -80,12 +81,13 @@ const LoginComponent = () => {
         value={password}
         onChange={handlePassword}
       ></LoginInput>
-      <Button
+      <LoginButton
+        className={!isEmail ? 'unvaild' : ''}
         text='로그인'
         width='150px'
         height='35px'
         onClick={submitHandle}
-      ></Button>
+      ></LoginButton>
       <LinkToSignUpDiv>
         계정이 없으신가요?
         <LinkA href={ROUTES.SIGNUP.path}>회원가입</LinkA>

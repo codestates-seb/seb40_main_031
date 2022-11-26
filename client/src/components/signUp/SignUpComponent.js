@@ -9,6 +9,7 @@ import {
   LineHr,
   GoogleSvg,
   CommentDiv,
+  SignupButton,
 } from 'components/signUp/SignUpComponent.style';
 import axios from 'api/axios';
 import { SIGNUP_URL } from 'api';
@@ -126,12 +127,13 @@ const SignUpComponent = () => {
           비밀번호는 숫자, 소문자, 특수문자를 포함하여 8글자 이상이어야 합니다.
         </CommentDiv>
       )}
-      <Button
+      <SignupButton
+        className={!isEmail ? 'unvaild' : ''}
         text='회원가입'
         width='150px'
         height='35px'
         onClick={submitHandle}
-      ></Button>
+      ></SignupButton>
       <SignDiv>
         이미 가입하셨나요? <LinkA href={ROUTES.LOGIN.path}>로그인</LinkA>
       </SignDiv>
