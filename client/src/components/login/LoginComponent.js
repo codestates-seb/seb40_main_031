@@ -13,6 +13,7 @@ import {
 } from 'components/login/LoginComponent.style';
 import axios from 'axios';
 import { LOGIN_URL } from 'api';
+import { ROUTES } from 'constants';
 
 const LoginComponent = () => {
   const [email, setEmail] = useState('');
@@ -87,7 +88,7 @@ const LoginComponent = () => {
       ></Button>
       <LinkToSignUpDiv>
         계정이 없으신가요?
-        <LinkA href='#'>회원가입</LinkA>
+        <LinkA href={ROUTES.SIGNUP.path}>회원가입</LinkA>
       </LinkToSignUpDiv>
       <LineHr />
       <OAuthListDiv>
