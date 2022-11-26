@@ -79,8 +79,12 @@ const LoginComponent = () => {
         value={password}
         onChange={handlePassword}
       ></LoginInput>
-      <Button text='로그인' width='150px' height='35px'></Button>
-      <button onClick={submitHandle}>로그인</button>
+      <Button
+        text='로그인'
+        width='150px'
+        height='35px'
+        onClick={submitHandle}
+      ></Button>
       <LinkToSignUpDiv>
         계정이 없으신가요?
         <LinkA href='#'>회원가입</LinkA>
