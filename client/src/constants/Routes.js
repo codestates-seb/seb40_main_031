@@ -33,6 +33,10 @@ const ROUTES = Object.freeze({
     path: '/userpage',
     name: 'UserPage',
   },
+  NOTICE: {
+    path: '/notice',
+    name: 'Notice',
+  },
 });
 
 export default ROUTES;
