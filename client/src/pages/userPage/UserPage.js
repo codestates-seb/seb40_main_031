@@ -14,32 +14,36 @@ import {
 } from './UserPage.style';
 
 const UserPage = () => {
-  // const [user, setUser] = useState(null);
-  // const [loading, setLoding] = useState(false);
-  // const [error, setError] = useState(null);
+  const [user, setUser] = useState(null);
+  const [loading, setLoding] = useState(false);
+  const [error, setError] = useState(null);
 
-  // const fetchUser = async () => {
-  //   try {
-  //     setError(null);
-  //     setUser(null);
-  //     setLoding(true);
-  //     const resposne = await axios.get(
-  //       'https://e438-222-110-187-162.jp.ngrok.io/members/users',
-  //     );
-  //     setUser(resposne.data);
-  //     console.log(resposne.data.data);
-  //   } catch (e) {
-  //     setError(e);
-  //   }
-  //   setLoding(false);
-  // };
+  const fetchUser = async () => {
+    try {
+      setError(null);
+      setUser(null);
+      setLoding(true);
+      const resposne = await axios.get(
+        'https://e438-222-110-187-162.jp.ngrok.io/members/users',
+      );
+      setUser(resposne.data);
+      console.log(resposne.data.data);
+    } catch (e) {
+      setError(e);
+    }
+    setLoding(false);
+  };
 
-  // useEffect(() => {
-  //   fetchUser();
-  // }, []);
+  useEffect(() => {
+    fetchUser();
+  }, []);
 
-  // if (loading) return <div>loading..</div>;
-  // if (error) return <div>Erorr !</div>;
+  if (loading) return <div>loading..</div>;
+  if (error) return <div>Erorr !</div>;
+
+  // fetch('/userpage')
+  //   .then((res) => res.json())
+  //   .then((data) => console.log(data));
 
   return (
     <Wrap>
