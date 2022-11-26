@@ -40,7 +40,7 @@ const BookDetail = () => {
   const [modal, setModal] = useState(false);
 
   const modalHandler = () => {
-    setModal(!modal);
+    setModal(true);
   };
   return (
     <div>
@@ -75,7 +75,7 @@ const BookDetail = () => {
         <ReviewContent>
           <ReviewContentTemplate>
             <Reviews onClick={modalHandler}>리뷰 달기</Reviews>
-            {modal === true ? <ModalReview /> : null}
+            {modal && <ModalReview setModal={setModal} />}
             <ReviewClick>
               <ReviewiIconTemplate>
                 <ReviewIcon>

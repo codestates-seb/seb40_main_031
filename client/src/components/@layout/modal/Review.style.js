@@ -10,15 +10,17 @@ const ModalBackground = styled.div`
   background: rgba(0, 0, 0, 0.8);
 `;
 const ContainerDiv = styled.div`
+  @media screen and (max-width: 730px) {
+    width: 95vw;
+  }
   display: flex;
   flex-direction: column;
   width: 700px;
-  height: 700px;
+  height: 500px;
   border: 1px solid ${Theme.PRIMARY.BLACK};
   border-radius: 10px;
   padding: 1%;
-  margin-left: 10px;
-  z-index: 999;
+  z-index: 1;
   position: absolute;
   top: 50%;
   left: 50%;
