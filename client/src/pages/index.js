@@ -2,6 +2,7 @@ import React from 'react';
 
 import ROUTES from 'constants/Routes';
 import Layout from 'pages/pagesLayout/Layout';
+import LayoutWithoutFooter from 'pages/pagesLayout/LayoutWithoutFooter';
 
 import Main from 'pages/main/Main';
 import Login from 'pages/login/Login';
@@ -20,11 +21,6 @@ const PAGES = [
         name: ROUTES.INDEX.name,
         path: ROUTES.INDEX.path,
         element: <Main />,
-      },
-      {
-        name: ROUTES.LOGIN.name,
-        path: ROUTES.LOGIN.path,
-        element: <Login />,
       },
       {
         name: ROUTES.FAQ.name,
@@ -46,10 +42,20 @@ const PAGES = [
         path: ROUTES.SEARCHDETAIL.path,
         element: <SearchDetail />,
       },
+    ],
+  },
+  {
+    element: <LayoutWithoutFooter />,
+    children: [
       {
         name: ROUTES.SIGNUP.name,
         path: ROUTES.SIGNUP.path,
         element: <SignUp />,
+      },
+      {
+        name: ROUTES.LOGIN.name,
+        path: ROUTES.LOGIN.path,
+        element: <Login />,
       },
     ],
   },
