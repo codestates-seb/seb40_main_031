@@ -8,21 +8,33 @@ import 'swiper/components/navigation/navigation.min.css';
 import 'swiper/components/pagination/pagination.min.css';
 
 // import required modules
-import { Navigation } from 'swiper';
+import SwiperCore, { Navigation, Autoplay } from 'swiper';
 import Dummybooks from 'components/@layout/book/Dummybooks';
 import { List } from 'components/@layout/swiper/Swiper.style';
 import { Title } from 'components/@layout/book/Book.style';
+import axios from 'axios';
+import { BESTBOOK_URL } from 'api';
+
+SwiperCore.use([Autoplay, Navigation]);
 
 const BookPage = ({ title }) => {
+  // const getBestBook = async () => {
+  //   const res = await axios.get(BESTBOOK_URL);
+  //   return res.data;
+  // };
+
   return (
     <List>
       <Title>{title}</Title>
       <Swiper
         slidesPerView={4}
         spaceBetween={30}
+        autoplay={{
+          delay: 2000,
+          disableOnInteraction: false,
+        }}
+        speed={5000}
         slidesPerGroup={4}
-        // loop={true}
-        loopFillGroupWithBlank={true}
         navigation={true}
         breakpoints={{
           500: {
@@ -38,7 +50,6 @@ const BookPage = ({ title }) => {
             slidesPerView: 4,
           },
         }}
-        modules={[Navigation]}
         className='mySwiper'
       >
         {Dummybooks.map((book) => (
