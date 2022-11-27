@@ -54,7 +54,10 @@
     "eslint-plugin-jsx-a11y": "^6.6.1",
     "eslint-plugin-prettier": "^4.2.1",
     "eslint-plugin-react": "^7.31.10",
-    "eslint-plugin-react-hooks": "^4.6.0"
+    "eslint-plugin-react-hooks": "^4.6.0",
+    "msw": "^0.49.0"
   },
-  "proxy": "http://localhost:8080"
+  "msw": {
+    "workerDirectory": "public"
+  }
 }

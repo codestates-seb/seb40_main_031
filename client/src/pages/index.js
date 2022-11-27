@@ -11,6 +11,8 @@ import BookDetail from 'pages/bookDetail/BookDetail';
 import ReviewDetail from 'pages/reviewDetail/ReviewDetail';
 import SearchDetail from 'pages/searchDetail/SearchDetail';
 import SignUp from 'pages/signUp/SignUp';
+import UserPage from './userPage/UserPage';
+import Notice from './notice/Notice';
 
 // Layout 하위로 페이지 라우팅
 const PAGES = [
@@ -41,6 +43,16 @@ const PAGES = [
         name: ROUTES.SEARCHDETAIL.name,
         path: ROUTES.SEARCHDETAIL.path,
         element: <SearchDetail />,
+      },
+      {
+        name: ROUTES.USERPAGE.name,
+        path: ROUTES.USERPAGE.path,
+        element: <UserPage />,
+      },
+      {
+        name: ROUTES.NOTICE.name,
+        path: ROUTES.NOTICE.path,
+        element: <Notice />,
       },
     ],
   },

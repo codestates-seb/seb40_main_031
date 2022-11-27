@@ -29,6 +29,14 @@ const ROUTES = Object.freeze({
     path: '/signup',
     name: 'SignUp',
   },
+  USERPAGE: {
+    path: '/userpage',
+    name: 'UserPage',
+  },
+  NOTICE: {
+    path: '/notice',
+    name: 'Notice',
+  },
 });
 
 export default ROUTES;
