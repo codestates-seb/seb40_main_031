@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 import { Theme } from 'style';
-import { darken } from 'polished';
+import { darken, lighten } from 'polished';
 
 const NavWrapperDiv = styled.div`
   display: flex;
@@ -10,8 +10,7 @@ const NavWrapperDiv = styled.div`
   z-index: 10;
   width: 100%;
   position: fixed;
-
-  background-color: ${(props) => props.backgoudColor || Theme.PRIMARY.GREEN};
+  background-color: ${Theme.PRIMARY.GREEN};
   border-bottom: 2px solid ${darken(0.3, Theme.PRIMARY.GREEN_DARK)};
 `;
 
@@ -74,7 +73,11 @@ const ModalListA = styled.a`
   font-size: 1.5rem;
   padding-bottom: 1rem;
   text-decoration: none;
-  color: ${darken(0.3, Theme.PRIMARY.GREEN_DARK)};
+  /* color: ${lighten(0.2, Theme.PRIMARY.GREEN_DARK)}; */
+  color: ${lighten(0.2, '#febd59')};
+  &:hover {
+    color: ${darken(0.2, '#febd59')};
+  }
 `;
 
 export {
