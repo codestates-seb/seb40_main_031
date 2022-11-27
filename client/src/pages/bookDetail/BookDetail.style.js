@@ -6,7 +6,10 @@ import { darken } from 'polished';
 
 const Template = styled.div`
   @media screen and (max-width: 950px) {
-    height: 200vh;
+
+    height: 100%;
+
+
   }
   width: 100%;
   max-width: 1200px;
@@ -120,6 +123,9 @@ const BookExplain = styled.div`
     width: 65vw;
   }
   height: 275px;
+
+  padding: 1rem;
+
   border: 1px solid darkgray;
   font-size: 25px;
   overflow: auto;
@@ -223,7 +229,9 @@ const ReviewMore = styled.div`
 
 const ReviewComponentTemplate = styled.div`
   width: 1000px;
-  height: 320px;
+
+  height: 100%;
+
 `;
 
 export {

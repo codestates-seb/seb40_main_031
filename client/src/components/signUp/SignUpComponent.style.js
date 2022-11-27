@@ -1,13 +1,17 @@
 import styled from 'styled-components';
 import { Theme } from 'style';
-import { darken } from 'polished';
+
+import { darken, lighten } from 'polished';
+
 import { Button } from 'components';
 
 const Container = styled.div`
   display: flex;
   align-items: center;
   flex-direction: column;
-  background-color: ${Theme.PRIMARY.GREEN_LIGHT};
+
+  background-color: ${lighten(0.3, Theme.PRIMARY.GREEN_DARK)};
+
   width: 300px;
   height: auto;
   padding: 10px;

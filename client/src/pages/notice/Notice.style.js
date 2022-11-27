@@ -2,16 +2,17 @@ import styled from 'styled-components';
 import { Theme } from 'style';
 
 const Wrap = styled.div`
-  width: 67%;
-  height: 150vh;
-  margin: 0 auto;
+
+  width: 90%;
+  max-width: 1200px;
+  height: 100%;
+  margin: 50px auto;
 `;
 const Title = styled.div`
   font-size: 2em;
-  padding: 2em;
-  margin-top: 1.5em;
-  margin-left: 12%;
   margin-bottom: 1.5em;
+  text-align: center;
+
 `;
 
 const TabContainer = styled.div`
