@@ -27,6 +27,7 @@ const LogoImg = styled.img`
   width: 190px;
   margin-top: 30px;
   margin-bottom: 30px;
+  cursor: pointer;
 `;
 
 const LoginInput = styled.input`

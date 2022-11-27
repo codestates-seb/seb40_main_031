@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import {
   WrapperDiv,
   LogoImg,
@@ -23,6 +24,8 @@ const LoginComponent = () => {
 
   const [isEmail, setIsEmail] = useState(false);
   const [isSubmit, setIsSubmit] = useState(false);
+
+  const navigate = useNavigate();
 
   const check = (data, type) => {
     if (type === 'email') {
@@ -78,13 +81,18 @@ const LoginComponent = () => {
       : setIsSubmit(false);
   };
 
+  const clickHandler = () => {
+    navigate('/');
+  };
+
   useEffect(() => {
     checkButton();
+    // eslint-disable-next-line
   }, [isEmail, password]);
 
   return (
     <WrapperDiv>
-      <LogoImg src='/img/imgLogo.svg' />
+      <LogoImg src='/img/imgLogo.svg' onClick={() => clickHandler()} />
       <LoginInput
         placeholder='이메일'
         value={email}

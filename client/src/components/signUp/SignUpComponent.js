@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import {
   Container,
   SignUpInput,
@@ -29,6 +30,8 @@ const SignUpComponent = () => {
   const [isPassword, setIsPassword] = useState(false);
 
   const [isSubmit, setIsSubmit] = useState(false);
+
+  const navigate = useNavigate();
 
   const check = (data, type) => {
     if (type === 'nickname') {
@@ -118,13 +121,18 @@ const SignUpComponent = () => {
       : setIsSubmit(false);
   };
 
+  const clickHandler = () => {
+    navigate('/');
+  };
+
   useEffect(() => {
     checkButton();
+    // eslint-disable-next-line
   }, [isNickname, isEmail, isPassword]);
 
   return (
     <Container>
-      <LogoImg src='/img/imgLogo.svg' />
+      <LogoImg src='/img/imgLogo.svg' onClick={() => clickHandler()} />
       <SignUpInput
         placeholder='닉네임'
         value={nickname}
