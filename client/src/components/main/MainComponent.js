@@ -75,7 +75,7 @@ const MainComponent = () => {
   useEffect(() => {
     outputMessage();
     // getWeather();
-  }, []);
+  });
 
   const outputMessage = () => {
     hour >= 0 && hour < 6
