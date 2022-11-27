@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 import { Theme } from 'style';
-import { darken } from 'polished';
+import { lighten, darken } from 'polished';
 import { Button } from 'components';
 
 const WrapperDiv = styled.div`
@@ -13,7 +13,7 @@ const WrapperDiv = styled.div`
   height: auto;
 
   border-radius: 5%;
-  background-color: ${Theme.PRIMARY.GREEN_LIGHT};
+  background-color: ${lighten(0.3, Theme.PRIMARY.GREEN_DARK)};
 
   > Button {
     margin-top: 50px;
