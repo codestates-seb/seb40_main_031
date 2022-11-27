@@ -1,5 +1,4 @@
-import React, { useState } from 'react';
-import { Button } from 'components/@layout';
+import React, { useEffect, useState } from 'react';
 import {
   WrapperDiv,
   LogoImg,
@@ -20,7 +19,10 @@ const LoginComponent = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
 
+  const [emailError, setEmailError] = useState('');
+
   const [isEmail, setIsEmail] = useState(false);
+  const [isSubmit, setIsSubmit] = useState(false);
 
   const check = (data, type) => {
     if (type === 'email') {
@@ -34,8 +36,10 @@ const LoginComponent = () => {
   const handleEmail = (event) => {
     if (check(event.target.value, 'email')) {
       setIsEmail(true);
+      setEmailError('');
     } else {
       setIsEmail(false);
+      setEmailError('올바른 이메일을 입력해주세요.');
     }
     setEmail(event.target.value);
   };
@@ -65,6 +69,19 @@ const LoginComponent = () => {
       });
   };
 
+  const checkButton = () => {
+    //isemail이 false면 비활성화(false), isemail이 true면 활성화(true)
+    isEmail
+      ? password !== ''
+        ? setIsSubmit(true)
+        : setIsSubmit(false)
+      : setIsSubmit(false);
+  };
+
+  useEffect(() => {
+    checkButton();
+  }, [isEmail, password]);
+
   return (
     <WrapperDiv>
       <LogoImg src='/img/imgLogo.svg' />
@@ -72,9 +89,9 @@ const LoginComponent = () => {
         placeholder='이메일'
         value={email}
         onChange={handleEmail}
-        style={isEmail ? {} : { border: '1px solid red' }}
+        style={emailError === '' ? {} : { border: '1px solid red' }}
       ></LoginInput>
-      {isEmail ? null : <CommentDiv>올바른 이메일을 입력해주세요.</CommentDiv>}
+      <CommentDiv>{emailError}</CommentDiv>
       <LoginInput
         placeholder='비밀번호'
         type='password'
@@ -82,7 +99,7 @@ const LoginComponent = () => {
         onChange={handlePassword}
       ></LoginInput>
       <LoginButton
-        className={!isEmail ? 'unvaild' : ''}
+        className={!isSubmit ? 'unvaild' : ''}
         text='로그인'
         width='150px'
         height='35px'
