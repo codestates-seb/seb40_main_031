@@ -1,5 +1,6 @@
 import styled from 'styled-components';
 import { Theme } from 'style';
+
 import { darken, lighten, margin } from 'polished';
 
 const Wrap = styled.div`
@@ -12,12 +13,16 @@ const Wrap = styled.div`
   left: 0;
 
   padding: 2rem;
+
+
+
 `;
 
 const LayoutContainer = styled.div`
   @media screen {
     max-width: 1320px;
     margin: auto;
+
     height: 100%;
   }
   li {

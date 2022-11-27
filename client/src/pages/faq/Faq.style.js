@@ -2,6 +2,7 @@ import styled from 'styled-components';
 import { Theme } from 'style';
 
 const Wrap = styled.div`
+
   width: 90%;
   height: 100%;
   margin: 50px auto;
@@ -10,6 +11,7 @@ const Title = styled.div`
   font-size: 2em;
   margin-bottom: 1.5em;
   text-align: center;
+
 `;
 
 const TabContainer = styled.div`

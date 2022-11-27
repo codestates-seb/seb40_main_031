@@ -10,7 +10,9 @@ const WholeWrapperDiv = styled.div`
 
 const ContentDiv = styled.div`
   height: 100%;
+
   padding-bottom: 250px;
+
 `;
 
 const MainDiv = styled.div`

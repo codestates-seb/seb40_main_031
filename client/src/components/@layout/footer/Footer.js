@@ -1,4 +1,5 @@
 import React from 'react';
+
 import {
   Wrap,
   LayoutContainer,
@@ -16,9 +17,11 @@ import {
 import { FaGithub, FaInstagramSquare } from 'react-icons/fa';
 import { RiKakaoTalkFill } from 'react-icons/ri';
 
+
 const Footer = () => {
   return (
     <Wrap>
+
       <LayoutContainer>
         <UpperContainerDiv>
           <ul>
@@ -69,6 +72,8 @@ const Footer = () => {
           </CopyrightCSDiv>
         </LowerContainerDiv>
       </LayoutContainer>
+
+
     </Wrap>
   );
 };
