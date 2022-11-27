@@ -11,6 +11,7 @@ import {
   ListDiv,
 } from 'components/main/MainComponent.style';
 import Book from '../@layout/book/Book';
+import BookPage from 'components/@layout/swiper/Swiper';
 // import axios from 'axios';
 
 // import dfs_xy_conv from 'components/main/NxNyFunction'; 위치정보 관련
@@ -74,7 +75,7 @@ const MainComponent = () => {
   useEffect(() => {
     outputMessage();
     // getWeather();
-  }, []);
+  });
 
   const outputMessage = () => {
     hour >= 0 && hour < 6
@@ -109,17 +110,17 @@ const MainComponent = () => {
       <ListContentsDiv>
         <TitleTextDiv>국내도서</TitleTextDiv>
         <ListDiv>
-          <Book title='지금 인기 최고'></Book>
+          <BookPage title='지금 인기 최고'></BookPage>
         </ListDiv>
         <ListDiv>
-          <Book title='방금 만나러 왔어요'></Book>
+          <BookPage title='방금 만나러 왔어요'></BookPage>
         </ListDiv>
         <TitleTextDiv>해외도서</TitleTextDiv>
         <ListDiv>
-          <Book title='지금 인기 최고'></Book>
+          <BookPage title='지금 인기 최고'></BookPage>
         </ListDiv>
         <ListDiv>
-          <Book title='방금 만나러 왔어요'></Book>
+          <BookPage title='방금 만나러 왔어요'></BookPage>
         </ListDiv>
       </ListContentsDiv>
     </WrapperDiv>

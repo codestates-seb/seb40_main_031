@@ -3,8 +3,7 @@ import { Theme } from 'style';
 import { darken } from 'polished';
 
 const ContainerDiv = styled.div`
-  margin-left: 3rem;
-  width: 90%;
+  width: 100%;
 `;
 
 const TabDiv = styled.div`

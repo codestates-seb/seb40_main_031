@@ -13,6 +13,7 @@ import { useRecoilValue } from 'recoil';
 const Tab = () => {
   const [currentTab, setCurrentTab] = useState(0);
   const keyword = useRecoilValue(bookSearchKeywordState);
+  const [fixedKeyword] = useState(keyword);
 
   const menuArr = [
     { name: '국내도서', content: <DomesticCategory /> },
@@ -42,7 +43,7 @@ const Tab = () => {
       </TabDiv>
 
       <h1>{menuArr[currentTab].content}</h1>
-      <ResultDiv>``{`${keyword}`}`` 검색한 결과입니다</ResultDiv>
+      <ResultDiv>``{`${fixedKeyword}`}`` 검색한 결과입니다</ResultDiv>
       {/* <ResultDiv>``{keyword}`` 검색한 결과입니다</ResultDiv> // 둘 다 같은 내용을 출력함*/}
     </ContainerDiv>
   );

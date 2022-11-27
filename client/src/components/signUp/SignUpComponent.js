@@ -1,5 +1,5 @@
-import React, { useState } from 'react';
-import { Button } from 'components/@layout';
+import React, { useEffect, useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import {
   Container,
   SignUpInput,
@@ -9,19 +9,29 @@ import {
   LineHr,
   GoogleSvg,
   CommentDiv,
+  SignupButton,
 } from 'components/signUp/SignUpComponent.style';
 import axios from 'api/axios';
 import { SIGNUP_URL } from 'api';
+import { ROUTES } from 'constants';
 
 const SignUpComponent = () => {
   const [nickname, setNickname] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
 
+  const [nicknameError, setNicknameError] = useState('');
+  const [emailError, setEmailError] = useState('');
+  const [passwordError, setPasswordError] = useState('');
+
   //유효성 검사
   const [isNickname, setIsNickname] = useState(false);
   const [isEmail, setIsEmail] = useState(false);
   const [isPassword, setIsPassword] = useState(false);
+
+  const [isSubmit, setIsSubmit] = useState(false);
+
+  const navigate = useNavigate();
 
   const check = (data, type) => {
     if (type === 'nickname') {
@@ -44,8 +54,10 @@ const SignUpComponent = () => {
   const handleNickname = (event) => {
     if (check(event.target.value, 'nickname')) {
       setIsNickname(true);
+      setNicknameError('');
     } else {
       setIsNickname(false);
+      setNicknameError('닉네임은 두글자 이상이어야 합니다.');
     }
     setNickname(event.target.value);
   };
@@ -53,8 +65,10 @@ const SignUpComponent = () => {
   const handleEmail = (event) => {
     if (check(event.target.value, 'email')) {
       setIsEmail(true);
+      setEmailError('');
     } else {
       setIsEmail(false);
+      setEmailError('올바른 이메일을 입력해주세요.');
     }
     setEmail(event.target.value);
   };
@@ -62,11 +76,14 @@ const SignUpComponent = () => {
   const handlePassword = (event) => {
     if (check(event.target.value, 'password')) {
       setIsPassword(true);
+      setPasswordError('');
     } else {
       setIsPassword(false);
+      setPasswordError(
+        '비밀번호는 숫자, 소문자, 특수문자를 포함하여 8글자 이상이어야 합니다.',
+      );
     }
     setPassword(event.target.value);
-    console.log(password);
   };
 
   const submitHandle = async () => {
@@ -94,41 +111,59 @@ const SignUpComponent = () => {
       });
   };
 
+  const checkButton = () => {
+    isNickname
+      ? isEmail
+        ? isPassword
+          ? setIsSubmit(true)
+          : setIsSubmit(false)
+        : setIsSubmit(false)
+      : setIsSubmit(false);
+  };
+
+  const clickHandler = () => {
+    navigate('/');
+  };
+
+  useEffect(() => {
+    checkButton();
+    // eslint-disable-next-line
+  }, [isNickname, isEmail, isPassword]);
+
   return (
     <Container>
-      <LogoImg src='/img/imgLogo.svg' />
+      <LogoImg src='/img/imgLogo.svg' onClick={() => clickHandler()} />
       <SignUpInput
         placeholder='닉네임'
         value={nickname}
         onChange={handleNickname}
-        style={isNickname ? {} : { border: '1px solid red' }}
+        style={nicknameError === '' ? {} : { border: '1px solid red' }}
       ></SignUpInput>
-      {isNickname ? null : (
-        <CommentDiv>닉네임은 두글자 이상이어야 합니다.</CommentDiv>
-      )}
+      <CommentDiv>{nicknameError}</CommentDiv>
       <SignUpInput
         placeholder='이메일'
         value={email}
         onChange={handleEmail}
-        style={isEmail ? {} : { border: '1px solid red' }}
+        style={emailError === '' ? {} : { border: '1px solid red' }}
       ></SignUpInput>
-      {isEmail ? null : <CommentDiv>올바른 이메일을 입력해주세요.</CommentDiv>}
+      <CommentDiv>{emailError}</CommentDiv>
       <SignUpInput
         placeholder='비밀번호'
         value={password}
         type='password'
         onChange={handlePassword}
-        style={isPassword ? {} : { border: '1px solid red' }}
+        style={passwordError === '' ? {} : { border: '1px solid red' }}
       ></SignUpInput>
-      {isPassword ? null : (
-        <CommentDiv>
-          비밀번호는 숫자, 소문자, 특수문자를 포함하여 8글자 이상이어야 합니다.
-        </CommentDiv>
-      )}
-      <Button text='회원가입' width='150px' height='35px'></Button>
-      <button onClick={submitHandle}>회원가입</button>
+      <CommentDiv>{passwordError}</CommentDiv>
+      <SignupButton
+        className={!isSubmit ? 'unvaild' : ''}
+        text='회원가입'
+        width='150px'
+        height='35px'
+        onClick={submitHandle}
+      ></SignupButton>
       <SignDiv>
-        이미 가입하셨나요? <LinkA href='#'>로그인</LinkA>
+        이미 가입하셨나요? <LinkA href={ROUTES.LOGIN.path}>로그인</LinkA>
       </SignDiv>
       <LineHr />
       <GoogleSvg

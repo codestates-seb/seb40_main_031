@@ -1,9 +1,11 @@
 import React from 'react';
-import { Button, ReviewSmall } from 'components';
+import { Button, ReviewSmall, ModalReview } from 'components';
 import { HiOutlineChat } from 'react-icons/hi';
 import { useRecoilValue } from 'recoil';
+import { useState } from 'react';
 import BookDetailState from 'atom/BookDetailState';
 import { AiOutlineShareAlt } from 'react-icons/ai';
+
 import {
   Template,
   BookContent,
@@ -22,7 +24,7 @@ import {
   BookButton,
   BookPrice,
   ReviewContentTemplate,
-  Review,
+  Reviews,
   ReviewClick,
   ReviewiIconTemplate,
   ReviewCount,
@@ -35,6 +37,11 @@ import {
 
 const BookDetail = () => {
   const bookDetails = useRecoilValue(BookDetailState);
+  const [modal, setModal] = useState(false);
+
+  const modalHandler = () => {
+    setModal(true);
+  };
   return (
     <div>
       <Template key={bookDetails.id}>
@@ -67,7 +74,8 @@ const BookDetail = () => {
         </BookContent>
         <ReviewContent>
           <ReviewContentTemplate>
-            <Review>리뷰 달기</Review>
+            <Reviews onClick={modalHandler}>리뷰 달기</Reviews>
+            {modal && <ModalReview setModal={setModal} />}
             <ReviewClick>
               <ReviewiIconTemplate>
                 <ReviewIcon>
