@@ -10,6 +10,7 @@ const List = styled.div`
   }
   .swiper-slide {
     text-align: center;
+    background: #eee;
     div {
       font-size: 20px;
       /* @media screen and (max-width: 500px) {
