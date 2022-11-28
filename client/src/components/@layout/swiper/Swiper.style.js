@@ -10,10 +10,21 @@ const List = styled.div`
   }
   .swiper-slide {
     text-align: center;
-    font-size: 18px;
-    background: #fff;
+    background: #eee;
     div {
-      font-size: 1.3rem;
+      font-size: 20px;
+      /* @media screen and (max-width: 500px) {
+        font-size: 20px;
+      }
+      @media screen and (min-width: 501px) and (max-width: 550px) {
+        font-size: 20px;
+      }
+      @media screen and (min-width: 551px) and (max-width: 800px) {
+        font-size: 20px;
+      }
+      @media screen and (min-width: 801px) and (max-width: 1000px) {
+        font-size: 20px;
+      }*/
     }
   }
   .swiper-slide img {
@@ -23,10 +34,10 @@ const List = styled.div`
     object-fit: cover;
   }
   .swiper-button-prev {
-    color: ${lighten(0.1, Theme.PRIMARY.GREEN_DARK)};
+    color: ${lighten(0.1, Theme.PRIMARY.GREEN)};
   }
   .swiper-button-next {
-    color: ${lighten(0.1, Theme.PRIMARY.GREEN_DARK)};
+    color: ${lighten(0.1, Theme.PRIMARY.GREEN)};
   }
 `;
 

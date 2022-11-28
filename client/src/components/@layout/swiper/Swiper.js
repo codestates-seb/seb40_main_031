@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useRef } from 'react';
 // Import Swiper React components
 import { Swiper, SwiperSlide } from 'swiper/react';
 
@@ -26,31 +26,31 @@ const BookPage = ({ title }) => {
   return (
     <List>
       <Title>{title}</Title>
+
       <Swiper
         slidesPerView={4}
         spaceBetween={30}
-        autoplay={{
-          delay: 2000,
-          disableOnInteraction: false,
-        }}
-        speed={5000}
+        speed={3000}
         slidesPerGroup={4}
         navigation={true}
         breakpoints={{
-          500: {
+          0: {
             slidesPerView: 1,
+            slidesPerGroup: 1,
           },
           550: {
             slidesPerView: 2,
+            slidesPerGroup: 2,
           },
           800: {
             slidesPerView: 3,
+            slidesPerGroup: 3,
           },
           1000: {
             slidesPerView: 4,
+            slidesPerGroup: 4,
           },
         }}
-        className='mySwiper'
       >
         {Dummybooks.map((book) => (
           <SwiperSlide key={book.id}>
