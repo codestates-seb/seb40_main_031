@@ -17,7 +17,6 @@ const WrapperDiv = styled.div`
   border-radius: 5%;
 
   background-color: ${lighten(0.3, Theme.PRIMARY.GREEN_DARK)};
-
   > Button {
     margin-top: 50px;
   }
