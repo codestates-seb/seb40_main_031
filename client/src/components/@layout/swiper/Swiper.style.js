@@ -10,10 +10,20 @@ const List = styled.div`
   }
   .swiper-slide {
     text-align: center;
-    font-size: 18px;
-    background: #fff;
     div {
-      font-size: 1.3rem;
+      font-size: 20px;
+      /* @media screen and (max-width: 500px) {
+        font-size: 20px;
+      }
+      @media screen and (min-width: 501px) and (max-width: 550px) {
+        font-size: 20px;
+      }
+      @media screen and (min-width: 551px) and (max-width: 800px) {
+        font-size: 20px;
+      }
+      @media screen and (min-width: 801px) and (max-width: 1000px) {
+        font-size: 20px;
+      }*/
     }
   }
   .swiper-slide img {
