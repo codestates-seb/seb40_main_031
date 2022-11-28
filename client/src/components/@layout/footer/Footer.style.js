@@ -13,9 +13,6 @@ const Wrap = styled.div`
   left: 0;
 
   padding: 2rem;
-
-
-
 `;
 
 const LayoutContainer = styled.div`
@@ -41,7 +38,7 @@ const UpperContainerDiv = styled.div`
     padding-left: 0;
   }
   li {
-    margin-right: 5rem;
+    margin-right: 2rem;
     div {
       margin-bottom: 0.5rem;
     }
@@ -82,13 +79,30 @@ const LowerContainerDiv = styled.div`
 `;
 
 const LogoImg = styled.img`
-  width: 150px;
+  &.big {
+    width: 120px;
+    @media screen and (max-width: 500px) {
+      display: none;
+    }
+  }
+  &.small {
+    width: 50px;
+    height: 50px;
+    margin-right: 1rem;
+    display: none;
+    @media screen and (max-width: 500px) {
+      display: flex;
+    }
+  }
 `;
 
 const CopyrightCSDiv = styled.div`
   display: flex;
   justify-content: space-between;
   width: calc(100% - 150px);
+  @media screen and (max-width: 500px) {
+    width: calc(100% - 50px);
+  }
 `;
 
 const CopyrightDiv = styled.div`
@@ -106,7 +120,7 @@ const CustomerServiceDiv = styled.div`
   flex-direction: column;
   align-items: flex-end;
 
-  width: 20%;
+  width: auto;
 `;
 
 const LinkToA = styled.a.attrs({ target: '_blank', rel: 'noreferrer' })`

@@ -17,11 +17,9 @@ import {
 import { FaGithub, FaInstagramSquare } from 'react-icons/fa';
 import { RiKakaoTalkFill } from 'react-icons/ri';
 
-
 const Footer = () => {
   return (
     <Wrap>
-
       <LayoutContainer>
         <UpperContainerDiv>
           <ul>
@@ -56,7 +54,8 @@ const Footer = () => {
           </LinkDiv>
         </UpperContainerDiv>
         <LowerContainerDiv>
-          <LogoImg src='./img/imgLogo2.svg' />
+          <LogoImg src='./img/imgLogo2.svg' className='big' />
+          <LogoImg src='./img/ico.png' className='small' />
           <CopyrightCSDiv>
             <CopyrightDiv>
               © 2022 by GULGIL, Inc. All rights reserved.
@@ -72,8 +71,6 @@ const Footer = () => {
           </CopyrightCSDiv>
         </LowerContainerDiv>
       </LayoutContainer>
-
-
     </Wrap>
   );
 };
