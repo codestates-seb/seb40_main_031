@@ -95,7 +95,7 @@ public class BookController {
     /**
      * 6. 신간, 베스트셀러 API 스케쥴러
      */
-    @Scheduled(cron = "0 23 * * * *") // cron = 초 분 시 일 월 년
+    @Scheduled(cron = "0 30 4 ? * MON") // 매주 월요일 오전 4시 30분
     public void updateBooks(){
         callBookApi.saveBestSeller();
         callBookApi.saveNewBook();
