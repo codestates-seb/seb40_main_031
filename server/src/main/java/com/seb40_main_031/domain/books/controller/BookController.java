@@ -78,10 +78,22 @@ public class BookController {
                 ,HttpStatus.OK);
     }
 
+    /**
+     * 5. categoryId 별 조회
+     */
+    @GetMapping("/category/{categoryId}")
+    public ResponseEntity getCategoryIdBook(@PathVariable String categoryId){
+        Page<Book> pageBook = bookService.findAllCategoryId(categoryId);
+        List<Book> book = pageBook.getContent();
+
+        return new ResponseEntity<>(
+                new MultiResponseDto<>(bookMapper.booksToBookListResponseDto(book), pageBook)
+                ,HttpStatus.OK);
+    }
 
 
     /**
-     * 5. 신간, 베스트셀러 API 스케쥴러
+     * 6. 신간, 베스트셀러 API 스케쥴러
      */
     @Scheduled(cron = "0 23 * * * *") // cron = 초 분 시 일 월 년
     public void updateBooks(){
