@@ -5,7 +5,7 @@ import { useRecoilValue } from 'recoil';
 import { useState } from 'react';
 import BookDetailState from 'atom/BookDetailState';
 import { AiOutlineShareAlt } from 'react-icons/ai';
-
+import Share from 'components/share/Share';
 import {
   Template,
   BookContent,
@@ -33,15 +33,23 @@ import {
   ReviewComponentTemplate,
   BookTitleAuthorTemplate,
   BookShare,
+  BookShareContainer,
+  ShareAnimation,
 } from 'pages/bookDetail/BookDetail.style';
 
 const BookDetail = () => {
   const bookDetails = useRecoilValue(BookDetailState);
   const [modal, setModal] = useState(false);
+  const [openShare, setOpenShare] = useState(false);
 
   const modalHandler = () => {
     setModal(true);
   };
+
+  const openShareHandler = () => {
+    setOpenShare(!openShare);
+  };
+
   return (
     <div>
       <Template key={bookDetails.id}>
@@ -60,9 +68,17 @@ const BookDetail = () => {
                   <BookTitle>{bookDetails.title}</BookTitle>
                   <BookAuthor>{bookDetails.author}</BookAuthor>
                 </BookTitleAuthorTemplate>
-                <BookShare>
-                  <AiOutlineShareAlt />
-                </BookShare>
+
+                <BookShareContainer onClick={openShareHandler}>
+                  {openShare === true ? null : (
+                    <BookShare>
+                      <AiOutlineShareAlt />
+                    </BookShare>
+                  )}
+                  <ShareAnimation className={openShare ? 'active' : 'hidden'}>
+                    {openShare && <Share setOpenShare={setOpenShare} />}
+                  </ShareAnimation>
+                </BookShareContainer>
               </BookTitleAuthor>
               <BookPrice>{bookDetails.price}</BookPrice>
               <BookExplain>{bookDetails.content}</BookExplain>
