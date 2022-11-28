@@ -33,10 +33,10 @@ const List = styled.div`
     object-fit: cover;
   }
   .swiper-button-prev {
-    color: ${lighten(0.1, Theme.PRIMARY.GREEN_DARK)};
+    color: ${lighten(0.1, Theme.PRIMARY.GREEN)};
   }
   .swiper-button-next {
-    color: ${lighten(0.1, Theme.PRIMARY.GREEN_DARK)};
+    color: ${lighten(0.1, Theme.PRIMARY.GREEN)};
   }
 `;
 
