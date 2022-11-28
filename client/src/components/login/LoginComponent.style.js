@@ -17,8 +17,6 @@ const WrapperDiv = styled.div`
   border-radius: 5%;
 
   background-color: ${lighten(0.3, Theme.PRIMARY.GREEN_DARK)};
-
-
   > Button {
     margin-top: 50px;
   }
@@ -92,8 +90,7 @@ const OAuthSvg = styled.svg`
   font-weight: bold;
   margin-top: 10px;
   margin-bottom: 2rem;
-  background-color: ${(props) =>
-    props.backgroundColor ? props.backgroundColor : Theme.PRIMARY.WHITE};
+  background-color: ${Theme.PRIMARY.WHITE};
   border-radius: 50%;
   padding: 0.5rem;
   width: 3rem;

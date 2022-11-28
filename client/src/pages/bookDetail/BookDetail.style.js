@@ -1,4 +1,4 @@
-import styled from 'styled-components';
+import styled, { keyframes } from 'styled-components';
 import { HiOutlineChat } from 'react-icons/hi';
 import { AiOutlineShareAlt } from 'react-icons/ai';
 import { Theme } from 'style';
@@ -113,11 +113,27 @@ const BookAuthor = styled.div`
   color: ${Theme.PRIMARY.GREEN_DARK};
 `;
 
+const BookShareContainer = styled.button`
+  display: flex;
+  border: none;
+  background-color: transparent;
+  .active {
+    width: 200px;
+    transition: all 0.5s;
+  }
+  .hidden {
+    width: 0px;
+    transition: all 0.5s;
+  }
+`;
 const BookShare = styled(AiOutlineShareAlt)`
   font-size: 40px;
   cursor: pointer;
   color: ${Theme.PRIMARY.GREEN_DARK};
 `;
+
+const ShareAnimation = styled.div``;
+
 const BookExplain = styled.div`
   @media screen and (max-width: 920px) {
     width: 65vw;
@@ -261,4 +277,6 @@ export {
   ReviewComponentTemplate,
   BookTitleAuthorTemplate,
   BookShare,
+  BookShareContainer,
+  ShareAnimation,
 };

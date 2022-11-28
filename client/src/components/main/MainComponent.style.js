@@ -34,10 +34,10 @@ const SuggestTextDiv = styled.div`
 `;
 
 const TextDiv = styled.div`
-  font-size: 2rem;
+  font-size: 1.6rem;
   text-align: center;
   @media screen and (max-width: 1090px) {
-    font-size: 3vw;
+    font-size: calc(10px + 1.7vw);
   }
 `;
 
