@@ -4,13 +4,12 @@ import {
   SuggestDiv,
   SuggestTextDiv,
   SuggestBookListDiv,
-  BookCarouselDiv,
   TitleTextDiv,
   TextDiv,
   ListContentsDiv,
   ListDiv,
 } from 'components/main/MainComponent.style';
-import Book from '../@layout/book/Book';
+import MainSwiper from 'components/main/MainSwiper';
 import BookPage from 'components/@layout/swiper/Swiper';
 // import axios from 'axios';
 
@@ -104,7 +103,7 @@ const MainComponent = () => {
           </TextDiv>
         </SuggestTextDiv>
         <SuggestBookListDiv>
-          <BookCarouselDiv />
+          <MainSwiper />
         </SuggestBookListDiv>
       </SuggestDiv>
       <ListContentsDiv>
