@@ -1,8 +1,6 @@
 import styled from 'styled-components';
 import { Theme } from 'style';
-
 import { darken, lighten } from 'polished';
-
 import { Button } from 'components';
 
 const Container = styled.div`
