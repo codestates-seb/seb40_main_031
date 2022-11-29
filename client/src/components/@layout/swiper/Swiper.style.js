@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 import { Theme } from 'style';
-import { lighten } from 'polished';
+import { lighten, darken } from 'polished';
 
 const List = styled.div`
   .swiper-container {
@@ -11,8 +11,14 @@ const List = styled.div`
   .swiper-slide {
     text-align: center;
     background: #eee;
+    cursor: pointer;
     div {
       font-size: 20px;
+      display: inline-block;
+      width: 200px;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
       /* @media screen and (max-width: 500px) {
         font-size: 20px;
       }
@@ -27,11 +33,13 @@ const List = styled.div`
       }*/
     }
   }
+
   .swiper-slide img {
     display: block;
     width: 100%;
     height: 100%;
-    object-fit: cover;
+    /* object-fit: cover; */
+    position: relative;
   }
   .swiper-button-prev {
     color: ${lighten(0.1, Theme.PRIMARY.GREEN)};
@@ -41,4 +49,17 @@ const List = styled.div`
   }
 `;
 
-export { List };
+const NumberSpan = styled.span`
+  position: absolute;
+  left: 0;
+  top: 0;
+  color: ${Theme.PRIMARY.WHITE};
+  background-color: ${Theme.PRIMARY.GREEN_DARK};
+  opacity: 0.8;
+  border-radius: 10%;
+  font-size: 20px;
+  width: 30px;
+  height: 30px;
+`;
+
+export { List, NumberSpan };
