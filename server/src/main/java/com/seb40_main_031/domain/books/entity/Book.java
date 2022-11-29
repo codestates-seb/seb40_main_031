@@ -41,7 +41,7 @@ public class Book {
     @Column(name = "COVER_LARGE_URL")
     private String coverLargeUrl;
 
-    @Column(name = "CATEGORY_ID",nullable = false)
+    @Column(name = "CATEGORY_ID")
     private String categoryId;
 
     @Column(name = "CATEGORY_NAME",nullable = false)
@@ -56,7 +56,7 @@ public class Book {
     @Column(name = "TRANSLATOR")
     private String translator;
 
-    @Column(name = "ISBN",nullable = false)
+    @Column(name = "ISBN")
     private String isbn;
 
     @Column(name = "BOOK_LINK")

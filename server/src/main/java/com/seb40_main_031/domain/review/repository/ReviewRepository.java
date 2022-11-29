@@ -20,7 +20,7 @@ public interface ReviewRepository extends JpaRepository<Review, Long> {
     Page<Review> findAllByBookBookId(long bookId, Pageable pageable);
 
     List<Review> findAllByMemberMemberIdOrderByReviewIdDesc(Long memberId);
-    @Query(value = "SELECT book_id FROM REVIEW where member_id GROUP BY book_id ORDER BY MAX(created_at) DESC", nativeQuery = true)
+    @Query(value = "SELECT book_id FROM review where member_id GROUP BY book_id ORDER BY MAX(created_at) DESC", nativeQuery = true)
     List<Long> findAllReviewedBookIdByMemberId(@Param("member_id") Long memberId);
 
 }
