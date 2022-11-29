@@ -140,6 +140,19 @@ const SignUpComponent = () => {
       : setIsSubmit(false);
   };
 
+  const checkLogin = () => {
+    sessionStorage.getItem('Authorization')
+      ? setAlert({
+          open: true,
+          title: '오류',
+          message: '잘못된 접근입니다. 메인 화면으로 이동합니다.',
+          callback: function () {
+            navigate('/');
+          },
+        })
+      : null;
+  };
+
   const clickHandler = () => {
     navigate('/');
   };
@@ -148,6 +161,11 @@ const SignUpComponent = () => {
     checkButton();
     // eslint-disable-next-line
   }, [isNickname, isEmail, isPassword]);
+
+  useEffect(() => {
+    checkLogin();
+    // eslint-disable-next-line
+  }, []);
 
   return (
     <>

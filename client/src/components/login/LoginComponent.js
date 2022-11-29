@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'api/axios';
-import { useRecoilState } from 'recoil';
 import { useNavigate } from 'react-router-dom';
 import {
   WrapperDiv,
@@ -17,7 +16,6 @@ import {
 import { AlertModal } from 'components';
 import { LOGIN_URL } from 'api';
 import { ROUTES } from 'constants';
-import { isloginState } from 'atom';
 
 const LoginComponent = () => {
   const [email, setEmail] = useState('');
@@ -34,8 +32,6 @@ const LoginComponent = () => {
     message: '',
     callback: false,
   });
-
-  const [isLogin, setIsLogin] = useRecoilState(isloginState);
 
   const navigate = useNavigate();
 
@@ -77,6 +73,7 @@ const LoginComponent = () => {
         sessionStorage.setItem('Authorization', accessToken);
         sessionStorage.setItem('Refresh', refreshToken);
         console.log(res);
+
         setAlert({
           open: true,
           title: '로그인 성공',
@@ -98,12 +95,24 @@ const LoginComponent = () => {
   };
 
   const checkButton = () => {
-    //isemail이 false면 비활성화(false), isemail이 true면 활성화(true)
     isEmail
       ? password !== ''
         ? setIsSubmit(true)
         : setIsSubmit(false)
       : setIsSubmit(false);
+  };
+
+  const checkLogin = () => {
+    sessionStorage.getItem('Authorization')
+      ? setAlert({
+          open: true,
+          title: '오류',
+          message: '잘못된 접근입니다. 메인 화면으로 이동합니다.',
+          callback: function () {
+            navigate('/');
+          },
+        })
+      : null;
   };
 
   const clickHandler = () => {
@@ -114,6 +123,11 @@ const LoginComponent = () => {
     checkButton();
     // eslint-disable-next-line
   }, [isEmail, password]);
+
+  useEffect(() => {
+    checkLogin();
+    // eslint-disable-next-line
+  }, []);
 
   return (
     <>
