@@ -3,21 +3,21 @@ import { Outlet } from 'react-router-dom';
 import { Nav } from 'components';
 import {
   WholeWrapperDiv,
-  ContentDiv,
+  ContentWithoutFooterDiv,
   MainDiv,
 } from 'pages/pagesLayout/Layout.style';
 
 const LayoutWithoutFooter = () => {
   return (
     <WholeWrapperDiv>
-      <ContentDiv>
+      <ContentWithoutFooterDiv>
         <Nav />
         <MainDiv>
           <Suspense fallback={<Suspense />}>
             <Outlet />
           </Suspense>
         </MainDiv>
-      </ContentDiv>
+      </ContentWithoutFooterDiv>
     </WholeWrapperDiv>
   );
 };

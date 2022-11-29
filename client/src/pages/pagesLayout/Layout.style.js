@@ -10,9 +10,11 @@ const WholeWrapperDiv = styled.div`
 
 const ContentDiv = styled.div`
   height: 100%;
-
   padding-bottom: 250px;
+`;
 
+const ContentWithoutFooterDiv = styled.div`
+  height: 100%;
 `;
 
 const MainDiv = styled.div`
@@ -22,4 +24,4 @@ const MainDiv = styled.div`
   margin-top: 55px;
 `;
 
-export { WholeWrapperDiv, ContentDiv, MainDiv };
+export { WholeWrapperDiv, ContentDiv, ContentWithoutFooterDiv, MainDiv };
