@@ -13,7 +13,7 @@ import {
 } from 'components/signUp/SignUpComponent.style';
 import { AlertModal } from 'components';
 import axios from 'api/axios';
-import { SIGNUP_URL, LOGIN_URL } from 'api';
+import { SIGNUP_URL } from 'api';
 import { ROUTES } from 'constants';
 
 const SignUpComponent = () => {
