@@ -14,6 +14,9 @@ import java.util.Optional;
 public interface BookRepository extends JpaRepository<Book, Long> {
     Optional<Book> findByBookId(long bookId);
 
+    Book findByNationalRank(Long rank);
+    Book findByForeignRank(Long rank);
+
     @Query(value = "SELECT * FROM book where national_rank", nativeQuery = true)
     List<Book> findAllByNationalRank();
     @Query(value = "SELECT * FROM book where foreign_rank", nativeQuery = true)
@@ -27,5 +30,6 @@ public interface BookRepository extends JpaRepository<Book, Long> {
     // author 로 찾기
     Page<Book> findByAuthorContaining(String keyword, Pageable pageable);
 
-    Book findByTitle(String keyword);
+    Optional<Book> findByTitle(String keyword);
+    Page<Book> findAllByCategoryId(String categoryId, Pageable pageable);
 }
