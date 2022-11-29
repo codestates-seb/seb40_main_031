@@ -1,7 +1,6 @@
 package com.seb40_main_031.global.security.filter;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.seb40_main_031.domain.chat.dto.LoginInfo;
 import com.seb40_main_031.domain.member.entity.Member;
 import com.seb40_main_031.global.security.JwtTokenizer;
 import com.seb40_main_031.global.security.dto.LoginDto;
