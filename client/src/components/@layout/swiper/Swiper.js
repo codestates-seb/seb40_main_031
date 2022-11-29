@@ -16,7 +16,7 @@ import { useNavigate } from 'react-router-dom';
 
 SwiperCore.use([Autoplay, Navigation]);
 
-const BookPage = ({ title, url }) => {
+const BookPage = ({ title, url, popular }) => {
   const [Book, setBook] = useState([]);
 
   const getBestBook = async () => {
@@ -74,7 +74,7 @@ const BookPage = ({ title, url }) => {
                   handleClick(`books/${book.bookId}`);
                 }}
               />
-              <NumberSpan>{i + 1}</NumberSpan>
+              {popular ? <NumberSpan>{i + 1}</NumberSpan> : null}
             </div>
             <div title={book.title}>{book.title}</div>
           </SwiperSlide>

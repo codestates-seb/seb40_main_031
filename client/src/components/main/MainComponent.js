@@ -119,6 +119,7 @@ const MainComponent = () => {
             <BookPage
               title='지금 인기 최고'
               url={BOOK_BEST_DOMESTIC_URL}
+              popular
             ></BookPage>
           </ListDiv>
           <ListDiv>
@@ -134,6 +135,7 @@ const MainComponent = () => {
             <BookPage
               title='지금 인기 최고'
               url={BOOK_BEST_GLOBAL_URL}
+              popular
             ></BookPage>
           </ListDiv>
           <ListDiv>
