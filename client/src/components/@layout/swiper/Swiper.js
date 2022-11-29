@@ -1,4 +1,4 @@
-import React, { useRef } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 // Import Swiper React components
 import { Swiper, SwiperSlide } from 'swiper/react';
 
@@ -9,19 +9,31 @@ import 'swiper/components/pagination/pagination.min.css';
 
 // import required modules
 import SwiperCore, { Navigation, Autoplay } from 'swiper';
-import Dummybooks from 'components/@layout/book/Dummybooks';
-import { List } from 'components/@layout/swiper/Swiper.style';
+import { List, NumberSpan } from 'components/@layout/swiper/Swiper.style';
 import { Title } from 'components/@layout/book/Book.style';
-import axios from 'axios';
-import { BESTBOOK_URL } from 'api';
+import axios from 'api/axios';
+import { useNavigate } from 'react-router-dom';
 
 SwiperCore.use([Autoplay, Navigation]);
 
-const BookPage = ({ title }) => {
-  // const getBestBook = async () => {
-  //   const res = await axios.get(BESTBOOK_URL);
-  //   return res.data;
-  // };
+const BookPage = ({ title, url }) => {
+  const [Book, setBook] = useState([]);
+
+  const getBestBook = async () => {
+    const res = await axios.get(url);
+    setBook(res.data);
+    return res.data;
+  };
+
+  const navigate = useNavigate();
+
+  const handleClick = (e) => {
+    navigate(e);
+  };
+
+  useEffect(() => {
+    getBestBook();
+  });
 
   return (
     <List>
@@ -52,10 +64,19 @@ const BookPage = ({ title }) => {
           },
         }}
       >
-        {Dummybooks.map((book) => (
-          <SwiperSlide key={book.id}>
-            <img src={book.imgURL}></img>
-            <div>{book.name}</div>
+        {Book.map((book, i) => (
+          <SwiperSlide key={book.bookId}>
+            <div style={{ height: '250px' }}>
+              <img
+                src={book.coverLargeUrl}
+                title={book.title}
+                onClick={() => {
+                  handleClick(`books/${book.bookId}`);
+                }}
+              />
+              <NumberSpan>{i + 1}</NumberSpan>
+            </div>
+            <div title={book.title}>{book.title}</div>
           </SwiperSlide>
         ))}
       </Swiper>
