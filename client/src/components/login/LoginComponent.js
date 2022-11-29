@@ -1,4 +1,6 @@
 import React, { useEffect, useState } from 'react';
+import axios from 'api/axios';
+import { useRecoilState } from 'recoil';
 import { useNavigate } from 'react-router-dom';
 import {
   WrapperDiv,
@@ -13,9 +15,9 @@ import {
   LoginButton,
 } from 'components/login/LoginComponent.style';
 import { AlertModal } from 'components';
-import axios from 'api/axios';
 import { LOGIN_URL } from 'api';
 import { ROUTES } from 'constants';
+import { isloginState } from 'atom';
 
 const LoginComponent = () => {
   const [email, setEmail] = useState('');
@@ -32,6 +34,8 @@ const LoginComponent = () => {
     message: '',
     callback: false,
   });
+
+  const [isLogin, setIsLogin] = useRecoilState(isloginState);
 
   const navigate = useNavigate();
 
