@@ -16,6 +16,7 @@ const List = styled.div`
     text-align: center;
     font-size: 18px;
     background: #eee;
+    cursor: pointer;
     div {
       font-size: 1.3rem;
     }
@@ -24,6 +25,9 @@ const List = styled.div`
     display: block;
     width: 200px;
     object-fit: cover;
+    @media screen and (max-width: 470px) {
+      width: 100%;
+    }
   }
   .swiper-button-prev {
     color: ${lighten(0.1, Theme.PRIMARY.GREEN)};
