@@ -51,6 +51,7 @@ const LoginInput = styled.input`
 
 const LinkToSignUpDiv = styled.div`
   margin-top: 10px;
+  margin-bottom: 60px;
 `;
 
 const LinkA = styled.a`
