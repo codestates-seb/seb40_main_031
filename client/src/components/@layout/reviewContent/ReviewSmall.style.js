@@ -21,8 +21,10 @@ const Template = styled.div`
   border: 1px solid ${Theme.PRIMARY.GREEN_DARK};
   border-radius: 8px;
   padding: 10px;
-  margin: 0px 20px 0px 20px;
-  margin-bottom: 30px;
+
+  margin: 0px 20px 30px 20px;
+
+
 `;
 
 const Content = styled.div`

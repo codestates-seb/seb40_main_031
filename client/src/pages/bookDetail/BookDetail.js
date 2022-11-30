@@ -1,9 +1,11 @@
 import React from 'react';
-import { Button, ReviewSmall } from 'components';
+import { Button, ReviewSmall, ModalReview } from 'components';
 import { HiOutlineChat } from 'react-icons/hi';
 import { useRecoilValue } from 'recoil';
+import { useState } from 'react';
 import BookDetailState from 'atom/BookDetailState';
 import { AiOutlineShareAlt } from 'react-icons/ai';
+import Share from 'components/share/Share';
 import {
   Template,
   BookContent,
@@ -22,7 +24,7 @@ import {
   BookButton,
   BookPrice,
   ReviewContentTemplate,
-  Review,
+  Reviews,
   ReviewClick,
   ReviewiIconTemplate,
   ReviewCount,
@@ -31,10 +33,23 @@ import {
   ReviewComponentTemplate,
   BookTitleAuthorTemplate,
   BookShare,
+  BookShareContainer,
+  ShareAnimation,
 } from 'pages/bookDetail/BookDetail.style';
 
 const BookDetail = () => {
   const bookDetails = useRecoilValue(BookDetailState);
+  const [modal, setModal] = useState(false);
+  const [openShare, setOpenShare] = useState(false);
+
+  const modalHandler = () => {
+    setModal(true);
+  };
+
+  const openShareHandler = () => {
+    setOpenShare(!openShare);
+  };
+
   return (
     <div>
       <Template key={bookDetails.id}>
@@ -53,9 +68,17 @@ const BookDetail = () => {
                   <BookTitle>{bookDetails.title}</BookTitle>
                   <BookAuthor>{bookDetails.author}</BookAuthor>
                 </BookTitleAuthorTemplate>
-                <BookShare>
-                  <AiOutlineShareAlt />
-                </BookShare>
+
+                <BookShareContainer onClick={openShareHandler}>
+                  {openShare === true ? null : (
+                    <BookShare>
+                      <AiOutlineShareAlt />
+                    </BookShare>
+                  )}
+                  <ShareAnimation className={openShare ? 'active' : 'hidden'}>
+                    {openShare && <Share setOpenShare={setOpenShare} />}
+                  </ShareAnimation>
+                </BookShareContainer>
               </BookTitleAuthor>
               <BookPrice>{bookDetails.price}</BookPrice>
               <BookExplain>{bookDetails.content}</BookExplain>
@@ -67,7 +90,8 @@ const BookDetail = () => {
         </BookContent>
         <ReviewContent>
           <ReviewContentTemplate>
-            <Review>리뷰 달기</Review>
+            <Reviews onClick={modalHandler}>리뷰 달기</Reviews>
+            {modal && <ModalReview setModal={setModal} />}
             <ReviewClick>
               <ReviewiIconTemplate>
                 <ReviewIcon>

@@ -12,15 +12,18 @@
     "polished": "^4.2.2",
     "react": "^18.2.0",
     "react-bootstrap": "^2.6.0",
+    "react-copy-to-clipboard": "^5.1.0",
     "react-dom": "^18.2.0",
     "react-icons": "^4.6.0",
     "react-infinite-scroll-component": "^6.1.0",
     "react-router-dom": "^6.4.3",
     "react-scripts": "5.0.1",
+    "react-share": "^4.4.1",
     "react-spinners": "^0.13.6",
     "recoil": "^0.7.6",
     "scss": "^0.2.4",
     "styled-components": "^5.3.6",
+    "swiper": "^6.8.4",
     "web-vitals": "^2.1.4"
   },
   "scripts": {
@@ -53,6 +56,10 @@
     "eslint-plugin-jsx-a11y": "^6.6.1",
     "eslint-plugin-prettier": "^4.2.1",
     "eslint-plugin-react": "^7.31.10",
-    "eslint-plugin-react-hooks": "^4.6.0"
+    "eslint-plugin-react-hooks": "^4.6.0",
+    "msw": "^0.49.0"
+  },
+  "msw": {
+    "workerDirectory": "public"
   }
 }

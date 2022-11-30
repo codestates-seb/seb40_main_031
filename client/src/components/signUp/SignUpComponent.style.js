@@ -1,12 +1,17 @@
 import styled from 'styled-components';
 import { Theme } from 'style';
-import { darken } from 'polished';
+
+import { darken, lighten } from 'polished';
+
+import { Button } from 'components';
 
 const Container = styled.div`
   display: flex;
   align-items: center;
   flex-direction: column;
-  background-color: ${Theme.PRIMARY.GREEN_LIGHT};
+
+  background-color: ${lighten(0.3, Theme.PRIMARY.GREEN_DARK)};
+
   width: 300px;
   height: auto;
   padding: 10px;
@@ -23,6 +28,7 @@ const LogoImg = styled.img`
   width: 190px;
   margin-top: 30px;
   margin-bottom: 30px;
+  cursor: pointer;
 `;
 
 const SignUpInput = styled.input`
@@ -92,6 +98,21 @@ const CommentDiv = styled.div`
   width: 200px;
   font-size: 0.9rem;
 `;
+
+const SignupButton = styled(Button)`
+  &.unvaild {
+    background-color: #ccc;
+    color: #eee;
+    pointer-events: none;
+
+    &:active {
+      background-color: #ccc;
+      color: #eee;
+      box-shadow: inset 1px 1px 0px 0px hsl(0deg 0% 100% / 70%);
+    }
+  }
+`;
+
 export {
   Container,
   SignUpInput,
@@ -101,4 +122,5 @@ export {
   LineHr,
   GoogleSvg,
   CommentDiv,
+  SignupButton,
 };

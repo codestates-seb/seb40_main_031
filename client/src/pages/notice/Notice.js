@@ -5,6 +5,11 @@ import { FAQ_LIST } from 'constants';
 import {
   Wrap,
   Title,
+<<<<<<< HEAD
+=======
+  TabButton,
+  TabContainer,
+>>>>>>> 13832d7a851dcddb53654add4d12caca4f3f2295
   SearchBarForm,
   Select,
   Option,

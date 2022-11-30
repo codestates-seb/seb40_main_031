@@ -1,4 +1,4 @@
-import styled from 'styled-components';
+import styled, { keyframes } from 'styled-components';
 import { HiOutlineChat } from 'react-icons/hi';
 import { AiOutlineShareAlt } from 'react-icons/ai';
 import { Theme } from 'style';
@@ -6,7 +6,10 @@ import { darken } from 'polished';
 
 const Template = styled.div`
   @media screen and (max-width: 950px) {
-    height: 200vh;
+
+    height: 100%;
+
+
   }
   width: 100%;
   max-width: 1200px;
@@ -110,16 +113,35 @@ const BookAuthor = styled.div`
   color: ${Theme.PRIMARY.GREEN_DARK};
 `;
 
+const BookShareContainer = styled.button`
+  display: flex;
+  border: none;
+  background-color: transparent;
+  .active {
+    width: 200px;
+    transition: all 0.5s;
+  }
+  .hidden {
+    width: 0px;
+    transition: all 0.5s;
+  }
+`;
 const BookShare = styled(AiOutlineShareAlt)`
   font-size: 40px;
   cursor: pointer;
   color: ${Theme.PRIMARY.GREEN_DARK};
 `;
+
+const ShareAnimation = styled.div``;
+
 const BookExplain = styled.div`
   @media screen and (max-width: 920px) {
     width: 65vw;
   }
   height: 275px;
+
+  padding: 1rem;
+
   border: 1px solid darkgray;
   font-size: 25px;
   overflow: auto;
@@ -156,12 +178,12 @@ const BookPrice = styled.div`
 `;
 
 const ReviewContentTemplate = styled.div`
-  width: 1000px;
-  height: 450px;
+  /* width: 1000px;
+  height: 450px; */
   border-radius: 4px;
 `;
 
-const Review = styled.div`
+const Reviews = styled.div`
   @media screen and (max-width: 950px) {
     display: flex;
     justify-content: center;
@@ -173,6 +195,7 @@ const Review = styled.div`
   margin-bottom: 30px;
   font-weight: bold;
   color: ${darken(0.3, Theme.PRIMARY.GREEN_DARK)};
+  cursor: pointer;
 `;
 
 const ReviewClick = styled.div`
@@ -222,7 +245,9 @@ const ReviewMore = styled.div`
 
 const ReviewComponentTemplate = styled.div`
   width: 1000px;
-  height: 320px;
+
+  height: 100%;
+
 `;
 
 export {
@@ -243,7 +268,7 @@ export {
   BookButton,
   BookPrice,
   ReviewContentTemplate,
-  Review,
+  Reviews,
   ReviewClick,
   ReviewiIconTemplate,
   ReviewCount,
@@ -252,4 +277,6 @@ export {
   ReviewComponentTemplate,
   BookTitleAuthorTemplate,
   BookShare,
+  BookShareContainer,
+  ShareAnimation,
 };

@@ -1,17 +1,21 @@
 import styled from 'styled-components';
 import { Theme } from 'style';
-import { darken } from 'polished';
+
+import { darken, lighten } from 'polished';
+
 
 const NavWrapperDiv = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
   flex-direction: column;
-
+  z-index: 10;
   width: 100%;
   position: fixed;
 
-  background-color: ${(props) => props.backgoudColor || Theme.PRIMARY.GREEN};
+  background-color: ${Theme.PRIMARY.GREEN};
+
+  border-bottom: 2px solid ${darken(0.3, Theme.PRIMARY.GREEN_DARK)};
 `;
 
 const LeftDiv = styled.div`
@@ -43,4 +47,51 @@ const LayoutContainer = styled.div`
   }
 `;
 
-export { NavWrapperDiv, LeftDiv, LayoutContainer, MainLogoImg };
+const ModalDiv = styled.div`
+  width: 100%;
+  max-width: 1200px;
+  padding: 0 3rem 0 8rem;
+  overflow: hidden;
+
+  .active {
+    height: 200px;
+    padding-top: 2rem;
+    transition: all 0.5s;
+  }
+  .hidden {
+    height: 0px;
+    transition: all 0.5s;
+  }
+`;
+
+const ModalWrapperDiv = styled.div`
+  display: grid;
+  grid-auto-flow: column;
+  grid-template-rows: 50px 50px 50px;
+  grid-template-columns: 150px;
+
+  width: 100%;
+`;
+
+const ModalListA = styled.a`
+  font-size: 1.5rem;
+  padding-bottom: 1rem;
+  text-decoration: none;
+
+  /* color: ${lighten(0.2, Theme.PRIMARY.GREEN_DARK)}; */
+  color: ${lighten(0.2, '#febd59')};
+  &:hover {
+    color: ${darken(0.2, '#febd59')};
+  }
+
+`;
+
+export {
+  NavWrapperDiv,
+  LeftDiv,
+  LayoutContainer,
+  MainLogoImg,
+  ModalDiv,
+  ModalWrapperDiv,
+  ModalListA,
+};

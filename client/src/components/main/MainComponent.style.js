@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 import { Theme } from 'style';
 import Carousel from 'components/main/MainCarousel';
-import { darken } from 'polished';
+import { darken, lighten } from 'polished';
 
 const WrapperDiv = styled.div`
   width: 80%;
@@ -34,10 +34,10 @@ const SuggestTextDiv = styled.div`
 `;
 
 const TextDiv = styled.div`
-  font-size: 2rem;
+  font-size: 1.6rem;
   text-align: center;
   @media screen and (max-width: 1090px) {
-    font-size: 3vw;
+    font-size: calc(10px + 1.7vw);
   }
 `;
 
@@ -58,10 +58,11 @@ const BookCarouselDiv = styled(Carousel)`
 `;
 
 const TitleTextDiv = styled.div`
-  padding-left: 0.8rem;
-  font-size: 2.5rem;
+  padding-top: 3rem;
+  padding-left: 4.5rem;
+  font-size: 2.7rem;
   font-weight: 900;
-  color: ${darken(0.3, Theme.PRIMARY.GREEN_DARK)};
+  color: ${lighten(0.1, Theme.PRIMARY.GREEN)};
 `;
 
 const ListContentsDiv = styled.div`
@@ -79,6 +80,9 @@ const ListDiv = styled.div`
   padding: 1rem;
 `;
 
+const DistanceDiv = styled.div`
+  margin-bottom: 6rem;
+`;
 export {
   WrapperDiv,
   SuggestDiv,
@@ -89,4 +93,5 @@ export {
   TextDiv,
   ListContentsDiv,
   ListDiv,
+  DistanceDiv,
 };

@@ -4,14 +4,20 @@ import {
   SuggestDiv,
   SuggestTextDiv,
   SuggestBookListDiv,
-  BookCarouselDiv,
   TitleTextDiv,
   TextDiv,
   ListContentsDiv,
   ListDiv,
+  DistanceDiv,
 } from 'components/main/MainComponent.style';
-import Book from '../@layout/book/Book';
-// import axios from 'axios';
+import MainSwiper from 'components/main/MainSwiper';
+import BookPage from 'components/@layout/swiper/Swiper';
+import {
+  BOOK_BEST_DOMESTIC_URL,
+  BOOK_BEST_GLOBAL_URL,
+  BOOK_NEW_DOMESTIC_URL,
+  BOOK_NEW_GLOBAL_URL,
+} from 'api';
 
 // import dfs_xy_conv from 'components/main/NxNyFunction'; 위치정보 관련
 
@@ -74,7 +80,7 @@ const MainComponent = () => {
   useEffect(() => {
     outputMessage();
     // getWeather();
-  }, []);
+  });
 
   const outputMessage = () => {
     hour >= 0 && hour < 6
@@ -103,24 +109,42 @@ const MainComponent = () => {
           </TextDiv>
         </SuggestTextDiv>
         <SuggestBookListDiv>
-          <BookCarouselDiv />
+          <MainSwiper />
         </SuggestBookListDiv>
       </SuggestDiv>
       <ListContentsDiv>
-        <TitleTextDiv>국내도서</TitleTextDiv>
-        <ListDiv>
-          <Book title='지금 인기 최고'></Book>
-        </ListDiv>
-        <ListDiv>
-          <Book title='방금 만나러 왔어요'></Book>
-        </ListDiv>
-        <TitleTextDiv>해외도서</TitleTextDiv>
-        <ListDiv>
-          <Book title='지금 인기 최고'></Book>
-        </ListDiv>
-        <ListDiv>
-          <Book title='방금 만나러 왔어요'></Book>
-        </ListDiv>
+        <DistanceDiv>
+          <TitleTextDiv>국내도서</TitleTextDiv>
+          <ListDiv>
+            <BookPage
+              title='지금 인기 최고'
+              url={BOOK_BEST_DOMESTIC_URL}
+              popular
+            ></BookPage>
+          </ListDiv>
+          <ListDiv>
+            <BookPage
+              title='방금 만나러 왔어요'
+              url={BOOK_NEW_DOMESTIC_URL}
+            ></BookPage>
+          </ListDiv>
+        </DistanceDiv>
+        <DistanceDiv>
+          <TitleTextDiv>해외도서</TitleTextDiv>
+          <ListDiv>
+            <BookPage
+              title='지금 인기 최고'
+              url={BOOK_BEST_GLOBAL_URL}
+              popular
+            ></BookPage>
+          </ListDiv>
+          <ListDiv>
+            <BookPage
+              title='방금 만나러 왔어요'
+              url={BOOK_NEW_GLOBAL_URL}
+            ></BookPage>
+          </ListDiv>
+        </DistanceDiv>
       </ListContentsDiv>
     </WrapperDiv>
   );

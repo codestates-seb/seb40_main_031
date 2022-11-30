@@ -6,7 +6,7 @@ import {
   WindowDiv,
   FlexBoxDiv,
   PositionDiv,
-  ImageDiv,
+  ImageImg,
 } from 'components/main/MainCarousel.style';
 
 const Carousel = () => {
@@ -53,10 +53,7 @@ const Carousel = () => {
         <WindowDiv>
           <FlexBoxDiv style={style}>
             {images.current.map((img, i) => (
-              <ImageDiv
-                key={i}
-                style={{ backgroundImage: `url(${img.src})` }}
-              ></ImageDiv>
+              <ImageImg key={i} src={img.src}></ImageImg>
             ))}
           </FlexBoxDiv>
         </WindowDiv>
