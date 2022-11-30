@@ -99,7 +99,6 @@ public class ReviewController {
     public ResponseEntity getReviews(@PathVariable Long bookId){
         Book book = bookService.findBook(bookId);
         List<Review> books = reviewService.findReviews(book.getBookId());
-
         return new ResponseEntity(reviewMapper.reviewsToReviewResponseDtos(books)
                 , HttpStatus.OK);
     }
