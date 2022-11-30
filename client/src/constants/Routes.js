@@ -14,7 +14,7 @@ const ROUTES = Object.freeze({
     name: 'Faq',
   },
   BOOKDETAIL: {
-    path: '/bookdetail',
+    path: '/bookdetail/:id',
     name: 'BookDetail',
   },
   REVIEWDETAIL: {
