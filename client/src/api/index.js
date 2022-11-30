@@ -11,3 +11,7 @@ export const BOOK_NEW_DOMESTIC_URL = `${BOOK_URL}/new-book/100`;
 export const BOOK_NEW_GLOBAL_URL = `${BOOK_URL}/new-book/200`;
 export const BOOK_RANDOM_URL = `${BOOK_URL}/category/104`;
 export const BOOK_BOOKDETAIL_URL = `${BOOK_URL}`;
+
+// Review 관련 ~~
+export const REVIEW_URL = '/reviews';
+export const REVEIW_DETAIL_URL = `${REVIEW_URL}`;
