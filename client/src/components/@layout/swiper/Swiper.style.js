@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 import { Theme } from 'style';
-import { lighten, darken } from 'polished';
+import { lighten } from 'polished';
 
 const List = styled.div`
   .swiper-container {
@@ -15,22 +15,11 @@ const List = styled.div`
     div {
       font-size: 20px;
       display: inline-block;
-      width: 200px;
+      max-width: 205px;
+      width: 100%;
       white-space: nowrap;
       overflow: hidden;
       text-overflow: ellipsis;
-      /* @media screen and (max-width: 500px) {
-        font-size: 20px;
-      }
-      @media screen and (min-width: 501px) and (max-width: 550px) {
-        font-size: 20px;
-      }
-      @media screen and (min-width: 551px) and (max-width: 800px) {
-        font-size: 20px;
-      }
-      @media screen and (min-width: 801px) and (max-width: 1000px) {
-        font-size: 20px;
-      }*/
     }
   }
 
@@ -38,14 +27,19 @@ const List = styled.div`
     display: block;
     width: 100%;
     height: 100%;
-    /* object-fit: cover; */
     position: relative;
   }
   .swiper-button-prev {
     color: ${lighten(0.1, Theme.PRIMARY.GREEN)};
+    @media screen and (max-width: 450px) {
+      display: none;
+    }
   }
   .swiper-button-next {
     color: ${lighten(0.1, Theme.PRIMARY.GREEN)};
+    @media screen and (max-width: 450px) {
+      display: none;
+    }
   }
 `;
 
