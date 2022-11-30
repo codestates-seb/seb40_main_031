@@ -11,7 +11,7 @@ import lombok.Setter;
 @Setter
 public class BookListResponseDto {
 
-    private long bookId;
+    private Long bookId;
     private String title;
     private String author;
     private long price;
