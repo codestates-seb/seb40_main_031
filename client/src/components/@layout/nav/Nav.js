@@ -24,10 +24,13 @@ const Nav = () => {
   const navigate = useNavigate();
 
   const islogined = () => {
-    sessionStorage.getItem('Authorization')
-      ? setNavList(NAV_LIST_LOGINED)
-      : setNavList(NAV_LIST);
-    setIslogin(true);
+    if (sessionStorage.getItem('Authorization') !== null) {
+      setNavList(NAV_LIST_LOGINED);
+      setIslogin(true);
+    } else {
+      setNavList(NAV_LIST);
+      setIslogin(false);
+    }
   };
 
   const logout = () => {

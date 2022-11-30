@@ -73,15 +73,7 @@ const LoginComponent = () => {
         sessionStorage.setItem('Authorization', accessToken);
         sessionStorage.setItem('Refresh', refreshToken);
         console.log(res);
-
-        setAlert({
-          open: true,
-          title: '로그인 성공',
-          message: '로그인에 성공했습니다. 메인 페이지로 이동합니다.',
-          callback: function () {
-            navigate('/');
-          },
-        });
+        navigate('/');
       })
       .catch((err) => {
         console.log(`${err.response.status} 에러`);
