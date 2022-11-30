@@ -57,6 +57,7 @@ const BookDetail = () => {
 
   useEffect(() => {
     getBookDetail();
+    // eslint-disable-next-line
   }, []);
 
   const modalHandler = () => {

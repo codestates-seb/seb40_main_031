@@ -71,7 +71,7 @@ const MainSwiper = () => {
               src={book.coverLargeUrl}
               title={book.title}
               onClick={() => {
-                handleClick(`books/${book.bookId}`);
+                handleClick(`bookdetail/${book.bookId}`);
               }}
             />
           </SwiperSlide>

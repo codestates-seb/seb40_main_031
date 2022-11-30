@@ -78,7 +78,7 @@ const BookPage = ({ title, url, popular }) => {
                 src={book.coverLargeUrl}
                 title={book.title}
                 onClick={() => {
-                  handleClick(`books/${book.bookId}`);
+                  handleClick(`bookdetail/${book.bookId}`);
                 }}
               />
               {popular ? <NumberSpan>{i + 1}</NumberSpan> : null}
