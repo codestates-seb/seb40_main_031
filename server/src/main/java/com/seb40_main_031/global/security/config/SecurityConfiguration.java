@@ -94,7 +94,11 @@ public class SecurityConfiguration {
                 .authorizeHttpRequests(authorize -> authorize
                         .antMatchers(HttpMethod.OPTIONS, "/**/*").permitAll()
                         .antMatchers(HttpMethod.POST, "/members/signup").permitAll()    // 회원가입
+<<<<<<< HEAD
                         .antMatchers(HttpMethod.POST, "/members/login").permitAll()
+=======
+                        .antMatchers(HttpMethod.POST, "/login").permitAll()
+>>>>>>> dev
                         .antMatchers(HttpMethod.PATCH, "/members/**").hasRole("USER")   // 회원정보 수정
 //                        .antMatchers(HttpMethod.GET, "/members/**").hasAnyRole("USER", "ADMIN") // 회원정보 조회
                         .antMatchers(HttpMethod.DELETE, "/members/**").hasRole("USER")  // 회원 탈퇴
@@ -119,9 +123,15 @@ public class SecurityConfiguration {
         configuration.addAllowedMethod("*");
         configuration.addExposedHeader("Authorization");
         configuration.addExposedHeader("Refresh");
+<<<<<<< HEAD
 //        configuration.addExposedHeader("Access-Control-Allow-Origin");
 //        configuration.setAllowedOrigins(Arrays.asList("*"));
 //        configuration.setAllowedMethods(Arrays.asList("GET","POST", "PATCH", "DELETE"));
+=======
+        configuration.addExposedHeader("Access-Control-Allow-Origin");
+        configuration.setAllowedOrigins(Arrays.asList("*"));
+        configuration.setAllowedMethods(Arrays.asList("GET","POST", "PATCH", "DELETE"));
+>>>>>>> dev
 
 //        configuration.addAllowedOriginPattern("*");
 //        configuration.addAllowedHeader("*");
@@ -137,7 +147,11 @@ public class SecurityConfiguration {
         UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
         // 모든 URL에 앞에서 구성한 CORS 정책(CorsConfiguration)을 적용
         source.registerCorsConfiguration("/**", configuration);
+<<<<<<< HEAD
 //        source.registerCorsConfiguration("/members/**", configuration);
+=======
+        source.registerCorsConfiguration("/members/**", configuration);
+>>>>>>> dev
         return source;
     }
 

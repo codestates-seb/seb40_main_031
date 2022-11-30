@@ -70,6 +70,7 @@ public class BookService {
         return pageBooks;
     }
 
+<<<<<<< HEAD
     public Page<Book> findAllCategoryId(String categoryId){
         Pageable pageable = PageRequest.of(0, 20, Sort.by("bookId").descending());
         Page<Book> findBooks = bookRepository.findAllByCategoryId(categoryId , pageable);
@@ -77,4 +78,6 @@ public class BookService {
         return findBooks;
     }
 
+=======
+>>>>>>> dev
 }

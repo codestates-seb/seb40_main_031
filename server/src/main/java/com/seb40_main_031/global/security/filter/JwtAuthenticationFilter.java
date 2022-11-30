@@ -1,7 +1,10 @@
 package com.seb40_main_031.global.security.filter;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
+<<<<<<< HEAD
 
+=======
+>>>>>>> dev
 import com.seb40_main_031.domain.member.entity.Member;
 import com.seb40_main_031.global.security.JwtTokenizer;
 import com.seb40_main_031.global.security.dto.LoginDto;
@@ -35,7 +38,10 @@ public class JwtAuthenticationFilter extends UsernamePasswordAuthenticationFilte
     private final AuthenticationManager authenticationManager;
     // JwtTokenizer는 클라이언트가 인증에 성공할 경우, JWT를 생성 및 발급하는 역할을 합니다.
     private final JwtTokenizer jwtTokenizer;
+<<<<<<< HEAD
 //    private final LoginInfo loginInfo;
+=======
+>>>>>>> dev
 
     // attemptAuthentication 메서드 내부에서 인증을 시도하는 로직을 구현하면 됩니다.
     @SneakyThrows
@@ -76,12 +82,16 @@ public class JwtAuthenticationFilter extends UsernamePasswordAuthenticationFilte
         // delegateRefreshToken(member) 메서드를 이용해 Refresh Token을 생성합니다.
         String refreshToken = delegateRefreshToken(member);
 
+<<<<<<< HEAD
 //        LoginInfo.setEmail(member.getEmail());
 //        LoginInfo.setNickname(member.getNickname());
 //        LoginInfo.setToken(accessToken);
 
 
 //        response.setHeader("Access-Control-Allow-Origin", "*");
+=======
+        response.setHeader("Access-Control-Allow-Origin", "*");
+>>>>>>> dev
         response.setHeader("Authorization", "Bearer " + accessToken);
         response.setHeader("Refresh", refreshToken);
 

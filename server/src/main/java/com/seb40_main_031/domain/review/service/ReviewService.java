@@ -27,10 +27,6 @@ public class ReviewService {
 
     // 리뷰 생성
     public Review createReview(Review review){
-//        Member member = memberService.findMember(memberId);
-//        review.setMember(member);
-//        member.updateMemberPoint(review);
-
         return reviewRepository.save(review);
     }
 
@@ -49,13 +45,6 @@ public class ReviewService {
         } catch (Exception e) {
             throw new BusinessLogicException(ExceptionCode.REVIEW_MEMBER_NOT_MATCHED);
         }
-
-//        if(findReview.getMember().getMemberId().equals(memberId)) {
-//            findReview.setContent(review.getContent());
-//        } else {
-//            throw new BusinessLogicException(ExceptionCode.REVIEW_MEMBER_NOT_MATCHED);
-//        }
-
         return reviewRepository.save(findReview);
     }
 
