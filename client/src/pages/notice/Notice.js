@@ -5,11 +5,8 @@ import { FAQ_LIST } from 'constants';
 import {
   Wrap,
   Title,
-<<<<<<< HEAD
-=======
   TabButton,
   TabContainer,
->>>>>>> 13832d7a851dcddb53654add4d12caca4f3f2295
   SearchBarForm,
   Select,
   Option,
@@ -20,10 +17,11 @@ import {
   FaqListTitlteContents,
   FaqListContents,
 } from './Notice.style';
+
 const Notice = () => {
   return (
     <Wrap>
-      <Title>공지사항</Title>
+      <Title>공지사항 (Notice)</Title>
       <FaqListTitle>
         <FaqListTitlteContents>
           <div style={{ marginLeft: '2%', fontWeight: 600 }}>번호</div>
