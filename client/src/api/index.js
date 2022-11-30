@@ -9,3 +9,4 @@ export const BOOK_BEST_DOMESTIC_URL = `${BOOK_URL}/bestSeller/100`;
 export const BOOK_BEST_GLOBAL_URL = `${BOOK_URL}/bestSeller/200`;
 export const BOOK_NEW_DOMESTIC_URL = `${BOOK_URL}/new-book/100`;
 export const BOOK_NEW_GLOBAL_URL = `${BOOK_URL}/new-book/200`;
+export const BOOK_BOOKDETAIL_URL = `${BOOK_URL}`;
