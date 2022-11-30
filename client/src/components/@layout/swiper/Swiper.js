@@ -33,7 +33,8 @@ const BookPage = ({ title, url, popular }) => {
 
   useEffect(() => {
     getBestBook();
-  });
+    // eslint-disable-next-line
+  }, []);
 
   return (
     <List>
@@ -42,7 +43,7 @@ const BookPage = ({ title, url, popular }) => {
       <Swiper
         slidesPerView={4}
         spaceBetween={30}
-        speed={3000}
+        speed={1000}
         slidesPerGroup={4}
         navigation={true}
         breakpoints={{
@@ -50,15 +51,15 @@ const BookPage = ({ title, url, popular }) => {
             slidesPerView: 1,
             slidesPerGroup: 1,
           },
-          550: {
+          700: {
             slidesPerView: 2,
             slidesPerGroup: 2,
           },
-          800: {
+          950: {
             slidesPerView: 3,
             slidesPerGroup: 3,
           },
-          1000: {
+          1280: {
             slidesPerView: 4,
             slidesPerGroup: 4,
           },
@@ -66,7 +67,13 @@ const BookPage = ({ title, url, popular }) => {
       >
         {Book.map((book, i) => (
           <SwiperSlide key={book.bookId}>
-            <div style={{ height: '250px' }}>
+            <div
+              style={{
+                height: '280px',
+                maxWidth: '205px',
+                minWidth: '160px',
+              }}
+            >
               <img
                 src={book.coverLargeUrl}
                 title={book.title}
