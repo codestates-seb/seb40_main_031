@@ -17,8 +17,8 @@ import java.util.List;
 @Repository
 public interface ReviewRepository extends JpaRepository<Review, Long> {
 //      SELECT * FROM REVIEW where book_id = 1
-    Page<Review> findAllByBookBookId(long bookId, Pageable pageable);
-
+    Page<Review> findAllByBookBookId(Long bookId, Pageable pageable);
+    List<Review> findAllByBookBookIdOrderByLikeCountDescReviewIdDesc(Long bookId);
     List<Review> findAllByMemberMemberIdOrderByReviewIdDesc(Long memberId);
     @Query(value = "SELECT book_id FROM review where member_id GROUP BY book_id ORDER BY MAX(created_at) DESC", nativeQuery = true)
     List<Long> findAllReviewedBookIdByMemberId(@Param("member_id") Long memberId);

@@ -12,7 +12,7 @@ import java.util.Optional;
 
 //@Repository
 public interface BookRepository extends JpaRepository<Book, Long> {
-    Optional<Book> findByBookId(long bookId);
+    Optional<Book> findByBookId(Long bookId);
 
     Book findByNationalRank(Long rank);
     Book findByForeignRank(Long rank);

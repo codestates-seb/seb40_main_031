@@ -1,5 +1,6 @@
 package com.seb40_main_031.domain.books.controller;
 
+import com.seb40_main_031.domain.books.dto.BookResponseDto;
 import com.seb40_main_031.domain.books.service.CallBookApi;
 import com.seb40_main_031.domain.books.entity.Book;
 import com.seb40_main_031.domain.books.mapper.BookMapper;
@@ -12,6 +13,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.Collections;
 import java.util.List;
 
 @RestController
@@ -34,7 +36,6 @@ public class BookController {
     @GetMapping("/{bookId}")
     public ResponseEntity getBook(@PathVariable Long bookId){
         Book book = bookService.findBook(bookId);
-
         return new ResponseEntity<>(bookMapper.bookToBookResponseDto(book)
                 ,HttpStatus.OK);
     }
@@ -42,7 +43,7 @@ public class BookController {
     /**
      * 2. 베스트셀러 전체 조회
      */
-    @GetMapping("/bestSeller/{categoryId}")
+    @GetMapping("/best-seller/{categoryId}")
     public ResponseEntity getBestSeller(@PathVariable Long categoryId){
         List<Book> books = bookService.findAllBestSeller(categoryId);
 

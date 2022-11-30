@@ -7,8 +7,7 @@ import lombok.Setter;
 @Setter
 public class ReviewPatchDto {
 
-    private long reviewId;
-    private long memberId;
+    private Long reviewId;
     private String content;
 
 }

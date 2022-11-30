@@ -92,35 +92,29 @@ public class ReviewController {
         reviewService.deleteReview(reviewId, memberId);
     }
 
-    // review 조회 (단일 조회, 리스트 조회)
-//    @GetMapping("/{book-id}")
-//    public ResponseEntity getReview(@PathVariable("book-id") long bookId,
-//                                    @RequestBody long memberId,
-//                                    @RequestBody long reviewId){
-//        // 책이 있는지 찾기  // 책페이지에서 review를 작성하는데 필요할까? 그냥 reviewId만?
+    /**
+     * 4. bookId 에 연결 된 review 전체 조회
+     */
+    @GetMapping("/{bookId}")
+    public ResponseEntity getReviews(@PathVariable Long bookId){
+        Book book = bookService.findBook(bookId);
+        List<Review> books = reviewService.findReviews(book.getBookId());
+        return new ResponseEntity(reviewMapper.reviewsToReviewResponseDtos(books)
+                , HttpStatus.OK);
+    }
+
+//    /**
+//     * 5. bookId 에 연결 된 review 단일 조회
+//     */
+//    @GetMapping("/{bookId}/{reviewId}")
+//    public ResponseEntity getReview(@PathVariable Long bookId,
+//                                    @LoginAccountId Long memberId,
+//                                    @RequestBody Long reviewId){
 //        bookService.findBook(bookId);
-//        // reviewId와 memberId로 review 찾기
 //        Review review = reviewService.findReview(reviewId);
-//
-//        // review -> response 로 바꿔서 반환하기
 //        ReviewResponseDto response =
 //                reviewMapper.reviewToReviewResponseDto(review);
 //
 //        return new ResponseEntity<>(response, HttpStatus.OK);
 //    }
-
-    /**
-     * 4. bookId 에 연결 된 review 전체 조회
-     */
-    @GetMapping("/{bookId}")
-    public ResponseEntity getReviews(@PathVariable Long bookId,
-                                     @Positive @RequestParam int page){
-        Book book = bookService.findBook(bookId);
-        Page<Review> pageReviews = reviewService.findReviews(book.getBookId(),page-1, 5);
-        List<Review> reviews = pageReviews.getContent();
-
-        return new ResponseEntity(
-                new MultiResponseDto<>(reviewMapper.reviewsToReviewResponseDtos(reviews),pageReviews),
-                HttpStatus.OK);
-    }
 }

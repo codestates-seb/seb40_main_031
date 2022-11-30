@@ -21,11 +21,6 @@ public class CallBookApi {
     private final BookRepository bookRepository;
     private final Key key;
 
-//    public CallBookApi(BookRepository bookRepository, Key key) {
-//        this.bookRepository = bookRepository;
-//        this.key = key;
-//    }
-
     /**
      * 1. 베스트셀러 API 호출
      *

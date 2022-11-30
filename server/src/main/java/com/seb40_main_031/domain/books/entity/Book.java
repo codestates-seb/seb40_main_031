@@ -4,10 +4,14 @@ import com.seb40_main_031.domain.review.entity.Review;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import org.springframework.data.domain.Page;
 
 import javax.persistence.*;
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.List;
+import java.util.stream.Collectors;
 
 @NoArgsConstructor
 @Getter
@@ -18,10 +22,10 @@ public class Book {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "BOOK_ID")
-    private long bookId;
+    private Long bookId;
 
     @Column(name = "member_id")
-    private long memberId;
+    private Long memberId;
 
     @Column(name = "TITLE",nullable = false)
     private String title;
@@ -69,6 +73,7 @@ public class Book {
     private Long foreignRank;
 
     @OneToMany(mappedBy = "book")
+    @OrderBy("like_count DESC")
     private List<Review> reviews = new ArrayList<>();
 
     @Column(name = "REVIEW_COUNT")
