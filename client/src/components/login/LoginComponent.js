@@ -69,9 +69,11 @@ const LoginComponent = () => {
       .then((res) => {
         let accessToken = res.headers.get('Authorization');
         let refreshToken = res.headers.get('Refresh');
+        let userId = res.data;
 
         sessionStorage.setItem('Authorization', accessToken);
         sessionStorage.setItem('Refresh', refreshToken);
+        sessionStorage.setItem('UserId', userId);
         console.log(res);
         navigate('/');
       })
