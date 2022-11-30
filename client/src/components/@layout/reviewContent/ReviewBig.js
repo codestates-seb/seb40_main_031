@@ -38,7 +38,7 @@ const ReviewBig = () => {
   const [hasMore, setHasMore] = useState(true);
 
   const getReviewDetail = async () => {
-    const res = await axios.get(`${REVEIW_DETAIL_URL}/${id}?page=1`);
+    const res = await axios.get(`${REVEIW_DETAIL_URL}/${id}`);
     console.log(res.data);
     setreviewBigs(res.data.data);
     return res.data.data;
