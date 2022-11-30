@@ -12,6 +12,7 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
 import java.util.Optional;
 
 @Service
@@ -53,11 +54,16 @@ public class ReviewService {
         return findVerifiedReview(reviewId);
     }
 
-    // 리뷰 리스트 찾기
-    public Page<Review> findReviews(Long bookId, int page, int size) {
-        Pageable pageReview = PageRequest.of(page,size, Sort.by("reviewId").descending());
-        return reviewRepository.findAllByBookBookId(bookId, pageReview);
+    public List<Review> findReviews(Long bookId){
+        return reviewRepository.findAllByBookBookIdOrderByLikeCountDescReviewIdDesc(bookId);
     }
+
+
+    // 페이지네이션 리뷰 리스트 찾기
+//    public Page<Review> findReviews(Long bookId, int page, int size) {
+//        Pageable pageReview = PageRequest.of(page,size, Sort.by("reviewId").descending());
+//        return reviewRepository.findAllByBookBookId(bookId, pageReview);
+//    }
 
     // 리뷰 삭제
     public void deleteReview(Long reviewId, Long memberId){
