@@ -7,7 +7,6 @@ import com.seb40_main_031.domain.member.dto.MemberDto;
 import com.seb40_main_031.domain.member.entity.Member;
 import com.seb40_main_031.domain.member.mapper.MemberMapper;
 import com.seb40_main_031.domain.member.service.MemberService;
-//import com.seb40_main_031.domain.review.dto.ReviewToMemberResponse;
 import com.seb40_main_031.domain.review.dto.ReviewToMemberResponse;
 import com.seb40_main_031.domain.review.entity.Review;
 import com.seb40_main_031.domain.review.mapper.ReviewMapper;
