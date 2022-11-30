@@ -17,6 +17,7 @@ const List = styled.div`
     font-size: 18px;
     background: #eee;
     cursor: pointer;
+
     div {
       font-size: 1.3rem;
     }

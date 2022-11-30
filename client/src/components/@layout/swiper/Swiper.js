@@ -44,6 +44,7 @@ const BookPage = ({ title, url, popular }) => {
         slidesPerView={4}
         spaceBetween={30}
         speed={1000}
+
         slidesPerGroup={4}
         navigation={true}
         breakpoints={{

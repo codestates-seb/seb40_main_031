@@ -60,6 +60,7 @@ const BookDetail = () => {
     // eslint-disable-next-line
   }, []);
 
+
   const modalHandler = () => {
     setModal(true);
   };
