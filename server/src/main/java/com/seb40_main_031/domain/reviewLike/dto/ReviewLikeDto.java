@@ -8,6 +8,5 @@ import lombok.Setter;
 public class ReviewLikeDto {
 
     private long reviewId;
-//    private long memberId;
 
 }
