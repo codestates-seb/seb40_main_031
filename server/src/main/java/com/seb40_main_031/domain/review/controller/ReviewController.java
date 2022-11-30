@@ -96,14 +96,10 @@ public class ReviewController {
      * 4. bookId 에 연결 된 review 전체 조회
      */
     @GetMapping("/{bookId}")
-    public ResponseEntity getReviews(@PathVariable Long bookId,
-                                     @Positive @RequestParam int page){
+    public ResponseEntity getReviews(@PathVariable Long bookId){
         Book book = bookService.findBook(bookId);
-        Page<Review> pageReviews = reviewService.findReviews(book.getBookId(),page-1, 5);
-        List<Review> reviews = pageReviews.getContent();
-
-        return new ResponseEntity(
-                new MultiResponseDto<>(reviewMapper.reviewsToReviewResponseDtos(reviews),pageReviews)
+        List<Review> books = reviewService.findReviews(book.getBookId());
+        return new ResponseEntity(reviewMapper.reviewsToReviewResponseDtos(books)
                 , HttpStatus.OK);
     }
 

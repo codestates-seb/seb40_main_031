@@ -73,7 +73,7 @@ public class Book {
     private Long foreignRank;
 
     @OneToMany(mappedBy = "book")
-    @OrderBy("REVIEW_ID DESC")
+    @OrderBy("like_count DESC")
     private List<Review> reviews = new ArrayList<>();
 
     @Column(name = "REVIEW_COUNT")
