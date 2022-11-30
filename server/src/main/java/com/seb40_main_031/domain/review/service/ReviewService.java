@@ -49,18 +49,18 @@ public class ReviewService {
     }
 
     // 리뷰 단일 찾기
-    public Review findReview(long reviewId) {
+    public Review findReview(Long reviewId) {
         return findVerifiedReview(reviewId);
     }
 
     // 리뷰 리스트 찾기
-    public Page<Review> findReviews(long bookId, int page, int size) {
+    public Page<Review> findReviews(Long bookId, int page, int size) {
         Pageable pageReview = PageRequest.of(page,size, Sort.by("reviewId").descending());
         return reviewRepository.findAllByBookBookId(bookId, pageReview);
     }
 
     // 리뷰 삭제
-    public void deleteReview(long reviewId, long memberId){
+    public void deleteReview(Long reviewId, Long memberId){
         Review review = findVerifiedReview(reviewId);
         Member member = memberService.findMember(memberId);
         member.discountReviewPoint(review);
@@ -69,7 +69,7 @@ public class ReviewService {
 
 
     // 리뷰 여부 검증
-    private Review findVerifiedReview(long reviewId){
+    private Review findVerifiedReview(Long reviewId){
         Optional<Review> optionalReview =
                 reviewRepository.findById(reviewId);
 

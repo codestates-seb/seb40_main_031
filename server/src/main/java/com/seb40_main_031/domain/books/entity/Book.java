@@ -22,10 +22,10 @@ public class Book {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "BOOK_ID")
-    private long bookId;
+    private Long bookId;
 
     @Column(name = "member_id")
-    private long memberId;
+    private Long memberId;
 
     @Column(name = "TITLE",nullable = false)
     private String title;

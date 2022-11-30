@@ -11,7 +11,6 @@ import lombok.Setter;
 public class ReviewDto {
 
     private Long reviewId;
-//    private Long memberId;
     private Member member;
     private Book book;
     private String content;

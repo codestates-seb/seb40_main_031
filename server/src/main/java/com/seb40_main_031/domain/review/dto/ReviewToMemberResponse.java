@@ -8,9 +8,9 @@ import java.time.LocalDateTime;
 @Getter
 @Setter
 public class ReviewToMemberResponse {
-    private long reviewId;
+    private Long reviewId;
     private Long memberId;
-    private long bookId;
+    private Long bookId;
     private String content;
     private LocalDateTime createdAt;
     private LocalDateTime modifiedAt;

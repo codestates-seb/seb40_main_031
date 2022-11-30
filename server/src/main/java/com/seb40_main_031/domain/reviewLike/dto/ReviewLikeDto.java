@@ -7,6 +7,6 @@ import lombok.Setter;
 @Setter
 public class ReviewLikeDto {
 
-    private long reviewId;
+    private Long reviewId;
 
 }
