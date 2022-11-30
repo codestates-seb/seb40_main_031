@@ -48,6 +48,7 @@ const SignUpInput = styled.input`
 const SignDiv = styled.div`
   display: flex;
   margin-top: 10px;
+  margin-bottom: 60px;
 `;
 
 const LinkA = styled.a`
