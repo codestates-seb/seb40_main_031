@@ -6,10 +6,7 @@ import { darken } from 'polished';
 
 const Template = styled.div`
   @media screen and (max-width: 950px) {
-
     height: 100%;
-
-
   }
   width: 100%;
   max-width: 1200px;
@@ -183,7 +180,7 @@ const ReviewContentTemplate = styled.div`
   border-radius: 4px;
 `;
 
-const Reviews = styled.div`
+const Reviews = styled.span`
   @media screen and (max-width: 950px) {
     display: flex;
     justify-content: center;
@@ -247,7 +244,6 @@ const ReviewComponentTemplate = styled.div`
   width: 1000px;
 
   height: 100%;
-
 `;
 
 export {

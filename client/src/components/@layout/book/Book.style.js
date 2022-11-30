@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import { Theme } from 'style';
 
 const Container = styled.div`
   display: flex;
@@ -13,6 +14,7 @@ const Title = styled.div`
   font-weight: bold;
   font-size: 25px;
   margin-left: 3.5rem;
+  color: ${Theme.PRIMARY.GREEN};
 `;
 
 const Bookbox = styled.div`

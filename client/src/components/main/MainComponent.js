@@ -8,72 +8,25 @@ import {
   TextDiv,
   ListContentsDiv,
   ListDiv,
+  DistanceDiv,
 } from 'components/main/MainComponent.style';
 import MainSwiper from 'components/main/MainSwiper';
 import BookPage from 'components/@layout/swiper/Swiper';
-// import axios from 'axios';
-
-// import dfs_xy_conv from 'components/main/NxNyFunction'; 위치정보 관련
+import {
+  BOOK_BEST_DOMESTIC_URL,
+  BOOK_BEST_GLOBAL_URL,
+  BOOK_NEW_DOMESTIC_URL,
+  BOOK_NEW_GLOBAL_URL,
+} from 'api';
 
 const MainComponent = () => {
-  const WEATHER_URL = process.env.REACT_APP_WEATHER_API_URL;
-  const WEATHER_API_KEY = process.env.REACT_APP_WEATHER_API_KEY;
-
   const [date] = useState(new Date());
-  const [baseDate] = useState(
-    `${date.getFullYear()}${('0' + (1 + date.getMonth())).slice(-2)}${(
-      '0' + date.getDate()
-    ).slice(-2)}`,
-  );
   const [hour] = useState(date.getHours());
-  const [minute] = useState(date.getMinutes());
   const [message, setMessage] = useState('');
-
   const [user] = useState({ name: '어머' });
-
-  /* 위치정보 관련
-    const [latitude, setLatitude] = useState('');
-    const [longitude, setLongitude] = useState('');
-
-    const [nx, setNx] = useState('');
-    const [ny, setNy] = useState('');
-
-    navigator.geolocation.getPosition(pos)
-
-    setLatitude(Number(parseInt(pos.coords.latitude)));
-    setLongitude(Number(parseInt(pos.coords.longitude)));
-
-    setNx(dfs_xy_conv('toXY', latitude, longitude).x);
-    setNy(dfs_xy_conv('toXY', latitude, longitude).y);
-    
-    console.log('latitude : ' + latitude);
-    console.log('longitude : ' + longitude);
-    console.log('nx : ' + nx);
-    console.log('ny : ' + ny);
-    
-      const getWeather = async () => {
-        await axios
-          .get(WEATHER_URL, {
-            params: {
-              serviceKey: WEATHER_API_KEY,
-              pageNo: 1,
-              numOfRows: 1000,
-              dataType: JSON,
-              base_date: baseDate,
-              base_time: `${hour}${minute}`,
-              nx: nx,
-              ny: ny,
-            },
-          })
-          .then((res) => {
-            console.log(res);
-          });
-      };
-*/
 
   useEffect(() => {
     outputMessage();
-    // getWeather();
   });
 
   const outputMessage = () => {
@@ -99,7 +52,7 @@ const MainComponent = () => {
           <TextDiv>
             {message}
             <br />
-            이렇게 날씨 좋은 날, 이런 책은 어떠세요?
+            글길에서 추천드리는 책이에요!
           </TextDiv>
         </SuggestTextDiv>
         <SuggestBookListDiv>
@@ -107,20 +60,38 @@ const MainComponent = () => {
         </SuggestBookListDiv>
       </SuggestDiv>
       <ListContentsDiv>
-        <TitleTextDiv>국내도서</TitleTextDiv>
-        <ListDiv>
-          <BookPage title='지금 인기 최고'></BookPage>
-        </ListDiv>
-        <ListDiv>
-          <BookPage title='방금 만나러 왔어요'></BookPage>
-        </ListDiv>
-        <TitleTextDiv>해외도서</TitleTextDiv>
-        <ListDiv>
-          <BookPage title='지금 인기 최고'></BookPage>
-        </ListDiv>
-        <ListDiv>
-          <BookPage title='방금 만나러 왔어요'></BookPage>
-        </ListDiv>
+        <DistanceDiv>
+          <TitleTextDiv>국내도서</TitleTextDiv>
+          <ListDiv>
+            <BookPage
+              title='지금 인기 최고'
+              url={BOOK_BEST_DOMESTIC_URL}
+              popular
+            ></BookPage>
+          </ListDiv>
+          <ListDiv>
+            <BookPage
+              title='방금 만나러 왔어요'
+              url={BOOK_NEW_DOMESTIC_URL}
+            ></BookPage>
+          </ListDiv>
+        </DistanceDiv>
+        <DistanceDiv>
+          <TitleTextDiv>해외도서</TitleTextDiv>
+          <ListDiv>
+            <BookPage
+              title='지금 인기 최고'
+              url={BOOK_BEST_GLOBAL_URL}
+              popular
+            ></BookPage>
+          </ListDiv>
+          <ListDiv>
+            <BookPage
+              title='방금 만나러 왔어요'
+              url={BOOK_NEW_GLOBAL_URL}
+            ></BookPage>
+          </ListDiv>
+        </DistanceDiv>
       </ListContentsDiv>
     </WrapperDiv>
   );

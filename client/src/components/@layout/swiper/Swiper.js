@@ -1,4 +1,4 @@
-import React, { useRef } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 // Import Swiper React components
 import { Swiper, SwiperSlide } from 'swiper/react';
 
@@ -9,19 +9,32 @@ import 'swiper/components/pagination/pagination.min.css';
 
 // import required modules
 import SwiperCore, { Navigation, Autoplay } from 'swiper';
-import Dummybooks from 'components/@layout/book/Dummybooks';
-import { List } from 'components/@layout/swiper/Swiper.style';
+import { List, NumberSpan } from 'components/@layout/swiper/Swiper.style';
 import { Title } from 'components/@layout/book/Book.style';
-import axios from 'axios';
-import { BESTBOOK_URL } from 'api';
+import axios from 'api/axios';
+import { useNavigate } from 'react-router-dom';
 
 SwiperCore.use([Autoplay, Navigation]);
 
-const BookPage = ({ title }) => {
-  // const getBestBook = async () => {
-  //   const res = await axios.get(BESTBOOK_URL);
-  //   return res.data;
-  // };
+const BookPage = ({ title, url, popular }) => {
+  const [Book, setBook] = useState([]);
+
+  const getBestBook = async () => {
+    const res = await axios.get(url);
+    setBook(res.data);
+    return res.data;
+  };
+
+  const navigate = useNavigate();
+
+  const handleClick = (e) => {
+    navigate(e);
+  };
+
+  useEffect(() => {
+    getBestBook();
+    // eslint-disable-next-line
+  }, []);
 
   return (
     <List>
@@ -30,7 +43,8 @@ const BookPage = ({ title }) => {
       <Swiper
         slidesPerView={4}
         spaceBetween={30}
-        speed={3000}
+        speed={1000}
+
         slidesPerGroup={4}
         navigation={true}
         breakpoints={{
@@ -38,24 +52,39 @@ const BookPage = ({ title }) => {
             slidesPerView: 1,
             slidesPerGroup: 1,
           },
-          550: {
+          700: {
             slidesPerView: 2,
             slidesPerGroup: 2,
           },
-          800: {
+          950: {
             slidesPerView: 3,
             slidesPerGroup: 3,
           },
-          1000: {
+          1280: {
             slidesPerView: 4,
             slidesPerGroup: 4,
           },
         }}
       >
-        {Dummybooks.map((book) => (
-          <SwiperSlide key={book.id}>
-            <img src={book.imgURL}></img>
-            <div>{book.name}</div>
+        {Book.map((book, i) => (
+          <SwiperSlide key={book.bookId}>
+            <div
+              style={{
+                height: '280px',
+                maxWidth: '205px',
+                minWidth: '160px',
+              }}
+            >
+              <img
+                src={book.coverLargeUrl}
+                title={book.title}
+                onClick={() => {
+                  handleClick(`bookdetail/${book.bookId}`);
+                }}
+              />
+              {popular ? <NumberSpan>{i + 1}</NumberSpan> : null}
+            </div>
+            <div title={book.title}>{book.title}</div>
           </SwiperSlide>
         ))}
       </Swiper>
