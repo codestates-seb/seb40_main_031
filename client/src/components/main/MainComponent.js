@@ -24,7 +24,7 @@ import axios from 'api/axios';
 const MainComponent = () => {
   const [date] = useState(new Date());
   const [hour] = useState(date.getHours());
-  const [message, setMessage] = useState('');
+  const [message, setMessage] = useState('대화형 도서 커뮤니티 글길입니다.');
 
   const outputMessage = () => {
     const userId = sessionStorage.getItem('UserId');
