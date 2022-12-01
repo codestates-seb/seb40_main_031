@@ -15,12 +15,28 @@ const Input = styled.input`
   border-radius: 20px;
   padding: 10px 10px 10px 30px;
   width: 100%;
-  min-width: 40px;
+  min-width: 100px;
   height: 2.5rem;
+  font-size: 1.4vw;
+  @media screen and (min-width: 1200px) {
+    font-size: 16.8px;
+  }
+  @media screen and (max-width: 900px) {
+    font-size: 12.6px;
+  }
 
   &::placeholder {
     color: silver;
-    font-size: 0.9rem;
+    font-size: 1.4vw;
+    @media screen and (min-width: 1200px) {
+      font-size: 16.8px;
+    }
+    @media screen and (max-width: 900px) {
+      font-size: 12.6px;
+    }
+    @media screen and (max-width: 700px) {
+      color: white;
+    }
   }
 
   &:hover {

@@ -23,6 +23,32 @@ const LeftDiv = styled.div`
   padding-bottom: 0.4rem;
 `;
 
+const RightDiv = styled.div`
+  display: flex;
+  align-items: center;
+  height: 100%;
+`;
+
+const UserImg = styled.img`
+  width: auto;
+  height: 60%;
+  cursor: pointer;
+  @media screen and (max-width: 700px) {
+    margin-left: 1vw;
+  }
+`;
+
+const UserNameSpan = styled.span`
+  width: auto;
+  padding-top: 4px;
+  margin-left: 1vw;
+  cursor: pointer;
+  color: #febd5a;
+  @media screen and (max-width: 700px) {
+    display: none;
+  }
+`;
+
 const MainLogoImg = styled.img`
   width: 160px;
   cursor: pointer;
@@ -93,4 +119,7 @@ export {
   ModalDiv,
   ModalWrapperDiv,
   ModalListA,
+  RightDiv,
+  UserImg,
+  UserNameSpan,
 };
