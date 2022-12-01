@@ -42,6 +42,7 @@ const UserNameSpan = styled.span`
   width: auto;
   padding-top: 4px;
   margin-left: 1vw;
+  font-size: 1.7rem;
   cursor: pointer;
   color: #febd5a;
   @media screen and (max-width: 700px) {
