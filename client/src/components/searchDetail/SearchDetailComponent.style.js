@@ -6,9 +6,8 @@ const ContainerDiv = styled.div`
 `;
 
 const ResultDiv = styled.div`
-  margin-top: 7rem;
-  margin-left: 2rem;
+  margin: 7rem 0 3rem 2rem;
   font-weight: bold;
-  font-size: large;
+  font-size: 2rem;
 `;
 export { ContainerDiv, ResultDiv };

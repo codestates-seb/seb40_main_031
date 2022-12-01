@@ -22,7 +22,7 @@ const ROUTES = Object.freeze({
     name: 'ReviewDetail',
   },
   SEARCHDETAIL: {
-    path: '/searchdetail',
+    path: '/searchdetail/:keyword',
     name: 'SearchDetail',
   },
   SIGNUP: {

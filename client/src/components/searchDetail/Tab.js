@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import DomesticCategory from 'components/searchDetail/DomesticCategory';
 import ForeignCategory from 'components/searchDetail/ForeignCategory';
 import {
@@ -7,13 +7,14 @@ import {
   TabSpan,
 } from 'components/searchDetail/Tab.style';
 import { ResultDiv } from 'components/searchDetail/SearchDetailComponent.style';
-import { bookSearchKeywordState } from 'atom';
+import { bookSearchKeywordState, bookReSearch } from 'atom';
 import { useRecoilValue } from 'recoil';
 
 const Tab = () => {
   const [currentTab, setCurrentTab] = useState(0);
   const keyword = useRecoilValue(bookSearchKeywordState);
-  const [fixedKeyword] = useState(keyword);
+  const word = useRecoilValue(bookReSearch);
+  const [fixedKeyword, setFixedKeyword] = useState(keyword);
 
   const menuArr = [
     { name: '국내도서', content: <DomesticCategory /> },
@@ -23,6 +24,9 @@ const Tab = () => {
   const selectMenuHandler = (index) => {
     setCurrentTab(index);
   };
+  useEffect(() => {
+    setFixedKeyword(word);
+  }, [word]);
 
   return (
     <ContainerDiv>
