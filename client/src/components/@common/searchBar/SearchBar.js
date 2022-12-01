@@ -43,8 +43,8 @@ const SearchBar = () => {
           style={{
             position: 'absolute',
             left: '8px',
-            top: '23%',
-            fontSize: '1.5rem',
+            top: '30%',
+            fontSize: '15px',
             color: 'silver',
           }}
         />

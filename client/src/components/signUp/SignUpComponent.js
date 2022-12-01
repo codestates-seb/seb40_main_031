@@ -43,7 +43,7 @@ const SignUpComponent = () => {
 
   const check = (data, type) => {
     if (type === 'nickname') {
-      if (data.length >= 2) {
+      if (data.length >= 2 && data.length <= 8) {
         return true;
       } else return false;
     }
@@ -65,7 +65,7 @@ const SignUpComponent = () => {
       setNicknameError('');
     } else {
       setIsNickname(false);
-      setNicknameError('닉네임은 두글자 이상이어야 합니다.');
+      setNicknameError('닉네임은 두글자 이상 여덟글자 이하여야 합니다.');
     }
     setNickname(event.target.value);
   };
