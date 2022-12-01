@@ -36,18 +36,6 @@ public class MemberDto {
         private String about;
         private String img;
         private int point;
-
-//    @Builder    // 안에 쓸지 밖에 쓸지 좀 더 생각.
-//    public static class Patch {
-//        private Long memberId;
-//        private String nickname;
-//        private String password;
-//        private String about;
-//        private String img;
-//        private int point;
-//        private Member.Roles roles;
-
-
     }
 
     @Getter
@@ -61,14 +49,6 @@ public class MemberDto {
         private String img;
         private LocalDateTime createdAt;
         private LocalDateTime modifiedAt;
-
-//        @Setter
-//        private List<Review> reviewList;
-//        private Member.Roles roles;
-//        private List<BookDto.Response> bookList;
-//        private List<ReviewDto.Response> reviewList;
-//        private Member.Roles roles;
-
     }
 
     @AllArgsConstructor
@@ -80,11 +60,6 @@ public class MemberDto {
         private String nickname;
         private String about;
         private String img;
-
-//        @Setter
-//        private List<ReviewToMemberResponse> reviewList;
-//        private List<ReviewResponseDto> reviews;
-
         private int bookCount;
         private List<BookToMemberResponse> bookList;
         private int reviewCount;
