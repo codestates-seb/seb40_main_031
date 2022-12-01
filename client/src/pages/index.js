@@ -30,6 +30,11 @@ const PAGES = [
         element: <Faq />,
       },
       {
+        name: ROUTES.NOTICE.name,
+        path: ROUTES.NOTICE.path,
+        element: <Notice />,
+      },
+      {
         name: ROUTES.BOOKDETAIL.name,
         path: ROUTES.BOOKDETAIL.path,
         element: <BookDetail />,
