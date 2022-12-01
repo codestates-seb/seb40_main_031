@@ -18,10 +18,28 @@ const NAV_LIST = Object.freeze([
   },
   {
     name: '회원가입',
-    href: 'signup',
+    href: '/signup',
   },
 ]);
 
+const NAV_LIST_LOGINED = Object.freeze([
+  {
+    name: '공지사항',
+    href: '/notice',
+  },
+  {
+    name: 'FAQ',
+    href: '/faq',
+  },
+  {
+    name: '문의하기',
+    href: 'http://pf.kakao.com/_xexaxePxj/chat',
+  },
+  {
+    name: '마이페이지',
+    href: '/mypage',
+  },
+]);
 const FAQ_TAB_BUTTON = Object.freeze([
   '전체',
   '책관련',
@@ -67,15 +85,4 @@ const FAQ_LIST = Object.freeze([
   },
 ]);
 
-const FAQ_MODAL = Object.freeze([
-  '알아서 사쇼1',
-  '알아서 사쇼2',
-  '알아서 사쇼3',
-  '알아서 사쇼4',
-  '알아서 사쇼5',
-  '알아서 사쇼6',
-  '알아서 사쇼7',
-  '알아서 사쇼8',
-]);
-
-export { NAV_LIST, FAQ_TAB_BUTTON, FAQ_LIST, FAQ_MODAL };
+export { NAV_LIST, NAV_LIST_LOGINED, FAQ_TAB_BUTTON, FAQ_LIST };

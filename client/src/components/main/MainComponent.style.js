@@ -1,6 +1,5 @@
 import styled from 'styled-components';
 import { Theme } from 'style';
-import Carousel from 'components/main/MainCarousel';
 import { darken, lighten } from 'polished';
 
 const WrapperDiv = styled.div`
@@ -53,10 +52,6 @@ const SuggestBookListDiv = styled.div`
   }
 `;
 
-const BookCarouselDiv = styled(Carousel)`
-  width: 90%;
-`;
-
 const TitleTextDiv = styled.div`
   padding-top: 3rem;
   padding-left: 4.5rem;
@@ -88,7 +83,6 @@ export {
   SuggestDiv,
   SuggestTextDiv,
   SuggestBookListDiv,
-  BookCarouselDiv,
   TitleTextDiv,
   TextDiv,
   ListContentsDiv,

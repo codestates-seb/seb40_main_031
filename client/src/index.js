@@ -4,9 +4,6 @@ import { BrowserRouter as Router } from 'react-router-dom';
 
 import { RecoilRoot } from 'recoil';
 import { GlobalStyles, Theme } from 'style';
-
-import 'bootstrap/dist/css/bootstrap.min.css';
-
 import App from './App';
 
 const container = document.getElementById('root');

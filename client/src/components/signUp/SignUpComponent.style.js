@@ -1,8 +1,6 @@
 import styled from 'styled-components';
 import { Theme } from 'style';
-
 import { darken, lighten } from 'polished';
-
 import { Button } from 'components';
 
 const Container = styled.div`
@@ -50,6 +48,7 @@ const SignUpInput = styled.input`
 const SignDiv = styled.div`
   display: flex;
   margin-top: 10px;
+  margin-bottom: 60px;
 `;
 
 const LinkA = styled.a`
