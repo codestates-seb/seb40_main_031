@@ -47,7 +47,7 @@ const Tab = () => {
       </TabDiv>
 
       <h1>{menuArr[currentTab].content}</h1>
-      <ResultDiv>``{`${fixedKeyword}`}`` 검색한 결과입니다</ResultDiv>
+      <ResultDiv>``{`${fixedKeyword}`}`` 검색 결과입니다.</ResultDiv>
       {/* <ResultDiv>``{keyword}`` 검색한 결과입니다</ResultDiv> // 둘 다 같은 내용을 출력함*/}
     </ContainerDiv>
   );
