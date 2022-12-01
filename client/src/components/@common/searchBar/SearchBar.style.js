@@ -17,22 +17,22 @@ const Input = styled.input`
   width: 100%;
   min-width: 100px;
   height: 2.5rem;
-  font-size: 1.4vw;
+  font-size: 1.7vw;
   @media screen and (min-width: 1200px) {
-    font-size: 16.8px;
+    font-size: 20.4px;
   }
   @media screen and (max-width: 900px) {
-    font-size: 12.6px;
+    font-size: 15.3px;
   }
 
   &::placeholder {
     color: silver;
-    font-size: 1.4vw;
+    font-size: 1.5vw;
     @media screen and (min-width: 1200px) {
-      font-size: 16.8px;
+      font-size: 18px;
     }
     @media screen and (max-width: 900px) {
-      font-size: 12.6px;
+      font-size: 13.5px;
     }
     @media screen and (max-width: 700px) {
       color: white;
