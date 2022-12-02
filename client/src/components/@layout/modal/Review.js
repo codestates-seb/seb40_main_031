@@ -10,13 +10,41 @@ import {
 } from 'components/@layout/modal/Review.style';
 import { IoCloseOutline } from 'react-icons/io5';
 import { Button } from 'components';
-import { useRef, useEffect } from 'react';
+import { useRef, useEffect, useState } from 'react';
+import { useParams } from 'react-router-dom';
+import axios from 'api/axios';
+import { REVIEW_URL } from 'api';
 
 const ModalReview = ({ setModal }) => {
   const outside = useRef();
+  const [content, setContent] = useState('');
 
+  const contentHandler = (e) => {
+    setContent(e.target.value);
+  };
   const modalHandlered = () => {
     setModal(false);
+  };
+  const { id } = useParams();
+
+  const makeReviewHandler = () => {
+    let accessToken = sessionStorage.getItem('Authorization');
+
+    axios
+      .post(
+        `${REVIEW_URL}/${id}`,
+        {
+          content: content,
+        },
+        {
+          headers: {
+            Authorization: accessToken,
+          },
+        },
+      )
+      .then((res) => {
+        console.log(res);
+      });
   };
 
   useEffect(() => {
@@ -57,10 +85,16 @@ const ModalReview = ({ setModal }) => {
           <ReviewTextarea
             type='text'
             placeholder='이 작품에 대한 생각을 자유롭게 표현해주세요.'
+            onChange={contentHandler}
           />
 
           <FooterDiv>
-            <Button text='작성' width='200px' height='60px' />
+            <Button
+              text='작성'
+              width='200px'
+              height='60px'
+              onClick={makeReviewHandler}
+            />
           </FooterDiv>
         </ContainerDiv>
       </ModalBackground>
