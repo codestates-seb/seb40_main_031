@@ -57,6 +57,5 @@ public class Review {
     public void discountLike(ReviewLike like) {
         this.likes.remove(like);
         this.likeCount = this.likes.size();
-
     }
 }

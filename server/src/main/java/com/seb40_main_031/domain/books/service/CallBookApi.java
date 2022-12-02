@@ -7,12 +7,16 @@ import lombok.RequiredArgsConstructor;
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
+import org.springframework.context.annotation.Bean;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.PostConstruct;
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
 import java.net.URL;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.Optional;
 
 @Service
@@ -54,7 +58,7 @@ public class CallBookApi {
                         Book book = new Book();
                         book.setTitle((String) item.get("title"));
                         book.setDescription((String) item.get("description"));
-                        book.setPubDate((String) item.get("pubDate"));
+                        book.setPubDate(pubDateReformat((String) item.get("pubDate")));
                         book.setPrice((Long) item.get("priceStandard"));
                         book.setCoverSmallUrl((String) item.get("coverSmallUrl"));
                         book.setCoverLargeUrl((String) item.get("coverLargeUrl"));
@@ -135,7 +139,7 @@ public class CallBookApi {
                         Book book = new Book();
                         book.setTitle((String) item.get("title"));
                         book.setDescription((String) item.get("description"));
-                        book.setPubDate((String) item.get("pubDate"));
+                        book.setPubDate(pubDateReformat((String) item.get("pubDate")));
                         book.setPrice((Long) item.get("priceStandard"));
                         book.setCoverSmallUrl((String) item.get("coverSmallUrl"));
                         book.setCoverLargeUrl((String) item.get("coverLargeUrl"));
@@ -194,7 +198,7 @@ public class CallBookApi {
                         Book book = new Book();
                         book.setTitle((String) item.get("title"));
                         book.setDescription((String) item.get("description"));
-                        book.setPubDate((String) item.get("pubDate"));
+                        book.setPubDate(pubDateReformat((String) item.get("pubDate")));
                         book.setPrice((Long) item.get("priceStandard"));
                         book.setCoverSmallUrl((String) item.get("coverSmallUrl"));
                         book.setCoverLargeUrl((String) item.get("coverLargeUrl"));
@@ -216,4 +220,17 @@ public class CallBookApi {
         }
     }
 
+
+    public String pubDateReformat(String pubDate) throws ParseException {
+        String reformatDate = "";
+        try{
+            SimpleDateFormat dt = new SimpleDateFormat("yyyymmdd");
+            Date date = dt.parse(pubDate);
+            reformatDate = new SimpleDateFormat("yyyy-mm-dd").format(date);
+            return reformatDate;
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return reformatDate;
+    }
 }

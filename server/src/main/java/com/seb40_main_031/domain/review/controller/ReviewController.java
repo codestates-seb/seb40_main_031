@@ -86,7 +86,8 @@ public class ReviewController {
     /**
      * 3. review 삭제
      */
-    @DeleteMapping("/{reviewId}")
+    @DeleteMapping("/{reviewId}") // 현재
+//    @DeleteMapping("/{bookId}/{reviewId}") // 이렇게 수정?
     public void deleteReview(@PathVariable Long reviewId,
                              @LoginAccountId Long memberId) {
         reviewService.deleteReview(reviewId, memberId);
