@@ -6,7 +6,7 @@ import { useState } from 'react';
 // import BookDetailState from 'atom/BookDetailState';
 import { AiOutlineShareAlt } from 'react-icons/ai';
 import Share from 'components/share/Share';
-import { useParams } from 'react-router-dom';
+import { useParams, useNavigate } from 'react-router-dom';
 import axios from 'api/axios';
 import { BOOK_BOOKDETAIL_URL } from 'api';
 import {
@@ -43,14 +43,14 @@ import {
 const BookDetail = () => {
   // const bookDetails = useRecoilValue(BookDetailState);
   const { id } = useParams();
+  const navigate = useNavigate();
   const [modal, setModal] = useState(false);
   const [openShare, setOpenShare] = useState(false);
   const [bookdetails, setBookdetails] = useState([]);
 
   const getBookDetail = async () => {
     const res = await axios.get(`${BOOK_BOOKDETAIL_URL}/${id}`);
-    console.log(id);
-    console.log(res.data);
+
     setBookdetails(res.data);
     return res.data;
   };
@@ -60,13 +60,16 @@ const BookDetail = () => {
     // eslint-disable-next-line
   }, []);
 
-
   const modalHandler = () => {
     setModal(true);
   };
 
   const openShareHandler = () => {
     setOpenShare(!openShare);
+  };
+
+  const pageHandler = () => {
+    navigate(`/reviewdetail/${id}`);
   };
 
   return (
@@ -118,7 +121,7 @@ const BookDetail = () => {
                 </ReviewIcon>
                 <ReviewCount>리뷰 2 +</ReviewCount>
               </ReviewiIconTemplate>
-              <ReviewMore>더보기</ReviewMore>
+              <ReviewMore onClick={pageHandler}>더보기</ReviewMore>
             </ReviewClick>
             <ReviewComponentTemplate>
               <ReviewSmall />
