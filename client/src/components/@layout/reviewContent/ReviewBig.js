@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useRef } from 'react';
 import {
   Template,
   UserInfo,
@@ -30,36 +30,93 @@ import Loading from 'components/@layout/loading/Loading';
 // 실행했기 때문에(처음에 랜더링이 되어서) 밑에 있는 number += 3이 먼저 실행이 되어서 number가 3으로 바뀌게
 // 되고 그 상태에서 fetchdata를 불러주기 때문에 (3, 6) 증감연산자 때문에 (6,9) 순차적으로 3씩 증가.
 
-let number = 0;
-
 const ReviewBig = () => {
   const { id } = useParams();
   const [reviewBigs, setreviewBigs] = useState([]);
   const [hasMore, setHasMore] = useState(true);
+  const [content, setContent] = useState('');
+
+  const number = useRef(0);
+  const tempBigs = useRef([]);
+
+  const contentHandler = (e) => {
+    setContent(e.target.value);
+  };
 
   const getReviewDetail = async () => {
     const res = await axios.get(`${REVEIW_DETAIL_URL}/${id}`);
     console.log(res.data);
-    setreviewBigs(res.data.data);
-    return res.data.data;
+    tempBigs.current = res.data;
+    setreviewBigs(tempBigs.current.slice(0, 3));
+    number.current = 3;
+    return res.data;
   };
 
+  const deleteReviewDetail = (id) => {
+    let accessToken = sessionStorage.getItem('Authorization');
+    let deleteId = id;
+    axios
+      .delete(
+        `${REVEIW_DETAIL_URL}/${deleteId}`,
+        {
+          reviewId: deleteId,
+        },
+        {
+          headers: {
+            Authorization: accessToken,
+          },
+        },
+      )
+      .then((res) => {
+        console.log(res);
+      });
+  };
+
+  const updateReviewDetail = () => {
+    let accessToken = sessionStorage.getItem('Authorization');
+
+    axios
+      .patch(
+        `${REVEIW_DETAIL_URL}/${id}`,
+        {
+          content: content,
+          reviewId: id,
+        },
+        {
+          headers: {
+            Authorization: accessToken,
+          },
+        },
+      )
+      .then((res) => {
+        console.log(res);
+      });
+  };
   useEffect(() => {
     getReviewDetail();
     // eslint-disable-next-line
+    console.log(reviewBigs.slice(number.current, number.current + 3));
   }, []);
 
+  useEffect(() => {
+    console.log(reviewBigs);
+  }, [reviewBigs]);
+
   const fetchData = () => {
-    if (reviewBigs.length < 5) {
+    if (reviewBigs.length < tempBigs.current.length) {
       // 데이터 받아오는 개수에 따라 수정 필요(else문 실행 여부때문에)
+
       setTimeout(() => {
-        setreviewBigs(reviewBigs.concat([].slice(number, number + 3)));
-      }, 2000);
+        setreviewBigs((prev) => [
+          ...prev,
+          ...tempBigs.current.slice(number.current, number.current + 3),
+        ]);
+        number.current += 3;
+      }, 1000);
     } else {
       setHasMore(false);
     }
   };
-  number += 3;
 
   return (
     <div>
@@ -76,9 +133,9 @@ const ReviewBig = () => {
         loader={<Loading width='30px' height='30px' />}
       >
         {reviewBigs &&
-          reviewBigs.slice(0, 3).map((reviewBig) => {
+          reviewBigs.map((reviewBig) => {
             return (
-              <Template key={reviewBig.bookId}>
+              <Template key={reviewBig.reviewId}>
                 <UserInfo>
                   <UserIcon>
                     <FaRegUserCircle />
@@ -93,12 +150,14 @@ const ReviewBig = () => {
                     </LeftIcon>
                     <LeftText>{reviewBig.likeCount}</LeftText>
                   </LeftIconBox>
-
                   <RightIconBox>
-                    <RightIconUpdate>
+                    <RightIconUpdate
+                      onChange={contentHandler}
+                      onClick={updateReviewDetail}
+                    >
                       <HiOutlinePencil />
                     </RightIconUpdate>
-                    <RightIconDelete>
+                    <RightIconDelete onClick={() => deleteReviewDetail(id)}>
                       <MdClose />
                     </RightIconDelete>
                   </RightIconBox>
