@@ -12,6 +12,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
+
 @Slf4j
 public class MemberAuthenticationFailureHandler implements AuthenticationFailureHandler {
     @Override
@@ -31,5 +32,6 @@ public class MemberAuthenticationFailureHandler implements AuthenticationFailure
         response.setContentType(MediaType.APPLICATION_JSON_VALUE);
         response.setStatus(HttpStatus.UNAUTHORIZED.value());
         response.getWriter().write(gson.toJson(errorResponse, ErrorResponse.class));
+
     }
 }

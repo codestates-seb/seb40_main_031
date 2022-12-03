@@ -1,6 +1,5 @@
 package com.seb40_main_031.global.security.config;
 
-
 import com.seb40_main_031.domain.member.service.MemberService;
 import com.seb40_main_031.global.security.JwtTokenizer;
 import com.seb40_main_031.global.security.filter.JwtAuthenticationFilter;

@@ -7,8 +7,6 @@ import com.seb40_main_031.domain.member.service.MemberService;
 import com.seb40_main_031.domain.review.entity.Review;
 import com.seb40_main_031.domain.review.service.ReviewService;
 import com.seb40_main_031.domain.reviewLike.repository.ReviewLikeRepository;
-import com.seb40_main_031.global.error.exception.BusinessLogicException;
-import com.seb40_main_031.global.error.exception.ExceptionCode;
 import org.springframework.stereotype.Service;
 
 import java.util.Optional;

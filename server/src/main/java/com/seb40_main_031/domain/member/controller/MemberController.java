@@ -8,6 +8,7 @@ import com.seb40_main_031.domain.member.service.MemberService;
 import com.seb40_main_031.domain.review.dto.ReviewToMemberResponse;
 import com.seb40_main_031.global.common.dto.MultiResponseDto;
 import com.seb40_main_031.global.common.dto.SingleResponseDto;
+
 import com.seb40_main_031.global.security.argumentresolver.LoginAccountId;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
@@ -66,7 +67,6 @@ public class MemberController {
         MemberDto.MyPageResponse response = mapper.memberToReviewDtoResponse(member, bookResponse, reviewResponse);
         response.setReviewCount(reviewResponse.size());
         response.setBookCount(bookResponse.size());
-
         return new ResponseEntity(new SingleResponseDto<>(response), HttpStatus.OK);
     }
 
@@ -89,7 +89,6 @@ public class MemberController {
      */
     @DeleteMapping
     public ResponseEntity deleteMember(@LoginAccountId Long memberId){
-
         memberService.deleteMember(memberId);
 
         return new ResponseEntity(HttpStatus.NO_CONTENT);

@@ -18,8 +18,10 @@ public class MemberDto {
         @Email
         @NotBlank
         private String email;
+
         @NotBlank(message = "비밀번호를 입력해 주세요.")
         private String password;
+
         @NotBlank
         private String nickname;
     }
@@ -33,7 +35,6 @@ public class MemberDto {
         private String about;
         private String img;
         private int point;
-
     }
 
     @Getter

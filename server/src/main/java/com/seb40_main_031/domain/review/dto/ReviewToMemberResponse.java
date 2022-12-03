@@ -8,6 +8,7 @@ import java.time.LocalDateTime;
 @Getter
 @Setter
 public class ReviewToMemberResponse {
+
     private Long reviewId;
     private Long memberId;
     private Long bookId;
