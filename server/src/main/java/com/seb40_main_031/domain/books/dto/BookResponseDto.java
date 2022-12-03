@@ -13,7 +13,8 @@ import java.util.List;
 @Getter
 @Setter
 public class BookResponseDto {
-    private long bookId;
+
+    private Long bookId;
 
     private String title;
 

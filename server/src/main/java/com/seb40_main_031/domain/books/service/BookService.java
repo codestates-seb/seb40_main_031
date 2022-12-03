@@ -19,13 +19,12 @@ public class BookService {
         this.bookRepository = bookRepository;
     }
 
-    public Book findBook(long bookId) {
+    public Book findBook(Long bookId) {
         Book book = findVerifiedBook(bookId);
         book.updateReviewCount();
         return book;
     }
-
-    private Book findVerifiedBook(long bookId){
+    private Book findVerifiedBook(Long bookId){
         Optional<Book> optionalBook =
                 bookRepository.findByBookId(bookId);
 
@@ -33,17 +32,14 @@ public class BookService {
                 new BusinessLogicException(ExceptionCode.BOOK_NOT_FOUND));
     }
 
-
-    public List<Book> findAllBestSeller(long categoryId){
+    public List<Book> findAllBestSeller(Long categoryId){
         List<Book> findBooks = new ArrayList<>();
         if(categoryId == 100) findBooks = bookRepository.findAllByNationalRank();
         if(categoryId == 200) findBooks = bookRepository.findAllByForeignRank();
 
         return findBooks;
     }
-
-    public List<Book> findAllNewBook(long categoryId) {
-        // 새로운 book list 생성
+    public List<Book> findAllNewBook(Long categoryId) {
         List<Book> findBooks = new ArrayList<>();
         // 카테고리가 100 이면 국내도서 신간 조회 , 200 이면 외국도서 신간 조회
         if(categoryId == 100) findBooks = bookRepository.findAllByCategoryNameStartingWithOrderByPubDateDesc("국내도서");
@@ -69,5 +65,9 @@ public class BookService {
 
         return pageBooks;
     }
+    public Page<Book> findAllCategoryId(String categoryId){
+        Pageable pageable = PageRequest.of(0, 20, Sort.by("bookId").descending());
 
+        return bookRepository.findAllByCategoryId(categoryId , pageable);
+    }
 }
