@@ -7,39 +7,28 @@ import com.seb40_main_031.domain.member.service.MemberService;
 import com.seb40_main_031.domain.review.dto.ReviewDto;
 import com.seb40_main_031.domain.review.dto.ReviewResponseDto;
 import com.seb40_main_031.domain.review.service.ReviewService;
-import com.seb40_main_031.global.common.dto.MultiResponseDto;
 
-import com.seb40_main_031.global.error.exception.BusinessLogicException;
 import com.seb40_main_031.global.security.argumentresolver.LoginAccountId;
 import com.seb40_main_031.domain.review.entity.Review;
 
 import com.seb40_main_031.domain.review.mapper.ReviewMapper;
 
-import org.springframework.data.domain.Page;
+import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import javax.validation.constraints.Positive;
 import java.util.List;
 
 @RestController
 @RequestMapping("/reviews")
+@RequiredArgsConstructor
 public class ReviewController {
 
     private final ReviewService reviewService;
     private final ReviewMapper reviewMapper;
     private final BookService bookService;
     private final MemberService memberService;
-
-
-    public ReviewController(ReviewService reviewService, ReviewMapper reviewMapper,
-                            BookService bookService, MemberService memberService) {
-        this.reviewService = reviewService;
-        this.reviewMapper = reviewMapper;
-        this.bookService = bookService;
-        this.memberService = memberService;
-    }
 
     /**
      * 1. review 생성

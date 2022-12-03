@@ -6,10 +6,6 @@ import com.seb40_main_031.global.error.exception.BusinessLogicException;
 import com.seb40_main_031.global.error.exception.ExceptionCode;
 import com.seb40_main_031.domain.review.entity.Review;
 import com.seb40_main_031.domain.review.repository.ReviewRepository;
-import org.springframework.data.domain.Page;
-import org.springframework.data.domain.PageRequest;
-import org.springframework.data.domain.Pageable;
-import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -26,13 +22,10 @@ public class ReviewService {
         this.memberService = memberService;
     }
 
-    // 리뷰 생성
     public Review createReview(Review review){
         return reviewRepository.save(review);
     }
 
-
-    // 리뷰 수정
     public Review modifiedReview(Review review, Long memberId) {
         Review findReview = findReview(review.getReviewId());
 
@@ -40,8 +33,7 @@ public class ReviewService {
             if(findReview.getMember().getMemberId().equals(memberId)){
                 findReview.setContent(review.getContent());
             } else {
-                Exception e = new Exception();
-                throw e;
+                throw new Exception();
             }
         } catch (Exception e) {
             throw new BusinessLogicException(ExceptionCode.REVIEW_MEMBER_NOT_MATCHED);
@@ -49,22 +41,14 @@ public class ReviewService {
         return reviewRepository.save(findReview);
     }
 
-    // 리뷰 단일 찾기
     public Review findReview(Long reviewId) {
         return findVerifiedReview(reviewId);
     }
 
-    // 리뷰 리스트 찾기 likeCount 높은 순
     public List<Review> findReviews(Long bookId){
         return reviewRepository.findAllByBookBookIdOrderByLikeCountDescReviewIdDesc(bookId);
     }
-    // 페이지네이션 리뷰 리스트 찾기
-//    public Page<Review> findReviews(Long bookId, int page, int size) {
-//        Pageable pageReview = PageRequest.of(page,size, Sort.by("reviewId").descending());
-//        return reviewRepository.findAllByBookBookId(bookId, pageReview);
-//    }
 
-    // 리뷰 삭제
     public void deleteReview(Long reviewId, Long memberId){
         Review review = findVerifiedReview(reviewId);
         Member member = memberService.findMember(memberId);
@@ -72,8 +56,6 @@ public class ReviewService {
         reviewRepository.delete(review);
     }
 
-
-    // 리뷰 여부 검증
     private Review findVerifiedReview(Long reviewId){
         Optional<Review> optionalReview =
                 reviewRepository.findById(reviewId);

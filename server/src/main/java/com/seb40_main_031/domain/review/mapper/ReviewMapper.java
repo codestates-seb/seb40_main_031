@@ -1,7 +1,6 @@
 package com.seb40_main_031.domain.review.mapper;
 
 import com.seb40_main_031.domain.review.dto.ReviewDto;
-import com.seb40_main_031.domain.review.dto.ReviewPatchDto;
 import com.seb40_main_031.domain.review.dto.ReviewResponseDto;
 import com.seb40_main_031.domain.review.dto.ReviewToMemberResponse;
 import com.seb40_main_031.domain.review.entity.Review;

@@ -7,14 +7,12 @@ import lombok.RequiredArgsConstructor;
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
-import org.springframework.context.annotation.Bean;
 import org.springframework.stereotype.Service;
 
-import javax.annotation.PostConstruct;
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
 import java.net.URL;
-import java.text.ParseException;
+import java.nio.charset.StandardCharsets;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Optional;
@@ -46,7 +44,7 @@ public class CallBookApi {
                 URL url = new URL(apiUrl);
 
                 BufferedReader bf;
-                bf = new BufferedReader(new InputStreamReader(url.openStream(), "UTF-8"));
+                bf = new BufferedReader(new InputStreamReader(url.openStream(), StandardCharsets.UTF_8));
                 result = bf.readLine();
 
                 JSONParser jsonParser = new JSONParser();
@@ -123,7 +121,7 @@ public class CallBookApi {
                 URL url = new URL(apiUrl);
 
                 BufferedReader bf;
-                bf = new BufferedReader(new InputStreamReader(url.openStream(), "UTF-8"));
+                bf = new BufferedReader(new InputStreamReader(url.openStream(), StandardCharsets.UTF_8));
                 result = bf.readLine();
                 JSONParser jsonParser = new JSONParser();
 
@@ -182,7 +180,7 @@ public class CallBookApi {
                 URL url = new URL(apiUrl);
 
                 BufferedReader bf;
-                bf = new BufferedReader(new InputStreamReader(url.openStream(), "UTF-8"));
+                bf = new BufferedReader(new InputStreamReader(url.openStream(), StandardCharsets.UTF_8));
                 result = bf.readLine();
                 JSONParser jsonParser = new JSONParser();
 
