@@ -1,34 +1,28 @@
 package com.seb40_main_031.domain.books.controller;
 
-import com.seb40_main_031.domain.books.dto.BookResponseDto;
 import com.seb40_main_031.domain.books.service.CallBookApi;
 import com.seb40_main_031.domain.books.entity.Book;
 import com.seb40_main_031.domain.books.mapper.BookMapper;
 import com.seb40_main_031.domain.books.service.BookService;
 
 import com.seb40_main_031.global.common.dto.MultiResponseDto;
+import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.Collections;
 import java.util.List;
 
 @RestController
 @RequestMapping("/books")
+@RequiredArgsConstructor
 public class BookController {
 
     private final BookService bookService;
     private final BookMapper bookMapper;
     private final CallBookApi callBookApi;
-
-    public BookController(BookService bookService, BookMapper bookMapper, CallBookApi callBookApi) {
-        this.bookService = bookService;
-        this.bookMapper = bookMapper;
-        this.callBookApi = callBookApi;
-    }
 
     /**
      * 1. 책 상세 페이지 조회
@@ -96,7 +90,7 @@ public class BookController {
     /**
      * 6. 신간, 베스트셀러 API 스케쥴러
      */
-    @Scheduled(cron = "0 30 4 ? * MON") // 매주 월요일 오전 4시 30분
+    @Scheduled(cron = "0 30 4 ? * MON")
     public void updateBooks(){
         callBookApi.saveBestSeller();
         callBookApi.saveNewBook();
