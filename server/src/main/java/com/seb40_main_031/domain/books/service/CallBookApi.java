@@ -26,7 +26,7 @@ public class CallBookApi {
      *
      * @PostConstruct 실행시 한번만 실행하고 종료, 초기화 작업을 위해 선언
      */
-    @PostConstruct
+//    @PostConstruct
     public void saveBestSeller(){
 
         String apikey = key.getKey();
@@ -104,7 +104,7 @@ public class CallBookApi {
     /**
      * 2. 신간 서적 API 호출
      */
-    @PostConstruct
+//    @PostConstruct
     public void saveNewBook() {
 
         String apikey = key.getKey();
@@ -160,7 +160,7 @@ public class CallBookApi {
     /**
      * 3. 국내 카테고리 책 API 호출
      */
-    @PostConstruct
+//    @PostConstruct
     public void saveBooks(){
 
         String apikey = key.getKey();
