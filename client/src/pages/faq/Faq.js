@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
-import { FAQ_TAB_BUTTON } from 'constants';
-import { FAQ_LIST } from 'constants';
+import { FAQ_TAB_BUTTON, FAQ_MODAL, FAQ_LIST } from 'constants/Pages';
+import Modal from 'components/@common/modal/Modal';
 import {
   Wrap,
   Title,
@@ -18,6 +18,13 @@ import {
 } from 'pages/faq/Faq.style';
 
 const Faq = () => {
+  const [modal, setModal] = useState(false);
+
+  const togle = () => {
+    setModal((modal) => !modal);
+    return;
+  };
+
   return (
     <Wrap>
       <Title>자주묻는 질문 (FAQ)</Title>
@@ -45,14 +52,22 @@ const Faq = () => {
         </FaqListTitlteContents>
       </FaqListTitle>
       <FaqList>
-        {FAQ_LIST.map((li, i) => {
+        {FAQ_LIST.map(({ text, id }, i) => {
           return (
-            <FaqListContents key={i} style={{ paddingLeft: '3%' }}>
-              {i}
-              <FaqListContents key={i} style={{ marginLeft: '5%' }}>
-                {li}
+            <>
+              <FaqListContents key={i} style={{ paddingLeft: '3%' }}>
+                {id}
+
+                <FaqListContents
+                  style={{ marginLeft: '5%' }}
+                  onClick={() => togle()}
+                  key={i}
+                >
+                  {text}
+                </FaqListContents>
               </FaqListContents>
-            </FaqListContents>
+              <div>{modal === true && id === { id } ? <Modal /> : null}</div>
+            </>
           );
         })}
       </FaqList>

@@ -18,11 +18,11 @@ const ROUTES = Object.freeze({
     name: 'BookDetail',
   },
   REVIEWDETAIL: {
-    path: '/reviewdetail',
+    path: '/reviewdetail/:id',
     name: 'ReviewDetail',
   },
   SEARCHDETAIL: {
-    path: '/searchdetail',
+    path: '/searchdetail/:keyword',
     name: 'SearchDetail',
   },
   SIGNUP: {

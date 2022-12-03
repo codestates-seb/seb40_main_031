@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useRef } from 'react';
 import {
   Template,
   UserInfo,
@@ -16,37 +16,107 @@ import {
 import { FaRegUserCircle, FaRegThumbsUp } from 'react-icons/fa';
 import { HiOutlinePencil } from 'react-icons/hi';
 import { MdClose } from 'react-icons/md';
-
+import { useParams } from 'react-router-dom';
 import InfiniteScroll from 'react-infinite-scroll-component';
 
 import { useState } from 'react';
+import axios from 'api/axios';
+import { REVEIW_DETAIL_URL } from 'api';
 
-import DummyReviews from 'components/@layout/reviewContent/DummyReviews';
+// import DummyReviews from 'components/@layout/reviewContent/DummyReviews';
 import Loading from 'components/@layout/loading/Loading';
 
 // 전역변수 로 number 를 0으로 지정해주었다. 0으로 지정해준 이유는 맨 첫번째 usestate에서 실행된 (0,3)을 먼저
 // 실행했기 때문에(처음에 랜더링이 되어서) 밑에 있는 number += 3이 먼저 실행이 되어서 number가 3으로 바뀌게
 // 되고 그 상태에서 fetchdata를 불러주기 때문에 (3, 6) 증감연산자 때문에 (6,9) 순차적으로 3씩 증가.
-let number = 0;
 
 const ReviewBig = () => {
-  const [reviewBigs, setreviewBigs] = useState(DummyReviews.slice(0, 3));
+  const { id } = useParams();
+  const [reviewBigs, setreviewBigs] = useState([]);
   const [hasMore, setHasMore] = useState(true);
-  // const [reviewBigs, setreviewBigs] = useState(Array.from({length:10}));
+  const [content, setContent] = useState('');
+
+  const number = useRef(0);
+  const tempBigs = useRef([]);
+
+  const contentHandler = (e) => {
+    setContent(e.target.value);
+  };
+
+  const getReviewDetail = async () => {
+    const res = await axios.get(`${REVEIW_DETAIL_URL}/${id}`);
+    console.log(res.data);
+    tempBigs.current = res.data;
+    setreviewBigs(tempBigs.current.slice(0, 3));
+    number.current = 3;
+    return res.data;
+  };
+
+  const deleteReviewDetail = (id) => {
+    let accessToken = sessionStorage.getItem('Authorization');
+    let deleteId = id;
+    axios
+      .delete(
+        `${REVEIW_DETAIL_URL}/${deleteId}`,
+        {
+          reviewId: deleteId,
+        },
+        {
+          headers: {
+            Authorization: accessToken,
+          },
+        },
+      )
+      .then((res) => {
+        console.log(res);
+      });
+  };
+
+  const updateReviewDetail = () => {
+    let accessToken = sessionStorage.getItem('Authorization');
+
+    axios
+      .patch(
+        `${REVEIW_DETAIL_URL}/${id}`,
+        {
+          content: content,
+          reviewId: id,
+        },
+        {
+          headers: {
+            Authorization: accessToken,
+          },
+        },
+      )
+      .then((res) => {
+        console.log(res);
+      });
+  };
+  useEffect(() => {
+    getReviewDetail();
+    console.log(reviewBigs.slice(number.current, number.current + 3));
+    // eslint-disable-next-line
+  }, []);
+
+  useEffect(() => {
+    console.log(reviewBigs);
+  }, [reviewBigs]);
 
   const fetchData = () => {
-    if (reviewBigs.length < 5) {
+    if (reviewBigs.length < tempBigs.current.length) {
       // 데이터 받아오는 개수에 따라 수정 필요(else문 실행 여부때문에)
+
       setTimeout(() => {
-        setreviewBigs(
-          reviewBigs.concat(DummyReviews.slice(number, number + 3)),
-        );
-      }, 2000);
+        setreviewBigs((prev) => [
+          ...prev,
+          ...tempBigs.current.slice(number.current, number.current + 3),
+        ]);
+        number.current += 3;
+      }, 1000);
     } else {
       setHasMore(false);
     }
   };
-  number += 3;
 
   return (
     <div>
@@ -62,36 +132,39 @@ const ReviewBig = () => {
         hasMore={hasMore}
         loader={<Loading width='30px' height='30px' />}
       >
-        {reviewBigs.map((reviewBig) => {
-          return (
-            <Template key={reviewBig.id}>
-              <UserInfo>
-                <UserIcon>
-                  <FaRegUserCircle />
-                </UserIcon>
-                <UserName>{reviewBig.userName}</UserName>
-              </UserInfo>
-              <Content>{reviewBig.content}</Content>
-              <BottomContent>
-                <LeftIconBox>
-                  <LeftIcon>
-                    <FaRegThumbsUp />
-                  </LeftIcon>
-                  <LeftText>{reviewBig.vote}</LeftText>
-                </LeftIconBox>
-
-                <RightIconBox>
-                  <RightIconUpdate>
-                    <HiOutlinePencil />
-                  </RightIconUpdate>
-                  <RightIconDelete>
-                    <MdClose />
-                  </RightIconDelete>
-                </RightIconBox>
-              </BottomContent>
-            </Template>
-          );
-        })}
+        {reviewBigs &&
+          reviewBigs.map((reviewBig) => {
+            return (
+              <Template key={reviewBig.reviewId}>
+                <UserInfo>
+                  <UserIcon>
+                    <FaRegUserCircle />
+                  </UserIcon>
+                  <UserName>{reviewBig.nickname}</UserName>
+                </UserInfo>
+                <Content>{reviewBig.content}</Content>
+                <BottomContent>
+                  <LeftIconBox>
+                    <LeftIcon>
+                      <FaRegThumbsUp />
+                    </LeftIcon>
+                    <LeftText>{reviewBig.likeCount}</LeftText>
+                  </LeftIconBox>
+                  <RightIconBox>
+                    <RightIconUpdate
+                      onChange={contentHandler}
+                      onClick={updateReviewDetail}
+                    >
+                      <HiOutlinePencil />
+                    </RightIconUpdate>
+                    <RightIconDelete onClick={() => deleteReviewDetail(id)}>
+                      <MdClose />
+                    </RightIconDelete>
+                  </RightIconBox>
+                </BottomContent>
+              </Template>
+            );
+          })}
       </InfiniteScroll>
     </div>
   );

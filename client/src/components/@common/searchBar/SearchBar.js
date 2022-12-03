@@ -7,12 +7,13 @@ import {
   SearchContainer,
 } from 'components/@common/searchBar/SearchBar.style';
 
-import { useRecoilState } from 'recoil';
-import { bookSearchKeywordState } from 'atom';
+import { useSetRecoilState, useRecoilState } from 'recoil';
+import { bookSearchKeywordState, bookReSearch } from 'atom';
 import { useNavigate } from 'react-router-dom';
 
 const SearchBar = () => {
   const [keyword, setKeyword] = useRecoilState(bookSearchKeywordState);
+  const setWord = useSetRecoilState(bookReSearch);
 
   const navigate = useNavigate();
 
@@ -20,10 +21,11 @@ const SearchBar = () => {
     setKeyword(e.target.value);
   };
 
-  //! book 검색 api 만들어지면 axios get 요청 구현 필요
   const handleSearch = (e) => {
     e.preventDefault();
-    navigate('/searchDetail');
+    navigate(`/searchDetail/${keyword}`);
+    setWord(keyword);
+    setKeyword('');
   };
 
   return (
@@ -43,8 +45,8 @@ const SearchBar = () => {
           style={{
             position: 'absolute',
             left: '8px',
-            top: '23%',
-            fontSize: '1.5rem',
+            top: '30%',
+            fontSize: '15px',
             color: 'silver',
           }}
         />

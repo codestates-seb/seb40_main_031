@@ -1,7 +1,8 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useEffect } from 'react';
 import { FaBars } from 'react-icons/fa';
 import { NAV_LIST, NAV_LIST_LOGINED } from 'constants';
 import { useNavigate } from 'react-router-dom';
+import axios from 'api/axios';
 
 import SearchBar from 'components/@common/searchBar/SearchBar';
 import CustomLink from 'components/@common/customLink/CustomLink';
@@ -14,14 +15,35 @@ import {
   ModalDiv,
   ModalWrapperDiv,
   ModalListA,
+  RightDiv,
+  UserImg,
+  UserNameSpan,
 } from 'components/@layout/nav/Nav.style';
+import { USERINFO_URL } from 'api';
 
 const Nav = () => {
   const [showModal, setShowModal] = useState(false);
   const [navlist, setNavList] = useState([]);
   const [islogin, setIslogin] = useState(false);
+  const [userName, setUserName] = useState('기본값');
+  const [userImg, setUserImg] = useState(
+    'https://cdn.icon-icons.com/icons2/2761/PNG/512/user_profile_icon_176439.png',
+  );
 
   const navigate = useNavigate();
+
+  const getUserInfo = () => {
+    const userId = sessionStorage.getItem('UserId');
+    axios
+      .get(`${USERINFO_URL}${userId}`)
+      .then((res) => {
+        setUserName(res.data.data.nickname);
+        res.data.data.img !== null ? setUserImg(res.data.data.img) : null;
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  };
 
   const islogined = () => {
     if (sessionStorage.getItem('Authorization') !== null) {
@@ -34,13 +56,13 @@ const Nav = () => {
   };
 
   const logout = () => {
-    sessionStorage.removeItem('Authorization');
-    sessionStorage.removeItem('Refresh');
+    sessionStorage.clear();
     navigate('/login');
   };
 
   useEffect(() => {
     islogined();
+    getUserInfo();
   }, []);
 
   return (
@@ -58,7 +80,17 @@ const Nav = () => {
             <MainLogoImg src='./img/imgLogo2.svg' />
           </CustomLink>
         </LeftDiv>
-        <SearchBar />
+        <RightDiv>
+          <SearchBar />
+          {islogin ? (
+            <UserNameSpan onClick={() => navigate('/userpage')}>
+              {userName}
+            </UserNameSpan>
+          ) : null}
+          {islogin ? (
+            <UserImg onClick={() => navigate('/userpage')} src={userImg} />
+          ) : null}
+        </RightDiv>
       </LayoutContainer>
       <ModalDiv>
         <ModalWrapperDiv className={showModal ? 'active' : 'hidden'}>

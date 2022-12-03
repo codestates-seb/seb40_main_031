@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from 'react';
+import React, { useEffect, useEffect, useRef, useState, useState } from 'react';
 // Import Swiper React components
 import { Swiper, SwiperSlide } from 'swiper/react';
 
@@ -10,7 +10,7 @@ import 'swiper/components/pagination/pagination.min.css';
 // import required modules
 import SwiperCore, { Navigation, Autoplay } from 'swiper';
 import { List, NumberSpan } from 'components/@layout/swiper/Swiper.style';
-import { Title } from 'components/@layout/book/Book.style';
+import { Title } from 'components/searchDetail/book/Book.style';
 import axios from 'api/axios';
 import { useNavigate } from 'react-router-dom';
 
@@ -44,7 +44,6 @@ const BookPage = ({ title, url, popular }) => {
         slidesPerView={4}
         spaceBetween={30}
         speed={1000}
-
         slidesPerGroup={4}
         navigation={true}
         breakpoints={{

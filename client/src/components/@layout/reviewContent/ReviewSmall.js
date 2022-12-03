@@ -7,28 +7,47 @@ import {
   LeftText,
   Display,
 } from 'components/@layout/reviewContent/ReviewSmall.style';
-import DummyReviews from 'components/@layout/reviewContent/DummyReviews';
+// import DummyReviews from 'components/@layout/reviewContent/DummyReviews';
 import { FaRegThumbsUp } from 'react-icons/fa';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
+import axios from 'api/axios';
+import { BOOK_BOOKDETAIL_URL } from 'api';
+import { useParams } from 'react-router-dom';
 
 const ReviewSmall = () => {
-  const [reviewSmalls, setReviewSmall] = useState(DummyReviews.slice(0, 2));
+  const { id } = useParams();
+  const [reviewSmalls, setReviewSmall] = useState([]);
+
+  const getReviewSmall = async () => {
+    const res = await axios.get(`${BOOK_BOOKDETAIL_URL}/${id}`);
+
+    console.log(res.data);
+    setReviewSmall(res.data.reviews);
+
+    return res.data.reviews;
+  };
+
+  useEffect(() => {
+    getReviewSmall();
+    // eslint-disable-next-line
+  }, []);
   return (
     <div>
       <Display>
-        {reviewSmalls.map((reviewSmall) => {
-          return (
-            <Template key={reviewSmall.id}>
-              <Content>{reviewSmall.content}</Content>
-              <BottomContent>
-                <GoodIcon>
-                  <FaRegThumbsUp />
-                </GoodIcon>
-                <LeftText>{reviewSmall.vote}</LeftText>
-              </BottomContent>
-            </Template>
-          );
-        })}
+        {reviewSmalls &&
+          reviewSmalls.slice(0, 2).map((reviewSmall) => {
+            return (
+              <Template key={reviewSmall.reviewId}>
+                <Content>{reviewSmall.content}</Content>
+                <BottomContent>
+                  <GoodIcon>
+                    <FaRegThumbsUp />
+                  </GoodIcon>
+                  <LeftText>{reviewSmall.likeCount}</LeftText>
+                </BottomContent>
+              </Template>
+            );
+          })}
       </Display>
     </div>
   );
