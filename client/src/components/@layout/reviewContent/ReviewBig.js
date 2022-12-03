@@ -94,8 +94,8 @@ const ReviewBig = () => {
   };
   useEffect(() => {
     getReviewDetail();
-    // eslint-disable-next-line
     console.log(reviewBigs.slice(number.current, number.current + 3));
+    // eslint-disable-next-line
   }, []);
 
   useEffect(() => {
