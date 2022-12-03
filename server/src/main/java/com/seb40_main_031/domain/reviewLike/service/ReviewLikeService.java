@@ -48,13 +48,4 @@ public class ReviewLikeService {
                 }
         );
     }
-
-//    private ReviewLike findVerifiedLikes(long likeId){
-//        Optional<ReviewLike> optionalLike =
-//                likeRepository.findById(likeId);
-//        ReviewLike findLike = optionalLike.orElseThrow(()->
-//                new BusinessLogicException(ExceptionCode.LIKES_NOT_FOUND));
-//
-//        return findLike;
-//    }
 }

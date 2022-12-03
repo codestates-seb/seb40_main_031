@@ -36,12 +36,12 @@ public class Review {
     @Column(length = 500)
     private String content;
 
-    @Column(name = "created_at")
+    @Column(name = "CREATED_AT")
     private LocalDateTime createdAt = LocalDateTime.now();
-    @Column(name = "modified_at")
+    @Column(name = "MODIFIED_AT")
     private LocalDateTime modifiedAt = LocalDateTime.now();
 
-    @Transient      // DB column 에 추가하지않는다.
+    @Transient
     private int point = 10;
 
     @OneToMany(fetch = LAZY, mappedBy = "review", cascade = CascadeType.REMOVE)
@@ -57,6 +57,5 @@ public class Review {
     public void discountLike(ReviewLike like) {
         this.likes.remove(like);
         this.likeCount = this.likes.size();
-
     }
 }

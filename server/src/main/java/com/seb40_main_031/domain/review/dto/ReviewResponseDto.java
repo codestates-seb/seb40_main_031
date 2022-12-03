@@ -10,6 +10,7 @@ import java.time.LocalDateTime;
 public class ReviewResponseDto {
 
     private Long reviewId;
+    private Long memberId;
     private String nickname;
     private Long bookId;
     private String content;
