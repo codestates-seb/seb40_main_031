@@ -219,14 +219,12 @@ public class CallBookApi {
             }
         }
     }
-
-
-    public String pubDateReformat(String pubDate) throws ParseException {
+    public String pubDateReformat(String pubDate) {
         String reformatDate = "";
         try{
-            SimpleDateFormat dt = new SimpleDateFormat("yyyymmdd");
+            SimpleDateFormat dt = new SimpleDateFormat("yyyyMMdd");
             Date date = dt.parse(pubDate);
-            reformatDate = new SimpleDateFormat("yyyy-mm-dd").format(date);
+            reformatDate = new SimpleDateFormat("yyyy-MM-dd").format(date);
             return reformatDate;
         } catch (Exception e) {
             e.printStackTrace();

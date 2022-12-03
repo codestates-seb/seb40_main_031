@@ -66,13 +66,13 @@ public class ReviewController {
     /**
      * 2. review 수정
      */
-    @PatchMapping("/{bookId}")
-    public ResponseEntity modifyReview(@PathVariable Long bookId,
+    @PatchMapping("/{reviewId}")
+    public ResponseEntity modifyReview(@PathVariable Long reviewId,
                                        @LoginAccountId Long memberId,
                                        @RequestBody ReviewDto reviewDto){ // content
 
-        reviewDto.setBook(bookService.findBook(bookId));
         reviewDto.setMember(memberService.findMember(memberId));
+        reviewDto.setReviewId(reviewId);
 
         Review review = reviewMapper.reviewDtoToReview(reviewDto);
         Review modifiedReview = reviewService.modifiedReview(review, memberId);
@@ -86,8 +86,7 @@ public class ReviewController {
     /**
      * 3. review 삭제
      */
-    @DeleteMapping("/{reviewId}") // 현재
-//    @DeleteMapping("/{bookId}/{reviewId}") // 이렇게 수정?
+    @DeleteMapping("/{reviewId}")
     public void deleteReview(@PathVariable Long reviewId,
                              @LoginAccountId Long memberId) {
         reviewService.deleteReview(reviewId, memberId);
@@ -103,19 +102,4 @@ public class ReviewController {
         return new ResponseEntity(reviewMapper.reviewsToReviewResponseDtos(books)
                 , HttpStatus.OK);
     }
-
-//    /**
-//     * 5. bookId 에 연결 된 review 단일 조회
-//     */
-//    @GetMapping("/{bookId}/{reviewId}")
-//    public ResponseEntity getReview(@PathVariable Long bookId,
-//                                    @LoginAccountId Long memberId,
-//                                    @RequestBody Long reviewId){
-//        bookService.findBook(bookId);
-//        Review review = reviewService.findReview(reviewId);
-//        ReviewResponseDto response =
-//                reviewMapper.reviewToReviewResponseDto(review);
-//
-//        return new ResponseEntity<>(response, HttpStatus.OK);
-//    }
 }
