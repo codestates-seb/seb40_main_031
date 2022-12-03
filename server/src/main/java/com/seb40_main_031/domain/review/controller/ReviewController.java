@@ -7,39 +7,28 @@ import com.seb40_main_031.domain.member.service.MemberService;
 import com.seb40_main_031.domain.review.dto.ReviewDto;
 import com.seb40_main_031.domain.review.dto.ReviewResponseDto;
 import com.seb40_main_031.domain.review.service.ReviewService;
-import com.seb40_main_031.global.common.dto.MultiResponseDto;
 
-import com.seb40_main_031.global.error.exception.BusinessLogicException;
 import com.seb40_main_031.global.security.argumentresolver.LoginAccountId;
 import com.seb40_main_031.domain.review.entity.Review;
 
 import com.seb40_main_031.domain.review.mapper.ReviewMapper;
 
-import org.springframework.data.domain.Page;
+import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import javax.validation.constraints.Positive;
 import java.util.List;
 
 @RestController
 @RequestMapping("/reviews")
+@RequiredArgsConstructor
 public class ReviewController {
 
     private final ReviewService reviewService;
     private final ReviewMapper reviewMapper;
     private final BookService bookService;
     private final MemberService memberService;
-
-
-    public ReviewController(ReviewService reviewService, ReviewMapper reviewMapper,
-                            BookService bookService, MemberService memberService) {
-        this.reviewService = reviewService;
-        this.reviewMapper = reviewMapper;
-        this.bookService = bookService;
-        this.memberService = memberService;
-    }
 
     /**
      * 1. review 생성
@@ -66,13 +55,13 @@ public class ReviewController {
     /**
      * 2. review 수정
      */
-    @PatchMapping("/{bookId}")
-    public ResponseEntity modifyReview(@PathVariable Long bookId,
+    @PatchMapping("/{reviewId}")
+    public ResponseEntity modifyReview(@PathVariable Long reviewId,
                                        @LoginAccountId Long memberId,
                                        @RequestBody ReviewDto reviewDto){ // content
 
-        reviewDto.setBook(bookService.findBook(bookId));
         reviewDto.setMember(memberService.findMember(memberId));
+        reviewDto.setReviewId(reviewId);
 
         Review review = reviewMapper.reviewDtoToReview(reviewDto);
         Review modifiedReview = reviewService.modifiedReview(review, memberId);
@@ -92,35 +81,14 @@ public class ReviewController {
         reviewService.deleteReview(reviewId, memberId);
     }
 
-    // review 조회 (단일 조회, 리스트 조회)
-//    @GetMapping("/{book-id}")
-//    public ResponseEntity getReview(@PathVariable("book-id") long bookId,
-//                                    @RequestBody long memberId,
-//                                    @RequestBody long reviewId){
-//        // 책이 있는지 찾기  // 책페이지에서 review를 작성하는데 필요할까? 그냥 reviewId만?
-//        bookService.findBook(bookId);
-//        // reviewId와 memberId로 review 찾기
-//        Review review = reviewService.findReview(reviewId);
-//
-//        // review -> response 로 바꿔서 반환하기
-//        ReviewResponseDto response =
-//                reviewMapper.reviewToReviewResponseDto(review);
-//
-//        return new ResponseEntity<>(response, HttpStatus.OK);
-//    }
-
     /**
      * 4. bookId 에 연결 된 review 전체 조회
      */
     @GetMapping("/{bookId}")
-    public ResponseEntity getReviews(@PathVariable Long bookId,
-                                     @Positive @RequestParam int page){
+    public ResponseEntity getReviews(@PathVariable Long bookId){
         Book book = bookService.findBook(bookId);
-        Page<Review> pageReviews = reviewService.findReviews(book.getBookId(),page-1, 5);
-        List<Review> reviews = pageReviews.getContent();
-
-        return new ResponseEntity(
-                new MultiResponseDto<>(reviewMapper.reviewsToReviewResponseDtos(reviews),pageReviews),
-                HttpStatus.OK);
+        List<Review> books = reviewService.findReviews(book.getBookId());
+        return new ResponseEntity(reviewMapper.reviewsToReviewResponseDtos(books)
+                , HttpStatus.OK);
     }
 }

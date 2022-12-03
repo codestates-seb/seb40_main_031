@@ -1,9 +1,9 @@
-import React, { useEffect } from 'react';
+import React, { useEffect }, { useEffect } from 'react';
 import { Button, ReviewSmall, ModalReview } from 'components';
 import { HiOutlineChat } from 'react-icons/hi';
-// import { useRecoilValue } from 'recoil';
+// // import { useRecoilValue } from 'recoil';
 import { useState } from 'react';
-// import BookDetailState from 'atom/BookDetailState';
+// // import BookDetailState from 'atom/BookDetailState';
 import { AiOutlineShareAlt } from 'react-icons/ai';
 import Share from 'components/share/Share';
 import { useParams, useNavigate } from 'react-router-dom';

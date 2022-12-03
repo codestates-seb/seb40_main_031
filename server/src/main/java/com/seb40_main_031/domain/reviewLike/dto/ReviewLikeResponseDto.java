@@ -7,5 +7,5 @@ import lombok.Setter;
 @Setter
 public class ReviewLikeResponseDto {
 
-    private long likeSum;
+    private Long likeSum;
 }
