@@ -1,8 +1,8 @@
-import axios from 'axios';
 import React, { useState, useEffect } from 'react';
 
-import apiClient from 'api/axios';
-import { getUser } from '../../api/user';
+import axios from 'api/axios';
+import { USERINFO_URL } from 'api';
+import { useParams } from 'react-router-dom';
 
 import {
   Wrap,
@@ -14,44 +14,31 @@ import {
 } from './UserPage.style';
 
 const UserPage = () => {
-  const [user, setUser] = useState(null);
-  const [loading, setLoding] = useState(false);
-  const [error, setError] = useState(null);
+  const [user, setUser] = useState([]);
+  let { userUrlId } = useParams();
 
-  const fetchUser = async () => {
-    try {
-      setError(null);
-      setUser(null);
-      setLoding(true);
-      const resposne = await axios.get(
-        'https://e438-222-110-187-162.jp.ngrok.io/members/users',
-      );
-      setUser(resposne.data);
-      console.log(resposne.data.data);
-    } catch (e) {
-      setError(e);
-    }
-    setLoding(false);
+  console.log(userUrlId);
+
+  const userId = sessionStorage.getItem('UserId');
+
+  const getUserData = async () => {
+    const res = await axios.get(`${USERINFO_URL}`);
+    setUser(res.data);
+    return res.data;
   };
 
+  console.log(userUrlId);
   useEffect(() => {
-    fetchUser();
+    getUserData();
   }, []);
 
-  if (loading) return <div>loading..</div>;
-  if (error) return <div>Erorr !</div>;
-
-  // fetch('/userpage')
-  //   .then((res) => res.json())
-  //   .then((data) => console.log(data));
-
+  console.log(user.data);
   return (
     <Wrap>
-      <UserContainer></UserContainer>
+      <UserContainer>{userId}</UserContainer>
       <UserInfoBox>
         <UserIcon />
       </UserInfoBox>
-
       <ReadBookContainer>
         {/* 맵으로 돌릴예정 */}
         <ReadBook></ReadBook>

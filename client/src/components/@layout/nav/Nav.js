@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { FaBars } from 'react-icons/fa';
 import { NAV_LIST, NAV_LIST_LOGINED } from 'constants';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 import axios from 'api/axios';
 
 import SearchBar from 'components/@common/searchBar/SearchBar';
@@ -31,6 +31,10 @@ const Nav = () => {
   );
 
   const navigate = useNavigate();
+  const { userUrlId } = useParams();
+  const userId = sessionStorage.getItem('UserId');
+
+  console.log(userUrlId);
 
   const getUserInfo = () => {
     const userId = sessionStorage.getItem('UserId');
@@ -83,12 +87,15 @@ const Nav = () => {
         <RightDiv>
           <SearchBar />
           {islogin ? (
-            <UserNameSpan onClick={() => navigate('/userpage')}>
+            <UserNameSpan onClick={() => navigate(`/userpage/${userId}`)}>
               {userName}
             </UserNameSpan>
           ) : null}
           {islogin ? (
-            <UserImg onClick={() => navigate('/userpage')} src={userImg} />
+            <UserImg
+              onClick={() => navigate(`/userpage/${userId}`)}
+              src={userImg}
+            />
           ) : null}
         </RightDiv>
       </LayoutContainer>

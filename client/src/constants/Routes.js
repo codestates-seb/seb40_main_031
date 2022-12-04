@@ -30,7 +30,7 @@ const ROUTES = Object.freeze({
     name: 'SignUp',
   },
   USERPAGE: {
-    path: '/userpage',
+    path: '/userpage/:id',
     name: 'UserPage',
   },
   NOTICE: {
