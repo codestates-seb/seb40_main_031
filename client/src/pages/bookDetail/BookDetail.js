@@ -1,4 +1,4 @@
-import React, { useEffect }, { useEffect } from 'react';
+import React, { useEffect } from 'react';
 import { Button, ReviewSmall, ModalReview } from 'components';
 import { HiOutlineChat } from 'react-icons/hi';
 // // import { useRecoilValue } from 'recoil';
