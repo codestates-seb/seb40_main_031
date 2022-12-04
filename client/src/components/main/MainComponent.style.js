@@ -35,6 +35,7 @@ const SuggestTextDiv = styled.div`
 const TextDiv = styled.div`
   font-size: 1.6rem;
   text-align: center;
+  color: ${darken(0.15, '#febd5a')};
   @media screen and (max-width: 1090px) {
     font-size: calc(10px + 1.7vw);
   }

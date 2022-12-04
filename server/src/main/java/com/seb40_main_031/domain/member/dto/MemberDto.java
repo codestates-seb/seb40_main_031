@@ -1,20 +1,13 @@
 package com.seb40_main_031.domain.member.dto;
 
 import com.seb40_main_031.domain.books.dto.BookToMemberResponse;
-import com.seb40_main_031.domain.member.entity.Member;
-import com.seb40_main_031.domain.review.dto.ReviewResponseDto;
-//import com.seb40_main_031.domain.review.dto.ReviewToMemberResponse;
-import com.seb40_main_031.domain.review.entity.Review;
-import com.seb40_main_031.global.common.dto.PageInfo;
+import com.seb40_main_031.domain.review.dto.ReviewToMemberResponse;
 import lombok.AllArgsConstructor;
-import lombok.Builder;
 import lombok.Getter;
 import lombok.Setter;
-import org.springframework.data.domain.Page;
 
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
-import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.List;
 
@@ -36,16 +29,12 @@ public class MemberDto {
     @Getter
     @Setter
     @AllArgsConstructor
-//    @Builder    // 안에 쓸지 밖에 쓸지 좀 더 생각.
     public static class Patch {
         private Long memberId;
         private String nickname;
-//        private String password;
         private String about;
         private String img;
         private int point;
-//        private Member.Roles roles;
-
     }
 
     @Getter
@@ -59,12 +48,6 @@ public class MemberDto {
         private String img;
         private LocalDateTime createdAt;
         private LocalDateTime modifiedAt;
-//        @Setter
-//        private List<Review> reviewList;
-//        private Member.Roles roles;
-//        private List<BookDto.Response> bookList;
-//        private List<ReviewDto.Response> reviewList;
-//        private Member.Roles roles;
     }
 
     @AllArgsConstructor
@@ -76,9 +59,6 @@ public class MemberDto {
         private String nickname;
         private String about;
         private String img;
-//        @Setter
-//        private List<ReviewToMemberResponse> reviewList;
-//        private List<ReviewResponseDto> reviews;
         private int bookCount;
         private List<BookToMemberResponse> bookList;
         private int reviewCount;
@@ -86,5 +66,4 @@ public class MemberDto {
         private LocalDateTime createdAt;
         private LocalDateTime modifiedAt;
     }
-
 }

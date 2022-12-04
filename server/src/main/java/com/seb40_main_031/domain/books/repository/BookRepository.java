@@ -10,22 +10,26 @@ import org.springframework.stereotype.Repository;
 import java.util.List;
 import java.util.Optional;
 
+
 @Repository
 public interface BookRepository extends JpaRepository<Book, Long> {
-    Optional<Book> findByBookId(long bookId);
+    Optional<Book> findByBookId(Long bookId);
 
-    @Query(value = "SELECT * FROM BOOK where national_rank", nativeQuery = true)
+    Book findByNationalRank(Long rank);
+    Book findByForeignRank(Long rank);
+
+    @Query(value = "SELECT * FROM book where national_rank", nativeQuery = true)
     List<Book> findAllByNationalRank();
-    @Query(value = "SELECT * FROM BOOK where foreign_rank", nativeQuery = true)
+    @Query(value = "SELECT * FROM book where foreign_rank", nativeQuery = true)
     List<Book> findAllByForeignRank();
 
     // SELECT * FROM BOOK where category_name like 'categoryName' order by pub_date DESC
     List<Book> findAllByCategoryNameStartingWithOrderByPubDateDesc(String categoryName);
 
-    // title 로 찾기 // SELECT * FROM BOOK where title = '%keyword%'
+    // SELECT * FROM BOOK where title = '%keyword%'
     Page<Book> findByTitleContaining(String keyword, Pageable pageable);
-    // author 로 찾기
     Page<Book> findByAuthorContaining(String keyword, Pageable pageable);
 
-    Book findByTitle(String keyword);
+    Optional<Book> findByTitle(String keyword);
+    Page<Book> findAllByCategoryId(String categoryId, Pageable pageable);
 }

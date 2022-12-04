@@ -13,7 +13,6 @@ import java.util.List;
 public interface BookMapper {
 
     BookResponseDto bookToBookResponseDto(Book book);
-//    List<BookDto> booksToBookDto(List<Book> book);
     List<BookResponseDto> booksToBookResponseDto(List<Book> book);
     List<BookListResponseDto> booksToBookListResponseDto(List<Book> book);
     BookToMemberResponse bookToMemberResponse(Book book);

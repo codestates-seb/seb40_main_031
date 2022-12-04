@@ -12,9 +12,9 @@ import java.util.List;
 @Getter
 @Setter
 public class BookDto {
-    private long bookId;
+    private Long bookId;
 
-    private long memberId;
+    private Long memberId;
 
     private String title;
 

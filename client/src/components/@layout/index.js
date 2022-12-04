@@ -1,4 +1,4 @@
-import Book from 'components/@layout/book/Book';
+import Book from 'components/searchDetail/book/Book';
 import Button from 'components/@layout/button/Button';
 import Footer from 'components/@layout/footer/Footer';
 import Loading from 'components/@layout/loading/Loading';

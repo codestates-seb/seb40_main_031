@@ -1,8 +1,5 @@
 package com.seb40_main_031.domain.books.dto;
 
-
-
-import com.seb40_main_031.domain.review.dto.ReviewResponseDto;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -13,7 +10,8 @@ import java.util.List;
 @Getter
 @Setter
 public class BookToMemberResponse {
-    private long bookId;
+
+    private Long bookId;
 
     private String title;
 

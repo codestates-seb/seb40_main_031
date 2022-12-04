@@ -7,8 +7,6 @@ import com.seb40_main_031.domain.member.service.MemberService;
 import com.seb40_main_031.domain.review.entity.Review;
 import com.seb40_main_031.domain.review.service.ReviewService;
 import com.seb40_main_031.domain.reviewLike.repository.ReviewLikeRepository;
-import com.seb40_main_031.global.error.exception.BusinessLogicException;
-import com.seb40_main_031.global.error.exception.ExceptionCode;
 import org.springframework.stereotype.Service;
 
 import java.util.Optional;
@@ -48,13 +46,4 @@ public class ReviewLikeService {
                 }
         );
     }
-
-//    private ReviewLike findVerifiedLikes(long likeId){
-//        Optional<ReviewLike> optionalLike =
-//                likeRepository.findById(likeId);
-//        ReviewLike findLike = optionalLike.orElseThrow(()->
-//                new BusinessLogicException(ExceptionCode.LIKES_NOT_FOUND));
-//
-//        return findLike;
-//    }
 }

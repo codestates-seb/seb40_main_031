@@ -9,6 +9,7 @@ import {
   ListContentsDiv,
   ListDiv,
   DistanceDiv,
+  DistanceDiv,
 } from 'components/main/MainComponent.style';
 import MainSwiper from 'components/main/MainSwiper';
 import BookPage from 'components/@layout/swiper/Swiper';
@@ -24,7 +25,7 @@ import axios from 'api/axios';
 const MainComponent = () => {
   const [date] = useState(new Date());
   const [hour] = useState(date.getHours());
-  const [message, setMessage] = useState('');
+  const [message, setMessage] = useState('대화형 도서 커뮤니티 글길입니다.');
 
   const outputMessage = () => {
     const userId = sessionStorage.getItem('UserId');
@@ -51,6 +52,7 @@ const MainComponent = () => {
         console.log(err);
       });
   };
+>>>>>>> dev
 
   useEffect(() => {
     outputMessage();
@@ -72,36 +74,54 @@ const MainComponent = () => {
       </SuggestDiv>
       <ListContentsDiv>
         <DistanceDiv>
+          <DistanceDiv>
           <TitleTextDiv>국내도서</TitleTextDiv>
-          <ListDiv>
-            <BookPage
+            <ListDiv>
+              <BookPage
+             
               title='지금 인기 최고'
               url={BOOK_BEST_DOMESTIC_URL}
               popular
+            
+              url={BOOK_BEST_DOMESTIC_URL}
+              popular
             ></BookPage>
-          </ListDiv>
-          <ListDiv>
-            <BookPage
+            </ListDiv>
+            <ListDiv>
+              <BookPage
+             
               title='방금 만나러 왔어요'
               url={BOOK_NEW_DOMESTIC_URL}
+            
+              url={BOOK_NEW_DOMESTIC_URL}
             ></BookPage>
-          </ListDiv>
+            </ListDiv>
         </DistanceDiv>
         <DistanceDiv>
+          </DistanceDiv>
+        <DistanceDiv>
           <TitleTextDiv>해외도서</TitleTextDiv>
-          <ListDiv>
-            <BookPage
+            <ListDiv>
+              <BookPage
+             
               title='지금 인기 최고'
               url={BOOK_BEST_GLOBAL_URL}
               popular
+            
+              url={BOOK_BEST_GLOBAL_URL}
+              popular
             ></BookPage>
-          </ListDiv>
-          <ListDiv>
-            <BookPage
+            </ListDiv>
+            <ListDiv>
+              <BookPage
+             
               title='방금 만나러 왔어요'
               url={BOOK_NEW_GLOBAL_URL}
+            
+              url={BOOK_NEW_GLOBAL_URL}
             ></BookPage>
-          </ListDiv>
+            </ListDiv>
+        </DistanceDiv>
         </DistanceDiv>
       </ListContentsDiv>
     </WrapperDiv>

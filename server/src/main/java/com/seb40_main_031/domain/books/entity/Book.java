@@ -6,8 +6,7 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import javax.persistence.*;
-import java.util.ArrayList;
-import java.util.List;
+import java.util.*;
 
 @NoArgsConstructor
 @Getter
@@ -18,10 +17,10 @@ public class Book {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "BOOK_ID")
-    private long bookId;
+    private Long bookId;
 
     @Column(name = "member_id")
-    private long memberId;
+    private Long memberId;
 
     @Column(name = "TITLE",nullable = false)
     private String title;
@@ -41,7 +40,7 @@ public class Book {
     @Column(name = "COVER_LARGE_URL")
     private String coverLargeUrl;
 
-    @Column(name = "CATEGORY_ID",nullable = false)
+    @Column(name = "CATEGORY_ID")
     private String categoryId;
 
     @Column(name = "CATEGORY_NAME",nullable = false)
@@ -56,7 +55,7 @@ public class Book {
     @Column(name = "TRANSLATOR")
     private String translator;
 
-    @Column(name = "ISBN",nullable = false)
+    @Column(name = "ISBN")
     private String isbn;
 
     @Column(name = "BOOK_LINK")

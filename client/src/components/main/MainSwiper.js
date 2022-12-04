@@ -1,8 +1,7 @@
-import React, { useRef, useState, useEffect } from 'react';
+import React, { useRef, useState, useEffect, useState, useEffect } from 'react';
 // Import Swiper React components
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { useNavigate } from 'react-router-dom';
-
 
 // Import Swiper styles
 import 'swiper/swiper.min.css';
@@ -15,13 +14,10 @@ import { List } from 'components/main/MainSwiper.style';
 
 import axios from 'api/axios';
 import { BOOK_RANDOM_URL } from 'api';
-import { bookSearchKeywordState } from 'atom';
-
 
 SwiperCore.use([Autoplay, Navigation, Pagination]);
 
 const MainSwiper = () => {
-
   const [randomBook, setRandomBook] = useState([]);
 
   const getRandomBook = async () => {
@@ -64,7 +60,6 @@ const MainSwiper = () => {
           disableOnInteraction: false,
         }}
         spaceBetween={30}
-
         speed={2000}
         slidesPerGroup={1}
         navigation={true}

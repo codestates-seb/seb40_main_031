@@ -6,6 +6,7 @@ import com.seb40_main_031.domain.books.mapper.BookMapper;
 import com.seb40_main_031.domain.books.service.BookService;
 
 import com.seb40_main_031.global.common.dto.MultiResponseDto;
+import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -16,17 +17,12 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/books")
+@RequiredArgsConstructor
 public class BookController {
 
     private final BookService bookService;
     private final BookMapper bookMapper;
     private final CallBookApi callBookApi;
-
-    public BookController(BookService bookService, BookMapper bookMapper, CallBookApi callBookApi) {
-        this.bookService = bookService;
-        this.bookMapper = bookMapper;
-        this.callBookApi = callBookApi;
-    }
 
     /**
      * 1. 책 상세 페이지 조회
@@ -34,7 +30,6 @@ public class BookController {
     @GetMapping("/{bookId}")
     public ResponseEntity getBook(@PathVariable Long bookId){
         Book book = bookService.findBook(bookId);
-
         return new ResponseEntity<>(bookMapper.bookToBookResponseDto(book)
                 ,HttpStatus.OK);
     }
@@ -42,7 +37,7 @@ public class BookController {
     /**
      * 2. 베스트셀러 전체 조회
      */
-    @GetMapping("/bestSeller/{categoryId}")
+    @GetMapping("/best-seller/{categoryId}")
     public ResponseEntity getBestSeller(@PathVariable Long categoryId){
         List<Book> books = bookService.findAllBestSeller(categoryId);
 
@@ -78,14 +73,24 @@ public class BookController {
                 ,HttpStatus.OK);
     }
 
+    /**
+     * 5. categoryId 별 조회
+     */
+    @GetMapping("/category/{categoryId}")
+    public ResponseEntity getCategoryIdBook(@PathVariable String categoryId){
+        Page<Book> pageBook = bookService.findAllCategoryId(categoryId);
+        List<Book> book = pageBook.getContent();
+
+        return new ResponseEntity<>(
+                new MultiResponseDto<>(bookMapper.booksToBookListResponseDto(book), pageBook)
+                ,HttpStatus.OK);
+    }
 
 
     /**
-     * 5. 신간, 베스트셀러 API 스케쥴러
-     *
-     * cron = 초 분 시 일 월 년
+     * 6. 신간, 베스트셀러 API 스케쥴러
      */
-    @Scheduled(cron = "0 30 4 1 * *")       // 매월 1일 4시 30분에 업데이트
+    @Scheduled(cron = "0 30 4 ? * MON")
     public void updateBooks(){
         callBookApi.saveBestSeller();
         callBookApi.saveNewBook();
