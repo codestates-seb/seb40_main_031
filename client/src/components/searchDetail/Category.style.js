@@ -39,6 +39,7 @@ const LinkSpan = styled.span`
   padding-right: 3rem;
 
   cursor: pointer;
+  font-family: 'Do Hyeon';
 
   &:hover {
     color: orange;
