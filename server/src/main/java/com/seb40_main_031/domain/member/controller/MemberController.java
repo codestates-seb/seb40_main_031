@@ -8,6 +8,7 @@ import com.seb40_main_031.domain.member.service.MemberService;
 import com.seb40_main_031.domain.review.dto.ReviewToMemberResponse;
 import com.seb40_main_031.global.common.dto.MultiResponseDto;
 import com.seb40_main_031.global.common.dto.SingleResponseDto;
+
 import com.seb40_main_031.global.security.argumentresolver.LoginAccountId;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
@@ -60,13 +61,13 @@ public class MemberController {
     @GetMapping("/users/{memberId}")
     public ResponseEntity getMember(@PathVariable @Positive Long memberId){
 
+        System.out.println("controller test member Id : " + memberId);
         Member member = memberService.findMember(memberId);
         List<ReviewToMemberResponse> reviewResponse = memberService.getReviews(memberId);
         List<BookToMemberResponse> bookResponse = memberService.getBooks(memberId);
         MemberDto.MyPageResponse response = mapper.memberToReviewDtoResponse(member, bookResponse, reviewResponse);
         response.setReviewCount(reviewResponse.size());
         response.setBookCount(bookResponse.size());
-
         return new ResponseEntity(new SingleResponseDto<>(response), HttpStatus.OK);
     }
 
@@ -89,7 +90,6 @@ public class MemberController {
      */
     @DeleteMapping
     public ResponseEntity deleteMember(@LoginAccountId Long memberId){
-
         memberService.deleteMember(memberId);
 
         return new ResponseEntity(HttpStatus.NO_CONTENT);

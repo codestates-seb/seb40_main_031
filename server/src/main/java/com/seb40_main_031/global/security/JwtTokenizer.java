@@ -4,7 +4,6 @@ import io.jsonwebtoken.*;
 import io.jsonwebtoken.io.Decoders;
 import io.jsonwebtoken.io.Encoders;
 import io.jsonwebtoken.security.Keys;
-import io.jsonwebtoken.security.SignatureException;
 import lombok.Getter;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
@@ -76,9 +75,9 @@ public class JwtTokenizer {
         Key key = getKeyFromBase64EncodedKey(base64EncodedSecretKey);
 
         Jwts.parserBuilder()
-                .setSigningKey(key) // 서명에 사용된 Secret Key를 설정
+                .setSigningKey(key)
                 .build()
-                .parseClaimsJws(jws); // JWT를 파싱해서 Claims를 얻음
+                .parseClaimsJws(jws);
     }
 
     public Date getTokenExpiration(int expirationMinutes){
