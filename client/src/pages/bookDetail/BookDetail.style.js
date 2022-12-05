@@ -106,7 +106,6 @@ const BookTitle = styled.div`
 `;
 
 const BookAuthor = styled.div`
-  width: 63px;
   padding: 15px 0px 0px 10px;
 
   font-size: 15px;

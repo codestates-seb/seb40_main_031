@@ -117,7 +117,7 @@ const BookDetail = () => {
                   </ShareAnimation>
                 </BookShareContainer>
               </BookTitleAuthor>
-              <BookPrice>{bookdetails.price}</BookPrice>
+              <BookPrice>{bookdetails.price}원</BookPrice>
               <BookExplain>{bookdetails.description}</BookExplain>
               <BookButton>
                 <Button text='같이 이야기하기' width='350px' height='50px' />
