@@ -87,6 +87,18 @@ const BookDetail = () => {
     navigate(`/reviewdetail/${id}`);
   };
 
+  const priceHandler = (str) => {
+    let result = '';
+    let stringify = String(str);
+    if (stringify.length === 6) {
+      result = `${stringify.substring(0, 3)},${stringify.substring(3, 6)}`;
+      return result;
+    } else {
+      result = `${stringify.substring(0, 2)},${stringify.substring(2, 5)}`;
+      return result;
+    }
+  };
+
   return (
     <div>
       {modal && <ModalReview setModal={setModal} bookdetails={bookdetails} />}
@@ -95,7 +107,12 @@ const BookDetail = () => {
           <BookContentLeft>
             <ImageDateTemplate>
               <Image src={bookdetails.coverLargeUrl} />
-              <Date>{bookdetails.pubDate}</Date>
+              <Date>{`${String(bookdetails.pubDate).substring(0, 4)}. ${String(
+                bookdetails.pubDate,
+              ).substring(4, 6)}. ${String(bookdetails.pubDate).substring(
+                6,
+                8,
+              )}. 출시`}</Date>
             </ImageDateTemplate>
           </BookContentLeft>
           <BookContentCenter>
@@ -117,7 +134,7 @@ const BookDetail = () => {
                 </BookShareContainer>
               </BookTitleAuthor>
               <div style={{ display: 'flex', alignItems: 'center' }}>
-                <BookPrice>{bookdetails.price}원</BookPrice>
+                <BookPrice>{priceHandler(bookdetails.price)}원</BookPrice>
                 <BookAuthor>
                   <span>{bookdetails.author}</span>
                 </BookAuthor>

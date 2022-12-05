@@ -22,11 +22,12 @@ import InfiniteScroll from 'react-infinite-scroll-component';
 import PatchModal from '../modal/PatchModal';
 import { useState } from 'react';
 import axios from 'api/axios';
-import { REVEIW_DETAIL_URL } from 'api';
+import { REVEIW_DETAIL_URL, REVIEW_LIKE_URL } from 'api';
 import modalContent from 'atom/ModalContent';
 import { useRecoilState } from 'recoil';
 // import DummyReviews from 'components/@layout/reviewContent/DummyReviews';
 import Loading from 'components/@layout/loading/Loading';
+import { AlertModal } from 'components';
 
 // 전역변수 로 number 를 0으로 지정해주었다. 0으로 지정해준 이유는 맨 첫번째 usestate에서 실행된 (0,3)을 먼저
 // 실행했기 때문에(처음에 랜더링이 되어서) 밑에 있는 number += 3이 먼저 실행이 되어서 number가 3으로 바뀌게
@@ -41,6 +42,12 @@ const ReviewBig = () => {
   const [show, setShow] = useState(false);
   const number = useRef(0);
   const tempBigs = useRef([]);
+  const [alert, setAlert] = useState({
+    open: false,
+    title: '',
+    message: '',
+    callback: false,
+  });
   const navigate = useNavigate();
 
   const contentHandler = (e) => {
@@ -98,6 +105,51 @@ const ReviewBig = () => {
   //       console.log(res);
   //     });
   // };
+
+  const likeCount = (reviewId) => {
+    let accessToken = sessionStorage.getItem('Authorization');
+    let userId = sessionStorage.getItem('UserId');
+    axios
+      .patch(
+        REVIEW_LIKE_URL,
+        {
+          memberId: userId,
+          reviewId: reviewId,
+        },
+        {
+          headers: {
+            Authorization: accessToken,
+          },
+        },
+      )
+      .then((res) => {
+        console.log(res);
+        window.location.reload();
+      })
+      .catch((err) => {
+        if (sessionStorage.getItem('Authorization')) {
+          sessionStorage.clear();
+          setAlert({
+            open: true,
+            title: '로그인 만료',
+            message: '세션이 만료되었습니다. 로그인 화면으로 이동합니다.',
+            callback: function () {
+              navigate('/login');
+            },
+          });
+        } else {
+          setAlert({
+            open: true,
+            title: '오류',
+            message: '로그인이 필요합니다. 로그인 화면으로 이동합니다.',
+            callback: function () {
+              navigate('/login');
+            },
+          });
+        }
+      });
+  };
+
   useEffect(() => {
     getReviewDetail();
     console.log(reviewBigs.slice(number.current, number.current + 3));
@@ -129,59 +181,68 @@ const ReviewBig = () => {
   };
 
   return (
-    <div>
-      {show === true ? <PatchModal setShow={setShow} /> : null}
-      <InfiniteScroll
-        style={{
-          display: 'flex',
-          justifyContent: 'center',
-          alignItems: 'center',
-          flexDirection: 'column',
-        }}
-        dataLength={reviewBigs.length}
-        next={fetchData}
-        hasMore={hasMore}
-        loader={<Loading width='30px' height='30px' />}
-      >
-        <ReviewCount>리뷰 개수: {datalength} 개</ReviewCount>
+    <>
+      <AlertModal
+        open={alert.open}
+        setPopup={setAlert}
+        message={alert.message}
+        title={alert.title}
+        callback={alert.callback}
+      />
+      <div>
+        {show === true ? <PatchModal setShow={setShow} /> : null}
+        <InfiniteScroll
+          style={{
+            display: 'flex',
+            justifyContent: 'center',
+            alignItems: 'center',
+            flexDirection: 'column',
+          }}
+          dataLength={reviewBigs.length}
+          next={fetchData}
+          hasMore={hasMore}
+          loader={<Loading width='30px' height='30px' />}
+        >
+          <ReviewCount>리뷰 개수: {datalength} 개</ReviewCount>
 
-        {reviewBigs &&
-          reviewBigs.map((reviewBig) => {
-            return (
-              <Template key={reviewBig.reviewId}>
-                <UserInfo>
-                  <UserIcon>
-                    <FaRegUserCircle />
-                  </UserIcon>
-                  <UserName>{reviewBig.nickname}</UserName>
-                </UserInfo>
-                <Content>{reviewBig.content}</Content>
-                <BottomContent>
-                  <LeftIconBox>
-                    <LeftIcon>
-                      <FaRegThumbsUp />
-                    </LeftIcon>
-                    <LeftText>{reviewBig.likeCount}</LeftText>
-                  </LeftIconBox>
-                  <RightIconBox>
-                    <RightIconUpdate
-                      onChange={contentHandler}
-                      onClick={patchHandler}
-                    >
-                      <HiOutlinePencil />
-                    </RightIconUpdate>
-                    <RightIconDelete
-                      onClick={() => deleteReviewDetail(reviewBig.reviewId)}
-                    >
-                      <MdClose />
-                    </RightIconDelete>
-                  </RightIconBox>
-                </BottomContent>
-              </Template>
-            );
-          })}
-      </InfiniteScroll>
-    </div>
+          {reviewBigs &&
+            reviewBigs.map((reviewBig) => {
+              return (
+                <Template key={reviewBig.reviewId}>
+                  <UserInfo>
+                    <UserIcon>
+                      <FaRegUserCircle />
+                    </UserIcon>
+                    <UserName>{reviewBig.nickname}</UserName>
+                  </UserInfo>
+                  <Content>{reviewBig.content}</Content>
+                  <BottomContent>
+                    <LeftIconBox>
+                      <LeftIcon onClick={() => likeCount(reviewBig.reviewId)}>
+                        <FaRegThumbsUp />
+                      </LeftIcon>
+                      <LeftText>{reviewBig.likeCount}</LeftText>
+                    </LeftIconBox>
+                    <RightIconBox>
+                      <RightIconUpdate
+                        onChange={contentHandler}
+                        onClick={patchHandler}
+                      >
+                        <HiOutlinePencil />
+                      </RightIconUpdate>
+                      <RightIconDelete
+                        onClick={() => deleteReviewDetail(reviewBig.reviewId)}
+                      >
+                        <MdClose />
+                      </RightIconDelete>
+                    </RightIconBox>
+                  </BottomContent>
+                </Template>
+              );
+            })}
+        </InfiniteScroll>
+      </div>
+    </>
   );
 };
 export default ReviewBig;

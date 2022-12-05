@@ -18,3 +18,4 @@ export const BOOK_CATEGORY_URL = `${BOOK_URL}/category/`;
 // Review 관련 ~~
 export const REVIEW_URL = '/reviews';
 export const REVEIW_DETAIL_URL = `${REVIEW_URL}`;
+export const REVIEW_LIKE_URL = `${REVIEW_URL}/likes`;
