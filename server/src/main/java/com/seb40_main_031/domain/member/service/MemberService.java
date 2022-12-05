@@ -92,8 +92,8 @@ public class MemberService {
     public List<ReviewToMemberResponse> getReviews(Long memberId) {
         List<ReviewToMemberResponse> reviewResponse =
                 reviewRepository.findAllByMemberMemberIdOrderByReviewIdDesc(memberId).stream()
-                .map(review -> reviewMapper.reviewToReviewMemberResponse(review))
-                .collect(Collectors.toList());
+                        .map(review -> reviewMapper.reviewToReviewMemberResponse(review))
+                        .collect(Collectors.toList());
         reviewResponse.stream()
                 .forEach(reviewRes -> reviewRes.setMemberId(memberId));
 

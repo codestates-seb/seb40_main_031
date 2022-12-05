@@ -58,6 +58,7 @@ public class MemberDto {
         private String email;
         private String nickname;
         private String about;
+        private int point;
         private String img;
         private int bookCount;
         private List<BookToMemberResponse> bookList;
