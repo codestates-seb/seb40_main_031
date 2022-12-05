@@ -97,13 +97,16 @@ const BookTitle = styled.div`
   width: auto;
   display: flex;
   align-items: center;
-  font-size: 30px;
+  font-size: 24px;
   font-weight: bold;
   color: ${darken(0.3, Theme.PRIMARY.GREEN_DARK)};
   word-break: break-all;
+
+  /* letter-spacing: -2px; */
 `;
 
 const BookAuthor = styled.div`
+  width: 63px;
   padding: 15px 0px 0px 10px;
 
   font-size: 15px;
@@ -115,7 +118,7 @@ const BookShareContainer = styled.button`
   border: none;
   background-color: transparent;
   .active {
-    width: 200px;
+    width: 220px;
     transition: all 0.5s;
   }
   .hidden {
