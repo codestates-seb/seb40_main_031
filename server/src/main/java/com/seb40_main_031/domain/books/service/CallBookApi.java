@@ -3,6 +3,7 @@ package com.seb40_main_031.domain.books.service;
 import com.seb40_main_031.domain.books.repository.BookRepository;
 import com.seb40_main_031.domain.books.Key;
 import com.seb40_main_031.domain.books.entity.Book;
+
 import lombok.RequiredArgsConstructor;
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
@@ -28,11 +29,11 @@ public class CallBookApi {
      *
      * @PostConstruct 실행시 한번만 실행하고 종료, 초기화 작업을 위해 선언
      */
+
 //    @PostConstruct
     public void saveBestSeller(){
 
         String apikey = key.getKey();
-
         String result = "";
 
         int[] categoryCode = {100, 200};
@@ -108,7 +109,6 @@ public class CallBookApi {
      */
 //    @PostConstruct
     public void saveNewBook() {
-
         String apikey = key.getKey();
         String result = "";
 
@@ -217,6 +217,7 @@ public class CallBookApi {
             }
         }
     }
+
     public String pubDateReformat(String pubDate) {
         String reformatDate = "";
         try{

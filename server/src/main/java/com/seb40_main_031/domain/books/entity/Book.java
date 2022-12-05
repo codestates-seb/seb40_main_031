@@ -4,13 +4,9 @@ import com.seb40_main_031.domain.review.entity.Review;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
-import org.springframework.data.domain.Page;
 
 import javax.persistence.*;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
 import java.util.*;
-import java.util.stream.Collectors;
 
 @NoArgsConstructor
 @Getter
@@ -72,7 +68,6 @@ public class Book {
     private Long foreignRank;
 
     @OneToMany(mappedBy = "book")
-    @OrderBy("like_count DESC")
     private List<Review> reviews = new ArrayList<>();
 
     @Column(name = "REVIEW_COUNT")
