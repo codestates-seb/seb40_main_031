@@ -17,13 +17,14 @@ import {
 import { FaRegUserCircle, FaRegThumbsUp } from 'react-icons/fa';
 import { HiOutlinePencil } from 'react-icons/hi';
 import { MdClose } from 'react-icons/md';
-import { useParams } from 'react-router-dom';
+import { useParams, useNavigate } from 'react-router-dom';
 import InfiniteScroll from 'react-infinite-scroll-component';
-
+import PatchModal from '../modal/PatchModal';
 import { useState } from 'react';
 import axios from 'api/axios';
 import { REVEIW_DETAIL_URL } from 'api';
-
+import modalContent from 'atom/ModalContent';
+import { useRecoilState } from 'recoil';
 // import DummyReviews from 'components/@layout/reviewContent/DummyReviews';
 import Loading from 'components/@layout/loading/Loading';
 
@@ -33,17 +34,22 @@ import Loading from 'components/@layout/loading/Loading';
 
 const ReviewBig = () => {
   const { id } = useParams();
-  const [reviewBigs, setreviewBigs] = useState([]);
+  const [reviewBigs, setreviewBigs] = useRecoilState(modalContent);
   const [hasMore, setHasMore] = useState(true);
   const [content, setContent] = useState('');
   const [datalength, setDatalength] = useState();
+  const [show, setShow] = useState(false);
   const number = useRef(0);
   const tempBigs = useRef([]);
+  const navigate = useNavigate();
 
   const contentHandler = (e) => {
     setContent(e.target.value);
   };
 
+  const patchHandler = () => {
+    setShow(true);
+  };
   const getReviewDetail = async () => {
     const res = await axios.get(`${REVEIW_DETAIL_URL}/${id}`);
     console.log(res.data);
@@ -55,46 +61,43 @@ const ReviewBig = () => {
     return res.data;
   };
 
-  const deleteReviewDetail = (id) => {
-    let accessToken = sessionStorage.getItem('Authorization');
-    let deleteId = id;
-    axios
-      .delete(
-        `${REVEIW_DETAIL_URL}/${deleteId}`,
-        {
-          reviewId: deleteId,
-        },
-        {
-          headers: {
-            Authorization: accessToken,
-          },
-        },
-      )
-      .then((res) => {
-        console.log(res);
-      });
-  };
-
-  const updateReviewDetail = () => {
+  const deleteReviewDetail = (reviewId) => {
     let accessToken = sessionStorage.getItem('Authorization');
 
     axios
-      .patch(
-        `${REVEIW_DETAIL_URL}/${id}`,
-        {
-          content: content,
-          reviewId: id,
+      .delete(`${REVEIW_DETAIL_URL}/${reviewId}`, {
+        headers: {
+          Authorization: accessToken,
         },
-        {
-          headers: {
-            Authorization: accessToken,
-          },
-        },
-      )
+      })
       .then((res) => {
         console.log(res);
-      });
+      })
+      // .then(() => navigate(`reviewdetail/${id}`));
+
+      .then(() => window.location.reload());
   };
+
+  // const updateReviewDetail = () => {
+  //   let accessToken = sessionStorage.getItem('Authorization');
+
+  //   axios
+  //     .patch(
+  //       `${REVEIW_DETAIL_URL}/${id}`,
+  //       {
+  //         content: content,
+  //         reviewId: id,
+  //       },
+  //       {
+  //         headers: {
+  //           Authorization: accessToken,
+  //         },
+  //       },
+  //     )
+  //     .then((res) => {
+  //       console.log(res);
+  //     });
+  // };
   useEffect(() => {
     getReviewDetail();
     console.log(reviewBigs.slice(number.current, number.current + 3));
@@ -104,6 +107,10 @@ const ReviewBig = () => {
   useEffect(() => {
     console.log(reviewBigs);
   }, [reviewBigs]);
+
+  // useEffect(() => {
+  //   deleteReviewDetail();
+  // }, []);
 
   const fetchData = () => {
     if (reviewBigs.length < tempBigs.current.length) {
@@ -123,6 +130,7 @@ const ReviewBig = () => {
 
   return (
     <div>
+      {show === true ? <PatchModal setShow={setShow} /> : null}
       <InfiniteScroll
         style={{
           display: 'flex',
@@ -158,11 +166,13 @@ const ReviewBig = () => {
                   <RightIconBox>
                     <RightIconUpdate
                       onChange={contentHandler}
-                      onClick={updateReviewDetail}
+                      onClick={patchHandler}
                     >
                       <HiOutlinePencil />
                     </RightIconUpdate>
-                    <RightIconDelete onClick={() => deleteReviewDetail(id)}>
+                    <RightIconDelete
+                      onClick={() => deleteReviewDetail(reviewBig.reviewId)}
+                    >
                       <MdClose />
                     </RightIconDelete>
                   </RightIconBox>
