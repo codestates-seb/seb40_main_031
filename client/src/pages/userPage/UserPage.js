@@ -4,6 +4,7 @@ import axios from 'api/axios';
 import { USERINFO_URL } from 'api';
 import { useParams } from 'react-router-dom';
 
+// import UserReadBook from '../../components/searchDetail/book/UserReadBook';
 import {
   Wrap,
   UserContainer,
@@ -11,39 +12,53 @@ import {
   UserIcon,
   ReadBookContainer,
   ReadBook,
+  UserNickname,
+  UserCount,
 } from './UserPage.style';
 
 const UserPage = () => {
   const [user, setUser] = useState([]);
-  let { userUrlId } = useParams();
+  const { id } = useParams();
 
-  console.log(userUrlId);
+  console.log(id);
 
   const userId = sessionStorage.getItem('UserId');
 
   const getUserData = async () => {
-    const res = await axios.get(`${USERINFO_URL}`);
+    const res = await axios.get(`${USERINFO_URL}${id}`);
     setUser(res.data);
     return res.data;
   };
 
-  console.log(userUrlId);
   useEffect(() => {
     getUserData();
   }, []);
 
   console.log(user.data);
+
   return (
-    <Wrap>
-      <UserContainer>{userId}</UserContainer>
-      <UserInfoBox>
-        <UserIcon />
-      </UserInfoBox>
-      <ReadBookContainer>
-        {/* 맵으로 돌릴예정 */}
-        <ReadBook></ReadBook>
-      </ReadBookContainer>
-    </Wrap>
+    <>
+      <Wrap>
+        <UserContainer>
+          <UserCount>포인트 {user.data?.point}</UserCount>
+        </UserContainer>
+        <UserInfoBox>
+          <UserIcon>{user.data?.img}</UserIcon>
+          <UserNickname>{user.data?.nickname}</UserNickname>
+        </UserInfoBox>
+        <ReadBookContainer>
+          {user.data?.bookList.map((_, i) => {
+            return (
+              <ReadBook
+                key={i}
+                name={user.bookList}
+                src={user.data.bookList.coverSmallUrl}
+              />
+            );
+          })}
+        </ReadBookContainer>
+      </Wrap>
+    </>
   );
 };
 
