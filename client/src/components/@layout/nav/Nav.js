@@ -20,13 +20,15 @@ import {
   UserNameSpan,
 } from 'components/@layout/nav/Nav.style';
 import { USERINFO_URL } from 'api';
+import logoImage from 'img/imgLogo2.svg';
+import userIcon from 'img/user_profile_icon.png';
 
 const Nav = () => {
   const [showModal, setShowModal] = useState(false);
   const [navlist, setNavList] = useState([]);
   const [islogin, setIslogin] = useState(false);
   const [userName, setUserName] = useState('기본값');
-  const [userImg, setUserImg] = useState('./img/user_profile_icon.png');
+  const [userImg, setUserImg] = useState(userIcon);
 
   const navigate = useNavigate();
 
@@ -79,7 +81,7 @@ const Nav = () => {
             style={{ cursor: 'pointer' }}
           />
           <CustomLink to='/'>
-            <MainLogoImg src='./img/imgLogo2.svg' />
+            <MainLogoImg src={logoImage} />
           </CustomLink>
         </LeftDiv>
         <RightDiv>
@@ -90,7 +92,7 @@ const Nav = () => {
             </UserNameSpan>
           ) : null}
           {islogin ? (
-            <UserImg onClick={() => navigate('/userpage')} src={userImg} />
+            <UserImg onClick={() => navigate('/userpage')} src={userIcon} />
           ) : null}
         </RightDiv>
       </LayoutContainer>

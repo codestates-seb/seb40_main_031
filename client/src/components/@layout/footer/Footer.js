@@ -16,6 +16,8 @@ import {
 } from 'components/@layout/footer/Footer.style';
 import { FaGithub, FaInstagramSquare } from 'react-icons/fa';
 import { RiKakaoTalkFill } from 'react-icons/ri';
+import logoImage from 'img/imgLogo2.svg';
+import logoSmall from 'img/ico.png';
 
 const Footer = () => {
   return (
@@ -54,8 +56,8 @@ const Footer = () => {
           </LinkDiv>
         </UpperContainerDiv>
         <LowerContainerDiv>
-          <LogoImg src='./img/imgLogo2.svg' className='big' />
-          <LogoImg src='./img/ico.png' className='small' />
+          <LogoImg src={logoImage} className='big' />
+          <LogoImg src={logoSmall} className='small' />
           <CopyrightCSDiv>
             <CopyrightDiv>
               © 2022 by GULGIL, Inc. All rights reserved.
