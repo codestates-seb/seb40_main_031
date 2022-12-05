@@ -24,19 +24,22 @@ const Share = ({ setOpenShare }) => {
     <div>
       <GridContainer>
         <FacebookShareButton url={currentUrl}>
-          <FacebookIcon size={40} round={true} borderRadius={24}></FacebookIcon>
+          <FacebookIcon size={30} round={true} borderRadius={24}></FacebookIcon>
         </FacebookShareButton>
 
         <TwitterShareButton url={currentUrl}>
-          <TwitterIcon size={40} round={true} borderRadius={24}></TwitterIcon>
+          <TwitterIcon size={30} round={true} borderRadius={24}></TwitterIcon>
         </TwitterShareButton>
-
-        <CopyToClipboard text={currentUrl}>
-          <URLShareButton onClick={alertMessage}>
-            <span>URL</span>
-          </URLShareButton>
-        </CopyToClipboard>
-        <IoCloseOutline size='45' onClick={closeHandler} />
+        <div style={{ display: 'flex', justifyContent: 'center' }}>
+          <CopyToClipboard text={currentUrl}>
+            <URLShareButton onClick={alertMessage}>
+              <span>URL</span>
+            </URLShareButton>
+          </CopyToClipboard>
+        </div>
+        <div style={{ display: 'flex', justifyContent: 'center' }}>
+          <IoCloseOutline size='30' onClick={closeHandler} />
+        </div>
       </GridContainer>
     </div>
   );

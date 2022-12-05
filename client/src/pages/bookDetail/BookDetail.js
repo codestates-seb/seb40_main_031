@@ -89,6 +89,7 @@ const BookDetail = () => {
 
   return (
     <div>
+      {modal && <ModalReview setModal={setModal} bookdetails={bookdetails} />}
       <Template key={bookdetails.bookId}>
         <BookContent>
           <BookContentLeft>
@@ -103,21 +104,24 @@ const BookDetail = () => {
               <BookTitleAuthor>
                 <BookTitleAuthorTemplate>
                   <BookTitle>{bookdetails.title}</BookTitle>
-                  <BookAuthor>{bookdetails.author}</BookAuthor>
                 </BookTitleAuthorTemplate>
 
-                <BookShareContainer onClick={openShareHandler}>
-                  {openShare === true ? null : (
-                    <BookShare>
-                      <AiOutlineShareAlt />
-                    </BookShare>
-                  )}
+                <BookShareContainer>
+                  <BookShare onClick={() => openShareHandler()}>
+                    <AiOutlineShareAlt />
+                  </BookShare>
+
                   <ShareAnimation className={openShare ? 'active' : 'hidden'}>
                     {openShare && <Share setOpenShare={setOpenShare} />}
                   </ShareAnimation>
                 </BookShareContainer>
               </BookTitleAuthor>
-              <BookPrice>{bookdetails.price}원</BookPrice>
+              <div style={{ display: 'flex', alignItems: 'center' }}>
+                <BookPrice>{bookdetails.price}원</BookPrice>
+                <BookAuthor>
+                  <span>{bookdetails.author}</span>
+                </BookAuthor>
+              </div>
               <BookExplain>{bookdetails.description}</BookExplain>
               <BookButton>
                 <Button text='같이 이야기하기' width='350px' height='50px' />
@@ -127,10 +131,7 @@ const BookDetail = () => {
         </BookContent>
         <ReviewContent>
           <ReviewContentTemplate>
-            <Reviews onClick={modalHandler}>리뷰 달기</Reviews>
-            {modal && (
-              <ModalReview setModal={setModal} bookdetails={bookdetails} />
-            )}
+            <Reviews onClick={modalHandler}>리뷰 작성</Reviews>
             <ReviewClick>
               <ReviewiIconTemplate>
                 <ReviewIcon>
@@ -146,7 +147,6 @@ const BookDetail = () => {
           </ReviewContentTemplate>
         </ReviewContent>
       </Template>
-      ;
     </div>
   );
 };

@@ -14,7 +14,6 @@ import { useRef, useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import axios from 'api/axios';
 import { REVIEW_URL } from 'api';
-import BookDetail from 'pages/bookDetail/BookDetail';
 
 const ModalReview = ({ setModal, bookdetails }) => {
   const outside = useRef();
