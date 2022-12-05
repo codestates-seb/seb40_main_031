@@ -26,9 +26,7 @@ const Nav = () => {
   const [navlist, setNavList] = useState([]);
   const [islogin, setIslogin] = useState(false);
   const [userName, setUserName] = useState('기본값');
-  const [userImg, setUserImg] = useState(
-    'https://cdn.icon-icons.com/icons2/2761/PNG/512/user_profile_icon_176439.png',
-  );
+  const [userImg, setUserImg] = useState('./img/user_profile_icon.png');
 
   const navigate = useNavigate();
 

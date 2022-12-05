@@ -37,7 +37,7 @@ const Tab = () => {
       : category === '104'
       ? (result = '사회과학')
       : category === '105'
-      ? (result = '역사화 문화')
+      ? (result = '역사와 문화')
       : category === '107'
       ? (result = '잡지')
       : category === '108'
