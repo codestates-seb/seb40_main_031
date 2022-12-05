@@ -106,8 +106,9 @@ const BookTitle = styled.div`
 `;
 
 const BookAuthor = styled.div`
-  width: 63px;
-  padding: 15px 0px 0px 10px;
+  display: flex;
+  align-items: center;
+  padding: 0px 0px 0px 10px;
 
   font-size: 15px;
   color: ${Theme.PRIMARY.GREEN_DARK};
@@ -115,15 +116,19 @@ const BookAuthor = styled.div`
 
 const BookShareContainer = styled.button`
   display: flex;
+  position: relative;
   border: none;
   background-color: transparent;
   .active {
     width: 220px;
-    transition: all 0.5s;
+    transition: all 0.3s;
+    @media screen and (max-width: 700px) {
+      width: 166px;
+    }
   }
   .hidden {
     width: 0px;
-    transition: all 0.5s;
+    transition: all 0.3s;
   }
 `;
 const BookShare = styled(AiOutlineShareAlt)`
@@ -132,7 +137,10 @@ const BookShare = styled(AiOutlineShareAlt)`
   color: ${Theme.PRIMARY.GREEN_DARK};
 `;
 
-const ShareAnimation = styled.div``;
+const ShareAnimation = styled.div`
+  position: absolute;
+  right: 0;
+`;
 
 const BookExplain = styled.div`
   @media screen and (max-width: 920px) {
@@ -178,24 +186,31 @@ const BookPrice = styled.div`
 `;
 
 const ReviewContentTemplate = styled.div`
-  /* width: 1000px;
-  height: 450px; */
   border-radius: 4px;
+  display: flex;
+  flex-direction: column;
 `;
 
 const Reviews = styled.span`
-  @media screen and (max-width: 950px) {
-    display: flex;
-    justify-content: center;
-  }
-  height: 30px;
+  display: flex;
+  align-items: center;
   margin-left: 20px;
   border-radius: 4px;
   font-size: 2rem;
+  height: 2.1rem;
   margin-bottom: 30px;
   font-weight: bold;
   color: ${darken(0.3, Theme.PRIMARY.GREEN_DARK)};
   cursor: pointer;
+  &:hover {
+    color: orange;
+    font-size: 2.1rem;
+    transition: all 0.2s;
+  }
+  @media screen and (max-width: 950px) {
+    justify-content: center;
+    margin-bottom: 10px;
+  }
 `;
 
 const ReviewClick = styled.div`

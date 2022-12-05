@@ -87,14 +87,32 @@ const BookDetail = () => {
     navigate(`/reviewdetail/${id}`);
   };
 
+  const priceHandler = (str) => {
+    let result = '';
+    let stringify = String(str);
+    if (stringify.length === 6) {
+      result = `${stringify.substring(0, 3)},${stringify.substring(3, 6)}`;
+      return result;
+    } else {
+      result = `${stringify.substring(0, 2)},${stringify.substring(2, 5)}`;
+      return result;
+    }
+  };
+
   return (
     <div>
+      {modal && <ModalReview setModal={setModal} bookdetails={bookdetails} />}
       <Template key={bookdetails.bookId}>
         <BookContent>
           <BookContentLeft>
             <ImageDateTemplate>
               <Image src={bookdetails.coverLargeUrl} />
-              <Date>{bookdetails.pubDate}</Date>
+              <Date>{`${String(bookdetails.pubDate).substring(0, 4)}. ${String(
+                bookdetails.pubDate,
+              ).substring(4, 6)}. ${String(bookdetails.pubDate).substring(
+                6,
+                8,
+              )}. 출시`}</Date>
             </ImageDateTemplate>
           </BookContentLeft>
           <BookContentCenter>
@@ -103,21 +121,24 @@ const BookDetail = () => {
               <BookTitleAuthor>
                 <BookTitleAuthorTemplate>
                   <BookTitle>{bookdetails.title}</BookTitle>
-                  <BookAuthor>{bookdetails.author}</BookAuthor>
                 </BookTitleAuthorTemplate>
 
-                <BookShareContainer onClick={openShareHandler}>
-                  {openShare === true ? null : (
-                    <BookShare>
-                      <AiOutlineShareAlt />
-                    </BookShare>
-                  )}
+                <BookShareContainer>
+                  <BookShare onClick={() => openShareHandler()}>
+                    <AiOutlineShareAlt />
+                  </BookShare>
+
                   <ShareAnimation className={openShare ? 'active' : 'hidden'}>
                     {openShare && <Share setOpenShare={setOpenShare} />}
                   </ShareAnimation>
                 </BookShareContainer>
               </BookTitleAuthor>
-              <BookPrice>{bookdetails.price}</BookPrice>
+              <div style={{ display: 'flex', alignItems: 'center' }}>
+                <BookPrice>{priceHandler(bookdetails.price)}원</BookPrice>
+                <BookAuthor>
+                  <span>{bookdetails.author}</span>
+                </BookAuthor>
+              </div>
               <BookExplain>{bookdetails.description}</BookExplain>
               <BookButton>
                 <Button text='같이 이야기하기' width='350px' height='50px' />
@@ -127,10 +148,7 @@ const BookDetail = () => {
         </BookContent>
         <ReviewContent>
           <ReviewContentTemplate>
-            <Reviews onClick={modalHandler}>리뷰 달기</Reviews>
-            {modal && (
-              <ModalReview setModal={setModal} bookdetails={bookdetails} />
-            )}
+            <Reviews onClick={modalHandler}>리뷰 작성</Reviews>
             <ReviewClick>
               <ReviewiIconTemplate>
                 <ReviewIcon>
@@ -146,7 +164,6 @@ const BookDetail = () => {
           </ReviewContentTemplate>
         </ReviewContent>
       </Template>
-      ;
     </div>
   );
 };

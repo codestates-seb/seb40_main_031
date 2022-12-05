@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 import { Theme } from 'style';
 
-const ModalBackground = styled.div`
+const NewModalBackground = styled.div`
   position: fixed;
   top: 0;
   left: 0;
@@ -10,7 +10,7 @@ const ModalBackground = styled.div`
   background: rgba(0, 0, 0, 0.8);
   z-index: 6;
 `;
-const ContainerDiv = styled.div`
+const NewContainerDiv = styled.div`
   @media screen and (max-width: 730px) {
     width: 95vw;
   }
@@ -28,7 +28,7 @@ const ContainerDiv = styled.div`
   transform: translate(-50%, -50%);
   background-color: #fff;
 `;
-const HeaderDiv = styled.div`
+const NewHeaderDiv = styled.div`
   display: flex;
   justify-content: space-between;
   height: 10%;
@@ -38,19 +38,19 @@ const HeaderDiv = styled.div`
   padding-right: 0.5rem;
 `;
 
-const TitleSpan = styled.span`
+const NewTitleSpan = styled.span`
   font-weight: bold;
   font-size: 40px;
   color: ${Theme.PRIMARY.GREEN_DARK};
 `;
 
-const CloseIconSpan = styled.span`
+const NewCloseIconSpan = styled.span`
   align-items: center;
   justify-content: center;
   cursor: pointer;
 `;
 
-const ReviewTextarea = styled.textarea`
+const NewReviewTextarea = styled.textarea`
   width: 100%;
   height: 80%;
   padding: 0.5rem 1rem;
@@ -75,7 +75,7 @@ const ReviewTextarea = styled.textarea`
   }
 `;
 
-const FooterDiv = styled.div`
+const NewFooterDiv = styled.div`
   display: flex;
   align-items: center;
   justify-content: flex-end;
@@ -87,11 +87,11 @@ const FooterDiv = styled.div`
 `;
 
 export {
-  ModalBackground,
-  ContainerDiv,
-  HeaderDiv,
-  TitleSpan,
-  CloseIconSpan,
-  ReviewTextarea,
-  FooterDiv,
+  NewModalBackground,
+  NewContainerDiv,
+  NewHeaderDiv,
+  NewTitleSpan,
+  NewCloseIconSpan,
+  NewReviewTextarea,
+  NewFooterDiv,
 };

@@ -8,7 +8,7 @@ const NavWrapperDiv = styled.div`
   justify-content: center;
   align-items: center;
   flex-direction: column;
-  z-index: 10;
+  z-index: 2;
   width: 100%;
   position: fixed;
 
