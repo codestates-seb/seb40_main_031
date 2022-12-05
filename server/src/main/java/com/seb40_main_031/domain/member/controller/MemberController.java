@@ -61,7 +61,6 @@ public class MemberController {
     @GetMapping("/users/{memberId}")
     public ResponseEntity getMember(@PathVariable @Positive Long memberId){
 
-        System.out.println("controller test member Id : " + memberId);
         Member member = memberService.findMember(memberId);
         List<ReviewToMemberResponse> reviewResponse = memberService.getReviews(memberId);
         List<BookToMemberResponse> bookResponse = memberService.getBooks(memberId);
