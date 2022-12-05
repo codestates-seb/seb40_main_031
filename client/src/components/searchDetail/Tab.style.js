@@ -33,6 +33,7 @@ const TabSpan = styled.span`
   padding: 10px 10px;
   cursor: pointer;
   background-color: ${Theme.PRIMARY.GREEN_LIGHT};
+  font-family: 'Do Hyeon';
 `;
 
 export { ContainerDiv, TabDiv, TabSpan };

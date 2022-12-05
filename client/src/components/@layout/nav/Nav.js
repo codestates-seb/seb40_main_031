@@ -34,15 +34,19 @@ const Nav = () => {
 
   const getUserInfo = () => {
     const userId = sessionStorage.getItem('UserId');
-    axios
-      .get(`${USERINFO_URL}${userId}`)
-      .then((res) => {
-        setUserName(res.data.data.nickname);
-        res.data.data.img !== null ? setUserImg(res.data.data.img) : null;
-      })
-      .catch((err) => {
-        console.log(err);
-      });
+    if (userId !== null) {
+      axios
+        .get(`${USERINFO_URL}${userId}`)
+        .then((res) => {
+          setUserName(res.data.data.nickname);
+          res.data.data.img !== null ? setUserImg(res.data.data.img) : null;
+        })
+        .catch((err) => {
+          console.log(err);
+        });
+    } else {
+      return null;
+    }
   };
 
   const islogined = () => {

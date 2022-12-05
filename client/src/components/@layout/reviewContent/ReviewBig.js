@@ -12,6 +12,7 @@ import {
   RightIconBox,
   LeftIconBox,
   LeftText,
+  ReviewCount,
 } from 'components/@layout/reviewContent/ReviewBig.style';
 import { FaRegUserCircle, FaRegThumbsUp } from 'react-icons/fa';
 import { HiOutlinePencil } from 'react-icons/hi';
@@ -35,7 +36,7 @@ const ReviewBig = () => {
   const [reviewBigs, setreviewBigs] = useState([]);
   const [hasMore, setHasMore] = useState(true);
   const [content, setContent] = useState('');
-
+  const [datalength, setDatalength] = useState();
   const number = useRef(0);
   const tempBigs = useRef([]);
 
@@ -46,6 +47,8 @@ const ReviewBig = () => {
   const getReviewDetail = async () => {
     const res = await axios.get(`${REVEIW_DETAIL_URL}/${id}`);
     console.log(res.data);
+    console.log(res.data.length);
+    setDatalength(res.data.length);
     tempBigs.current = res.data;
     setreviewBigs(tempBigs.current.slice(0, 3));
     number.current = 3;
@@ -132,6 +135,8 @@ const ReviewBig = () => {
         hasMore={hasMore}
         loader={<Loading width='30px' height='30px' />}
       >
+        <ReviewCount>리뷰 개수: {datalength} 개</ReviewCount>
+
         {reviewBigs &&
           reviewBigs.map((reviewBig) => {
             return (

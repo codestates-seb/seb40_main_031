@@ -98,6 +98,10 @@ const RightIconDelete = styled(MdClose)`
   cursor: pointer;
 `;
 
+const ReviewCount = styled.div`
+  font-size: 30px;
+  margin-bottom: 10px;
+`;
 export {
   Template,
   UserInfo,
@@ -111,4 +115,5 @@ export {
   RightIconBox,
   LeftIconBox,
   LeftText,
+  ReviewCount,
 };
