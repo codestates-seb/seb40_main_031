@@ -47,6 +47,7 @@ const Book = ({ title }) => {
     if (category !== '') {
       const res = await axios.get(`${BOOK_CATEGORY_URL}${category}`);
       setBooks(res.data.data);
+      setBooksTwo([]);
     } else {
       return null;
     }
