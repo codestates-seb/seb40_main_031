@@ -9,6 +9,8 @@ import Share from 'components/share/Share';
 import { useParams, useNavigate } from 'react-router-dom';
 import axios from 'api/axios';
 import { BOOK_BOOKDETAIL_URL } from 'api';
+import { REVEIW_DETAIL_URL } from 'api';
+
 import {
   Template,
   BookContent,
@@ -47,16 +49,29 @@ const BookDetail = () => {
   const [modal, setModal] = useState(false);
   const [openShare, setOpenShare] = useState(false);
   const [bookdetails, setBookdetails] = useState([]);
+  const [reviewCount, setReviewcount] = useState();
 
   const getBookDetail = async () => {
     const res = await axios.get(`${BOOK_BOOKDETAIL_URL}/${id}`);
 
     setBookdetails(res.data);
+
+    return res.data;
+  };
+
+  const getReviewDetailCount = async () => {
+    const res = await axios.get(`${REVEIW_DETAIL_URL}/${id}`);
+    setReviewcount(res.data.length);
     return res.data;
   };
 
   useEffect(() => {
     getBookDetail();
+    // eslint-disable-next-line
+  }, []);
+
+  useEffect(() => {
+    getReviewDetailCount();
     // eslint-disable-next-line
   }, []);
 
@@ -113,13 +128,15 @@ const BookDetail = () => {
         <ReviewContent>
           <ReviewContentTemplate>
             <Reviews onClick={modalHandler}>리뷰 달기</Reviews>
-            {modal && <ModalReview setModal={setModal} />}
+            {modal && (
+              <ModalReview setModal={setModal} bookdetails={bookdetails} />
+            )}
             <ReviewClick>
               <ReviewiIconTemplate>
                 <ReviewIcon>
                   <HiOutlineChat />
                 </ReviewIcon>
-                <ReviewCount>리뷰 2 +</ReviewCount>
+                <ReviewCount>리뷰 {reviewCount} +</ReviewCount>
               </ReviewiIconTemplate>
               <ReviewMore onClick={pageHandler}>더보기</ReviewMore>
             </ReviewClick>
