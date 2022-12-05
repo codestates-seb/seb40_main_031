@@ -1,7 +1,11 @@
 import React, { useState, useEffect } from 'react';
 import { FaBars } from 'react-icons/fa';
 import { NAV_LIST, NAV_LIST_LOGINED } from 'constants';
+<<<<<<< HEAD
 import { useNavigate, useParams } from 'react-router-dom';
+=======
+import { useNavigate } from 'react-router-dom';
+>>>>>>> 7462f5c9129c49f0096904d36589627afcb60d21
 import axios from 'api/axios';
 
 import SearchBar from 'components/@common/searchBar/SearchBar';
@@ -26,9 +30,7 @@ const Nav = () => {
   const [navlist, setNavList] = useState([]);
   const [islogin, setIslogin] = useState(false);
   const [userName, setUserName] = useState('기본값');
-  const [userImg, setUserImg] = useState(
-    'https://cdn.icon-icons.com/icons2/2761/PNG/512/user_profile_icon_176439.png',
-  );
+  const [userImg, setUserImg] = useState('./img/user_profile_icon.png');
 
   const navigate = useNavigate();
   const { userUrlId } = useParams();
@@ -48,6 +50,7 @@ const Nav = () => {
         console.log(err);
       });
   };
+
 
   const islogined = () => {
     if (sessionStorage.getItem('Authorization') !== null) {

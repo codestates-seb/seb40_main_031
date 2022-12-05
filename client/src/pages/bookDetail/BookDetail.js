@@ -9,6 +9,8 @@ import Share from 'components/share/Share';
 import { useParams, useNavigate } from 'react-router-dom';
 import axios from 'api/axios';
 import { BOOK_BOOKDETAIL_URL } from 'api';
+import { REVEIW_DETAIL_URL } from 'api';
+
 import {
   Template,
   BookContent,
@@ -47,11 +49,19 @@ const BookDetail = () => {
   const [modal, setModal] = useState(false);
   const [openShare, setOpenShare] = useState(false);
   const [bookdetails, setBookdetails] = useState([]);
+  const [reviewCount, setReviewcount] = useState();
 
   const getBookDetail = async () => {
     const res = await axios.get(`${BOOK_BOOKDETAIL_URL}/${id}`);
 
     setBookdetails(res.data);
+
+    return res.data;
+  };
+
+  const getReviewDetailCount = async () => {
+    const res = await axios.get(`${REVEIW_DETAIL_URL}/${id}`);
+    setReviewcount(res.data.length);
     return res.data;
   };
 
@@ -74,6 +84,7 @@ const BookDetail = () => {
 
   return (
     <div>
+      {modal && <ModalReview setModal={setModal} bookdetails={bookdetails} />}
       <Template key={bookdetails.bookId}>
         <BookContent>
           <BookContentLeft>
@@ -88,21 +99,24 @@ const BookDetail = () => {
               <BookTitleAuthor>
                 <BookTitleAuthorTemplate>
                   <BookTitle>{bookdetails.title}</BookTitle>
-                  <BookAuthor>{bookdetails.author}</BookAuthor>
                 </BookTitleAuthorTemplate>
 
-                <BookShareContainer onClick={openShareHandler}>
-                  {openShare === true ? null : (
-                    <BookShare>
-                      <AiOutlineShareAlt />
-                    </BookShare>
-                  )}
+                <BookShareContainer>
+                  <BookShare onClick={() => openShareHandler()}>
+                    <AiOutlineShareAlt />
+                  </BookShare>
+
                   <ShareAnimation className={openShare ? 'active' : 'hidden'}>
                     {openShare && <Share setOpenShare={setOpenShare} />}
                   </ShareAnimation>
                 </BookShareContainer>
               </BookTitleAuthor>
-              <BookPrice>{bookdetails.price}</BookPrice>
+              <div style={{ display: 'flex', alignItems: 'center' }}>
+                <BookPrice>{bookdetails.price}원</BookPrice>
+                <BookAuthor>
+                  <span>{bookdetails.author}</span>
+                </BookAuthor>
+              </div>
               <BookExplain>{bookdetails.description}</BookExplain>
               <BookButton>
                 <Button text='같이 이야기하기' width='350px' height='50px' />
@@ -112,14 +126,13 @@ const BookDetail = () => {
         </BookContent>
         <ReviewContent>
           <ReviewContentTemplate>
-            <Reviews onClick={modalHandler}>리뷰 달기</Reviews>
-            {modal && <ModalReview setModal={setModal} />}
+            <Reviews onClick={modalHandler}>리뷰 작성</Reviews>
             <ReviewClick>
               <ReviewiIconTemplate>
                 <ReviewIcon>
                   <HiOutlineChat />
                 </ReviewIcon>
-                <ReviewCount>리뷰 2 +</ReviewCount>
+                <ReviewCount>리뷰 {reviewCount} +</ReviewCount>
               </ReviewiIconTemplate>
               <ReviewMore onClick={pageHandler}>더보기</ReviewMore>
             </ReviewClick>
@@ -129,7 +142,6 @@ const BookDetail = () => {
           </ReviewContentTemplate>
         </ReviewContent>
       </Template>
-      ;
     </div>
   );
 };

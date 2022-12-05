@@ -8,6 +8,7 @@ const ModalBackground = styled.div`
   bottom: 0;
   right: 0;
   background: rgba(0, 0, 0, 0.8);
+  z-index: 6;
 `;
 const ContainerDiv = styled.div`
   @media screen and (max-width: 730px) {
@@ -20,7 +21,7 @@ const ContainerDiv = styled.div`
   border: 1px solid ${Theme.PRIMARY.BLACK};
   border-radius: 10px;
   padding: 1%;
-  z-index: 1;
+  z-index: 10;
   position: absolute;
   top: 50%;
   left: 50%;

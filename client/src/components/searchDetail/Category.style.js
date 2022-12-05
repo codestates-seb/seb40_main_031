@@ -30,12 +30,19 @@ const FlexDiv = styled.div`
   }
 `;
 
-const LinkA = styled.a`
+const LinkSpan = styled.span`
   text-decoration: none;
 
   color: ${darken(0.1, Theme.PRIMARY.GREEN_DARK)};
 
   margin-bottom: 10px;
   padding-right: 3rem;
+
+  cursor: pointer;
+  font-family: 'Do Hyeon';
+
+  &:hover {
+    color: orange;
+  }
 `;
-export { ContainerDiv, FlexDiv, LinkA };
+export { ContainerDiv, FlexDiv, LinkSpan };

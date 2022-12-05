@@ -15,7 +15,7 @@ import { useParams } from 'react-router-dom';
 import axios from 'api/axios';
 import { REVIEW_URL } from 'api';
 
-const ModalReview = ({ setModal }) => {
+const ModalReview = ({ setModal, bookdetails }) => {
   const outside = useRef();
   const [content, setContent] = useState('');
 
@@ -66,6 +66,29 @@ const ModalReview = ({ setModal }) => {
   //모달이 사라질 때에는 useEffect의 return을 사용해
   //body의 cssText를 리셋시킨 다음 window.scrollTo를 이용해 현재 스크롤 위치로 이동
 
+  const { id } = useParams();
+
+  const makeReviewHandler = () => {
+    let accessToken = sessionStorage.getItem('Authorization');
+    setModal(false);
+
+    axios
+      .post(
+        `${REVIEW_URL}/${id}`,
+        {
+          content: content,
+        },
+        {
+          headers: {
+            Authorization: accessToken,
+          },
+        },
+      )
+      .then((res) => {
+        console.log(res);
+      });
+  };
+
   useEffect(() => {
     //모달창 화면이 처음에 랜더링이 되었을때
     document.body.style.cssText = `  
@@ -95,7 +118,7 @@ const ModalReview = ({ setModal }) => {
       >
         <ContainerDiv>
           <HeaderDiv>
-            <TitleSpan>책제목</TitleSpan>
+            <TitleSpan>{bookdetails.title}</TitleSpan>
             <CloseIconSpan>
               <IoCloseOutline size='45' onClick={modalHandlered} />
             </CloseIconSpan>

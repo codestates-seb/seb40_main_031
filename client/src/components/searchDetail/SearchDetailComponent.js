@@ -1,5 +1,5 @@
 import React from 'react';
-import { Book } from 'components/@layout';
+import Book from 'components/searchDetail/book/Book';
 import { ContainerDiv } from 'components/searchDetail/SearchDetailComponent.style';
 import Tab from 'components/searchDetail/Tab';
 
