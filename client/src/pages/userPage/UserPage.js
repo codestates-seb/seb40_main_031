@@ -18,6 +18,7 @@ import {
   UserNicknameFix,
   UserNicknameContainer,
   UserAbout,
+  RecentReviews,
 } from './UserPage.style';
 
 const UserPage = () => {
@@ -62,8 +63,9 @@ const UserPage = () => {
           </UserNicknameContainer>
           <UserAbout>{user.data?.about}</UserAbout>
         </UserInfoBox>
+        <RecentReviews>저는 최근 이런책을 읽었어요</RecentReviews>
         <ReadBookContainer>
-          {user.data?.bookList.slice(0, 2).map((book) => {
+          {user.data?.bookList.slice(0, 3).map((book) => {
             return (
               <ReadBook key={book.bookId} src={book.coverLargeUrl}></ReadBook>
             );

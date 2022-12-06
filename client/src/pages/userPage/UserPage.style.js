@@ -54,7 +54,8 @@ const ReadBookContainer = styled.div`
 const ReadBook = styled.img`
   width: 15vw;
   height: 25vh;
-  border-radius: 2em;
+  border-radius: 1em;
+  margin-right: 1rem;
 `;
 
 const UserNicknameContainer = styled.div`
@@ -81,6 +82,11 @@ const UserAbout = styled.div`
   margin-top: -3.5rem;
 `;
 
+const RecentReviews = styled.div`
+  font-size: 1.5rem;
+  padding: 1rem;
+`;
+
 export {
   Wrap,
   UserContainer,
@@ -93,4 +99,5 @@ export {
   UserNicknameFix,
   UserNicknameContainer,
   UserAbout,
+  RecentReviews,
 };
