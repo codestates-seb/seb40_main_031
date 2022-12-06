@@ -57,9 +57,28 @@ const ReadBook = styled.img`
   border-radius: 2em;
 `;
 
+const UserNicknameContainer = styled.div`
+  display: flex;
+  align-items: center;
+  padding: 4rem;
+`;
+
 const UserNickname = styled.div`
   font-size: 2rem;
-  padding: 4rem;
+  margin-right: 2rem;
+`;
+
+const UserNicknameFix = styled.button`
+  background-color: white;
+  border: none;
+  width: 2rem;
+  height: 2rem;
+`;
+
+const UserAbout = styled.div`
+  font-size: 2rem;
+  margin-left: 4rem;
+  margin-top: -3.5rem;
 `;
 
 export {
@@ -71,4 +90,7 @@ export {
   ReadBook,
   UserNickname,
   UserCount,
+  UserNicknameFix,
+  UserNicknameContainer,
+  UserAbout,
 };
