@@ -24,10 +24,14 @@ const Notice = () => {
         {NOTICE_LIST.map((id, i) => {
           return (
             <FaqListContents key={i} style={{ paddingLeft: '3%' }}>
-              {id.id}
-              <FaqListContents key={i} style={{ marginLeft: '5%' }}>
-                {id.text}
-              </FaqListContents>
+              <div
+                style={{
+                  marginRight: 25,
+                }}
+              >
+                {id.id}
+              </div>
+              {id.text}
             </FaqListContents>
           );
         })}
