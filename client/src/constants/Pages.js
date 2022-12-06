@@ -70,14 +70,17 @@ const NOTICE_LIST = Object.freeze([
   {
     id: 1,
     text: '공지사항 입니다 1',
+    body: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,',
   },
   {
     id: 2,
     text: '공지사항 입니다 2',
+    body: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,',
   },
   {
     id: 3,
     text: '공지사항 입니다 3',
+    body: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,',
   },
 ]);
 
