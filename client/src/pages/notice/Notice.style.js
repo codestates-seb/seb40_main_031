@@ -3,8 +3,9 @@ import { Theme } from 'style';
 
 const Wrap = styled.div`
   width: 90%;
-  max-width: 1200px;
+  max-width: 900px;
   height: 100%;
+  padding-bottom: 250px;
   margin: 50px auto;
 `;
 const Title = styled.div`
@@ -86,6 +87,10 @@ const FaqListTitlteContents = styled.div`
   display: flex;
   align-items: center;
   font-size: 1.4em;
+  height: 2rem;
+  font-weight: bold;
+  background-color: ${Theme.PRIMARY.GREEN};
+  color: ${Theme.PRIMARY.WHITE};
 `;
 
 const FaqList = styled.li`
@@ -101,12 +106,44 @@ const FaqList = styled.li`
 const FaqListContents = styled.div`
   color: rgba(0, 0, 0, 0.8);
   display: flex;
+  flex-direction: column;
   align-items: center;
   border-bottom: 1px solid ${Theme.PRIMARY.GREEN};
+  transition: all 0.2s;
 
-  &:hover {
-    background-color: ${Theme.PRIMARY.GREEN};
-    transition: all 0.4s;
+  &.opened {
+    background-color: #fffbe6;
+    transition: all 0.2s;
+  }
+`;
+
+const FaqHeaderDiv = styled.div`
+  display: flex;
+  align-items: center;
+  width: 100%;
+  padding-left: 10px;
+  font-size: 1.4rem;
+  font-family: 'Do Hyeon';
+  cursor: pointer;
+  @media screen and (max-width: 570px) {
+    font-size: 1rem;
+  }
+`;
+
+const FaqBodyDiv = styled.div`
+  width: 100%;
+  height: 0px;
+  padding: 0px 10px 0px 10px;
+  overflow: hidden;
+  transition: all 0.4s;
+
+  &.opened {
+    height: 300px;
+    transition: all 0.5s;
+    padding-bottom: 20px;
+  }
+  @media screen and (max-width: 570px) {
+    font-size: 0.8rem;
   }
 `;
 
@@ -124,4 +161,6 @@ export {
   FaqListTitle,
   FaqListTitlteContents,
   FaqListContents,
+  FaqHeaderDiv,
+  FaqBodyDiv,
 };
