@@ -1,8 +1,9 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'api/axios';
 import { USERINFO_URL } from 'api';
-import { useParams } from 'react-router-dom';
+import { useParams, useNavigate } from 'react-router-dom';
 import { UserEditModal } from 'components';
+import userIcon from 'img/user_profile_icon.png';
 
 import {
   Wrap,
@@ -25,6 +26,8 @@ const UserPage = () => {
   const [modal, setModal] = useState(false);
   let userId = sessionStorage.getItem('UserId');
 
+  const navigate = useNavigate();
+
   const getUserData = async () => {
     const res = await axios.get(`${USERINFO_URL}${id}`);
     setUser(res.data);
@@ -36,6 +39,10 @@ const UserPage = () => {
     return;
   };
 
+  const handleClick = (e) => {
+    navigate(`/bookdetail/${e}`);
+  };
+
   useEffect(() => {
     getUserData();
     // eslint-disable-next-line
@@ -45,10 +52,10 @@ const UserPage = () => {
     <>
       <Wrap>
         <UserContainer>
-          <UserCount>포인트 {user.data?.point}</UserCount>
+          <UserCount>{user.data?.point} 포인트</UserCount>
         </UserContainer>
         <UserInfoBox>
-          <UserIcon>{user.data?.img}</UserIcon>
+          <UserIcon src={userIcon}></UserIcon>
           <UserNicknameContainer>
             <UserNickname>{user.data?.nickname}</UserNickname>
             <UserNicknameFix
@@ -61,11 +68,19 @@ const UserPage = () => {
           </UserNicknameContainer>
           <UserAbout>{user.data?.about}</UserAbout>
         </UserInfoBox>
-        <RecentReviews>저는 최근 이런책을 읽었어요</RecentReviews>
+        <div style={{ width: '100%' }}>
+          <RecentReviews>최근 이런 책들을 읽었어요</RecentReviews>
+        </div>
         <ReadBookContainer>
           {user.data?.bookList.slice(0, 3).map((book) => {
             return (
-              <ReadBook key={book.bookId} src={book.coverLargeUrl}></ReadBook>
+              <ReadBook
+                key={book.bookId}
+                src={book.coverLargeUrl}
+                onClick={() => {
+                  handleClick(`${book.bookId}`);
+                }}
+              ></ReadBook>
             );
           })}
         </ReadBookContainer>

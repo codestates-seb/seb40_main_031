@@ -5,13 +5,16 @@ import {
   Container,
   Formbox,
   NicknameInput,
-  AboutInput,
+  AboutTextarea,
   SubmitButton,
 } from 'components/userEditModal/UserEditModal.style';
+import { useNavigate } from 'react-router-dom';
 
 const UserEditModal = () => {
   const [userNickname, setUserNickname] = useState('');
   const [userAbout, setUserAbout] = useState('');
+
+  const navigate = useNavigate();
 
   const userEdit = () => {
     let accessToken = sessionStorage.getItem('Authorization');
@@ -52,19 +55,28 @@ const UserEditModal = () => {
             setUserNickname(e.target.value);
             console.log(userNickname);
           }}
-        ></NicknameInput>
+        />
         자기소개
-        <AboutInput
+        <AboutTextarea
           name='about'
           value={userAbout}
           onChange={(e) => {
             setUserAbout(e.target.value);
             console.log(userAbout);
           }}
-        ></AboutInput>
-        <SubmitButton type='submit' value='수정'>
-          수정
-        </SubmitButton>
+        />
+        <div
+          style={{
+            display: 'flex',
+            width: '40%',
+            justifyContent: 'space-around',
+          }}
+        >
+          <SubmitButton type='submit' value='수정'>
+            수정
+          </SubmitButton>
+          <SubmitButton>닫기</SubmitButton>
+        </div>
       </Formbox>
     </Container>
   );

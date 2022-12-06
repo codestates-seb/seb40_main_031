@@ -77,10 +77,14 @@ const FaqListTitle = styled.div`
   background-color: ${Theme.PRIMARY.GREEN_LIGHT};
   border-top: 1px solid ${Theme.PRIMARY.GREEN_DARK};
   border-bottom: 1px solid ${Theme.PRIMARY.GREEN};
-  width: 72%;
+  width: 100%;
   line-height: 3em;
   margin: 0 auto;
   margin-top: 20px;
+
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 `;
 
 const FaqListTitlteContents = styled.div`
