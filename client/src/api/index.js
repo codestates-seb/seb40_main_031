@@ -3,6 +3,7 @@ export const MEMBERS_URL = '/members';
 export const SIGNUP_URL = `${MEMBERS_URL}/signup`;
 export const LOGIN_URL = `${MEMBERS_URL}/login`;
 export const USERINFO_URL = `${MEMBERS_URL}/users/`;
+export const USEREDIT_URL = `${MEMBERS_URL}/edit`;
 
 // Book 관련 ~~
 export const BOOK_URL = `/books`;

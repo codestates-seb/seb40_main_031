@@ -7,9 +7,6 @@ import {
   LoginInput,
   LinkToSignUpDiv,
   LinkA,
-  OAuthListDiv,
-  OAuthSvg,
-  LineHr,
   CommentDiv,
   LoginButton,
 } from 'components/login/LoginComponent.style';
@@ -60,7 +57,6 @@ const LoginComponent = () => {
   };
 
   const submitHandle = () => {
-    console.log(`${email}, ${password}`);
     axios
       .post(LOGIN_URL, {
         email: email,
@@ -74,12 +70,9 @@ const LoginComponent = () => {
         sessionStorage.setItem('Authorization', accessToken);
         sessionStorage.setItem('Refresh', refreshToken);
         sessionStorage.setItem('UserId', userId);
-        console.log(res);
         navigate('/');
       })
       .catch((err) => {
-        console.log(`${err.response.status} 에러`);
-        console.log(err);
         setAlert({
           open: true,
           title: '로그인 실패',

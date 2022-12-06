@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useRef, useEffect, useState } from 'react';
 import {
   ModalBackground,
   ContainerDiv,
@@ -7,10 +7,11 @@ import {
   CloseIconSpan,
   ReviewTextarea,
   FooterDiv,
+  ErrorSpan,
+  LengthSpan,
 } from 'components/@layout/modal/Review.style';
 import { IoCloseOutline } from 'react-icons/io5';
 import { Button } from 'components';
-import { useRef, useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import axios from 'api/axios';
 import { REVIEW_URL } from 'api';
@@ -18,20 +19,29 @@ import { REVIEW_URL } from 'api';
 const ModalReview = ({ setModal, bookdetails }) => {
   const outside = useRef();
   const [content, setContent] = useState('');
+  const [contentLength, setContentLength] = useState(0);
+  const [isValid, setIsValid] = useState(false);
+  const [isError, setIsError] = useState('');
 
   const contentHandler = (e) => {
     setContent(e.target.value);
   };
+
+  const contentValidate = () => {
+    setContentLength(content.length);
+  };
+
+  const contentLengthValidate = () => {
+    contentLength >= 20 ? setIsValid(true) : setIsValid(false);
+  };
+
   const modalHandlered = () => {
     setModal(false);
   };
-
   const { id } = useParams();
 
   const makeReviewHandler = () => {
     let accessToken = sessionStorage.getItem('Authorization');
-    setModal(false);
-
     axios
       .post(
         `${REVIEW_URL}/${id}`,
@@ -45,7 +55,13 @@ const ModalReview = ({ setModal, bookdetails }) => {
         },
       )
       .then((res) => {
-        console.log(res);
+        setModal(false);
+      })
+      .then(() => window.location.reload())
+      .catch((err) => {
+        setIsError(
+          `오류가 발생했어요. 관리자에게 문의해주세요. 오류 코드: ${err.response.status}`,
+        );
       });
   };
 
@@ -62,6 +78,17 @@ const ModalReview = ({ setModal, bookdetails }) => {
       window.scrollTo(0, parseInt(scrollY || '0', 10) * -1);
     };
   }, []);
+
+  useEffect(() => {
+    contentValidate();
+    // eslint-disable-next-line
+  }, [content]);
+
+  useEffect(() => {
+    contentLengthValidate();
+    // eslint-disable-next-line
+  }, [contentLength]);
+
   //body 태그의 css를 position을 fixed로 변경하고,
   //top을 현재 스크롤 위치로 하고 overflow-y: scroll; width: 100%;을 추가
   //스크롤 방지
@@ -91,11 +118,16 @@ const ModalReview = ({ setModal, bookdetails }) => {
           />
 
           <FooterDiv>
+            {isError !== '' ? <ErrorSpan>{isError}</ErrorSpan> : null}
+            <LengthSpan
+              className={isValid ? 'valid' : null}
+            >{`${contentLength}/20`}</LengthSpan>
             <Button
               text='작성'
               width='200px'
               height='60px'
               onClick={makeReviewHandler}
+              className={isValid ? null : 'unvaild'}
             />
           </FooterDiv>
         </ContainerDiv>

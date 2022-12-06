@@ -1,8 +1,6 @@
 import styled from 'styled-components';
 import { Theme } from 'style';
-
 import { lighten, darken } from 'polished';
-
 import { Button } from 'components';
 
 const WrapperDiv = styled.div`

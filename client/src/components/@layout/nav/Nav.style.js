@@ -121,6 +121,6 @@ export {
   ModalWrapperDiv,
   ModalListA,
   RightDiv,
-  UserNameSpan,
   UserImg,
+  UserNameSpan,
 };

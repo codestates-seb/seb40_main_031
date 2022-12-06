@@ -1,8 +1,6 @@
 import styled from 'styled-components';
 import { Theme } from 'style';
 
-import { darken, lighten, margin } from 'polished';
-
 const Wrap = styled.div`
   width: 100%;
   height: 250px;

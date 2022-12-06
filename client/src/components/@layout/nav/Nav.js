@@ -1,11 +1,9 @@
 import React, { useState, useEffect } from 'react';
 import { FaBars } from 'react-icons/fa';
 import { NAV_LIST, NAV_LIST_LOGINED } from 'constants';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 import axios from 'api/axios';
-
-import SearchBar from 'components/@common/searchBar/SearchBar';
-import CustomLink from 'components/@common/customLink/CustomLink';
+import { CustomLink, SearchBar } from 'components';
 
 import {
   NavWrapperDiv,
@@ -31,22 +29,19 @@ const Nav = () => {
   const [userImg, setUserImg] = useState(userIcon);
 
   const navigate = useNavigate();
+  const userId = sessionStorage.getItem('UserId');
 
   const getUserInfo = () => {
     const userId = sessionStorage.getItem('UserId');
-    if (userId !== null) {
-      axios
-        .get(`${USERINFO_URL}${userId}`)
-        .then((res) => {
-          setUserName(res.data.data.nickname);
-          res.data.data.img !== null ? setUserImg(res.data.data.img) : null;
-        })
-        .catch((err) => {
-          console.log(err);
-        });
-    } else {
-      return null;
-    }
+    axios
+      .get(`${USERINFO_URL}${userId}`)
+      .then((res) => {
+        setUserName(res.data.data.nickname);
+        res.data.data.img !== null ? setUserImg(res.data.data.img) : null;
+      })
+      .catch((err) => {
+        console.log(err);
+      });
   };
 
   const islogined = () => {
@@ -87,12 +82,15 @@ const Nav = () => {
         <RightDiv>
           <SearchBar />
           {islogin ? (
-            <UserNameSpan onClick={() => navigate('/userpage')}>
+            <UserNameSpan onClick={() => navigate(`/userpage/${userId}`)}>
               {userName}
             </UserNameSpan>
           ) : null}
           {islogin ? (
-            <UserImg onClick={() => navigate('/userpage')} src={userIcon} />
+            <UserImg
+              onClick={() => navigate(`/userpage/${userId}`)}
+              src={userIcon}
+            />
           ) : null}
         </RightDiv>
       </LayoutContainer>

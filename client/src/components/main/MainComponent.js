@@ -10,8 +10,7 @@ import {
   ListDiv,
   DistanceDiv,
 } from 'components/main/MainComponent.style';
-import MainSwiper from 'components/main/MainSwiper';
-import BookPage from 'components/@layout/swiper/Swiper';
+import { MainSwiper, BookPage } from 'components';
 import {
   USERINFO_URL,
   BOOK_BEST_DOMESTIC_URL,
@@ -28,34 +27,28 @@ const MainComponent = () => {
 
   const outputMessage = () => {
     const userId = sessionStorage.getItem('UserId');
-    if (userId !== null) {
-      axios
-        .get(`${USERINFO_URL}${userId}`)
-        .then((res) => {
-          hour >= 0 && hour < 6
-            ? setMessage(`감성 충만한 새벽이네요, ${res.data.data.nickname}님.`)
-            : hour >= 6 && hour < 11
-            ? setMessage(`상쾌한 아침이에요 ! ${res.data.data.nickname}님!`)
-            : hour >= 11 && hour < 14
-            ? setMessage(`${res.data.data.nickname}님, 점심식사는 하셨나요?`)
-            : hour >= 14 && hour < 17
-            ? setMessage(`나른한 오후에 반가워요 ${res.data.data.nickname}님!`)
-            : hour >= 17 && hour < 20
-            ? setMessage(
-                `책이 고픈 저녁시간이네요. ${res.data.data.nickname}님은요?`,
-              )
-            : hour >= 20
-            ? setMessage(
-                `${res.data.data.nickname}님, 좋은 하루 마무리 되세요!`,
-              )
-            : setMessage(`시간이 이상한데요? 어느 별에서 왔어요?`);
-        })
-        .catch((err) => {
-          console.log(err);
-        });
-    } else {
-      return null;
-    }
+    axios
+      .get(`${USERINFO_URL}${userId}`)
+      .then((res) => {
+        hour >= 0 && hour < 6
+          ? setMessage(`감성 충만한 새벽이네요, ${res.data.data.nickname}님.`)
+          : hour >= 6 && hour < 11
+          ? setMessage(`상쾌한 아침이에요 ! ${res.data.data.nickname}님!`)
+          : hour >= 11 && hour < 14
+          ? setMessage(`${res.data.data.nickname}님, 점심식사는 하셨나요?`)
+          : hour >= 14 && hour < 17
+          ? setMessage(`나른한 오후에 반가워요 ${res.data.data.nickname}님!`)
+          : hour >= 17 && hour < 20
+          ? setMessage(
+              `책이 고픈 저녁시간이네요. ${res.data.data.nickname}님은요?`,
+            )
+          : hour >= 20
+          ? setMessage(`${res.data.data.nickname}님, 좋은 하루 마무리 되세요!`)
+          : setMessage(`시간이 이상한데요? 어느 별에서 왔어요?`);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
   };
 
   useEffect(() => {
