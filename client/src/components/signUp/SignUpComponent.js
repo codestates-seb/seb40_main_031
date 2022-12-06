@@ -6,8 +6,6 @@ import {
   LogoImg,
   SignDiv,
   LinkA,
-  LineHr,
-  GoogleSvg,
   CommentDiv,
   SignupButton,
 } from 'components/signUp/SignUpComponent.style';
@@ -50,7 +48,6 @@ const SignUpComponent = () => {
     if (type === 'email') {
       const emailRegex =
         /^[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?$/;
-
       return emailRegex.test(data);
     }
     if (type === 'password') {
@@ -103,7 +100,6 @@ const SignUpComponent = () => {
       })
       .then((res) => {
         if (res.status === 201) {
-          console.log('회원가입 성공');
           setAlert({
             open: true,
             title: '회원가입 완료',
@@ -117,10 +113,8 @@ const SignUpComponent = () => {
       .catch((err) => {
         if (err.response.status === 401) {
           console.log('401 에러');
-          console.log(err);
         } else {
           console.log(`${err.response.status} 에러`);
-          console.log(err);
         }
         setAlert({
           open: true,

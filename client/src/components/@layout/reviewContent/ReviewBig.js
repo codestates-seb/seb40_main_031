@@ -1,4 +1,4 @@
-import React, { useEffect, useRef } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import {
   Template,
   UserInfo,
@@ -19,15 +19,11 @@ import { HiOutlinePencil } from 'react-icons/hi';
 import { MdClose } from 'react-icons/md';
 import { useParams, useNavigate } from 'react-router-dom';
 import InfiniteScroll from 'react-infinite-scroll-component';
-import PatchModal from '../modal/PatchModal';
-import { useState } from 'react';
 import axios from 'api/axios';
 import { REVEIW_DETAIL_URL, REVIEW_LIKE_URL } from 'api';
-import modalContent from 'atom/ModalContent';
+import { modalContent } from 'atom';
 import { useRecoilState } from 'recoil';
-// import DummyReviews from 'components/@layout/reviewContent/DummyReviews';
-import Loading from 'components/@layout/loading/Loading';
-import { AlertModal } from 'components';
+import { Loading, AlertModal, PatchModal } from 'components';
 
 // 전역변수 로 number 를 0으로 지정해주었다. 0으로 지정해준 이유는 맨 첫번째 usestate에서 실행된 (0,3)을 먼저
 // 실행했기 때문에(처음에 랜더링이 되어서) 밑에 있는 number += 3이 먼저 실행이 되어서 number가 3으로 바뀌게
@@ -62,22 +58,15 @@ const ReviewBig = () => {
   };
   const getReviewDetail = async () => {
     const res = await axios.get(`${REVEIW_DETAIL_URL}/${id}`);
-    console.log(res.data);
-    console.log(res.data.length);
-
     setDatalength(res.data.length);
     tempBigs.current = res.data;
-
-    console.log(tempBigs.current[idx].memberId);
     setreviewBigs(tempBigs.current.slice(0, 3));
-
     number.current = 3;
     return res.data;
   };
 
   const deleteReviewDetail = (reviewId) => {
     let accessToken = sessionStorage.getItem('Authorization');
-    console.log(reviewId);
     axios
       .delete(`${REVEIW_DETAIL_URL}/${reviewId}`, {
         headers: {
@@ -87,7 +76,6 @@ const ReviewBig = () => {
       .then((res) => {
         console.log(res);
       })
-
       .then(() => window.location.reload());
   };
 
@@ -108,7 +96,6 @@ const ReviewBig = () => {
         },
       )
       .then((res) => {
-        console.log(res);
         window.location.reload();
       })
       .catch((err) => {
@@ -137,13 +124,8 @@ const ReviewBig = () => {
 
   useEffect(() => {
     getReviewDetail();
-    console.log(reviewBigs.slice(number.current, number.current + 3));
     // eslint-disable-next-line
   }, []);
-
-  useEffect(() => {
-    console.log(reviewBigs);
-  }, [reviewBigs]);
 
   const fetchData = () => {
     if (reviewBigs.length < tempBigs.current.length) {

@@ -1,24 +1,23 @@
 import React, { useEffect, useState } from 'react';
-import axios from '../../api/axios';
-import { USEREDTI_URL } from 'api';
+import axios from 'api/axios';
+import { USEREDIT_URL } from 'api';
 import {
   Container,
   Formbox,
   NicknameInput,
   AboutInput,
   SubmitButton,
-} from './UserAditModal.stlye';
+} from 'components/userEditModal/UserEditModal.style';
 
-const UserAditModal = () => {
+const UserEditModal = () => {
   const [userNickname, setUserNickname] = useState('');
   const [userAbout, setUserAbout] = useState('');
 
-  const userAdit = () => {
+  const userEdit = () => {
     let accessToken = sessionStorage.getItem('Authorization');
-
     axios
       .patch(
-        `${USEREDTI_URL}`,
+        `${USEREDIT_URL}`,
         {
           nickname: userNickname,
           about: userAbout,
@@ -36,13 +35,15 @@ const UserAditModal = () => {
         console.log(err);
       });
   };
+
   useEffect(() => {
-    userAdit();
+    userEdit();
+    // eslint-disable-next-line
   }, []);
 
   return (
     <Container>
-      <Formbox onSubmit={userAdit}>
+      <Formbox onSubmit={userEdit}>
         닉네임
         <NicknameInput
           name='nickname'
@@ -69,4 +70,4 @@ const UserAditModal = () => {
   );
 };
 
-export default UserAditModal;
+export default UserEditModal;

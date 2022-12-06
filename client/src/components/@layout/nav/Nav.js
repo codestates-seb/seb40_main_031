@@ -3,9 +3,7 @@ import { FaBars } from 'react-icons/fa';
 import { NAV_LIST, NAV_LIST_LOGINED } from 'constants';
 import { useNavigate, useParams } from 'react-router-dom';
 import axios from 'api/axios';
-
-import SearchBar from 'components/@common/searchBar/SearchBar';
-import CustomLink from 'components/@common/customLink/CustomLink';
+import { CustomLink, SearchBar } from 'components';
 
 import {
   NavWrapperDiv,
@@ -31,10 +29,7 @@ const Nav = () => {
   const [userImg, setUserImg] = useState(userIcon);
 
   const navigate = useNavigate();
-  const { userUrlId } = useParams();
   const userId = sessionStorage.getItem('UserId');
-
-  console.log(userUrlId);
 
   const getUserInfo = () => {
     const userId = sessionStorage.getItem('UserId');
@@ -92,7 +87,10 @@ const Nav = () => {
             </UserNameSpan>
           ) : null}
           {islogin ? (
-            <UserImg onClick={() => navigate('/userpage')} src={userIcon} />
+            <UserImg
+              onClick={() => navigate(`/userpage/${userId}`)}
+              src={userIcon}
+            />
           ) : null}
         </RightDiv>
       </LayoutContainer>

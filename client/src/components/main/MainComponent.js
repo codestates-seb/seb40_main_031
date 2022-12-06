@@ -10,8 +10,7 @@ import {
   ListDiv,
   DistanceDiv,
 } from 'components/main/MainComponent.style';
-import MainSwiper from 'components/main/MainSwiper';
-import BookPage from 'components/@layout/swiper/Swiper';
+import { MainSwiper, BookPage } from 'components';
 import {
   USERINFO_URL,
   BOOK_BEST_DOMESTIC_URL,
@@ -54,6 +53,7 @@ const MainComponent = () => {
 
   useEffect(() => {
     outputMessage();
+    // eslint-disable-next-line
   }, []);
 
   return (

@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import {
   Container,
   Bookbox,
@@ -7,10 +7,9 @@ import {
   TitleMini,
   BookSpan,
 } from 'components/searchDetail/book/Book.style';
-import { useState, useEffect } from 'react';
 import axios from 'api/axios';
-import { BOOK_SEARCH_URL } from 'api';
-import { bookReSearch } from 'atom';
+import { BOOK_SEARCH_URL, BOOK_CATEGORY_URL } from 'api';
+import { bookReSearch, bookSearchCategoryState } from 'atom';
 import { useRecoilValue } from 'recoil';
 import { useNavigate } from 'react-router-dom';
 
@@ -19,26 +18,46 @@ const Book = ({ title }) => {
   const [booksTwo, setBooksTwo] = useState([]);
 
   const word = useRecoilValue(bookReSearch);
+  const category = useRecoilValue(bookSearchCategoryState);
 
   const getSearchBook = async () => {
-    const res = await axios.get(
-      `${BOOK_SEARCH_URL}title&keyword=${word}&page=1&size=10`,
-    );
-    setBooks(res.data.data);
+    if (word !== '') {
+      const res = await axios.get(
+        `${BOOK_SEARCH_URL}title&keyword=${word}&page=1&size=10`,
+      );
+      setBooks(res.data.data);
+    } else {
+      return null;
+    }
   };
 
   const getAuthorBook = async () => {
-    const res = await axios.get(
-      `${BOOK_SEARCH_URL}author&keyword=${word}&page=1&size=10`,
-    );
-    setBooksTwo(res.data.data);
+    if (word !== '') {
+      const res = await axios.get(
+        `${BOOK_SEARCH_URL}author&keyword=${word}&page=1&size=10`,
+      );
+      setBooksTwo(res.data.data);
+    } else {
+      return null;
+    }
+  };
+
+  const getCategoryBook = async () => {
+    if (category !== '') {
+      const res = await axios.get(`${BOOK_CATEGORY_URL}${category}`);
+      setBooks(res.data.data);
+      setBooksTwo([]);
+    } else {
+      return null;
+    }
   };
 
   useEffect(() => {
     getSearchBook();
     getAuthorBook();
+    getCategoryBook();
     // eslint-disable-next-line
-  }, [word]);
+  }, [word, category]);
 
   const navigate = useNavigate();
 

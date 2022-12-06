@@ -1,6 +1,5 @@
 import styled from 'styled-components';
-
-import Theme from '../../style/Theme';
+import { Theme } from 'style';
 
 const Wrap = styled.div`
   margin: 0 auto;

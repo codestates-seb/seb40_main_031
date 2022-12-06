@@ -6,14 +6,20 @@ import {
   TabSpan,
 } from 'components/searchDetail/Tab.style';
 import { ResultDiv } from 'components/searchDetail/SearchDetailComponent.style';
-import { bookSearchKeywordState, bookReSearch } from 'atom';
+import {
+  bookSearchKeywordState,
+  bookReSearch,
+  bookSearchCategoryState,
+} from 'atom';
 import { useRecoilValue } from 'recoil';
 
 const Tab = () => {
   const [currentTab, setCurrentTab] = useState(0);
   const keyword = useRecoilValue(bookSearchKeywordState);
   const word = useRecoilValue(bookReSearch);
+  const category = useRecoilValue(bookSearchCategoryState);
   const [fixedKeyword, setFixedKeyword] = useState(keyword);
+  const [fixedCategory, setFixedCategory] = useState(category);
 
   const menuArr = [{ name: '국내도서', content: <DomesticCategory /> }];
 
@@ -80,7 +86,8 @@ const Tab = () => {
 
   useEffect(() => {
     setFixedKeyword(word);
-  }, [word]);
+    setFixedCategory(categoryChanger(category));
+  }, [word, category]);
 
   return (
     <ContainerDiv>
@@ -101,7 +108,9 @@ const Tab = () => {
       </TabDiv>
 
       <h1>{menuArr[currentTab].content}</h1>
-      <ResultDiv>``{`${fixedKeyword}`}`` 검색 결과입니다.</ResultDiv>
+      <ResultDiv>
+        ``{`${fixedKeyword}${fixedCategory}`}`` 검색 결과입니다.
+      </ResultDiv>
       {/* <ResultDiv>``{keyword}`` 검색한 결과입니다</ResultDiv> // 둘 다 같은 내용을 출력함*/}
     </ContainerDiv>
   );

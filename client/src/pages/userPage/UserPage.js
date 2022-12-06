@@ -1,11 +1,9 @@
 import React, { useState, useEffect } from 'react';
-
 import axios from 'api/axios';
-import { USEREDTI_URL, USERINFO_URL } from 'api';
+import { USERINFO_URL } from 'api';
 import { useParams } from 'react-router-dom';
-import UserAditModal from '../../components/userAditModal/UserAditModal';
+import { UserEditModal } from 'components';
 
-// import UserReadBook from '../../components/searchDetail/book/UserReadBook';
 import {
   Wrap,
   UserContainer,
@@ -19,7 +17,7 @@ import {
   UserNicknameContainer,
   UserAbout,
   RecentReviews,
-} from './UserPage.style';
+} from 'pages/userPage/UserPage.style';
 
 const UserPage = () => {
   const [user, setUser] = useState([]);
@@ -33,16 +31,16 @@ const UserPage = () => {
     return res.data;
   };
 
-  const togle = () => {
+  const toggle = () => {
     setModal((modal) => !modal);
     return;
   };
 
   useEffect(() => {
     getUserData();
+    // eslint-disable-next-line
   }, []);
 
-  console.log(user.data);
   return (
     <>
       <Wrap>
@@ -55,7 +53,7 @@ const UserPage = () => {
             <UserNickname>{user.data?.nickname}</UserNickname>
             <UserNicknameFix
               onClick={() => {
-                togle();
+                toggle();
               }}
             >
               수정
@@ -72,7 +70,7 @@ const UserPage = () => {
           })}
         </ReadBookContainer>
       </Wrap>
-      {modal === true ? <UserAditModal /> : null}
+      {modal === true ? <UserEditModal /> : null}
     </>
   );
 };

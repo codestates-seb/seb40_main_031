@@ -23,8 +23,6 @@ const Template = styled.div`
   padding: 10px;
 
   margin: 0px 20px 30px 20px;
-
-
 `;
 
 const Content = styled.div`

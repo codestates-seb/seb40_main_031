@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import {
   Template,
   Content,
@@ -7,9 +7,7 @@ import {
   LeftText,
   Display,
 } from 'components/@layout/reviewContent/ReviewSmall.style';
-// import DummyReviews from 'components/@layout/reviewContent/DummyReviews';
 import { FaRegThumbsUp } from 'react-icons/fa';
-import { useState, useEffect } from 'react';
 import axios from 'api/axios';
 import { BOOK_BOOKDETAIL_URL, REVIEW_LIKE_URL } from 'api';
 import { useParams, useNavigate } from 'react-router-dom';
@@ -29,10 +27,7 @@ const ReviewSmall = () => {
 
   const getReviewSmall = async () => {
     const res = await axios.get(`${BOOK_BOOKDETAIL_URL}/${id}`);
-
-    console.log(res.data);
     setReviewSmall(res.data.reviews);
-
     return res.data.reviews;
   };
 
@@ -53,7 +48,6 @@ const ReviewSmall = () => {
         },
       )
       .then((res) => {
-        console.log(res);
         window.location.reload();
       })
       .catch((err) => {
@@ -84,6 +78,7 @@ const ReviewSmall = () => {
     getReviewSmall();
     // eslint-disable-next-line
   }, []);
+
   return (
     <>
       <AlertModal

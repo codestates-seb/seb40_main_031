@@ -69,10 +69,6 @@ const BookDetail = () => {
     return res.data;
   };
 
-  useEffect(() => {
-    getBookDetail();
-  }, []);
-
   const modalHandler = () => {
     setModal(true);
   };
@@ -105,6 +101,11 @@ const BookDetail = () => {
         '눈이 많이 와서 채팅방으로 가는 길이 막혔어요😣 다음에 다시 찾아주세요.',
     });
   };
+
+  useEffect(() => {
+    getBookDetail();
+    // eslint-disable-next-line
+  }, []);
 
   useEffect(() => {
     getBookDetail();

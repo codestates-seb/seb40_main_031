@@ -1,6 +1,5 @@
 import React from 'react';
 import { GridContainer, URLShareButton } from './Share.style';
-import { useState } from 'react';
 import { IoCloseOutline } from 'react-icons/io5';
 import {
   FacebookShareButton,
@@ -8,7 +7,6 @@ import {
   TwitterIcon,
   TwitterShareButton,
 } from 'react-share';
-
 import { CopyToClipboard } from 'react-copy-to-clipboard';
 
 const Share = ({ setOpenShare }) => {

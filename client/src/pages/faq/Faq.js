@@ -1,16 +1,8 @@
 import React, { useState } from 'react';
-import { FAQ_TAB_BUTTON, FAQ_MODAL, FAQ_LIST } from 'constants/Pages';
-import Modal from 'components/@common/modal/Modal';
+import { FAQ_LIST } from 'constants/Pages';
 import {
   Wrap,
   Title,
-  TabButton,
-  TabContainer,
-  SearchBarForm,
-  Select,
-  Option,
-  Input,
-  SubmitButton,
   FaqList,
   FaqListTitle,
   FaqListTitlteContents,
@@ -67,7 +59,6 @@ const Faq = () => {
                   {id.text}
                 </FaqListContents>
               </FaqListContents>
-              <div>{modal === true ? <Modal /> : null}</div>
             </>
           );
         })}
