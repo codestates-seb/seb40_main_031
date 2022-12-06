@@ -16,18 +16,20 @@ import { BOOK_BOOKDETAIL_URL } from 'api';
 import { REVEIW_DETAIL_URL } from 'api';
 import { useParams } from 'react-router-dom';
 import modalContent from 'atom/ModalContent';
-import { useRecoilValue } from 'recoil';
+import { useRecoilState } from 'recoil';
 
-const PatchModal = ({ setShow }) => {
+const PatchModal = ({ setShow, idx }) => {
   const out = useRef();
+  console.log(idx);
   const { id } = useParams();
   const [bookTitle, setBookTitle] = useState([]);
-  const [reviews, setReviews] = useState([]);
+  const [reviews, setReviews] = useRecoilState(modalContent);
   const [patchcontents, setPatchContents] = useState('');
 
   const getReviewDetailed = async () => {
     const res = await axios.get(`${REVEIW_DETAIL_URL}/${id}`);
     console.log(res.data);
+
     setReviews(res.data);
     return res.data;
   };
@@ -75,13 +77,13 @@ const PatchModal = ({ setShow }) => {
   const UpdateReviewDetail = (reviewId) => {
     let accessToken = sessionStorage.getItem('Authorization');
     console.log(reviewId);
-    console.log(reviews[reviewId].reviewId);
+    console.log(reviews[idx].reviewId);
+
     setShow(false);
-    // const names = useRecoilValue(modalContent);
 
     axios
       .patch(
-        `${REVEIW_DETAIL_URL}/${reviews[reviewId].reviewId}`,
+        `${REVEIW_DETAIL_URL}/${reviews[idx].reviewId}`,
         {
           content: patchcontents,
         },
@@ -93,8 +95,9 @@ const PatchModal = ({ setShow }) => {
       )
       .then((res) => {
         console.log(res);
+        window.location.reload();
       })
-      // .then(() => window.location.reload())
+
       .catch((err) => {
         console.log(err);
       });

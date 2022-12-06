@@ -40,8 +40,10 @@ const ReviewBig = () => {
   const [content, setContent] = useState('');
   const [datalength, setDatalength] = useState();
   const [show, setShow] = useState(false);
+  const [idx, setIdx] = useState(0);
   const number = useRef(0);
   const tempBigs = useRef([]);
+
   const [alert, setAlert] = useState({
     open: false,
     title: '',
@@ -54,23 +56,28 @@ const ReviewBig = () => {
     setContent(e.target.value);
   };
 
-  const patchHandler = () => {
+  const patchHandler = (index) => {
     setShow(true);
+    setIdx(index);
   };
   const getReviewDetail = async () => {
     const res = await axios.get(`${REVEIW_DETAIL_URL}/${id}`);
     console.log(res.data);
     console.log(res.data.length);
+
     setDatalength(res.data.length);
     tempBigs.current = res.data;
+
+    console.log(tempBigs.current[idx].memberId);
     setreviewBigs(tempBigs.current.slice(0, 3));
+
     number.current = 3;
     return res.data;
   };
 
   const deleteReviewDetail = (reviewId) => {
     let accessToken = sessionStorage.getItem('Authorization');
-
+    console.log(reviewId);
     axios
       .delete(`${REVEIW_DETAIL_URL}/${reviewId}`, {
         headers: {
@@ -80,31 +87,9 @@ const ReviewBig = () => {
       .then((res) => {
         console.log(res);
       })
-      // .then(() => navigate(`reviewdetail/${id}`));
 
       .then(() => window.location.reload());
   };
-
-  // const updateReviewDetail = () => {
-  //   let accessToken = sessionStorage.getItem('Authorization');
-
-  //   axios
-  //     .patch(
-  //       `${REVEIW_DETAIL_URL}/${id}`,
-  //       {
-  //         content: content,
-  //         reviewId: id,
-  //       },
-  //       {
-  //         headers: {
-  //           Authorization: accessToken,
-  //         },
-  //       },
-  //     )
-  //     .then((res) => {
-  //       console.log(res);
-  //     });
-  // };
 
   const likeCount = (reviewId) => {
     let accessToken = sessionStorage.getItem('Authorization');
@@ -160,10 +145,6 @@ const ReviewBig = () => {
     console.log(reviewBigs);
   }, [reviewBigs]);
 
-  // useEffect(() => {
-  //   deleteReviewDetail();
-  // }, []);
-
   const fetchData = () => {
     if (reviewBigs.length < tempBigs.current.length) {
       // 데이터 받아오는 개수에 따라 수정 필요(else문 실행 여부때문에)
@@ -190,7 +171,7 @@ const ReviewBig = () => {
         callback={alert.callback}
       />
       <div>
-        {show === true ? <PatchModal setShow={setShow} /> : null}
+        {show === true ? <PatchModal setShow={setShow} idx={idx} /> : null}
         <InfiniteScroll
           style={{
             display: 'flex',
@@ -206,7 +187,7 @@ const ReviewBig = () => {
           <ReviewCount>리뷰 개수: {datalength} 개</ReviewCount>
 
           {reviewBigs &&
-            reviewBigs.map((reviewBig) => {
+            reviewBigs.map((reviewBig, index) => {
               return (
                 <Template key={reviewBig.reviewId}>
                   <UserInfo>
@@ -223,19 +204,26 @@ const ReviewBig = () => {
                       </LeftIcon>
                       <LeftText>{reviewBig.likeCount}</LeftText>
                     </LeftIconBox>
-                    <RightIconBox>
-                      <RightIconUpdate
-                        onChange={contentHandler}
-                        onClick={patchHandler}
-                      >
-                        <HiOutlinePencil />
-                      </RightIconUpdate>
-                      <RightIconDelete
-                        onClick={() => deleteReviewDetail(reviewBig.reviewId)}
-                      >
-                        <MdClose />
-                      </RightIconDelete>
-                    </RightIconBox>
+                    {Number(sessionStorage.getItem('UserId')) ===
+                      Number(reviewBig.memberId) && (
+                      <>
+                        <RightIconBox>
+                          <RightIconUpdate
+                            onChange={contentHandler}
+                            onClick={() => patchHandler(index)}
+                          >
+                            <HiOutlinePencil />
+                          </RightIconUpdate>
+                          <RightIconDelete
+                            onClick={() =>
+                              deleteReviewDetail(reviewBig.reviewId)
+                            }
+                          >
+                            <MdClose />
+                          </RightIconDelete>
+                        </RightIconBox>
+                      </>
+                    )}
                   </BottomContent>
                 </Template>
               );
