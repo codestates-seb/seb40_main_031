@@ -53,21 +53,21 @@ const Faq = () => {
         </FaqListTitlteContents>
       </FaqListTitle>
       <FaqList>
-        {FAQ_LIST.map(({ text, id }, i) => {
+        {FAQ_LIST.map((id, i) => {
           return (
             <>
               <FaqListContents key={i} style={{ paddingLeft: '3%' }}>
-                {id}
+                {id.id}
 
                 <FaqListContents
                   style={{ marginLeft: '5%' }}
                   onClick={() => togle()}
                   key={i}
                 >
-                  {text}
+                  {id.text}
                 </FaqListContents>
               </FaqListContents>
-              <div>{modal === true && id === { id } ? <Modal /> : null}</div>
+              <div>{modal === true ? <Modal /> : null}</div>
             </>
           );
         })}

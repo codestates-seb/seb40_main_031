@@ -1,6 +1,5 @@
 import React from 'react';
-import { FAQ_TAB_BUTTON } from 'constants';
-import { FAQ_LIST } from 'constants';
+import { NOTICE_LIST } from 'constants/Pages';
 
 import {
   Wrap,
@@ -22,12 +21,12 @@ const Notice = () => {
         </FaqListTitlteContents>
       </FaqListTitle>
       <FaqList>
-        {FAQ_LIST.map(({ li }, i) => {
+        {NOTICE_LIST.map((id, i) => {
           return (
             <FaqListContents key={i} style={{ paddingLeft: '3%' }}>
-              {i}
+              {id.id}
               <FaqListContents key={i} style={{ marginLeft: '5%' }}>
-                {li}
+                {id.text}
               </FaqListContents>
             </FaqListContents>
           );

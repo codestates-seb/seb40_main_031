@@ -85,4 +85,47 @@ const FAQ_LIST = Object.freeze([
   },
 ]);
 
-export { NAV_LIST, NAV_LIST_LOGINED, FAQ_TAB_BUTTON, FAQ_LIST };
+const NOTICE_LIST = Object.freeze([
+  {
+    id: 1,
+    text: '공지사항 입니다 1',
+  },
+  {
+    id: 2,
+    text: '공지사항 입니다 2',
+  },
+  {
+    id: 3,
+    text: '공지사항 입니다 3',
+  },
+  {
+    id: 4,
+    text: '공지사항 입니다 4',
+  },
+  {
+    id: 5,
+    text: '공지사항 입니다 5',
+  },
+  {
+    id: 6,
+    text: '공지사항 입니다 6',
+  },
+  {
+    id: 7,
+    text: '공지사항 입니다 7',
+  },
+  {
+    id: 8,
+    text: '공지사항 입니다 8',
+  },
+  {
+    id: 9,
+    text: '공지사항 입니다 9',
+  },
+  {
+    id: 10,
+    text: '공지사항 입니다 10',
+  },
+]);
+
+export { NAV_LIST, NAV_LIST_LOGINED, FAQ_TAB_BUTTON, FAQ_LIST, NOTICE_LIST };
