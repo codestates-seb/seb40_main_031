@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import {
   Container,
   Bookbox,
@@ -7,7 +7,6 @@ import {
   TitleMini,
   BookSpan,
 } from 'components/searchDetail/book/Book.style';
-import { useState, useEffect } from 'react';
 import axios from 'api/axios';
 import { BOOK_SEARCH_URL, BOOK_CATEGORY_URL } from 'api';
 import { bookReSearch, bookSearchCategoryState } from 'atom';

@@ -1,8 +1,6 @@
 const COLOR = {
   PRIMARY: {
-
     GREEN: 'teal',
-
     GREEN_LIGHT: '#ECFFFD',
     GREEN_DARK: '#88C399',
     BLACK: '#000000',

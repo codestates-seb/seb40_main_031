@@ -1,4 +1,5 @@
-// 수정사항이 있으면 배열,객체 안에 요소를 수정하면 됩니다.
+const userId = sessionStorage.getItem('UserId');
+
 const NAV_LIST = Object.freeze([
   {
     name: '공지사항',
@@ -37,7 +38,7 @@ const NAV_LIST_LOGINED = Object.freeze([
   },
   {
     name: '마이페이지',
-    href: '/mypage',
+    href: `/userpage/${userId}`,
   },
 ]);
 const FAQ_TAB_BUTTON = Object.freeze([
@@ -63,26 +64,21 @@ const FAQ_LIST = Object.freeze([
     id: 3,
     text: '책은어떻게구매하나요?3',
   },
+]);
+
+const NOTICE_LIST = Object.freeze([
   {
-    id: 4,
-    text: '책은어떻게구매하나요?4',
+    id: 1,
+    text: '공지사항 입니다 1',
   },
   {
-    id: 5,
-    text: '책은어떻게구매하나요?5',
+    id: 2,
+    text: '공지사항 입니다 2',
   },
   {
-    id: 6,
-    text: '책은어떻게구매하나요?6',
-  },
-  {
-    id: 7,
-    text: '책은어떻게구매하나요?7',
-  },
-  {
-    id: 8,
-    text: '책은어떻게구매하나요?8',
+    id: 3,
+    text: '공지사항 입니다 3',
   },
 ]);
 
-export { NAV_LIST, NAV_LIST_LOGINED, FAQ_TAB_BUTTON, FAQ_LIST };
+export { NAV_LIST, NAV_LIST_LOGINED, FAQ_TAB_BUTTON, FAQ_LIST, NOTICE_LIST };

@@ -108,6 +108,11 @@ const BookDetail = () => {
   }, []);
 
   useEffect(() => {
+    getBookDetail();
+    // eslint-disable-next-line
+  }, []);
+
+  useEffect(() => {
     getReviewDetailCount();
     // eslint-disable-next-line
   }, []);

@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useRef, useEffect, useState } from 'react';
 import {
   NewModalBackground,
   NewContainerDiv,
@@ -10,17 +10,14 @@ import {
 } from 'components/@layout/modal/PatchModal.style';
 import { IoCloseOutline } from 'react-icons/io5';
 import { Button } from 'components';
-import { useRef, useEffect, useState } from 'react';
 import axios from 'api/axios';
-import { BOOK_BOOKDETAIL_URL } from 'api';
-import { REVEIW_DETAIL_URL } from 'api';
+import { BOOK_BOOKDETAIL_URL, REVEIW_DETAIL_URL } from 'api';
 import { useParams } from 'react-router-dom';
-import modalContent from 'atom/ModalContent';
+import { modalContent } from 'atom';
 import { useRecoilState } from 'recoil';
 
 const PatchModal = ({ setShow, idx }) => {
   const out = useRef();
-  console.log(idx);
   const { id } = useParams();
   const [bookTitle, setBookTitle] = useState([]);
   const [reviews, setReviews] = useRecoilState(modalContent);
@@ -28,8 +25,6 @@ const PatchModal = ({ setShow, idx }) => {
 
   const getReviewDetailed = async () => {
     const res = await axios.get(`${REVEIW_DETAIL_URL}/${id}`);
-    console.log(res.data);
-
     setReviews(res.data);
     return res.data;
   };
@@ -49,9 +44,7 @@ const PatchModal = ({ setShow, idx }) => {
 
   const getBookDetail = async () => {
     const res = await axios.get(`${BOOK_BOOKDETAIL_URL}/${id}`);
-
     setBookTitle(res.data);
-
     return res.data;
   };
 
@@ -74,13 +67,9 @@ const PatchModal = ({ setShow, idx }) => {
     };
   }, []);
 
-  const UpdateReviewDetail = (reviewId) => {
+  const UpdateReviewDetail = () => {
     let accessToken = sessionStorage.getItem('Authorization');
-    console.log(reviewId);
-    console.log(reviews[idx].reviewId);
-
     setShow(false);
-
     axios
       .patch(
         `${REVEIW_DETAIL_URL}/${reviews[idx].reviewId}`,
@@ -97,11 +86,11 @@ const PatchModal = ({ setShow, idx }) => {
         console.log(res);
         window.location.reload();
       })
-
       .catch((err) => {
         console.log(err);
       });
   };
+
   return (
     <div>
       <NewModalBackground

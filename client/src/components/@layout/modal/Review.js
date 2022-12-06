@@ -38,7 +38,6 @@ const ModalReview = ({ setModal, bookdetails }) => {
   const modalHandlered = () => {
     setModal(false);
   };
-
   const { id } = useParams();
 
   const makeReviewHandler = () => {
@@ -56,12 +55,10 @@ const ModalReview = ({ setModal, bookdetails }) => {
         },
       )
       .then((res) => {
-        console.log(res);
         setModal(false);
       })
       .then(() => window.location.reload())
       .catch((err) => {
-        console.log(err.response.status);
         setIsError(
           `오류가 발생했어요. 관리자에게 문의해주세요. 오류 코드: ${err.response.status}`,
         );
@@ -84,10 +81,12 @@ const ModalReview = ({ setModal, bookdetails }) => {
 
   useEffect(() => {
     contentValidate();
+    // eslint-disable-next-line
   }, [content]);
 
   useEffect(() => {
     contentLengthValidate();
+    // eslint-disable-next-line
   }, [contentLength]);
 
   //body 태그의 css를 position을 fixed로 변경하고,

@@ -1,8 +1,8 @@
-import axios from 'axios';
 import React, { useState, useEffect } from 'react';
-
-import apiClient from 'api/axios';
-import { getUser } from '../../api/user';
+import axios from 'api/axios';
+import { USERINFO_URL } from 'api';
+import { useParams } from 'react-router-dom';
+import { UserEditModal } from 'components';
 
 import {
   Wrap,
@@ -11,52 +11,67 @@ import {
   UserIcon,
   ReadBookContainer,
   ReadBook,
-} from './UserPage.style';
+  UserNickname,
+  UserCount,
+  UserNicknameFix,
+  UserNicknameContainer,
+  UserAbout,
+  RecentReviews,
+} from 'pages/userPage/UserPage.style';
 
 const UserPage = () => {
-  const [user, setUser] = useState(null);
-  const [loading, setLoding] = useState(false);
-  const [error, setError] = useState(null);
+  const [user, setUser] = useState([]);
+  const { id } = useParams();
+  const [modal, setModal] = useState(false);
+  let userId = sessionStorage.getItem('UserId');
 
-  const fetchUser = async () => {
-    try {
-      setError(null);
-      setUser(null);
-      setLoding(true);
-      const resposne = await axios.get(
-        'https://e438-222-110-187-162.jp.ngrok.io/members/users',
-      );
-      setUser(resposne.data);
-      console.log(resposne.data.data);
-    } catch (e) {
-      setError(e);
-    }
-    setLoding(false);
+  const getUserData = async () => {
+    const res = await axios.get(`${USERINFO_URL}${id}`);
+    setUser(res.data);
+    return res.data;
+  };
+
+  const toggle = () => {
+    setModal((modal) => !modal);
+    return;
   };
 
   useEffect(() => {
-    fetchUser();
+    getUserData();
+    // eslint-disable-next-line
   }, []);
 
-  if (loading) return <div>loading..</div>;
-  if (error) return <div>Erorr !</div>;
-
-  // fetch('/userpage')
-  //   .then((res) => res.json())
-  //   .then((data) => console.log(data));
-
   return (
-    <Wrap>
-      <UserContainer></UserContainer>
-      <UserInfoBox>
-        <UserIcon />
-      </UserInfoBox>
-
-      <ReadBookContainer>
-        {/* 맵으로 돌릴예정 */}
-        <ReadBook></ReadBook>
-      </ReadBookContainer>
-    </Wrap>
+    <>
+      <Wrap>
+        <UserContainer>
+          <UserCount>포인트 {user.data?.point}</UserCount>
+        </UserContainer>
+        <UserInfoBox>
+          <UserIcon>{user.data?.img}</UserIcon>
+          <UserNicknameContainer>
+            <UserNickname>{user.data?.nickname}</UserNickname>
+            <UserNicknameFix
+              onClick={() => {
+                toggle();
+              }}
+            >
+              수정
+            </UserNicknameFix>
+          </UserNicknameContainer>
+          <UserAbout>{user.data?.about}</UserAbout>
+        </UserInfoBox>
+        <RecentReviews>저는 최근 이런책을 읽었어요</RecentReviews>
+        <ReadBookContainer>
+          {user.data?.bookList.slice(0, 3).map((book) => {
+            return (
+              <ReadBook key={book.bookId} src={book.coverLargeUrl}></ReadBook>
+            );
+          })}
+        </ReadBookContainer>
+      </Wrap>
+      {modal === true ? <UserEditModal /> : null}
+    </>
   );
 };
 
