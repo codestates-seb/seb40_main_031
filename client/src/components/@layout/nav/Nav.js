@@ -1,11 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { FaBars } from 'react-icons/fa';
 import { NAV_LIST, NAV_LIST_LOGINED } from 'constants';
-<<<<<<< HEAD
 import { useNavigate, useParams } from 'react-router-dom';
-=======
-import { useNavigate } from 'react-router-dom';
->>>>>>> 7462f5c9129c49f0096904d36589627afcb60d21
 import axios from 'api/axios';
 
 import SearchBar from 'components/@common/searchBar/SearchBar';
@@ -50,7 +46,6 @@ const Nav = () => {
         console.log(err);
       });
   };
-
 
   const islogined = () => {
     if (sessionStorage.getItem('Authorization') !== null) {

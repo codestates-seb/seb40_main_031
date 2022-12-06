@@ -66,48 +66,6 @@ const ModalReview = ({ setModal, bookdetails }) => {
   //모달이 사라질 때에는 useEffect의 return을 사용해
   //body의 cssText를 리셋시킨 다음 window.scrollTo를 이용해 현재 스크롤 위치로 이동
 
-  const { id } = useParams();
-
-  const makeReviewHandler = () => {
-    let accessToken = sessionStorage.getItem('Authorization');
-    setModal(false);
-
-    axios
-      .post(
-        `${REVIEW_URL}/${id}`,
-        {
-          content: content,
-        },
-        {
-          headers: {
-            Authorization: accessToken,
-          },
-        },
-      )
-      .then((res) => {
-        console.log(res);
-      });
-  };
-
-  useEffect(() => {
-    //모달창 화면이 처음에 랜더링이 되었을때
-    document.body.style.cssText = `  
-      position: fixed;  
-      top: -${window.scrollY}px;
-      overflow-y: scroll;
-      width: 100%;`;
-    return () => {
-      const scrollY = document.body.style.top;
-      document.body.style.cssText = '';
-      window.scrollTo(0, parseInt(scrollY || '0', 10) * -1);
-    };
-  }, []);
-  //body 태그의 css를 position을 fixed로 변경하고,
-  //top을 현재 스크롤 위치로 하고 overflow-y: scroll; width: 100%;을 추가
-  //스크롤 방지
-  //모달이 사라질 때에는 useEffect의 return을 사용해
-  //body의 cssText를 리셋시킨 다음 window.scrollTo를 이용해 현재 스크롤 위치로 이동
-
   return (
     <div>
       <ModalBackground

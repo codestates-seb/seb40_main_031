@@ -6,15 +6,7 @@ import {
   TabSpan,
 } from 'components/searchDetail/Tab.style';
 import { ResultDiv } from 'components/searchDetail/SearchDetailComponent.style';
-<<<<<<< HEAD
 import { bookSearchKeywordState, bookReSearch } from 'atom';
-=======
-import {
-  bookSearchKeywordState,
-  bookReSearch,
-  bookSearchCategoryState,
-} from 'atom';
->>>>>>> 7462f5c9129c49f0096904d36589627afcb60d21
 import { useRecoilValue } from 'recoil';
 
 const Tab = () => {
