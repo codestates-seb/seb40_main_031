@@ -31,7 +31,7 @@ const ContainerDiv = styled.div`
 const HeaderDiv = styled.div`
   display: flex;
   justify-content: space-between;
-  height: 10%;
+  height: 55px;
   min-height: 15px;
 
   padding-left: 0.5rem;
@@ -42,6 +42,10 @@ const TitleSpan = styled.span`
   font-weight: bold;
   font-size: 40px;
   color: ${Theme.PRIMARY.GREEN_DARK};
+  width: 100%;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 `;
 
 const CloseIconSpan = styled.span`
@@ -84,6 +88,18 @@ const FooterDiv = styled.div`
   font-size: 30px;
   padding-left: 0.5rem;
   padding-right: 0.5rem;
+  margin-bottom: 0.5rem;
+`;
+
+const ErrorSpan = styled.span`
+  margin-right: 2rem;
+  color: red;
+`;
+
+const LengthSpan = styled.span`
+  color: orange;
+  font-size: 1.2rem;
+  margin-right: 0.5rem;
 `;
 
 export {
@@ -94,4 +110,6 @@ export {
   CloseIconSpan,
   ReviewTextarea,
   FooterDiv,
+  ErrorSpan,
+  LengthSpan,
 };
