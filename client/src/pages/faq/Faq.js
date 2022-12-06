@@ -49,15 +49,14 @@ const Faq = () => {
           return (
             <>
               <FaqListContents key={i} style={{ paddingLeft: '3%' }}>
-                {id.id}
-
-                <FaqListContents
-                  style={{ marginLeft: '5%' }}
-                  onClick={() => togle()}
-                  key={i}
+                <div
+                  style={{
+                    marginRight: 25,
+                  }}
                 >
-                  {id.text}
-                </FaqListContents>
+                  {id.id}
+                </div>
+                {id.text}
               </FaqListContents>
             </>
           );
