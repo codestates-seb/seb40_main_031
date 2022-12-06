@@ -7,9 +7,6 @@ import {
   LoginInput,
   LinkToSignUpDiv,
   LinkA,
-  OAuthListDiv,
-  OAuthSvg,
-  LineHr,
   CommentDiv,
   LoginButton,
 } from 'components/login/LoginComponent.style';
