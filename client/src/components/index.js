@@ -16,6 +16,7 @@ import SearchDetailComponent from 'components/searchDetail/SearchDetailComponent
 import SignUpComponent from 'components/signUp/SignUpComponent';
 import AlertModal from 'components/alertModal/AlertModal';
 import ScrollToTop from 'components/scroll/Scroll';
+import Share from 'components/share/Share';
 
 export {
   CustomLink,
@@ -35,4 +36,5 @@ export {
   SignUpComponent,
   AlertModal,
   ScrollToTop,
+  Share,
 };
