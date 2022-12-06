@@ -20,6 +20,64 @@ const Tab = () => {
   const selectMenuHandler = (index) => {
     setCurrentTab(index);
   };
+  const categoryChanger = (category) => {
+    let result = '';
+    category === '101'
+      ? (result = '소설')
+      : category === '102'
+      ? (result = '시/에세이')
+      : category === '103'
+      ? (result = '예술/대중문화')
+      : category === '104'
+      ? (result = '사회과학')
+      : category === '105'
+      ? (result = '역사와 문화')
+      : category === '107'
+      ? (result = '잡지')
+      : category === '108'
+      ? (result = '만화')
+      : category === '109'
+      ? (result = '유아')
+      : category === '110'
+      ? (result = '아동')
+      : category === '111'
+      ? (result = '가정과 생활')
+      : category === '112'
+      ? (result = '청소년')
+      : category === '113'
+      ? (result = '초등학습서')
+      : category === '114'
+      ? (result = '고등학습서')
+      : category === '115'
+      ? (result = '국어/외국어/사전')
+      : category === '116'
+      ? (result = '자연과 과학')
+      : category === '117'
+      ? (result = '경제경영')
+      : category === '118'
+      ? (result = '자기계발')
+      : category === '119'
+      ? (result = '인문')
+      : category === '120'
+      ? (result = '종교/역학')
+      : category === '122'
+      ? (result = '컴퓨터/인터넷')
+      : category === '123'
+      ? (result = '자격서/수험서')
+      : category === '124'
+      ? (result = '취미/레저')
+      : category === '125'
+      ? (result = '전공서적/대학교재')
+      : category === '126'
+      ? (result = '건강/뷰티')
+      : category === '128'
+      ? (result = '여행')
+      : category === '129'
+      ? (result = '중등학습서')
+      : null;
+    return result;
+  };
+
   useEffect(() => {
     setFixedKeyword(word);
   }, [word]);
