@@ -28,7 +28,7 @@ const Faq = () => {
   return (
     <Wrap>
       <Title>자주묻는 질문 (FAQ)</Title>
-      <TabContainer>
+      {/* <TabContainer>
         {FAQ_TAB_BUTTON.map((button) => {
           return button === 'NavTabButton' ? (
             <TabButton key={button}>{button}</TabButton>
@@ -36,15 +36,16 @@ const Faq = () => {
             <TabButton key={button}>{button}</TabButton>
           );
         })}
-      </TabContainer>
-      <SearchBarForm>
+      </TabContainer> */}
+      {/* <SearchBarForm>
         <Select>
           <Option>제목</Option>
           <Option>내용</Option>
         </Select>
         <Input htmlFor='search' />
         <SubmitButton>검색</SubmitButton>
-      </SearchBarForm>
+      </SearchBarForm> */}
+      {/* 추후 리팩토링때 사용예정 */}
       <FaqListTitle>
         <FaqListTitlteContents>
           <div style={{ marginLeft: '2%', fontWeight: 600 }}>번호</div>

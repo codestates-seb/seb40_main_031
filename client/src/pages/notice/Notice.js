@@ -5,13 +5,6 @@ import { FAQ_LIST } from 'constants';
 import {
   Wrap,
   Title,
-  TabButton,
-  TabContainer,
-  SearchBarForm,
-  Select,
-  Option,
-  Input,
-  SubmitButton,
   FaqList,
   FaqListTitle,
   FaqListTitlteContents,
@@ -29,7 +22,7 @@ const Notice = () => {
         </FaqListTitlteContents>
       </FaqListTitle>
       <FaqList>
-        {FAQ_LIST.map((li, i) => {
+        {FAQ_LIST.map(({ li }, i) => {
           return (
             <FaqListContents key={i} style={{ paddingLeft: '3%' }}>
               {i}
