@@ -5,6 +5,9 @@ const Wrap = styled.div`
   margin: 0 auto;
   height: 100%;
   margin-bottom: 300px;
+  @media screen and (max-width: 600px) {
+    font-size: 12px;
+  }
 `;
 
 const UserContainer = styled.div`
@@ -16,6 +19,9 @@ const UserContainer = styled.div`
   display: flex;
   justify-content: end;
   align-items: center;
+  @media screen and (max-width: 1000px) {
+    width: 100%;
+  }
 `;
 
 const UserCount = styled.div`
@@ -32,6 +38,9 @@ const UserInfoBox = styled.div`
   background-color: ${Theme.PRIMARY.GREEN_LIGHT};
   border-radius: 2em;
   position: relative;
+  @media screen and (max-width: 1000px) {
+    width: 100%;
+  }
 `;
 
 const UserIcon = styled.img`
@@ -55,6 +64,9 @@ const ReadBook = styled.img`
   height: 25vh;
   border-radius: 1em;
   margin-right: 1rem;
+  @media screen and (max-width: 1000px) {
+    width: 100%;
+  }
 `;
 
 const UserNicknameContainer = styled.div`
